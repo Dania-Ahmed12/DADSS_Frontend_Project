@@ -14,7 +14,7 @@ const HeatWeek = ({ datas, title, subTitle }) => {
   useEffect(() => {
     const uniqueShips = Array.from(new Set(datas.map((entry) => entry.ship)));
     const today = dayjs();
-    const yearBackFromNow = today.subtract(1, "month").startOf("month");
+    const yearBackFromNow = today.subtract(0, "month").startOf("month");
 
     const weekArray = Array.from({ length: 52 }, (_, i) =>
       i < 8 ? `0${i + 1}` : `${i + 1}`

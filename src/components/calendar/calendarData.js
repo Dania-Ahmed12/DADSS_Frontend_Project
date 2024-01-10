@@ -1,7 +1,7 @@
 const HeatData = [
   {
-    ship: "Ship 1",
-    date: "2023-01-01",
+    ship: "Ship 6",
+    date: "2024-01-01",
     contributions: 10,
     details: {
       visits: 16,
@@ -11,8 +11,8 @@ const HeatData = [
     },
   },
   {
-    ship: "Ship 6",
-    date: "2023-01-02",
+    ship: "Ship 1",
+    date: "2024-01-02",
     contributions: 64,
     details: {
       visits: 40,
@@ -23,7 +23,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-01-03",
+    date: "2024-01-03",
     contributions: 89,
     details: {
       visits: 10,
@@ -34,7 +34,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-01-04",
+    date: "2024-01-04",
     contributions: 72,
     details: {
       visits: 73,
@@ -45,7 +45,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-05",
+    date: "2024-01-05",
     contributions: 91,
     details: {
       visits: 97,
@@ -56,7 +56,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-06",
+    date: "2024-01-06",
     contributions: 67,
     details: {
       visits: 17,
@@ -67,7 +67,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-01-07",
+    date: "2024-01-07",
     contributions: 74,
     details: {
       visits: 98,
@@ -78,7 +78,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-08",
+    date: "2024-01-08",
     contributions: 20,
     details: {
       visits: 96,
@@ -88,8 +88,8 @@ const HeatData = [
     },
   },
   {
-    ship: "Ship 6",
-    date: "2023-01-09",
+    ship: "Ship 1",
+    date: "2024-01-09",
     contributions: 14,
     details: {
       visits: 22,
@@ -99,8 +99,8 @@ const HeatData = [
     },
   },
   {
-    ship: "Ship 6",
-    date: "2023-01-10",
+    ship: "Ship 1",
+    date: "2024-01-10",
     contributions: 51,
     details: {
       visits: 5,
@@ -111,7 +111,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-11",
+    date: "2024-01-11",
     contributions: 38,
     details: {
       visits: 72,
@@ -122,7 +122,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-12",
+    date: "2024-01-12",
     contributions: 45,
     details: {
       visits: 91,
@@ -133,7 +133,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-01-13",
+    date: "2024-01-13",
     contributions: 65,
     details: {
       visits: 34,
@@ -144,7 +144,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-14",
+    date: "2024-01-14",
     contributions: 97,
     details: {
       visits: 77,
@@ -155,7 +155,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-01-15",
+    date: "2024-01-15",
     contributions: 54,
     details: {
       visits: 48,
@@ -166,7 +166,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-16",
+    date: "2024-01-16",
     contributions: 1,
     details: {
       visits: 70,
@@ -177,7 +177,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-17",
+    date: "2024-01-17",
     contributions: 51,
     details: {
       visits: 10,
@@ -188,7 +188,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-01-18",
+    date: "2024-01-18",
     contributions: 10,
     details: {
       visits: 40,
@@ -199,7 +199,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-01-19",
+    date: "2024-01-19",
     contributions: 43,
     details: {
       visits: 86,
@@ -210,7 +210,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-01-20",
+    date: "2024-01-20",
     contributions: 76,
     details: {
       visits: 75,
@@ -221,7 +221,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-01-21",
+    date: "2024-01-21",
     contributions: 38,
     details: {
       visits: 92,
@@ -232,7 +232,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-01-22",
+    date: "2024-01-22",
     contributions: 21,
     details: {
       visits: 26,
@@ -243,7 +243,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-01-23",
+    date: "2024-01-23",
     contributions: 31,
     details: {
       visits: 47,
@@ -254,7 +254,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-24",
+    date: "2024-01-24",
     contributions: 87,
     details: {
       visits: 52,
@@ -265,7 +265,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-25",
+    date: "2024-01-25",
     contributions: 95,
     details: {
       visits: 82,
@@ -276,7 +276,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-01-26",
+    date: "2024-01-26",
     contributions: 5,
     details: {
       visits: 96,
@@ -287,7 +287,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-01-27",
+    date: "2024-01-27",
     contributions: 84,
     details: {
       visits: 58,
@@ -298,7 +298,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-01-28",
+    date: "2024-01-28",
     contributions: 69,
     details: {
       visits: 19,
@@ -309,7 +309,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-01-29",
+    date: "2024-01-29",
     contributions: 100,
     details: {
       visits: 11,
@@ -320,7 +320,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-01-30",
+    date: "2024-01-30",
     contributions: 97,
     details: {
       visits: 24,
@@ -331,7 +331,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-01-31",
+    date: "2024-01-31",
     contributions: 2,
     details: {
       visits: 57,
@@ -342,7 +342,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-02-01",
+    date: "2024-02-01",
     contributions: 61,
     details: {
       visits: 24,
@@ -353,7 +353,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-02-02",
+    date: "2024-02-02",
     contributions: 7,
     details: {
       visits: 85,
@@ -364,7 +364,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-02-03",
+    date: "2024-02-03",
     contributions: 19,
     details: {
       visits: 27,
@@ -375,7 +375,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-04",
+    date: "2024-02-04",
     contributions: 70,
     details: {
       visits: 59,
@@ -386,7 +386,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-02-05",
+    date: "2024-02-05",
     contributions: 33,
     details: {
       visits: 4,
@@ -397,7 +397,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-02-06",
+    date: "2024-02-06",
     contributions: 23,
     details: {
       visits: 15,
@@ -408,7 +408,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-02-07",
+    date: "2024-02-07",
     contributions: 21,
     details: {
       visits: 54,
@@ -419,7 +419,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-02-08",
+    date: "2024-02-08",
     contributions: 29,
     details: {
       visits: 5,
@@ -430,7 +430,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-02-09",
+    date: "2024-02-09",
     contributions: 26,
     details: {
       visits: 80,
@@ -441,7 +441,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-02-10",
+    date: "2024-02-10",
     contributions: 51,
     details: {
       visits: 98,
@@ -452,7 +452,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-11",
+    date: "2024-02-11",
     contributions: 59,
     details: {
       visits: 8,
@@ -463,7 +463,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-02-12",
+    date: "2024-02-12",
     contributions: 73,
     details: {
       visits: 38,
@@ -474,7 +474,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-02-13",
+    date: "2024-02-13",
     contributions: 62,
     details: {
       visits: 2,
@@ -485,7 +485,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-14",
+    date: "2024-02-14",
     contributions: 13,
     details: {
       visits: 14,
@@ -496,7 +496,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-02-15",
+    date: "2024-02-15",
     contributions: 21,
     details: {
       visits: 52,
@@ -507,7 +507,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-16",
+    date: "2024-02-16",
     contributions: 23,
     details: {
       visits: 2,
@@ -518,7 +518,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-17",
+    date: "2024-02-17",
     contributions: 13,
     details: {
       visits: 35,
@@ -529,7 +529,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-02-18",
+    date: "2024-02-18",
     contributions: 9,
     details: {
       visits: 25,
@@ -540,7 +540,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-02-19",
+    date: "2024-02-19",
     contributions: 10,
     details: {
       visits: 44,
@@ -551,7 +551,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-02-20",
+    date: "2024-02-20",
     contributions: 65,
     details: {
       visits: 64,
@@ -562,7 +562,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-02-21",
+    date: "2024-02-21",
     contributions: 80,
     details: {
       visits: 86,
@@ -573,7 +573,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-02-22",
+    date: "2024-02-22",
     contributions: 73,
     details: {
       visits: 91,
@@ -584,7 +584,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-02-23",
+    date: "2024-02-23",
     contributions: 78,
     details: {
       visits: 70,
@@ -595,7 +595,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-02-24",
+    date: "2024-02-24",
     contributions: 7,
     details: {
       visits: 88,
@@ -606,7 +606,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-02-25",
+    date: "2024-02-25",
     contributions: 23,
     details: {
       visits: 57,
@@ -617,7 +617,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-02-26",
+    date: "2024-02-26",
     contributions: 99,
     details: {
       visits: 2,
@@ -628,7 +628,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-02-27",
+    date: "2024-02-27",
     contributions: 86,
     details: {
       visits: 73,
@@ -639,7 +639,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-02-28",
+    date: "2024-02-28",
     contributions: 93,
     details: {
       visits: 47,
@@ -650,7 +650,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-03-01",
+    date: "2024-03-01",
     contributions: 15,
     details: {
       visits: 24,
@@ -661,7 +661,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-03-02",
+    date: "2024-03-02",
     contributions: 59,
     details: {
       visits: 33,
@@ -672,7 +672,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-03-03",
+    date: "2024-03-03",
     contributions: 71,
     details: {
       visits: 49,
@@ -683,7 +683,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-03-04",
+    date: "2024-03-04",
     contributions: 46,
     details: {
       visits: 60,
@@ -694,7 +694,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-03-05",
+    date: "2024-03-05",
     contributions: 48,
     details: {
       visits: 12,
@@ -705,7 +705,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-03-06",
+    date: "2024-03-06",
     contributions: 2,
     details: {
       visits: 93,
@@ -716,7 +716,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-03-07",
+    date: "2024-03-07",
     contributions: 91,
     details: {
       visits: 29,
@@ -727,7 +727,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-03-08",
+    date: "2024-03-08",
     contributions: 69,
     details: {
       visits: 56,
@@ -738,7 +738,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-03-09",
+    date: "2024-03-09",
     contributions: 55,
     details: {
       visits: 46,
@@ -749,7 +749,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-03-10",
+    date: "2024-03-10",
     contributions: 99,
     details: {
       visits: 61,
@@ -760,7 +760,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-03-11",
+    date: "2024-03-11",
     contributions: 7,
     details: {
       visits: 91,
@@ -771,7 +771,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-03-12",
+    date: "2024-03-12",
     contributions: 97,
     details: {
       visits: 71,
@@ -782,7 +782,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-03-13",
+    date: "2024-03-13",
     contributions: 62,
     details: {
       visits: 62,
@@ -793,7 +793,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-03-14",
+    date: "2024-03-14",
     contributions: 75,
     details: {
       visits: 92,
@@ -804,7 +804,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-03-15",
+    date: "2024-03-15",
     contributions: 73,
     details: {
       visits: 19,
@@ -815,7 +815,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-03-16",
+    date: "2024-03-16",
     contributions: 28,
     details: {
       visits: 49,
@@ -826,7 +826,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-03-17",
+    date: "2024-03-17",
     contributions: 8,
     details: {
       visits: 72,
@@ -837,7 +837,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-03-18",
+    date: "2024-03-18",
     contributions: 19,
     details: {
       visits: 78,
@@ -848,7 +848,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-03-19",
+    date: "2024-03-19",
     contributions: 2,
     details: {
       visits: 70,
@@ -859,7 +859,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-03-20",
+    date: "2024-03-20",
     contributions: 11,
     details: {
       visits: 47,
@@ -870,7 +870,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-03-21",
+    date: "2024-03-21",
     contributions: 6,
     details: {
       visits: 76,
@@ -881,7 +881,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-03-22",
+    date: "2024-03-22",
     contributions: 89,
     details: {
       visits: 65,
@@ -892,7 +892,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-03-23",
+    date: "2024-03-23",
     contributions: 30,
     details: {
       visits: 27,
@@ -903,7 +903,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-03-24",
+    date: "2024-03-24",
     contributions: 56,
     details: {
       visits: 41,
@@ -914,7 +914,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-03-25",
+    date: "2024-03-25",
     contributions: 72,
     details: {
       visits: 62,
@@ -925,7 +925,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-03-26",
+    date: "2024-03-26",
     contributions: 95,
     details: {
       visits: 96,
@@ -936,7 +936,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-03-27",
+    date: "2024-03-27",
     contributions: 44,
     details: {
       visits: 20,
@@ -947,7 +947,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-03-28",
+    date: "2024-03-28",
     contributions: 91,
     details: {
       visits: 60,
@@ -958,7 +958,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-03-29",
+    date: "2024-03-29",
     contributions: 34,
     details: {
       visits: 42,
@@ -969,7 +969,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-03-30",
+    date: "2024-03-30",
     contributions: 69,
     details: {
       visits: 39,
@@ -980,7 +980,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-03-31",
+    date: "2024-03-31",
     contributions: 51,
     details: {
       visits: 10,
@@ -991,7 +991,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-04-01",
+    date: "2024-04-01",
     contributions: 20,
     details: {
       visits: 80,
@@ -1002,7 +1002,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-04-02",
+    date: "2024-04-02",
     contributions: 75,
     details: {
       visits: 44,
@@ -1013,7 +1013,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-04-03",
+    date: "2024-04-03",
     contributions: 2,
     details: {
       visits: 76,
@@ -1024,7 +1024,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-04-04",
+    date: "2024-04-04",
     contributions: 16,
     details: {
       visits: 22,
@@ -1035,7 +1035,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-04-05",
+    date: "2024-04-05",
     contributions: 29,
     details: {
       visits: 60,
@@ -1046,7 +1046,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-04-06",
+    date: "2024-04-06",
     contributions: 38,
     details: {
       visits: 77,
@@ -1057,7 +1057,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-04-07",
+    date: "2024-04-07",
     contributions: 10,
     details: {
       visits: 50,
@@ -1068,7 +1068,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-04-08",
+    date: "2024-04-08",
     contributions: 58,
     details: {
       visits: 63,
@@ -1079,7 +1079,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-04-09",
+    date: "2024-04-09",
     contributions: 20,
     details: {
       visits: 7,
@@ -1090,7 +1090,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-04-10",
+    date: "2024-04-10",
     contributions: 86,
     details: {
       visits: 39,
@@ -1101,7 +1101,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-04-11",
+    date: "2024-04-11",
     contributions: 52,
     details: {
       visits: 34,
@@ -1112,7 +1112,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-04-12",
+    date: "2024-04-12",
     contributions: 88,
     details: {
       visits: 68,
@@ -1123,7 +1123,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-04-13",
+    date: "2024-04-13",
     contributions: 29,
     details: {
       visits: 16,
@@ -1134,7 +1134,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-04-14",
+    date: "2024-04-14",
     contributions: 52,
     details: {
       visits: 46,
@@ -1145,7 +1145,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-04-15",
+    date: "2024-04-15",
     contributions: 56,
     details: {
       visits: 62,
@@ -1156,7 +1156,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-04-16",
+    date: "2024-04-16",
     contributions: 20,
     details: {
       visits: 70,
@@ -1167,7 +1167,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-04-17",
+    date: "2024-04-17",
     contributions: 92,
     details: {
       visits: 57,
@@ -1178,7 +1178,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-04-18",
+    date: "2024-04-18",
     contributions: 1,
     details: {
       visits: 51,
@@ -1189,7 +1189,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-04-19",
+    date: "2024-04-19",
     contributions: 10,
     details: {
       visits: 35,
@@ -1200,7 +1200,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-04-20",
+    date: "2024-04-20",
     contributions: 37,
     details: {
       visits: 39,
@@ -1211,7 +1211,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-04-21",
+    date: "2024-04-21",
     contributions: 7,
     details: {
       visits: 52,
@@ -1222,7 +1222,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-04-22",
+    date: "2024-04-22",
     contributions: 7,
     details: {
       visits: 10,
@@ -1233,7 +1233,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-04-23",
+    date: "2024-04-23",
     contributions: 69,
     details: {
       visits: 60,
@@ -1244,7 +1244,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-04-24",
+    date: "2024-04-24",
     contributions: 9,
     details: {
       visits: 36,
@@ -1255,7 +1255,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-04-25",
+    date: "2024-04-25",
     contributions: 17,
     details: {
       visits: 55,
@@ -1266,7 +1266,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-04-26",
+    date: "2024-04-26",
     contributions: 90,
     details: {
       visits: 86,
@@ -1277,7 +1277,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-04-27",
+    date: "2024-04-27",
     contributions: 85,
     details: {
       visits: 38,
@@ -1288,7 +1288,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-04-28",
+    date: "2024-04-28",
     contributions: 92,
     details: {
       visits: 31,
@@ -1299,7 +1299,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-04-29",
+    date: "2024-04-29",
     contributions: 46,
     details: {
       visits: 21,
@@ -1310,7 +1310,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-04-30",
+    date: "2024-04-30",
     contributions: 16,
     details: {
       visits: 20,
@@ -1321,7 +1321,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-05-01",
+    date: "2024-05-01",
     contributions: 61,
     details: {
       visits: 31,
@@ -1332,7 +1332,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-05-02",
+    date: "2024-05-02",
     contributions: 69,
     details: {
       visits: 94,
@@ -1343,7 +1343,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-05-03",
+    date: "2024-05-03",
     contributions: 25,
     details: {
       visits: 52,
@@ -1354,7 +1354,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-04",
+    date: "2024-05-04",
     contributions: 93,
     details: {
       visits: 63,
@@ -1365,7 +1365,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-05-05",
+    date: "2024-05-05",
     contributions: 68,
     details: {
       visits: 59,
@@ -1376,7 +1376,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-05-06",
+    date: "2024-05-06",
     contributions: 63,
     details: {
       visits: 54,
@@ -1387,7 +1387,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-05-07",
+    date: "2024-05-07",
     contributions: 53,
     details: {
       visits: 11,
@@ -1398,7 +1398,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-05-08",
+    date: "2024-05-08",
     contributions: 66,
     details: {
       visits: 74,
@@ -1409,7 +1409,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-05-09",
+    date: "2024-05-09",
     contributions: 84,
     details: {
       visits: 49,
@@ -1420,7 +1420,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-05-10",
+    date: "2024-05-10",
     contributions: 19,
     details: {
       visits: 10,
@@ -1431,7 +1431,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-05-11",
+    date: "2024-05-11",
     contributions: 67,
     details: {
       visits: 30,
@@ -1442,7 +1442,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-05-12",
+    date: "2024-05-12",
     contributions: 79,
     details: {
       visits: 30,
@@ -1453,7 +1453,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-13",
+    date: "2024-05-13",
     contributions: 31,
     details: {
       visits: 31,
@@ -1464,7 +1464,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-14",
+    date: "2024-05-14",
     contributions: 31,
     details: {
       visits: 14,
@@ -1475,7 +1475,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-05-15",
+    date: "2024-05-15",
     contributions: 24,
     details: {
       visits: 48,
@@ -1486,7 +1486,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-05-16",
+    date: "2024-05-16",
     contributions: 66,
     details: {
       visits: 69,
@@ -1497,7 +1497,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-05-17",
+    date: "2024-05-17",
     contributions: 37,
     details: {
       visits: 68,
@@ -1508,7 +1508,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-05-18",
+    date: "2024-05-18",
     contributions: 17,
     details: {
       visits: 43,
@@ -1519,7 +1519,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-05-19",
+    date: "2024-05-19",
     contributions: 76,
     details: {
       visits: 68,
@@ -1530,7 +1530,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-05-20",
+    date: "2024-05-20",
     contributions: 93,
     details: {
       visits: 48,
@@ -1541,7 +1541,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-05-21",
+    date: "2024-05-21",
     contributions: 11,
     details: {
       visits: 95,
@@ -1552,7 +1552,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-05-22",
+    date: "2024-05-22",
     contributions: 68,
     details: {
       visits: 94,
@@ -1563,7 +1563,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-05-23",
+    date: "2024-05-23",
     contributions: 25,
     details: {
       visits: 41,
@@ -1574,7 +1574,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-24",
+    date: "2024-05-24",
     contributions: 12,
     details: {
       visits: 91,
@@ -1585,7 +1585,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-25",
+    date: "2024-05-25",
     contributions: 14,
     details: {
       visits: 17,
@@ -1596,7 +1596,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-05-26",
+    date: "2024-05-26",
     contributions: 70,
     details: {
       visits: 86,
@@ -1607,7 +1607,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-05-27",
+    date: "2024-05-27",
     contributions: 58,
     details: {
       visits: 34,
@@ -1618,7 +1618,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-05-28",
+    date: "2024-05-28",
     contributions: 75,
     details: {
       visits: 53,
@@ -1629,7 +1629,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-05-29",
+    date: "2024-05-29",
     contributions: 94,
     details: {
       visits: 39,
@@ -1640,7 +1640,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-05-30",
+    date: "2024-05-30",
     contributions: 42,
     details: {
       visits: 86,
@@ -1651,7 +1651,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-05-31",
+    date: "2024-05-31",
     contributions: 87,
     details: {
       visits: 20,
@@ -1662,7 +1662,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-06-01",
+    date: "2024-06-01",
     contributions: 13,
     details: {
       visits: 79,
@@ -1673,7 +1673,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-06-02",
+    date: "2024-06-02",
     contributions: 11,
     details: {
       visits: 20,
@@ -1684,7 +1684,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-06-03",
+    date: "2024-06-03",
     contributions: 21,
     details: {
       visits: 94,
@@ -1695,7 +1695,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-06-04",
+    date: "2024-06-04",
     contributions: 27,
     details: {
       visits: 56,
@@ -1706,7 +1706,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-06-05",
+    date: "2024-06-05",
     contributions: 19,
     details: {
       visits: 16,
@@ -1717,7 +1717,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-06-06",
+    date: "2024-06-06",
     contributions: 24,
     details: {
       visits: 32,
@@ -1728,7 +1728,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-06-07",
+    date: "2024-06-07",
     contributions: 73,
     details: {
       visits: 69,
@@ -1739,7 +1739,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-06-08",
+    date: "2024-06-08",
     contributions: 3,
     details: {
       visits: 65,
@@ -1750,7 +1750,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-06-09",
+    date: "2024-06-09",
     contributions: 99,
     details: {
       visits: 84,
@@ -1761,7 +1761,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-06-10",
+    date: "2024-06-10",
     contributions: 60,
     details: {
       visits: 83,
@@ -1772,7 +1772,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-06-11",
+    date: "2024-06-11",
     contributions: 5,
     details: {
       visits: 33,
@@ -1783,7 +1783,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-06-12",
+    date: "2024-06-12",
     contributions: 65,
     details: {
       visits: 1,
@@ -1794,7 +1794,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-06-13",
+    date: "2024-06-13",
     contributions: 88,
     details: {
       visits: 55,
@@ -1805,7 +1805,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-06-14",
+    date: "2024-06-14",
     contributions: 91,
     details: {
       visits: 50,
@@ -1816,7 +1816,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-06-15",
+    date: "2024-06-15",
     contributions: 96,
     details: {
       visits: 33,
@@ -1827,7 +1827,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-06-16",
+    date: "2024-06-16",
     contributions: 25,
     details: {
       visits: 73,
@@ -1838,7 +1838,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-06-17",
+    date: "2024-06-17",
     contributions: 10,
     details: {
       visits: 49,
@@ -1849,7 +1849,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-06-18",
+    date: "2024-06-18",
     contributions: 70,
     details: {
       visits: 89,
@@ -1860,7 +1860,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-06-19",
+    date: "2024-06-19",
     contributions: 66,
     details: {
       visits: 36,
@@ -1871,7 +1871,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-06-20",
+    date: "2024-06-20",
     contributions: 17,
     details: {
       visits: 11,
@@ -1882,7 +1882,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-06-21",
+    date: "2024-06-21",
     contributions: 66,
     details: {
       visits: 16,
@@ -1893,7 +1893,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-06-22",
+    date: "2024-06-22",
     contributions: 4,
     details: {
       visits: 29,
@@ -1904,7 +1904,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-06-23",
+    date: "2024-06-23",
     contributions: 68,
     details: {
       visits: 67,
@@ -1915,7 +1915,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-06-24",
+    date: "2024-06-24",
     contributions: 58,
     details: {
       visits: 77,
@@ -1926,7 +1926,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-06-25",
+    date: "2024-06-25",
     contributions: 7,
     details: {
       visits: 86,
@@ -1937,7 +1937,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-06-26",
+    date: "2024-06-26",
     contributions: 30,
     details: {
       visits: 44,
@@ -1948,7 +1948,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-06-27",
+    date: "2024-06-27",
     contributions: 1,
     details: {
       visits: 2,
@@ -1959,7 +1959,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-06-28",
+    date: "2024-06-28",
     contributions: 9,
     details: {
       visits: 71,
@@ -1970,7 +1970,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-06-29",
+    date: "2024-06-29",
     contributions: 10,
     details: {
       visits: 30,
@@ -1981,7 +1981,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-06-30",
+    date: "2024-06-30",
     contributions: 88,
     details: {
       visits: 75,
@@ -1992,7 +1992,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-07-01",
+    date: "2024-07-01",
     contributions: 16,
     details: {
       visits: 71,
@@ -2003,7 +2003,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-07-02",
+    date: "2024-07-02",
     contributions: 99,
     details: {
       visits: 25,
@@ -2014,7 +2014,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-07-03",
+    date: "2024-07-03",
     contributions: 46,
     details: {
       visits: 2,
@@ -2025,7 +2025,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-07-04",
+    date: "2024-07-04",
     contributions: 30,
     details: {
       visits: 98,
@@ -2036,7 +2036,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-07-05",
+    date: "2024-07-05",
     contributions: 13,
     details: {
       visits: 44,
@@ -2047,7 +2047,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-07-06",
+    date: "2024-07-06",
     contributions: 67,
     details: {
       visits: 54,
@@ -2058,7 +2058,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-07-07",
+    date: "2024-07-07",
     contributions: 66,
     details: {
       visits: 62,
@@ -2069,7 +2069,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-07-08",
+    date: "2024-07-08",
     contributions: 58,
     details: {
       visits: 56,
@@ -2080,7 +2080,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-07-09",
+    date: "2024-07-09",
     contributions: 75,
     details: {
       visits: 94,
@@ -2091,7 +2091,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-07-10",
+    date: "2024-07-10",
     contributions: 60,
     details: {
       visits: 43,
@@ -2102,7 +2102,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-07-11",
+    date: "2024-07-11",
     contributions: 21,
     details: {
       visits: 16,
@@ -2113,7 +2113,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-07-12",
+    date: "2024-07-12",
     contributions: 74,
     details: {
       visits: 89,
@@ -2124,7 +2124,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-07-13",
+    date: "2024-07-13",
     contributions: 84,
     details: {
       visits: 33,
@@ -2135,7 +2135,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-07-14",
+    date: "2024-07-14",
     contributions: 65,
     details: {
       visits: 31,
@@ -2146,7 +2146,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-07-15",
+    date: "2024-07-15",
     contributions: 27,
     details: {
       visits: 21,
@@ -2157,7 +2157,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-07-16",
+    date: "2024-07-16",
     contributions: 38,
     details: {
       visits: 90,
@@ -2168,7 +2168,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-07-17",
+    date: "2024-07-17",
     contributions: 3,
     details: {
       visits: 81,
@@ -2179,7 +2179,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-07-18",
+    date: "2024-07-18",
     contributions: 92,
     details: {
       visits: 86,
@@ -2190,7 +2190,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-07-19",
+    date: "2024-07-19",
     contributions: 11,
     details: {
       visits: 59,
@@ -2201,7 +2201,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-07-20",
+    date: "2024-07-20",
     contributions: 66,
     details: {
       visits: 76,
@@ -2212,7 +2212,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-07-21",
+    date: "2024-07-21",
     contributions: 14,
     details: {
       visits: 64,
@@ -2223,7 +2223,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-07-22",
+    date: "2024-07-22",
     contributions: 21,
     details: {
       visits: 1,
@@ -2234,7 +2234,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-07-23",
+    date: "2024-07-23",
     contributions: 91,
     details: {
       visits: 44,
@@ -2245,7 +2245,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-07-24",
+    date: "2024-07-24",
     contributions: 7,
     details: {
       visits: 12,
@@ -2256,7 +2256,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-07-25",
+    date: "2024-07-25",
     contributions: 10,
     details: {
       visits: 11,
@@ -2267,7 +2267,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-07-26",
+    date: "2024-07-26",
     contributions: 19,
     details: {
       visits: 67,
@@ -2278,7 +2278,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-07-27",
+    date: "2024-07-27",
     contributions: 7,
     details: {
       visits: 84,
@@ -2289,7 +2289,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-07-28",
+    date: "2024-07-28",
     contributions: 59,
     details: {
       visits: 59,
@@ -2300,7 +2300,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-07-29",
+    date: "2024-07-29",
     contributions: 90,
     details: {
       visits: 79,
@@ -2311,7 +2311,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-07-30",
+    date: "2024-07-30",
     contributions: 19,
     details: {
       visits: 78,
@@ -2322,7 +2322,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-07-31",
+    date: "2024-07-31",
     contributions: 14,
     details: {
       visits: 63,
@@ -2333,7 +2333,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-08-01",
+    date: "2024-08-01",
     contributions: 30,
     details: {
       visits: 80,
@@ -2344,7 +2344,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-08-02",
+    date: "2024-08-02",
     contributions: 100,
     details: {
       visits: 60,
@@ -2355,7 +2355,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-08-03",
+    date: "2024-08-03",
     contributions: 89,
     details: {
       visits: 30,
@@ -2366,7 +2366,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-08-04",
+    date: "2024-08-04",
     contributions: 76,
     details: {
       visits: 79,
@@ -2377,7 +2377,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-08-05",
+    date: "2024-08-05",
     contributions: 98,
     details: {
       visits: 58,
@@ -2388,7 +2388,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-08-06",
+    date: "2024-08-06",
     contributions: 71,
     details: {
       visits: 66,
@@ -2399,7 +2399,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-08-07",
+    date: "2024-08-07",
     contributions: 68,
     details: {
       visits: 55,
@@ -2410,7 +2410,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-08-08",
+    date: "2024-08-08",
     contributions: 28,
     details: {
       visits: 2,
@@ -2421,7 +2421,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-08-09",
+    date: "2024-08-09",
     contributions: 19,
     details: {
       visits: 2,
@@ -2432,7 +2432,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-10",
+    date: "2024-08-10",
     contributions: 45,
     details: {
       visits: 54,
@@ -2443,7 +2443,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-08-11",
+    date: "2024-08-11",
     contributions: 16,
     details: {
       visits: 38,
@@ -2454,7 +2454,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-12",
+    date: "2024-08-12",
     contributions: 19,
     details: {
       visits: 45,
@@ -2465,7 +2465,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-08-13",
+    date: "2024-08-13",
     contributions: 92,
     details: {
       visits: 87,
@@ -2476,7 +2476,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-08-14",
+    date: "2024-08-14",
     contributions: 26,
     details: {
       visits: 48,
@@ -2487,7 +2487,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-15",
+    date: "2024-08-15",
     contributions: 79,
     details: {
       visits: 13,
@@ -2498,7 +2498,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-16",
+    date: "2024-08-16",
     contributions: 32,
     details: {
       visits: 31,
@@ -2509,7 +2509,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-08-17",
+    date: "2024-08-17",
     contributions: 65,
     details: {
       visits: 73,
@@ -2520,7 +2520,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-18",
+    date: "2024-08-18",
     contributions: 66,
     details: {
       visits: 22,
@@ -2531,7 +2531,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-08-19",
+    date: "2024-08-19",
     contributions: 47,
     details: {
       visits: 27,
@@ -2542,7 +2542,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-08-20",
+    date: "2024-08-20",
     contributions: 81,
     details: {
       visits: 56,
@@ -2553,7 +2553,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-08-21",
+    date: "2024-08-21",
     contributions: 15,
     details: {
       visits: 37,
@@ -2564,7 +2564,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-08-22",
+    date: "2024-08-22",
     contributions: 82,
     details: {
       visits: 37,
@@ -2575,7 +2575,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-08-23",
+    date: "2024-08-23",
     contributions: 43,
     details: {
       visits: 96,
@@ -2586,7 +2586,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-08-24",
+    date: "2024-08-24",
     contributions: 63,
     details: {
       visits: 35,
@@ -2597,7 +2597,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-08-25",
+    date: "2024-08-25",
     contributions: 74,
     details: {
       visits: 65,
@@ -2608,7 +2608,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-08-26",
+    date: "2024-08-26",
     contributions: 30,
     details: {
       visits: 94,
@@ -2619,7 +2619,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-08-27",
+    date: "2024-08-27",
     contributions: 65,
     details: {
       visits: 36,
@@ -2630,7 +2630,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-08-28",
+    date: "2024-08-28",
     contributions: 80,
     details: {
       visits: 7,
@@ -2641,7 +2641,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-08-29",
+    date: "2024-08-29",
     contributions: 34,
     details: {
       visits: 7,
@@ -2652,7 +2652,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-08-30",
+    date: "2024-08-30",
     contributions: 74,
     details: {
       visits: 42,
@@ -2663,7 +2663,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-08-31",
+    date: "2024-08-31",
     contributions: 98,
     details: {
       visits: 65,
@@ -2674,7 +2674,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-09-01",
+    date: "2024-09-01",
     contributions: 53,
     details: {
       visits: 80,
@@ -2685,7 +2685,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-09-02",
+    date: "2024-09-02",
     contributions: 2,
     details: {
       visits: 12,
@@ -2696,7 +2696,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-09-03",
+    date: "2024-09-03",
     contributions: 71,
     details: {
       visits: 6,
@@ -2707,7 +2707,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-09-04",
+    date: "2024-09-04",
     contributions: 87,
     details: {
       visits: 43,
@@ -2718,7 +2718,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-09-05",
+    date: "2024-09-05",
     contributions: 6,
     details: {
       visits: 54,
@@ -2729,7 +2729,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-09-06",
+    date: "2024-09-06",
     contributions: 69,
     details: {
       visits: 36,
@@ -2740,7 +2740,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-09-07",
+    date: "2024-09-07",
     contributions: 6,
     details: {
       visits: 99,
@@ -2751,7 +2751,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-09-08",
+    date: "2024-09-08",
     contributions: 5,
     details: {
       visits: 4,
@@ -2762,7 +2762,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-09-09",
+    date: "2024-09-09",
     contributions: 57,
     details: {
       visits: 36,
@@ -2773,7 +2773,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-09-10",
+    date: "2024-09-10",
     contributions: 27,
     details: {
       visits: 56,
@@ -2784,7 +2784,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-09-11",
+    date: "2024-09-11",
     contributions: 22,
     details: {
       visits: 16,
@@ -2795,7 +2795,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-09-12",
+    date: "2024-09-12",
     contributions: 11,
     details: {
       visits: 81,
@@ -2806,7 +2806,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-09-13",
+    date: "2024-09-13",
     contributions: 45,
     details: {
       visits: 65,
@@ -2817,7 +2817,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-09-14",
+    date: "2024-09-14",
     contributions: 2,
     details: {
       visits: 44,
@@ -2828,7 +2828,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-09-15",
+    date: "2024-09-15",
     contributions: 37,
     details: {
       visits: 26,
@@ -2839,7 +2839,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-09-16",
+    date: "2024-09-16",
     contributions: 42,
     details: {
       visits: 77,
@@ -2850,7 +2850,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-09-17",
+    date: "2024-09-17",
     contributions: 15,
     details: {
       visits: 82,
@@ -2861,7 +2861,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-09-18",
+    date: "2024-09-18",
     contributions: 83,
     details: {
       visits: 79,
@@ -2872,7 +2872,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-09-19",
+    date: "2024-09-19",
     contributions: 8,
     details: {
       visits: 34,
@@ -2883,7 +2883,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-09-20",
+    date: "2024-09-20",
     contributions: 3,
     details: {
       visits: 83,
@@ -2894,7 +2894,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-09-21",
+    date: "2024-09-21",
     contributions: 61,
     details: {
       visits: 34,
@@ -2905,7 +2905,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-09-22",
+    date: "2024-09-22",
     contributions: 30,
     details: {
       visits: 12,
@@ -2916,7 +2916,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-09-23",
+    date: "2024-09-23",
     contributions: 36,
     details: {
       visits: 2,
@@ -2927,7 +2927,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-09-24",
+    date: "2024-09-24",
     contributions: 49,
     details: {
       visits: 3,
@@ -2938,7 +2938,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-09-25",
+    date: "2024-09-25",
     contributions: 31,
     details: {
       visits: 8,
@@ -2949,7 +2949,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-09-26",
+    date: "2024-09-26",
     contributions: 41,
     details: {
       visits: 44,
@@ -2960,7 +2960,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-09-27",
+    date: "2024-09-27",
     contributions: 17,
     details: {
       visits: 96,
@@ -2971,7 +2971,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-09-28",
+    date: "2024-09-28",
     contributions: 56,
     details: {
       visits: 76,
@@ -2982,7 +2982,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-09-29",
+    date: "2024-09-29",
     contributions: 44,
     details: {
       visits: 36,
@@ -2993,7 +2993,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-09-30",
+    date: "2024-09-30",
     contributions: 5,
     details: {
       visits: 3,
@@ -3004,7 +3004,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-01",
+    date: "2024-10-01",
     contributions: 34,
     details: {
       visits: 20,
@@ -3015,7 +3015,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-10-02",
+    date: "2024-10-02",
     contributions: 89,
     details: {
       visits: 65,
@@ -3026,7 +3026,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-10-03",
+    date: "2024-10-03",
     contributions: 24,
     details: {
       visits: 2,
@@ -3037,7 +3037,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-04",
+    date: "2024-10-04",
     contributions: 5,
     details: {
       visits: 50,
@@ -3048,7 +3048,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-10-05",
+    date: "2024-10-05",
     contributions: 25,
     details: {
       visits: 83,
@@ -3059,7 +3059,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-06",
+    date: "2024-10-06",
     contributions: 70,
     details: {
       visits: 65,
@@ -3070,7 +3070,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-10-07",
+    date: "2024-10-07",
     contributions: 57,
     details: {
       visits: 76,
@@ -3081,7 +3081,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-10-08",
+    date: "2024-10-08",
     contributions: 26,
     details: {
       visits: 69,
@@ -3092,7 +3092,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-10-09",
+    date: "2024-10-09",
     contributions: 79,
     details: {
       visits: 80,
@@ -3103,7 +3103,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-10-10",
+    date: "2024-10-10",
     contributions: 11,
     details: {
       visits: 25,
@@ -3114,7 +3114,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-10-11",
+    date: "2024-10-11",
     contributions: 51,
     details: {
       visits: 46,
@@ -3125,7 +3125,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-10-12",
+    date: "2024-10-12",
     contributions: 26,
     details: {
       visits: 35,
@@ -3136,7 +3136,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-10-13",
+    date: "2024-10-13",
     contributions: 23,
     details: {
       visits: 94,
@@ -3147,7 +3147,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-10-14",
+    date: "2024-10-14",
     contributions: 77,
     details: {
       visits: 44,
@@ -3158,7 +3158,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-15",
+    date: "2024-10-15",
     contributions: 57,
     details: {
       visits: 32,
@@ -3169,7 +3169,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-10-16",
+    date: "2024-10-16",
     contributions: 5,
     details: {
       visits: 94,
@@ -3180,7 +3180,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-10-17",
+    date: "2024-10-17",
     contributions: 20,
     details: {
       visits: 76,
@@ -3191,7 +3191,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-18",
+    date: "2024-10-18",
     contributions: 7,
     details: {
       visits: 65,
@@ -3202,7 +3202,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-10-19",
+    date: "2024-10-19",
     contributions: 15,
     details: {
       visits: 40,
@@ -3213,7 +3213,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-10-20",
+    date: "2024-10-20",
     contributions: 75,
     details: {
       visits: 51,
@@ -3224,7 +3224,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-10-21",
+    date: "2024-10-21",
     contributions: 87,
     details: {
       visits: 43,
@@ -3235,7 +3235,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-10-22",
+    date: "2024-10-22",
     contributions: 18,
     details: {
       visits: 44,
@@ -3246,7 +3246,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-10-23",
+    date: "2024-10-23",
     contributions: 10,
     details: {
       visits: 32,
@@ -3257,7 +3257,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-10-24",
+    date: "2024-10-24",
     contributions: 50,
     details: {
       visits: 7,
@@ -3268,7 +3268,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-10-25",
+    date: "2024-10-25",
     contributions: 63,
     details: {
       visits: 61,
@@ -3279,7 +3279,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-10-26",
+    date: "2024-10-26",
     contributions: 63,
     details: {
       visits: 66,
@@ -3290,7 +3290,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-10-27",
+    date: "2024-10-27",
     contributions: 90,
     details: {
       visits: 5,
@@ -3301,7 +3301,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-10-28",
+    date: "2024-10-28",
     contributions: 96,
     details: {
       visits: 73,
@@ -3312,7 +3312,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-10-29",
+    date: "2024-10-29",
     contributions: 30,
     details: {
       visits: 13,
@@ -3323,7 +3323,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-10-30",
+    date: "2024-10-30",
     contributions: 57,
     details: {
       visits: 80,
@@ -3334,7 +3334,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-10-31",
+    date: "2024-10-31",
     contributions: 18,
     details: {
       visits: 1,
@@ -3345,7 +3345,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-11-01",
+    date: "2024-11-01",
     contributions: 20,
     details: {
       visits: 4,
@@ -3356,7 +3356,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-11-02",
+    date: "2024-11-02",
     contributions: 47,
     details: {
       visits: 44,
@@ -3367,7 +3367,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-11-03",
+    date: "2024-11-03",
     contributions: 86,
     details: {
       visits: 91,
@@ -3378,7 +3378,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-04",
+    date: "2024-11-04",
     contributions: 5,
     details: {
       visits: 1,
@@ -3389,7 +3389,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-11-05",
+    date: "2024-11-05",
     contributions: 8,
     details: {
       visits: 65,
@@ -3400,7 +3400,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-11-06",
+    date: "2024-11-06",
     contributions: 39,
     details: {
       visits: 94,
@@ -3411,7 +3411,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-07",
+    date: "2024-11-07",
     contributions: 89,
     details: {
       visits: 89,
@@ -3422,7 +3422,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-11-08",
+    date: "2024-11-08",
     contributions: 86,
     details: {
       visits: 2,
@@ -3433,7 +3433,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-11-09",
+    date: "2024-11-09",
     contributions: 42,
     details: {
       visits: 51,
@@ -3444,7 +3444,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-11-10",
+    date: "2024-11-10",
     contributions: 33,
     details: {
       visits: 25,
@@ -3455,7 +3455,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-11",
+    date: "2024-11-11",
     contributions: 23,
     details: {
       visits: 37,
@@ -3466,7 +3466,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-11-12",
+    date: "2024-11-12",
     contributions: 21,
     details: {
       visits: 13,
@@ -3477,7 +3477,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-11-13",
+    date: "2024-11-13",
     contributions: 6,
     details: {
       visits: 73,
@@ -3488,7 +3488,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-14",
+    date: "2024-11-14",
     contributions: 60,
     details: {
       visits: 62,
@@ -3499,7 +3499,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-11-15",
+    date: "2024-11-15",
     contributions: 6,
     details: {
       visits: 13,
@@ -3510,7 +3510,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-16",
+    date: "2024-11-16",
     contributions: 7,
     details: {
       visits: 78,
@@ -3521,7 +3521,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-11-17",
+    date: "2024-11-17",
     contributions: 87,
     details: {
       visits: 42,
@@ -3532,7 +3532,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-11-18",
+    date: "2024-11-18",
     contributions: 8,
     details: {
       visits: 6,
@@ -3543,7 +3543,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-11-19",
+    date: "2024-11-19",
     contributions: 54,
     details: {
       visits: 45,
@@ -3554,7 +3554,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-11-20",
+    date: "2024-11-20",
     contributions: 56,
     details: {
       visits: 41,
@@ -3565,7 +3565,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-11-21",
+    date: "2024-11-21",
     contributions: 16,
     details: {
       visits: 5,
@@ -3576,7 +3576,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-11-22",
+    date: "2024-11-22",
     contributions: 71,
     details: {
       visits: 20,
@@ -3587,7 +3587,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-11-23",
+    date: "2024-11-23",
     contributions: 44,
     details: {
       visits: 1,
@@ -3598,7 +3598,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-11-24",
+    date: "2024-11-24",
     contributions: 21,
     details: {
       visits: 18,
@@ -3609,7 +3609,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-11-25",
+    date: "2024-11-25",
     contributions: 58,
     details: {
       visits: 34,
@@ -3620,7 +3620,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-11-26",
+    date: "2024-11-26",
     contributions: 87,
     details: {
       visits: 62,
@@ -3631,7 +3631,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-11-27",
+    date: "2024-11-27",
     contributions: 38,
     details: {
       visits: 26,
@@ -3642,7 +3642,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-11-28",
+    date: "2024-11-28",
     contributions: 35,
     details: {
       visits: 43,
@@ -3653,7 +3653,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-11-29",
+    date: "2024-11-29",
     contributions: 83,
     details: {
       visits: 66,
@@ -3664,7 +3664,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-11-30",
+    date: "2024-11-30",
     contributions: 71,
     details: {
       visits: 19,
@@ -3675,7 +3675,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-12-01",
+    date: "2024-12-01",
     contributions: 94,
     details: {
       visits: 26,
@@ -3686,7 +3686,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-12-02",
+    date: "2024-12-02",
     contributions: 59,
     details: {
       visits: 66,
@@ -3697,7 +3697,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-03",
+    date: "2024-12-03",
     contributions: 88,
     details: {
       visits: 34,
@@ -3708,7 +3708,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-12-04",
+    date: "2024-12-04",
     contributions: 88,
     details: {
       visits: 60,
@@ -3719,7 +3719,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-12-05",
+    date: "2024-12-05",
     contributions: 9,
     details: {
       visits: 19,
@@ -3730,7 +3730,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-12-06",
+    date: "2024-12-06",
     contributions: 56,
     details: {
       visits: 98,
@@ -3741,7 +3741,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-07",
+    date: "2024-12-07",
     contributions: 43,
     details: {
       visits: 88,
@@ -3752,7 +3752,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-08",
+    date: "2024-12-08",
     contributions: 21,
     details: {
       visits: 85,
@@ -3763,7 +3763,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-12-09",
+    date: "2024-12-09",
     contributions: 46,
     details: {
       visits: 44,
@@ -3774,7 +3774,7 @@ const HeatData = [
   },
   {
     ship: "Ship 1",
-    date: "2023-12-10",
+    date: "2024-12-10",
     contributions: 12,
     details: {
       visits: 54,
@@ -3785,7 +3785,7 @@ const HeatData = [
   },
   {
     ship: "Ship 6",
-    date: "2023-12-11",
+    date: "2024-12-11",
     contributions: 18,
     details: {
       visits: 2,
@@ -3796,7 +3796,7 @@ const HeatData = [
   },
   {
     ship: "Ship 4",
-    date: "2023-12-12",
+    date: "2024-12-12",
     contributions: 2,
     details: {
       visits: 68,
@@ -3807,7 +3807,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-12-13",
+    date: "2024-12-13",
     contributions: 83,
     details: {
       visits: 78,
@@ -3818,7 +3818,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-12-14",
+    date: "2024-12-14",
     contributions: 82,
     details: {
       visits: 20,
@@ -3829,7 +3829,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-15",
+    date: "2024-12-15",
     contributions: 88,
     details: {
       visits: 59,
@@ -3840,7 +3840,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-12-16",
+    date: "2024-12-16",
     contributions: 72,
     details: {
       visits: 5,
@@ -3851,7 +3851,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-12-17",
+    date: "2024-12-17",
     contributions: 54,
     details: {
       visits: 14,
@@ -3862,7 +3862,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-18",
+    date: "2024-12-18",
     contributions: 2,
     details: {
       visits: 83,
@@ -3873,7 +3873,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-12-19",
+    date: "2024-12-19",
     contributions: 62,
     details: {
       visits: 11,
@@ -3884,7 +3884,7 @@ const HeatData = [
   },
   {
     ship: "Ship 9",
-    date: "2023-12-20",
+    date: "2024-12-20",
     contributions: 47,
     details: {
       visits: 94,
@@ -3895,7 +3895,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-12-21",
+    date: "2024-12-21",
     contributions: 29,
     details: {
       visits: 11,
@@ -3906,7 +3906,7 @@ const HeatData = [
   },
   {
     ship: "Ship 8 ",
-    date: "2023-12-22",
+    date: "2024-12-22",
     contributions: 74,
     details: {
       visits: 44,
@@ -3917,7 +3917,7 @@ const HeatData = [
   },
   {
     ship: "Ship 10",
-    date: "2023-12-23",
+    date: "2024-12-23",
     contributions: 35,
     details: {
       visits: 100,
@@ -3928,7 +3928,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-12-24",
+    date: "2024-12-24",
     contributions: 82,
     details: {
       visits: 48,
@@ -3939,7 +3939,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-25",
+    date: "2024-12-25",
     contributions: 20,
     details: {
       visits: 58,
@@ -3950,7 +3950,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-12-26",
+    date: "2024-12-26",
     contributions: 70,
     details: {
       visits: 25,
@@ -3961,7 +3961,7 @@ const HeatData = [
   },
   {
     ship: "Ship 7",
-    date: "2023-12-27",
+    date: "2024-12-27",
     contributions: 83,
     details: {
       visits: 45,
@@ -3972,7 +3972,7 @@ const HeatData = [
   },
   {
     ship: "Ship 2",
-    date: "2023-12-28",
+    date: "2024-12-28",
     contributions: 26,
     details: {
       visits: 68,
@@ -3983,7 +3983,7 @@ const HeatData = [
   },
   {
     ship: "Ship 3",
-    date: "2023-12-29",
+    date: "2024-12-29",
     contributions: 43,
     details: {
       visits: 60,
@@ -3994,7 +3994,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-12-30",
+    date: "2024-12-30",
     contributions: 45,
     details: {
       visits: 79,
@@ -4005,7 +4005,7 @@ const HeatData = [
   },
   {
     ship: "Ship 5",
-    date: "2023-12-31",
+    date: "2024-12-31",
     contributions: 28,
     details: {
       visits: 55,
@@ -4015,4 +4015,4 @@ const HeatData = [
     },
   },
 ];
- export default HeatData;
+export default HeatData;

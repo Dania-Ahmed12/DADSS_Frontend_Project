@@ -29,7 +29,7 @@ const HeatDaily = ({ datas, title, subTitle }) => {
     const dateArray = Array.from(
       { length: today.diff(startOfLastOneMonths, "days") + 1 },
       (_, i) => startOfLastOneMonths.add(i, "day").format("YYYY-MM-DD")
-    ).filter((date) => dayjs(date).month() === 11); // 9 represents October because months are zero-based in JavaScript dates
+    ).filter((date) => dayjs(date).month() === 0); // 9 represents October because months are zero-based in JavaScript dates
 
     const uniqueMonths = Array.from(
       new Set(dateArray.map((d) => dayjs(d).format("MMM")))
