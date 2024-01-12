@@ -615,10 +615,17 @@ Ship Breaking Report
           >
             {props.children}
           </Content>
-          <Footer className="h-auto flex items-end">
+          {/* <Footer className="h-auto flex items-end">
             <div>
               Copyright <span className="font-bold">Dadss</span> ©2023 All
               Rights reserved
+            </div>
+          </Footer>
+           */}
+          <Footer className="h-auto flex items-end">
+            <div>
+              Copyright <span className="font-bold">Dadss</span> ©{" "}
+              {new Date().getFullYear()} All Rights Reserved
             </div>
           </Footer>
         </Layout>
