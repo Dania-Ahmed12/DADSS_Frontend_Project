@@ -1,6 +1,4 @@
-
-
-import React, { useEffect, useState, useMemo } from "react";
+import React, {  useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Button, Col, InputNumber, Row } from "antd";
 import axios from "axios";
@@ -75,8 +73,7 @@ const Heatmap = ({ data }) => {
       if (response.status === 200) {
         setDataSource(response.data);
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const dataWithColor = dataSource.map((item) => {
     let color;
@@ -285,22 +282,32 @@ const Heatmap = ({ data }) => {
 
 export default Heatmap;
 
-export async function getServerSideProps(context) {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/narco?date_from=&&date_to=&&qty_gte=&&qty_lte=&&value_gte=&&value_lte=&&item=`
-  );
+// Import necessary modules and libraries
 
-  if (response.status === 200) {
-    return {
-      props: {
-        data: response.data,
-        title: `Contraband/Drug Confiscation`,
-      },
-    };
+export async function getServerSideProps(context) {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/narco?date_from=&&date_to=&&qty_gte=&&qty_lte=&&value_gte=&&value_lte=&&item=`
+    );
+
+    if (response.status === 200) {
+      return {
+        props: {
+          data: response.data,
+          title: `Contraband/Drug Confiscation`,
+        },
+      };
+    } else {
+      console.error(`Unexpected status code: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
   }
 
+  // Return a default value or an empty object in case of an error
   return {
     props: {
+      data: [],
       title: `Contraband/Drug Confiscation`,
     },
   };
