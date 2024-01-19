@@ -78,7 +78,7 @@ function Register() {
             validatedValues.sb_waste_free_cert
           ),
           sb_import_gen_manifest: convertToBoolean(
-            validatedValues.sb_imo_verified
+            validatedValues.sb_import_gen_manifest
           ),
           sb_lpoc: validatedValues.sb_lpoc,
           sb_mast_name: validatedValues.sb_mast_name,
@@ -95,8 +95,14 @@ function Register() {
           ),
           sb_credit_let: convertToBoolean(validatedValues.sb_credit_let),
           sb_dtg: validatedValues.sb_dtg,
+          mv_imo : validatedValues.mv_imo,
+          mv_flag : validatedValues.mv_flag , 
+          mv_ship_name : validatedValues.mv_ship_name,
+          mv_ais_type_summary:validatedValues.mv_ais_type_summary,
           sb_comm_equip_list: validatedValues.sb_comm_equip_list,
+          
         };
+        console.log("shipping data ",data)
 
         // Navigate to the next page with the prepared data
         router.push({

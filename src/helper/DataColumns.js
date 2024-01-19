@@ -288,12 +288,28 @@ export const shipBreakColumns = [
     },
   },
   {
+    title: "IMO",
+    render: (record) => record?.merchant_vessel?.mv_imo,
+  },
+  {
     title: "IMO Verified",
     ellipsis: {
       showTitle: false,
     },
     dataIndex: "sb_imo_verified",
     render: (value) => (value ? "Yes" : "No"),
+  },
+  {
+    title: "Ship Name",
+    render: (record) => record?.merchant_vessel?.mv_ship_name,
+  },
+  {
+    title: "Flag",
+    render: (record) => record?.merchant_vessel?.mv_flag,
+  },
+  {
+    title: "Vessel Type",
+    render: (record) => record?.merchant_vessel?.mv_ais_type_summary,
   },
   {
     title: "LPOC",

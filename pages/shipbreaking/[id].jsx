@@ -7,8 +7,11 @@ import { shipBreakColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
 function RegisteredShipBreakDetails({ data }) {
+  console.log(data)
+  console.log(data[0]?.merchant_vessel?.mv_imo);
   const columns = [
     ...shipBreakColumns,
+
     {
       title: "Master Name",
       dataIndex: "sb_mast_name",
@@ -148,14 +151,16 @@ function RegisteredShipBreakDetails({ data }) {
           {text &&
             text.map((value, index) => (
               // <span key={value}>
-              //   {value} 
+              //   {value}
               //   {index < text.length - 1 && "  ,"}
               // </span>
-               <span key={value}>
-            {index > 0 && " "} {/* Add a space before each value (except the first) */}
-            {value}
-            {index < text.length - 1 && " , "} {/* Add a space after each comma (except the last) */}
-          </span>
+              <span key={value}>
+                {index > 0 && " "}{" "}
+                {/* Add a space before each value (except the first) */}
+                {value}
+                {index < text.length - 1 && " , "}{" "}
+                {/* Add a space after each comma (except the last) */}
+              </span>
             ))}
         </div>
       ),

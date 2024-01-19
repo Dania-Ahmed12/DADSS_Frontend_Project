@@ -24,8 +24,9 @@ function Index() {
   // Columns configuration for the AntdTable component
   const columns = [
     ...shipBreakColumns,
+
     {
-      title: "Action",
+      title: "Action cxcvxc",
       dataIndex: "action",
       render: (text, record) => {
         return (
