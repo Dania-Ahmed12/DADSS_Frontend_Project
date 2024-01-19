@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import AntdTable from "../../src/components/table/AntdTable";
 import { Tooltip } from "antd";
+import PageHeader from "../../src/components/pageheader/pageHeader";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRegisteredMerchantVessel } from "../../src/redux/thunks/registerMerchantVesselDatas";
+import { fetchMerchantDetails } from "../../src/redux/thunks/merchantVesselDetailsData";
+import AntdTable from "../../src/components/table/AntdTable";
 import { MerVesselColumn } from "../../src/helper/DataColumns";
-import PageHeader from "../../src/components/pageheader/pageHeader";
-function Index() {
+
+const index = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const [searchData, setSearchData] = useState("");
   const { data, isLoading } = useSelector(
-    (state) => state.fetchRegisteredMerchantVesselData
+    (state) => state.fetchMerchantVesselDetails
   );
+
   const columns = [
     ...MerVesselColumn,
     {
@@ -30,7 +33,7 @@ function Index() {
                 className="text-midnight font-semibold"
                 onClick={() => handleDetails(record?.mv_key, record)}
               >
-                View/Add Special Report
+                View
               </a>
             </Tooltip>
           );
@@ -41,7 +44,7 @@ function Index() {
   // Function to navigate to details page
   const handleDetails = (id, payload) => {
     router.push({
-      pathname: `merchantvessel/${id}`,
+      pathname: `merchantVesselDetails/${id}`,
       // Pass additional data as a query parameter (vessel) in stringified JSON format
       query: { vessel: JSON.stringify(payload) },
     });
@@ -49,22 +52,20 @@ function Index() {
 
   // Fetch data when searchData changes
   useEffect(() => {
-    dispatch(fetchRegisteredMerchantVessel(searchData));
+    dispatch(fetchMerchantDetails(searchData));
   }, [searchData]);
 
   return (
-    <div>
+    <>
       <PageHeader
-        title="Special Report Merchant Vessels (List View)"
+        title="Merchant Vessel Details"
+        showButton={false}
         onSearchChange={(value) => setSearchData(value)}
-        placeholder="Search by IMO or Ship Name"
-        showButton={false} // Pass true to show the button or false to hide it
+        placeholder="Search by IMO"
       />
-      <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
-      </div>
-    </div>
-  );
-}
 
-export default Index;
+      <AntdTable columns={columns} data={data} loading={isLoading} />
+    </>
+  );
+};
+export default index;

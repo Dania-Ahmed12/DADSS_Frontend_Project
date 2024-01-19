@@ -42,6 +42,7 @@ import {
 import { addSitutationalReportDataSlice } from "./slice/addSituationalReport";
 import { addLostReportDataSlice } from "./slice/addLostReport";
 import { addPnscReportDataSlice } from "./slice/addPnscReport";
+import { fetchMerchantVesselDetailsSlice } from "./slice/merchatDetailsDataSlice";
 const store = configureStore({
   reducer: {
     fetchPlatformData: fetchPlatformDataSlice.reducer,
@@ -57,6 +58,7 @@ const store = configureStore({
     fetchRegisteredMerchantVesselData:
       fetchRegisteredMerchantVesselSlice.reducer,
     saveRegisteredMerchantVesselData: saveRegisteredMerchantVesselSlice.reducer,
+    fetchMerchantVesselDetails:fetchMerchantVesselDetailsSlice.reducer,
     // fetchRegistedVesselById: fetchRegistedVesselByIdSlice.reducer,
     fetchGeneralReport: fetchGeneralReportSlice.reducer,
     fetchIntelReport: fetchIntelReportSlice.reducer,

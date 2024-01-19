@@ -105,7 +105,6 @@ const MapContainerComponent = ({
   }, [geojsonData, heatmapData, gradient, data, center, zoom]);
 
   return (
-    // <div ref={mapRef} style={{ height: "500px", width: "100%" }} />
     <Row
       style={{
         display: "flex",

@@ -15,7 +15,7 @@ function PageHeader(props) {
     placeholder,
     showButton,
     showSearchBox = true,
-   sessionStorage 
+    sessionStorage,
   } = props;
   const router = useRouter();
 

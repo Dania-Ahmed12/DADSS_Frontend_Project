@@ -4015,4 +4015,4 @@ const HeatData = [
     },
   },
 ];
-export default HeatData;
+ export default HeatData;

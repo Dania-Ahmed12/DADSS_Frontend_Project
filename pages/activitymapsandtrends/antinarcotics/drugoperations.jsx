@@ -1,4 +1,6 @@
-import React, {  useState, useMemo } from "react";
+
+
+import React, { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Button, Col, InputNumber, Row } from "antd";
 import axios from "axios";
@@ -73,7 +75,8 @@ const Heatmap = ({ data }) => {
       if (response.status === 200) {
         setDataSource(response.data);
       }
-    } catch (error) {}
+    } catch (error) {
+    }
   };
   const dataWithColor = dataSource.map((item) => {
     let color;

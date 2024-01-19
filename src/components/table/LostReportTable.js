@@ -17,7 +17,7 @@ import PositionBox from "../form/PositionBox";
 import { ais_type_summary } from "../../helper/dropdown";
 import dayjs from "dayjs";
 import DateBox from "../form/DateBox";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { addLostReport } from "../../redux/thunks/jmisLostReportUploadData";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -29,6 +29,7 @@ function LostReportTable(props) {
   const dispatch = useDispatch();
 
   const { lostReport, setLostReport } = props;
+  console.log(lostReport)
   const [lostReportForm] = useForm();
   const [lostReportKey, setLostReportKey] = useState("");
 
@@ -121,16 +122,49 @@ function LostReportTable(props) {
       lostReportForm.resetFields();
     }
   };
+  console.log(lostReport)
 
-  const sendLostReport = async () => {
+
+
+  const sendLostReports = async () => {
     try {
-      const finalData = lostReport
-    // Dispatch the action with the data
+      const finalData = lostReport;
+      // Dispatch the action with the data
       dispatch(addLostReport(finalData));
-      setLostReport([])
-    } catch (error) {
-    }
+      setLostReport([]);
+    } catch (error) {}
   };
+const sendLostReport = async () => {
+  try {
+    // const finalData = lostReport.map((report) => ({
+    //   ...report,
+    //   lr_position: {
+    //     ...report.lr_position,
+    //     type: "Point",
+    //     coordinates: DMStodecimal(report.lr_position.dms),
+    //   },
+    // }));
+    // console.log(finalData)
+
+    // Extracting only coordinates
+    const coordinatesOnly = lostReport.map((report) => ({
+      ...report,
+      lr_position: {
+        type: "Point",
+        coordinates: [
+          report.lr_position.coordinates[0],
+          report.lr_position.coordinates[1],
+        ],
+      },
+    }));
+    console.log(coordinatesOnly)
+    // Dispatch the action with the data
+    dispatch(addLostReport(coordinatesOnly));
+    setLostReport([]);
+  } catch (error) {
+    // Handle the error
+  }
+};
 
   const lostReportColumn = [
     {

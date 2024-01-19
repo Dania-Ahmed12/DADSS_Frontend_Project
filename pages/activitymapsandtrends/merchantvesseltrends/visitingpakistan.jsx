@@ -29,12 +29,11 @@ function VisitingPakistan() {
   const [loading, setLoading] = useState(true);
   // State to manage date range for the DatePicker
   const [dateRange, setDateRange] = useState([
-    dayjs().subtract(3, "month"), // Initial start date: 12 months ago from today
+    dayjs().subtract(6, "month"), // Initial start date: 12 months ago from today
     dayjs(), // Initial end date: today
   ]);
 
-  const handleChange = (value) => {
-  };
+
 
   // Fetch data whenever vesselType or dateRange changes
   useEffect(() => {

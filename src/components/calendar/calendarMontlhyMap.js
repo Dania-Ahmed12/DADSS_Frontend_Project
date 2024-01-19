@@ -44,6 +44,7 @@ const HeatMonth = ({ datas, title, subTitle }) => {
           .reduce((acc, entry) => acc + entry.contributions, 0);
         return contributions;
       });
+      //console.log(contributionsByMonth);
       return {
         ship: ship,
         contributionsByMonth: contributionsByMonth,

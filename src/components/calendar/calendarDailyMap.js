@@ -6,6 +6,7 @@ import "dayjs/locale/en";
 import { Col, Row } from "antd";
 
 const HeatDaily = ({ datas, title, subTitle }) => {
+  //console.log("Heatmap Data", datas);
   const [fullYearData, setFullYearData] = useState([]);
   const [ships, setShips] = useState([]);
   const [day, setDay] = useState([]);
@@ -46,6 +47,7 @@ const HeatDaily = ({ datas, title, subTitle }) => {
           );
           return matchingEntry ? matchingEntry.contributions : 0;
         });
+        //console.log(contributionsByDay);
         return {
           ship: ship,
           contributionsByDay: contributionsByDay,

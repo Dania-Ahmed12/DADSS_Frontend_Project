@@ -110,11 +110,11 @@ function Details({ data }) {
       navigation: router,
     };
     dispatch(saveFishingVessel(newFinal));
-       if (data) {
-         router.push({
-           pathname: "/fishingvessel",
-         });
-       }
+    if (data) {
+      router.push({
+        pathname: "/fishingvessel",
+      });
+    }
   };
   useEffect(() => {
     if (data?.tripDetails) {

@@ -71,12 +71,16 @@ export const RegVesselColumn = [
 
 export const MerVesselColumn = [
   {
+    title: "MMSI",
+    dataIndex: "mv_mmsi",
+  },
+  {
     title: "IMO",
     dataIndex: "mv_imo",
   },
   {
-    title: "MMSI",
-    dataIndex: "mv_mmsi",
+    title: "Ship ID",
+    dataIndex: "mv_ship_id",
   },
   {
     title: "Ship Name",
@@ -96,16 +100,6 @@ export const MerVesselColumn = [
   },
 ];
 export const MerchantDetailColumns = [
-  {
-    title: "MMSI",
-    dataIndex: "mv_mmsi",
-    render: (text) => <div>{text}</div>,
-  },
-  {
-    title: "Ship ID",
-    dataIndex: "mv_ship_id",
-    render: (text) => <div>{text}</div>,
-  },
   ...MerVesselColumn,
   {
     title: "Call Sign",

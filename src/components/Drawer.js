@@ -191,16 +191,23 @@ const Drawer = (props) => {
     ),
     getItem(
       <Link href="/shipbreaking" style={{ color: "white" }}>
-Ship Breaking Report
+        Ship Breaking Report
       </Link>,
-              "12",
-        <GiIronHulledWarship  color="white" size={20} />
+      "12",
+      <GiIronHulledWarship color="white" size={20} />
     ),
     getItem(
       <Link href="/csvfiles" style={{ color: "white" }}>
         CSV Files
       </Link>,
       "13",
+      <TbDeviceDesktopAnalytics color="white" size={20} />
+    ),
+    getItem(
+      <Link href="/merchantVesselDetails" style={{ color: "white" }}>
+        Merchant Vessel Details
+      </Link>,
+      "14",
       <TbDeviceDesktopAnalytics color="white" size={20} />
     ),
     getItem(
@@ -530,80 +537,7 @@ Ship Breaking Report
               onClick={handleLogout}
               className="border-midnight bg-midnight text-white"
             />
-            {/* <FilledButton
-              type="primary"
-              onClick={() => openModal("csv")}
-              text="Upload CSV"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="Upload CSV File "
-              visible={csvModalVisible} 
-              onCancel={() => closeModal("csv")} 
-              footer={null}
-            >
-              <CsvUploadComponent />
-            </Modal> */}
-            {/* <FilledButton
-              type="primary"
-              onClick={() => openModal("cospos")}
-              text="Cospos Report"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="Upload Cospos Report"
-              visible={cosposModalVisible} // Update this line
-              onCancel={() => closeModal("cospos")} // Pass the correct type to closeModal
-              footer={null}
-              l
-            >
-              <CosposUploadComponent />
-            </Modal> */}
-            {/* <FilledButton
-              type="primary"
-              onClick={() => openModal("jmisLostReport")}
-              text="JMIS Lost Report"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="Upload JMIS Lost Report"
-              visible={jmisLostReportModalVisible} // Update this line
-              onCancel={() => closeModal("jmisLostReport")} // Pass the correct type to closeModal
-              footer={null}
-              l
-            >
-              <JmisLostReportUploadComponent />
-            </Modal> */}
-            {/* <FilledButton
-              type="primary"
-              onClick={() => openModal("jmisPNSC")}
-              text="JMIS PNSC"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="Upload JMIS PNSC Report"
-              visible={jmisPNSCModalVisible} // Update this line
-              onCancel={() => closeModal("jmisPNSC")} // Pass the correct type to closeModal
-              footer={null}
-              l
-            >
-              <JmisPNSCDatatUploadComponent />
-            </Modal> */}
-            {/* <FilledButton
-              type="primary"
-              onClick={() => openModal("situation")}
-              text="Situation Report"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="Upload Situation Report "
-              visible={situationModalVisible} // Update this line
-              onCancel={() => closeModal("situation")} // Pass the correct type to closeModal
-              footer={null}
-              l
-            >
-              <SituationUploadComponent />
-            </Modal> */}
+           
           </Header>
           <Content
             className="p-4"
