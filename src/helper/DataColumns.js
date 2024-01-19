@@ -279,9 +279,7 @@ export const shipBreakColumns = [
   {
     title: "Date Time",
     dataIndex: "sb_dtg",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis:true,
     render: (text) => {
       const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "";
       return dtg;
@@ -293,9 +291,6 @@ export const shipBreakColumns = [
   },
   {
     title: "IMO Verified",
-    ellipsis: {
-      showTitle: false,
-    },
     dataIndex: "sb_imo_verified",
     render: (value) => (value ? "Yes" : "No"),
   },
@@ -314,23 +309,17 @@ export const shipBreakColumns = [
   {
     title: "LPOC",
     dataIndex: "sb_lpoc",
-    ellipsis: {
-      showTitle: false,
-    },
+
   },
   {
     title: "Ex Name",
     dataIndex: "sb_ex_name",
-    ellipsis: {
-      showTitle: false,
-    },
+ 
   },
   {
     title: "Embosse Name",
     dataIndex: "sb_emb_name",
-    ellipsis: {
-      showTitle: false,
-    },
+ 
   },
 ];
 
