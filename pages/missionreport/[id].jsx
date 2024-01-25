@@ -13,9 +13,12 @@ import {  decimalToDMS } from "../../src/helper/position";
 import { Missioncolumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
+import AntdTable from "../../src/components/table/AntdTable";
+
+  const ownMissionDataFormColumns = [...Missioncolumns];
+
 
 function MissDetails({ data }) {
-  const ownMissionDataFormColumns = [...Missioncolumns];
   const missionDetailsDataColumns = [
     {
       title: "MMSI",
@@ -129,50 +132,73 @@ function MissDetails({ data }) {
     },
   ];
 
+  function transposeData(data) {
+    if (!data) return [];
+
+    const transposedData = [];
+    transposedData.push({
+      Field: "Platform ID",
+      Value: data.mr_pf_id,
+    });
+
+    transposedData.push({
+      Field: "Date Time",
+
+      Value: dayjs(data.mr_dtg).format("YYYY-MM-DD HH:mm:ss"),
+    });
+
+    transposedData.push({
+      Field: "Registered ON",
+      Value: dayjs(data.mr_rdt).format("YYYY-MM-DD HH:mm:ss"),
+    });
+
+    return transposedData;
+  }
+
   const tableItems = [
     {
-      title: "Mission Report Details",
+      title: "Mission Details",
 
       columns: missionDetailsDataColumns,
       data: data?.missionreportdetails,
     },
   ];
 
-  return (
-    <div className="mx-2">
-      <PageHeader showSearchBox={false} title="Report Details" />
+  // Prepare transposed data
+  const transposedData = transposeData(data);
 
-        <header className="flex">
-        <Heading level={4} text="Mission Report" />
-      </header>
-      <section className="shadow border-tableborder border-2 mb-12 rounded-md">
-        <Table
+  // Define columns for transposed data table
+  const transposedColumns = [
+    { title: "Data", dataIndex: "Field" },
+    { title: "Value", dataIndex: "Value" },
+  ];
+  return (
+    <div>
+      <PageHeader showSearchBox={false} title="Mission Report " />
+      <div className=" mt-4 flex">
+        <Heading className="ml-5 " level={5} text="Macro Data" />
+      </div>
+      <section className="mb-10">
+        {/* <AntdTable
           columns={ownMissionDataFormColumns}
-          dataSource={[data]}
+          data={[data]}
           pagination={false}
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        /> */}
+        <AntdTable
+          // scrollConfig={{ y: "325px" }}
+          columns={transposedColumns}
+          data={transposedData} // Remove the square brackets
+          pagination={false}
         />
       </section>
       {tableItems.map((item, index) => {
         return (
-          // <div key={index}>
-          //   <header className="flex">
-          //     <Heading level={4} text={item.title} />
-          //   </header>
-          //   <div className="mb-12">
-          //     <Table
-          //       columns={item.columns}
-          //       dataSource={item.data}
-          //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          //     />
-          //   </div>
-          // </div>
           <TableItemRenderer
             key={index}
             title={item.title}
             columns={item.columns}
             data={item.data}
-            pagination={item.pagination}
+            pagination={true}
           />
         );
       })}

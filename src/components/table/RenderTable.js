@@ -3,18 +3,17 @@ import React from "react";
 import Heading from "../title/Heading";
 import AntdTable from "./AntdTable";
 
-
-const TableItemRenderer = ({ title, columns, data, pagination }) => (
-  <div>
-    <header className="flex">
-      <Heading level={4} text={title} />
-    </header>
-    <div className="mb-12">
+const TableItemRenderer = ({  title, columns, data, pagination }) => (
+  <div className="mb-10 ">
+    <div>
+      <Heading className="ml-5 " level={5} text={title} />
+    </div>
+    <div>
       <AntdTable
         columns={columns}
         data={data}
         pagination={pagination}
-        scrollConfig={{ x: 250 }}
+        scrollConfig={{ x: true }}
       />
     </div>
   </div>

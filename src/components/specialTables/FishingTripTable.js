@@ -28,6 +28,7 @@ import {
   DMStodecimal,
   dtgToString,
 } from "../../helper/position";
+import AntdTable from "../table/AntdTable";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -78,7 +79,6 @@ function FishingTripTable(props) {
     }
     setShowInputs({ ...showInputs, trip_editing: false });
   };
-
 
   const handleTripShowInput = () => {
     tripForm.resetFields();
@@ -338,30 +338,62 @@ function FishingTripTable(props) {
   ];
 
   return (
-    <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Trip Details" />
+    // <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Trip Details" />
+    //       {showButtons && (
+    //         <FilledButton
+    //           disabled={tripDataEntered}
+    //           text="+Add Trip Details"
+    //           className="rounded-full border-midnight bg-midnight text-white"
+    //           onClick={handleTripShowInput}
+    //         />
+    //       )}
+    //     </Col>
+    //   </Row>
+
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    // columns={tripColumns}
+    // dataSource={[tripData]}
+    //       pagination={false}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Trip Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              disabled={tripDataEntered}
-              text="+Add Trip Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Trip Details"
+              className="rounded-full border-midnight bg-midnight text-white mx-8"
               onClick={handleTripShowInput}
+              disabled={tripDataEntered}
             />
           )}
         </Col>
       </Row>
 
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={tripColumns}
-          dataSource={[tripData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        columns={tripColumns}
+        data={[tripData]}
+        pagination={false}
+        form={tripForm}
+        onFinish={onTripFinish}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

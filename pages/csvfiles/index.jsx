@@ -59,6 +59,7 @@ function Index() {
   const [jmisLostReportModalVisible, setJmisLostReportModalVisible] =
     useState(false);
   const [cosposModalVisible, setCosposModalVisible] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
   // state variable fro setting up the data
   const [situationData, setSituationData] = useState([]); // Add this state variable

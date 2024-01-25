@@ -17,6 +17,7 @@ import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import { action_list, patrol_type_list } from "../../helper/dropdown";
 import { positiontoDMS, DMStodecimal } from "../../helper/position";
+import AntdTable from "./AntdTable";
 
 function OwnPlatformTable(props) {
   const { platformData, setPlatformData, init_platform_data, showButtons } =
@@ -137,11 +138,12 @@ function OwnPlatformTable(props) {
     {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
+      ellipsis: true,
     },
     {
       title: "Date Time ",
       dataIndex: reportKeys.dtg,
-      ellipsis:true,
+      ellipsis: true,
       // text would be the value of the "Date Time" column for the current row.
       // record would be the entire data record for the current row.
       // index would be the index of the current row in the dataset.
@@ -217,6 +219,7 @@ function OwnPlatformTable(props) {
         return showInputs.platformColumns | showInputs.platform_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Patrol Type"
               name={reportKeys.patrolType}
               options={patrol_type_list.map((item) => ({
@@ -240,6 +243,7 @@ function OwnPlatformTable(props) {
         return showInputs.platformColumns | showInputs.platform_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Action Type"
               name={reportKeys.action}
               options={action_list.map((item) => ({
@@ -258,12 +262,13 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Fuel Remaining",
-      ellipsis:true,
+      ellipsis: true,
       dataIndex: reportKeys.fuel,
       render: (text, record, index) => {
         return showInputs.platformColumns | showInputs.platform_editing ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Fuel"
               name={reportKeys.fuel}
               type="number"
@@ -288,6 +293,7 @@ function OwnPlatformTable(props) {
         return showInputs.platformColumns | showInputs.platform_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Info"
               name={reportKeys.info}
               rules={[
@@ -386,32 +392,69 @@ function OwnPlatformTable(props) {
   }
 
   return (
-    <Form form={platformForm} onFinish={onPlatformFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Own Platform Data" />
-          {/* If the showButtons variable is true, the content inside the
-          parentheses will be rendered; otherwise, it won't. */}
+    // <Form form={platformForm} onFinish={onPlatformFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Own Platform Data" />
+    //       {/* If the showButtons variable is true, the content inside the
+    //       parentheses will be rendered; otherwise, it won't. */}
+    //       {showButtons && (
+    //         <FilledButton
+    //           disabled={platformDataEntered}
+    //           text="+Add Own Platform Data"
+    //           className="rounded-full border-midnight bg-midnight text-white"
+    //           onClick={handlePlatformShowInput}
+    //         />
+    //       )}
+    //     </Col>
+    //   </Row>
+
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    // columns={ownPlatformColumns}
+    // dataSource={[platformData]}
+    //       pagination={false}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12}>
+          <Heading
+            className="ml-5 flex justify-start"
+            level={5}
+            text="Own Platform Data"
+          />
+        </Col>
+        <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              disabled={platformDataEntered}
-              text="+Add Own Platform Data"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Own Platform Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handlePlatformShowInput}
+              disabled={platformDataEntered}
             />
           )}
         </Col>
       </Row>
 
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={ownPlatformColumns}
-          dataSource={[platformData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scrollConfig={{ x: true }}
+        columns={ownPlatformColumns}
+        data={[platformData]}
+        pagination={false}
+        form={platformForm}
+        onFinish={onPlatformFinish}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

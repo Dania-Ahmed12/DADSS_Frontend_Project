@@ -15,6 +15,7 @@ import PositionBox from "../form/PositionBox";
 import { type_list, movement_list } from "../../helper/dropdown";
 import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import React from "react";
+import AntdTable from "./AntdTable";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -22,10 +23,9 @@ const StyledInput = styled.div`
   }
 `;
 function FishingObservedTable(props) {
-  const { fishingObservedData, setFishingObservedData } = props;
+  const { fishingObservedData, setFishingObservedData  , showButtons} = props;
   const [FishingObservedForm] = useForm();
   const [fishingObservedKey, setFishingObservedKey] = useState("");
-
 
   const [showInputs, setShowInputs] = useState({
     fishingObservedColumns: false,
@@ -36,7 +36,6 @@ function FishingObservedTable(props) {
     setShowInputs({ ...showInputs, fishingObservedColumns: true });
     FishingObservedForm.setFieldValue(["grf_position", "dms", 0, "dir"], "E");
     FishingObservedForm.setFieldValue(["grf_position", "dms", 1, "dir"], "N");
-
   };
 
   const handleFishingCancel = (event) => {
@@ -118,7 +117,6 @@ function FishingObservedTable(props) {
     }
   };
 
-
   const fishingObservedColumns = [
     {
       title: "Longitude",
@@ -159,12 +157,13 @@ function FishingObservedTable(props) {
     {
       title: "Vessel Name",
       dataIndex: "grf_name",
-      ellipsis:true,
+      ellipsis: true,
       render: (text, record, index) => {
         return (showInputs.fishingObservedColumns && index === 0) |
           isFishingObservedEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Vessel Name"
               name="grf_name"
               rules={[
@@ -188,6 +187,7 @@ function FishingObservedTable(props) {
           isFishingObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grf_type"
               placeholder="Select Type"
               rules={[
@@ -207,11 +207,13 @@ function FishingObservedTable(props) {
     {
       title: "Vessel Movement",
       dataIndex: "grf_movement",
+      ellipsis:true,
       render: (text, record, index) => {
         return (showInputs.fishingObservedColumns && index === 0) |
           isFishingObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grf_movement"
               placeholder="Select"
               rules={[
@@ -259,100 +261,134 @@ function FishingObservedTable(props) {
             </Form.Item>
           );
         }
-          if (!showInputs.fishingObservedColumns) {
-
-        if (fishingObservedData.length && !isFishingObservedEditing(index)) {
-          return (
-            <IconsStylingWrap>
-              <MdModeEditOutline
-                className="editIcon"
-                onClick={() => {
-                  setFishingObservedKey(index);
-                  FishingObservedForm.setFieldsValue(record);
-                }}
-              />
-              <MdDelete
-                onClick={() => handleFishingObservedDelete(index)}
-                className="deleteIcon"
-              />
-            </IconsStylingWrap>
-          );
-        }
-        if (isFishingObservedEditing(index)) {
-          return (
-            <Form.Item>
-              <div style={{ display: "flex" }}>
-                <SimpleButton
-                  onClick={() =>{
-                    setFishingObservedKey("");
-                  }}
-                  style={{
-                    fontWeight: "bold",
-                  }}
-                  text="Cancel"
-                />
-                <SimpleButton
+        if (!showInputs.fishingObservedColumns) {
+          if (fishingObservedData.length && !isFishingObservedEditing(index)) {
+            return (
+              <IconsStylingWrap>
+                <MdModeEditOutline
+                  className="editIcon"
                   onClick={() => {
-                    fishingObservedEdited(index);
+                    setFishingObservedKey(index);
+                    FishingObservedForm.setFieldsValue(record);
                   }}
-                  style={{
-                    fontWeight: "bold",
-                    color: "white",
-                    backgroundColor: "#ffbf00",
-                  }}
-                  text="Edit"
                 />
-              </div>
-            </Form.Item>
-          );
+                <MdDelete
+                  onClick={() => handleFishingObservedDelete(index)}
+                  className="deleteIcon"
+                />
+              </IconsStylingWrap>
+            );
+          }
+          if (isFishingObservedEditing(index)) {
+            return (
+              <Form.Item>
+                <div style={{ display: "flex" }}>
+                  <SimpleButton
+                    onClick={() => {
+                      setFishingObservedKey("");
+                    }}
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                    text="Cancel"
+                  />
+                  <SimpleButton
+                    onClick={() => {
+                      fishingObservedEdited(index);
+                    }}
+                    style={{
+                      fontWeight: "bold",
+                      color: "white",
+                      backgroundColor: "#ffbf00",
+                    }}
+                    text="Edit"
+                  />
+                </div>
+              </Form.Item>
+            );
+          }
         }
-      }
       },
     },
   ];
 
   return (
-    <Form
-      form={FishingObservedForm}
-      onFinish={onFishingObservedFinish}
-      className="mb-8"
-    >
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Fishing Observed" />
-          <FilledButton
-            text="+Add Fishing Observed"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleFishingShowInput}
-            disabled={fishingObservedKey !== ""}
-          />
+    // <Form
+    //   form={FishingObservedForm}
+    //   onFinish={onFishingObservedFinish}
+    //   className="mb-8"
+    // >
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Fishing Observed" />
+    //       <FilledButton
+    //         text="+Add Fishing Observed"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    //         onClick={handleFishingShowInput}
+    //         disabled={fishingObservedKey !== ""}
+    //       />
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //       columns={fishingObservedColumns}
+    //       dataSource={
+    //         showInputs.fishingObservedColumns
+    //           ? [{}, ...fishingObservedData]
+    //           : fishingObservedData
+    //       }
+    //       // dataSource={
+    //       //   showInputs.fishingObservedColumns
+    //       //     ? fishingObservedData
+    //       //     : fishingObservedData.length > 1
+    //       //     ? fishingObservedData
+    //       //         .map((item, index) => ({
+    //       //           ...item,
+    //       //           key: index,
+    //       //         }))
+    //       //         .slice(1)
+    //       //     : []
+    //       // }
+    //       pagination={true}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+
+    <div className="mb-10">
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Fishing Density" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+ Add Fishing Density"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={handleFishingShowInput}
+              disabled={fishingObservedKey !== ""}
+            />
+          )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={fishingObservedColumns}
-          dataSource={
-            showInputs.fishingObservedColumns
-              ? [{}, ...fishingObservedData]
-              : fishingObservedData
-          }
-          // dataSource={
-          //   showInputs.fishingObservedColumns
-          //     ? fishingObservedData
-          //     : fishingObservedData.length > 1
-          //     ? fishingObservedData
-          //         .map((item, index) => ({
-          //           ...item,
-          //           key: index,
-          //         }))
-          //         .slice(1)
-          //     : []
-          // }
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scrollConfig={{ x: true }}
+        form={FishingObservedForm}
+        onFinish={onFishingObservedFinish}
+        columns={fishingObservedColumns}
+        data={
+          showInputs.fishingObservedColumns
+            ? [{}, ...fishingObservedData]
+            : fishingObservedData
+        }
+        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

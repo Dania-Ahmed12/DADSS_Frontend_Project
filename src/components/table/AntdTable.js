@@ -1,5 +1,5 @@
 import { Col, Form, Row, Table } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import styled from "styled-components";
 
@@ -39,9 +39,25 @@ const StyledDiv = styled.div`
   }
   .ant-table-cell {
     padding: 12px !important;
-    /* text-overflow: ellipsis; */
-    /* white-space: nowrap; */
-    /* word-wrap: break-word !important; */
+    white-space: nowrap;
+    word-wrap: break-word !important;
+  }
+
+  .ant-table-content::-webkit-scrollbar {
+    height: 2px;
+    width: 20px;
+    /* width of the entire scrollbar */
+  }
+  .ant-table-content::-webkit-scrollbar-track {
+    background: transparent;
+    /* color of the tracking area */
+  }
+  .ant-table-content::-webkit-scrollbar-thumb {
+    background-color: #9a9a9a;
+    // backgroundColor:transparent
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    border: 3px solid #686868;
   }
 `;
 function AntdTable({
@@ -51,20 +67,26 @@ function AntdTable({
   onFinish,
   form,
   pagination = true,
-  scrollConfig = {}, // New prop for scroll configuration
+  // scrollConfig = {
+  // }, // New prop for scroll configuration
+  expandable,
+  scrollConfig = {
+    // y: 450,
+    // x: true,
+  },
 }) {
   return (
-    <StyledDiv>
+    <StyledDiv style={{ margin: 15 }}>
       <Form onFinish={onFinish} form={form}>
         <Table
+          expandable={expandable}
           rowClassName="editable-row"
           loading={loading}
           pagination={
             pagination
               ? {
-                  showSizeChanger: true,
+                  showSizeChanger: false,
                   defaultPageSize: 5,
-
                   position: ["bottomCenter"],
                   itemRender: (page, type, originalElement) => {
                     switch (type) {
@@ -93,7 +115,8 @@ function AntdTable({
           }
           columns={columns}
           dataSource={data}
-          scroll={{ ...scrollConfig, x: true }} // Merge with x: true for horizontal scrolling
+          // scroll={{ ...scrollConfig, x: true }} // Enable both x and y scrolling
+          scroll={{ ...scrollConfig }} // Merge with x: true for horizontal scrolling
         />
       </Form>
     </StyledDiv>

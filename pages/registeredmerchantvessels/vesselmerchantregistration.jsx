@@ -109,7 +109,7 @@ function RegisteredVesselData() {
       <Form
         form={form}
         layout="vertical"
-        className="shadow mx-14 px-3 py-10 bg-white"
+        className="shadow mx-5 px-3 py-10 bg-white"
         onFinish={handleSubmit}
       >
         <Row className="flex justify-center">

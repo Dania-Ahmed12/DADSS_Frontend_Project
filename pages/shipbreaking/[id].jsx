@@ -1,4 +1,3 @@
-import { Table } from "antd";
 import React from "react";
 import Heading from "../../src/components/title/Heading";
 import AntdTable from "../../src/components/table/AntdTable";
@@ -6,10 +5,11 @@ import axios from "axios";
 import { shipBreakColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
-function RegisteredShipBreakDetails({ data }) {
-  console.log(data);
-  console.log(data[0]?.merchant_vessel?.mv_imo);
-  const columns = [
+import dayjs from "dayjs";
+import styled from "styled-components";
+
+
+  const ShippingDetailcolumns = [
     ...shipBreakColumns,
     {
       title: "Master Name",
@@ -97,8 +97,7 @@ function RegisteredShipBreakDetails({ data }) {
           {text &&
             text.map((value, index) => (
               <span key={value}>
-                {index > 0 && " "}{" "}
-                {value}
+                {index > 0 && " "} {value}
                 {index < text.length - 1 && " , "}{" "}
               </span>
             ))}
@@ -126,16 +125,48 @@ function RegisteredShipBreakDetails({ data }) {
     },
   ];
 
-  //crew table
+function transposeData(data) {
+  if (!data || data.length === 0) return [];
+
+  const transposedData = [];
+  ShippingDetailcolumns.forEach((column) => {
+    let value = data[0][column.dataIndex];
+    // Convert boolean values to "Yes" or "No"
+    if (typeof value === "boolean") {
+      value = value ? "Yes" : "No";
+    }
+    // Format date values using dayjs
+    if (
+      typeof value === "string" &&
+      value.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/)
+    ) {
+      value = dayjs(value).format("YYYY-MM-DD HH:mm:ss");
+    }
+    transposedData.push({
+      Field: column.title,
+      Value: value,
+    });
+  });
+
+  return transposedData;
+}
+
+
+
+function RegisteredShipBreakDetails({ data }) {
+  // Prepare transposed data
+  const transposedData = transposeData(data);
+
+  // Define columns for transposed data table
+  const transposedColumns = [
+    { title: "Data", dataIndex: "Field" },
+    { title: "Value", dataIndex: "Value" },
+  ];
+
+  // Define crew table
   const CrewDetails = [
-    {
-      title: "Crew Name",
-      dataIndex: "sbc_name",
-    },
-    {
-      title: "Crew Nationality",
-      dataIndex: "sbc_nationality",
-    },
+    { title: "Crew Name", dataIndex: "sbc_name" },
+    { title: "Crew Nationality", dataIndex: "sbc_nationality" },
   ];
 
   const tableItems = [
@@ -147,49 +178,78 @@ function RegisteredShipBreakDetails({ data }) {
     },
   ];
 
-  return (
-    <>
-      <div className="mx-2">
-        <PageHeader title="Report Details" showSearchBox={false} />
-        <header className="flex">
-          <Heading level={4} text="Ship Break Detail" />
-        </header>
-        <section className="shadow border-tableborder border-2 mb-12 rounded-md">
-          <Table
-            columns={columns}
-            dataSource={data}
-            pagination={false}
-            scroll={{ x: "auto" }}
-          />
-        </section>
-        {tableItems.map((item, index) => (
-          <>
-            {/* <div key={index}>
-              <header className="flex">
-                <Heading level={4} text={item.title} />
-              </header>
-              <div className="mb-12">
-                <AntdTable
-                  columns={item.columns}
-                  data={item.data}
-                  pagination={item.pagination}
-                  scrollConfig={{ x: 250 }}
-                />
-              </div>
-            </div> */}
+   const scrollConfig = {
+     y: true, // Enable vertical scrolling
+   };
 
-            <TableItemRenderer
-              key={index}
-              title={item.title}
-              columns={item.columns}
-              data={item.data}
-              pagination={item.pagination}
-            />
-          </>
-        ))}
-      </div>
-    </>
-  );
+   
+  // return (
+  //   <div>
+  //     <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
+  //     <div className=" mt-4 flex">
+  //       <Heading className="ml-5 " level={5} text="Ship Break Details" />
+  //     </div>
+  //     <section
+  //       // style={{ maxHeight: "1000px" }}
+  //       className=" mb-10"
+  //     >
+  //       <div style={{ maxHeight: "500px" }}>
+  //         {/* Display transposed data */}
+  //         <AntdTable
+  //           scroll={{ x: 1500, y: 300 }}
+  //           columns={transposedColumns}
+  //           data={transposedData}
+  //           pagination={false}
+  //         />
+  //       </div>
+  //     </section>
+  //     <section>
+  //       {/* Display crew details */}
+  //       {tableItems.map((item, index) => (
+  //         <TableItemRenderer
+  //           key={index}
+  //           title={item.title}
+  //           columns={item.columns}
+  //           data={item.data}
+  //           pagination={true}
+  //         />
+  //       ))}
+  //     </section>
+  //   </div>
+  // );
+   return (
+     <div>
+       <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
+       <div className="mt-4 flex">
+         <Heading className="ml-5" level={5} text="Ship Break Details" />
+       </div>
+       <section className="mb-10">
+         <div>
+           {/* Display transposed data */}
+           <AntdTable
+           
+              scrollConfig={{ y: '325px' }} // Adjust x-scroll as needed
+             columns={transposedColumns}
+             data={transposedData}
+             pagination={false}
+           />
+         </div>
+       </section>
+       <section>
+         {/* Display crew details */}
+         {tableItems.map((item, index) => (
+           <div key={index}>
+             <TableItemRenderer
+               title={item.title}
+               columns={item.columns}
+               data={item.data}
+               pagination={true}
+             />
+           </div>
+         ))}
+       </section>
+     </div>
+   );
 }
 
 export default RegisteredShipBreakDetails;

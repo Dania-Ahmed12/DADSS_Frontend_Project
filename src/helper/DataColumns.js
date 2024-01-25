@@ -6,57 +6,33 @@ export const RegVesselColumn = [
   {
     title: "Vessel ID Number",
     dataIndex: "rv_id",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
   {
     title: "Registration Number",
     dataIndex: "rv_regno",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
   {
     title: "Vessel Name",
     dataIndex: "rv_name",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
   {
     title: "Type",
     dataIndex: "rv_type",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
   {
@@ -108,32 +84,26 @@ export const MerchantDetailColumns = [
   {
     title: "Ship Type",
     dataIndex: "mv_ship_type",
-    render: (text) => <div>{text}</div>,
   },
   {
     title: "Length",
     dataIndex: "mv_length",
-    render: (text) => <div>{text}</div>,
   },
   {
     title: "Tonnage (Gross tonnage)",
     dataIndex: "mv_grt",
-    render: (text) => <div>{text}</div>,
   },
   {
     title: "Width",
     dataIndex: "mv_width",
-    render: (text) => <div>{text}</div>,
   },
   {
     title: "Dead Weight",
     dataIndex: "mv_dwt",
-    render: (text) => <div>{text}</div>,
   },
   {
     title: "Year in built",
     dataIndex: "mv_year_built",
-    render: (text) => <div>{text}</div>,
   },
 ];
 
@@ -141,40 +111,29 @@ export const GeneralReportColumn = [
   {
     title: "Platform ID",
     dataIndex: "gr_pf_id",
+    ellipsis: true,
   },
   {
     title: "Latitude",
     dataIndex: "gr_position",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text, record) => {
       if (record.gr_position) {
         var val = record.gr_position.coordinates[1];
         const latitude = decimalToDMS(val, 1);
-        return (
-          <Tooltip placement="topLeft" title={val.toFixed(4)}>
-            {latitude}
-          </Tooltip>
-        );
+        return latitude;
       }
     },
   },
   {
     title: "Longitude",
     dataIndex: "gr_position",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text, record) => {
       if (record.gr_position) {
         var val = record.gr_position.coordinates[0];
         const longitude = decimalToDMS(val, 0);
-        return (
-          <Tooltip placement="topLeft" title={val.toFixed(4)}>
-            {longitude}
-          </Tooltip>
-        );
+        return longitude;
       }
     },
   },
@@ -189,9 +148,7 @@ export const GeneralReportColumn = [
   {
     title: "Date Time",
     dataIndex: "gr_dtg",
-    ellipsis: {
-      showTitle: false,
-    },
+    ellipsis: true,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
       return dtg;
@@ -279,7 +236,7 @@ export const shipBreakColumns = [
   {
     title: "Date Time",
     dataIndex: "sb_dtg",
-    ellipsis:true,
+    ellipsis: true,
     render: (text) => {
       const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "";
       return dtg;
@@ -309,17 +266,14 @@ export const shipBreakColumns = [
   {
     title: "LPOC",
     dataIndex: "sb_lpoc",
-
   },
   {
     title: "Ex Name",
     dataIndex: "sb_ex_name",
- 
   },
   {
     title: "Embosse Name",
     dataIndex: "sb_emb_name",
- 
   },
 ];
 

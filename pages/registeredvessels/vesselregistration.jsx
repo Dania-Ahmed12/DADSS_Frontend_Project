@@ -76,245 +76,259 @@ function RegisteredVesselData() {
 
   return (
     <StyledDiv>
-      <PageHeader
-      showSearchBox={false}
-      sessionStorage={handleBack}
-      text="Vessel Registration"
-      />
-      <Form
-        form={form}
-        layout="vertical"
-        className="shadow mx-14 px-3 py-10 bg-white"
-        onFinish={handleSubmit}
-      >
-        <Row className="flex justify-center">
-          <Col span={11}>
-            <InputBox
-              label="Platform ID"
-              name="rv_id"
-              className="input"
-              defaultValue={pf_id}
-              disabled={true}
-            />
-            <InputBox
-              label="Vessel Name"
-              name="rv_name"
-              className="input"
-              placeholder="The Mayflower"
-              minLength={3}
-              maxLength={15}
-              rules={[{ required: true, message: "Please enter vessel name" }]}
-            />
-            <SelectBox
-              label="Flag"
-              name="rv_flag"
-              className="input"
-              placeholder="Pakistan (PK)"
-              onChange={(value) => setFlag(value)}
-              options={country_list.map((item) => ({
-                label: item,
-                value: item,
-              }))}
-              rules={[{ required: true, message: "Please select a flag" }]}
-            />
-            <SelectBox
-              label="Vessel Type"
-              name="rv_type"
-              className="input"
-              placeholder="Select Type"
-              options={type_list.map((item) => ({ value: item, label: item }))}
-              rules={[
-                { required: true, message: "Please select a vessel type!" },
-              ]}
-            />
-            <InputBox
-              label="Tonnage (Gross tonnage)"
-              name="rv_tonnage"
-              className="input"
-              placeholder="42785"
-              minLength={3}
-              maxLength={15}
-              rules={[
-                { required: true, message: "Please enter the gross tonnage" },
-                {
-                  pattern: /^\d+$/,
-                  message: "Please enter a valid gross tonnage",
-                },
-              ]}
-            />
-            <InputBox
-              label="Nakwa/CO"
-              placeholder="Lorem Ipsum"
-              name="rvc_name"
-              className="input"
-              minLength={3}
-              maxLength={15}
-              pattern="/^[a-zA-Z0-9\s]+$/"
-              rules={[
-                { required: true, message: "Please enter the Nakwa/CO" },
-                {
-                  pattern: /^[a-zA-Z0-9\s]+$/,
-                  message: "Please enter a valid Nakwa/CO",
-                },
-              ]}
-            />
-            <InputBox
-              label="Nakwa/CO Cell Number"
-              name="rvc_cell"
-              className="input"
-              placeholder="+92-123-2525356"
-              minLength={13}
-              maxLength={15}
-              pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input a valid mobile number!",
-                },
-                {
-                  pattern: /^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/,
-                  message: "Please enter a valid mobile number!",
-                },
-              ]}
-            />
-          </Col>
-          <Col span={11} offset={1}>
-            <InputBox
-              label="Vessel ID"
-              className="input"
-              placeholder="to be provided"
-              name="rv_id"
-              minLength={6}
-              maxLength={12}
-              pattern="/^[0-9]+$/"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the ID Number!",
-                },
-                {
-                  pattern: /^[0-9]+$/,
-                  message: "ID Number can only contain numbers.",
-                },
-                {
-                  min: 6,
-                  message: "User ID must be at least 6 characters long.",
-                },
-                {
-                  max: 12,
-                  message: "User ID cannot be more than 12 characters long.",
-                },
-              ]}
-            />
-            <InputBox
-              label="Registration Number"
-              name="rv_regno"
-              placeholder="123SQU"
-              className="input"
-              minLength={3}
-              maxLength={15}
-              pattern="/^[a-zA-Z0-9]+$/"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter the registration number",
-                },
-                {
-                  pattern: /^[a-zA-Z0-9]+$/,
-                  message: "Please enter a valid registration number",
-                },
-              ]}
-            />
-            <SelectBox
-              label="Province"
-              name="rv_province"
-              className="input"
-              placeholder="Select Province"
-              options={province[flag].map((item) => ({
-                value: item,
-                label: item,
-              }))}
-              rules={[{ required: true, message: "Please select a province!" }]}
-            />
-            <InputBox
-              label="Length (meters)"
-              name="rv_length"
-              className="input"
-              placeholder="397.71"
-              minLength={3}
-              maxLength={15}
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter the length in meters",
-                },
-                {
-                  pattern: /^(0|[1-9]\d*)(\.\d+)?$/,
-                  message: "Please enter a valid length in meters",
-                },
-              ]}
-            />
-            <InputBox
-              label="Breath (meters)"
-              name="rv_breadth"
-              className="input"
-              placeholder="56.65"
-              minLength={3}
-              maxLength={15}
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter the breath in meters",
-                },
-                {
-                  pattern: /^(0|[1-9]\d*)(\.\d+)?$/,
-                  message: "Please enter a valid breath in meters",
-                },
-              ]}
-            />
-            <SelectBox
-              label="Nakwa/CO Nationality"
-              name="rvc_nationality"
-              className="input"
-              placeholder="Pakistan"
-              options={country_list.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-              rules={[
-                { required: true, message: "Please select a nationality!" },
-              ]}
-            />
-            <SelectBox
-              label="Nakwa/CO Ethnicity"
-              name="rvc_ethnicity"
-              placeholder="Select Ethnicity"
-              className="input"
-              options={ethnicity_list.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-              rules={[{ required: true, message: "Please select ethnicity!" }]}
-            />
-          </Col>
-        </Row>
-        <Row className="flex justify-center">
-          <Col span={23} className="flex justify-end">
-            <div>
-              <OutlineButton
-                text="Cancel"
-                onClick={handleBack}
-                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+      <div>
+        {" "}
+        <PageHeader
+          showSearchBox={false}
+          sessionStorage={handleBack}
+          title="Fishing Vessel Registration"
+        />
+      </div>
+      <div>
+        <Form
+          form={form}
+          layout="vertical"
+          className="shadow mx-5 px-3 py-10 bg-white"
+          onFinish={handleSubmit}
+        >
+          <Row className="flex justify-center">
+            <Col span={11}>
+              <InputBox
+                label="Platform ID"
+                name="rv_id"
+                className="input"
+                defaultValue={pf_id}
+                disabled={true}
               />
-              <FilledButton
-                text="Next"
-                onClick={handleSubmit}
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+              <InputBox
+                label="Vessel Name"
+                name="rv_name"
+                className="input"
+                placeholder="The Mayflower"
+                minLength={3}
+                maxLength={15}
+                rules={[
+                  { required: true, message: "Please enter vessel name" },
+                ]}
               />
-            </div>
-          </Col>
-        </Row>
-      </Form>
+              <SelectBox
+                label="Flag"
+                name="rv_flag"
+                className="input"
+                placeholder="Pakistan (PK)"
+                onChange={(value) => setFlag(value)}
+                options={country_list.map((item) => ({
+                  label: item,
+                  value: item,
+                }))}
+                rules={[{ required: true, message: "Please select a flag" }]}
+              />
+              <SelectBox
+                label="Vessel Type"
+                name="rv_type"
+                className="input"
+                placeholder="Select Type"
+                options={type_list.map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select a vessel type!" },
+                ]}
+              />
+              <InputBox
+                label="Tonnage (Gross tonnage)"
+                name="rv_tonnage"
+                className="input"
+                placeholder="42785"
+                minLength={3}
+                maxLength={15}
+                rules={[
+                  { required: true, message: "Please enter the gross tonnage" },
+                  {
+                    pattern: /^\d+$/,
+                    message: "Please enter a valid gross tonnage",
+                  },
+                ]}
+              />
+              <InputBox
+                label="Nakwa/CO"
+                placeholder="Lorem Ipsum"
+                name="rvc_name"
+                className="input"
+                minLength={3}
+                maxLength={15}
+                pattern="/^[a-zA-Z0-9\s]+$/"
+                rules={[
+                  { required: true, message: "Please enter the Nakwa/CO" },
+                  {
+                    pattern: /^[a-zA-Z0-9\s]+$/,
+                    message: "Please enter a valid Nakwa/CO",
+                  },
+                ]}
+              />
+              <InputBox
+                label="Nakwa/CO Cell Number"
+                name="rvc_cell"
+                className="input"
+                placeholder="+92-123-2525356"
+                minLength={13}
+                maxLength={15}
+                pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input a valid mobile number!",
+                  },
+                  {
+                    pattern: /^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/,
+                    message: "Please enter a valid mobile number!",
+                  },
+                ]}
+              />
+            </Col>
+            <Col span={11} offset={1}>
+              <InputBox
+                label="Vessel ID"
+                className="input"
+                placeholder="to be provided"
+                name="rv_id"
+                minLength={6}
+                maxLength={12}
+                pattern="/^[0-9]+$/"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the ID Number!",
+                  },
+                  {
+                    pattern: /^[0-9]+$/,
+                    message: "ID Number can only contain numbers.",
+                  },
+                  {
+                    min: 6,
+                    message: "User ID must be at least 6 characters long.",
+                  },
+                  {
+                    max: 12,
+                    message: "User ID cannot be more than 12 characters long.",
+                  },
+                ]}
+              />
+              <InputBox
+                label="Registration Number"
+                name="rv_regno"
+                placeholder="123SQU"
+                className="input"
+                minLength={3}
+                maxLength={15}
+                pattern="/^[a-zA-Z0-9]+$/"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter the registration number",
+                  },
+                  {
+                    pattern: /^[a-zA-Z0-9]+$/,
+                    message: "Please enter a valid registration number",
+                  },
+                ]}
+              />
+              <SelectBox
+                label="Province"
+                name="rv_province"
+                className="input"
+                placeholder="Select Province"
+                options={province[flag].map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select a province!" },
+                ]}
+              />
+              <InputBox
+                label="Length (meters)"
+                name="rv_length"
+                className="input"
+                placeholder="397.71"
+                minLength={3}
+                maxLength={15}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter the length in meters",
+                  },
+                  {
+                    pattern: /^(0|[1-9]\d*)(\.\d+)?$/,
+                    message: "Please enter a valid length in meters",
+                  },
+                ]}
+              />
+              <InputBox
+                label="Breath (meters)"
+                name="rv_breadth"
+                className="input"
+                placeholder="56.65"
+                minLength={3}
+                maxLength={15}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter the breath in meters",
+                  },
+                  {
+                    pattern: /^(0|[1-9]\d*)(\.\d+)?$/,
+                    message: "Please enter a valid breath in meters",
+                  },
+                ]}
+              />
+              <SelectBox
+                label="Nakwa/CO Nationality"
+                name="rvc_nationality"
+                className="input"
+                placeholder="Pakistan"
+                options={country_list.map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select a nationality!" },
+                ]}
+              />
+              <SelectBox
+                label="Nakwa/CO Ethnicity"
+                name="rvc_ethnicity"
+                placeholder="Select Ethnicity"
+                className="input"
+                options={ethnicity_list.map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select ethnicity!" },
+                ]}
+              />
+            </Col>
+          </Row>
+          <Row className="flex justify-center">
+            <Col span={23} className="flex justify-end">
+              <div>
+                <OutlineButton
+                  text="Cancel"
+                  onClick={handleBack}
+                  className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+                />
+                <FilledButton
+                  text="Next"
+                  onClick={handleSubmit}
+                  className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+                />
+              </div>
+            </Col>
+          </Row>
+        </Form>
+      </div>
     </StyledDiv>
   );
 }

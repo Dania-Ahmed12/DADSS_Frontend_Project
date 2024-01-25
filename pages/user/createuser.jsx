@@ -5,9 +5,6 @@ import OutlineButton from "../../src/components/button/OutlineButton";
 import InputBox from "../../src/components/form/InputBox";
 import SelectBox from "../../src/components/form/SelectBox";
 import PasswordBox from "../../src/components/form/PasswordBox";
-import Heading from "../../src/components/title/Heading";
-import Checkbox from "../../src/components/form/CheckBox";
-import { RxArrowLeft } from "react-icons/rx";
 import { useRouter } from "next/router";
 import { useForm } from "antd/lib/form/Form";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,11 +13,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerApi } from "../../src/redux/thunks/userAuth";
 import { fetchAllPlatformData } from "../../src/redux/thunks/platformData";
 import axios from "axios";
+import styled from "styled-components";
+
+import PageHeader from "../../src/components/pageheader/pageHeader";
+
+const StyledDiv = styled.div`
+  .input {
+    margin-bottom: 20px;
+  }
+`;
 function CreateUser() {
   const router = useRouter();
-  const handleBack = () => {
-    router.back();
-  };
+
   const dispatch = useDispatch();
   const [form] = useForm();
 
@@ -85,34 +89,17 @@ function CreateUser() {
 
   return (
     <>
-      <ToastContainer />
-      <div className="flex items-center mt-14">
-        <RxArrowLeft
-          onClick={handleBack}
-          cursor={"pointer"}
-          className="ml-14"
-          fontSize={25}
-        />
-        <span
-          onClick={handleBack}
-          className=" ml-2 text-sm font-medium"
-          style={{ cursor: "pointer" }}
-        >
-          Back
-        </span>
+      <div>
+        <PageHeader title="Create New User" showSearchBox={false} />
       </div>
-      <Row className="mx-14 mb-8 mt-4">
-        <Col>
-          <Heading level={4} text="Create New User" />
-        </Col>
-      </Row>
       <Form
         form={form}
         layout="vertical"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autocomplete="off"
-        className="shadow mx-14 px-3 py-10"
+        // className="shadow mx-8 px-3 py-10"
+        className="shadow mx-8 px-3 py-10 bg-white"
       >
         <Row className="flex justify-center">
           <Col span={11}>
@@ -120,7 +107,7 @@ function CreateUser() {
               autocomplete="off"
               label="Username"
               name="username"
-              autofi
+              className="input"
               placeholder="Username"
               // minLength={6}
               // maxLength={12}
@@ -144,6 +131,7 @@ function CreateUser() {
             <SelectBox
               autocomplete="off"
               name="u_pf_id"
+              className="input"
               placeholder="Select Platform"
               label="Select Platform"
               // defaultValue="MSA-Craft-One"
@@ -163,6 +151,7 @@ function CreateUser() {
           </Col>
           <Col span={11} offset={1}>
             <PasswordBox
+              className="input"
               autocomplete="off"
               label="Password"
               name="password"
@@ -208,71 +197,6 @@ function CreateUser() {
             </Radio.Group>
           </Form.Item>
         </Row>
-
-        {/* <Row className="flex justify-center">
-          <Col span={11}>
-            <Form.Item
-              initialValue={false}
-              valuePropName="checked"
-              name="u_access_form"
-            >
-              <Checkbox label="Can Access Forms Input" />
-            </Form.Item>
-            <Form.Item
-              initialValue={false}
-              valuePropName="checked"
-              name="u_view_map"
-            >
-              <Checkbox
-                value="accessMaps"
-                label="Can Access Activity Maps & Trends"
-              />
-            </Form.Item>
-            <Form.Item
-              initialValue={false}
-              valuePropName="checked"
-              name="u_create_user"
-            >
-              <Checkbox value="createUsers" label="Can Create New Users" />
-            </Form.Item>
-          </Col>
-          <Col span={11} offset={1}>
-            <Form.Item
-              initialValue={false}
-              valuePropName="checked"
-              name="u_access_rvdata"
-            >
-              <Checkbox
-                value="accessData"
-                label="Can Access Registered Vessel Historic Data"
-              />
-            </Form.Item>
-
-            <div className="flex">
-              <Form.Item
-                initialValue={false}
-                valuePropName="checked"
-                name="u_crew"
-              >
-                <Checkbox value="crew" label="Crew" />
-              </Form.Item>
-              <Form.Item
-                initialValue={false}
-                valuePropName="checked"
-                name="u_owner"
-              >
-                <Checkbox value="Owner" label="Owner" />
-              </Form.Item>
-              <Form.Item
-                initialValue={false}
-                valuePropName="checked"
-                name="u_goods"
-              >
-                <Checkbox value="Goods" label="Goods" />
-              </Form.Item>
-            </div>
-          </Col>
-        </Row> */}
 
         <Row className="flex justify-center">
           <Col span={17} className="flex justify-end">

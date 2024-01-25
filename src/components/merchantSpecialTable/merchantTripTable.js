@@ -16,6 +16,7 @@ import {
   movement_list,
   port_list,
 } from "../../helper/dropdown";
+import AntdTable from "../table/AntdTable";
 
 
 function MerchantTripTable(props) {
@@ -320,31 +321,60 @@ function MerchantTripTable(props) {
     },
   ];
 
-  return (
-    <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Trip Details" />
+  // return (
+  //   <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
+  //     <Row className="mb-5">
+  //       <Col span={24} className="flex justify-between">
+  //         <Heading level={5} text="Trip Details" />
+  //         {showButtons && (
+  //           <FilledButton
+  //             disabled={tripDataEntered}
+  //             text="+Add Trip Details"
+  //             className="rounded-full border-midnight bg-midnight text-white"
+  //             onClick={handleTripShowInput}
+  //           />
+  //         )}
+  //       </Col>
+  //     </Row>
+
+  //     <StyledDiv>
+  //       <Table
+  //         columns={tripColumns}
+  //         dataSource={[tripData]}
+  //         pagination={false}
+  //       />
+  //     </StyledDiv>
+  //   </Form>
+  // );
+return (
+  <div className="mb-10">
+    <Row>
+      <Col span={12} className="flex justify-start">
+        <Heading className="ml-5" level={5} text="Trip Details" />
+      </Col>
+      <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              disabled={tripDataEntered}
-              text="+Add Trip Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Trip Details"
+              className="rounded-full border-midnight bg-midnight text-white mx-8"
               onClick={handleTripShowInput}
+              disabled={tripDataEntered}
             />
           )}
         </Col>
-      </Row>
+    </Row>
+    {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+    <AntdTable
+      columns={tripColumns}
+      data={[tripData]}
+      pagination={false}
+      form={tripForm}
+      onFinish={onTripFinish}
+    />
 
-      <StyledDiv>
-        <Table
-          columns={tripColumns}
-          dataSource={[tripData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
-  );
+  </div>
+);
 }
 
 export default MerchantTripTable;

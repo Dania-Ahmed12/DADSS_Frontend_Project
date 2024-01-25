@@ -1,20 +1,50 @@
-import {
-  Image,
-  Row,
-  Table,
-} from "antd";
+import { Image } from "antd";
 import React from "react";
 import Heading from "../../src/components/title/Heading";
-import { useRouter } from "next/router";
 import axios from "axios";
 import dayjs from "dayjs";
 import { IntelColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
+import AntdTable from "../../src/components/table/AntdTable";
+
+
+
+
 
 function IntelDetails({ data }) {
-
   const ownMacroDataFormColumns = [...IntelColumns];
+
+    function transposeData(data) {
+      if (!data) return [];
+
+      const transposedData = [];
+      transposedData.push({
+        Field: "Platform ID",
+        Value: data.ir_pf_id,
+      });
+      transposedData.push({
+        Field: "Reporter Name",
+        Value: data.ir_reporter_name,
+      });
+
+      transposedData.push({
+        Field: "Reporting Time",
+        Value: dayjs(data.ir_reporting_time).format("YYYY-MM-DD HH:mm:ss"),
+      });
+
+      transposedData.push({
+        Field: "Jetty",
+        Value: data.ir_jetty,
+      });
+
+      transposedData.push({
+        Field: "Total Boats",
+        Value: data.ir_total_boats,
+      });
+
+      return transposedData;
+    }
 
   const jettyDataColumns = [
     {
@@ -113,25 +143,36 @@ function IntelDetails({ data }) {
   const tableItems = [
     {
       title: "Jetty Details",
-
       columns: jettyDataColumns,
       data: data?.intelreportdetails,
     },
   ];
 
-  return (
-    <div className="mx-2">
-      <PageHeader showSearchBox={false} title="Report Details" />
+  // Prepare transposed data
+  const transposedData = transposeData(data);
 
-      <header className="flex">
-        <Heading level={4} text="Intel Report" />
-      </header>
-      <section className="shadow border-tableborder border-2 mb-12 rounded-md">
-        <Table
+  // Define columns for transposed data table
+  const transposedColumns = [
+    { title: "Data", dataIndex: "Field" },
+    { title: "Value", dataIndex: "Value" },
+  ];
+  return (
+    <div>
+      <PageHeader showSearchBox={false} title="Intel Report " />
+      <div className="mt-4 flex">
+        <Heading className="ml-5 " level={5} text="Macro Data" />
+      </div>
+      <section className="mb-10">
+        {/* <AntdTable
           columns={ownMacroDataFormColumns}
-          dataSource={[data]}
+          data={[data]}
           pagination={false}
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        /> */}
+        <AntdTable
+          // scrollConfig={{ y: "325px" }}
+          columns={transposedColumns}
+          data={transposedData} // Remove the square brackets
+          pagination={false}
         />
       </section>
       {tableItems.map((item, index) => {
@@ -141,20 +182,9 @@ function IntelDetails({ data }) {
             title={item.title}
             columns={item.columns}
             data={item.data}
-            pagination={item.pagination}
+            pagination={true}
+            scrollConfig={{ x: "100%" }} // Adjust x-scroll as needed
           />
-          // <div key={index}>
-          //   <header className="flex">
-          //     <Heading level={4} text={item.title} />
-          //   </header>
-          //   <div className="mb-12">
-          //     <Table
-          //       columns={item.columns}
-          //       dataSource={item.data}
-          //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          //     />
-          //   </div>
-          // </div>
         );
       })}
     </div>

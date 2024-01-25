@@ -86,15 +86,16 @@ function Addcrewdetails() {
         title="Ship Breakage Registration/Add Crew Detail"
         sessionStorage={handleBack}
       />
-      <Row className="items-center mb-8">
+
+
+      <Row className="items-center mb-4">
         <Col span={6}></Col>
         <Col span={18} className="flex justify-end">
           {showButtons ? (
-            //  <></>
             <FilledButton
               style={{ marginLeft: "auto" }}
               text="Save Data"
-              className="rounded-full border-lightgreen bg-lightgreen text-white"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-12"
               loading={isLoading}
               onClick={handleSubmit}
             />
@@ -102,7 +103,7 @@ function Addcrewdetails() {
             <FilledButton
               style={{ marginLeft: "auto" }}
               text="+ Add Crew Data "
-              className="rounded-full border-midnight bg-midnight text-white"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={() => setShowButtons(true)}
             />
           )}
@@ -115,15 +116,17 @@ function Addcrewdetails() {
         onFinish={handleSubmit}
       >
         <Row>
-          <Col>
-            <InputBox
-              label="Total Crew on Board"
-              placeholder="4587"
-              name="sb_crew"
-              type="number"
-              className="input"
-              rules={[{ required: true, message: "Required Field!" }]}
-            />
+          <Col className="ml-5 mb-4">
+            <StyledInput>
+              <InputBox
+                label="Total Crew on Board"
+                placeholder="4587"
+                name="sb_crew"
+                type="number"
+                className="input"
+                rules={[{ required: true, message: "Required Field!" }]}
+              />
+            </StyledInput>
           </Col>
         </Row>
 
@@ -176,5 +179,10 @@ const StyledDiv = styled.div`
   .ant-table-row.ant-table-row-level-0 {
     /* Your additional styles for level-0 */
    height:80px
+  }
+`;
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
   }
 `;

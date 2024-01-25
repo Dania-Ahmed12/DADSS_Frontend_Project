@@ -6,8 +6,6 @@ import Heading from "../../src/components/title/Heading";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { saveFishingVessel } from "../../src/redux/thunks/fishingVesselData";
-import styled from "styled-components";
-import "react-toastify/dist/ReactToastify.css";
 import dayjs from "dayjs";
 import NakwaTable from "../../src/components/specialTables/NakwaTable";
 import OwnPlatformTable from "../../src/components/table/OwnPlatformTable";
@@ -18,6 +16,8 @@ import CrewTable from "../../src/components/specialTables/CrewTable";
 import GoodsTable from "../../src/components/specialTables/GoodsTable";
 import axios from "axios";
 import { RegVesselColumn } from "../../src/helper/DataColumns";
+import PageHeader from "../../src/components/pageheader/pageHeader";
+import AntdTable from "../../src/components/table/AntdTable";
 
 function Details({ data }) {
   const [showButtons, setShowButtons] = useState(false);
@@ -47,28 +47,25 @@ function Details({ data }) {
     {
       title: "Length (Meters)",
       dataIndex: "rv_length",
+      ellipsis: true,
     },
     {
       title: "Breadth (Meters)",
       dataIndex: "rv_breadth",
+      ellipsis: true,
     },
     {
       title: "Tonnage (Gross Tonnage)",
       dataIndex: "rv_tonnage",
+      ellipsis: true,
     },
     {
       title: "Registered ON",
       dataIndex: "rv_rdt",
-      ellipsis: {
-        showTitle: false,
-      },
+      ellipsis: true,
       render: (text, record) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
-        return (
-          <Tooltip placement="topLeft" title={dtg}>
-            {dtg}
-          </Tooltip>
-        );
+        return dtg;
       },
     },
   ];
@@ -157,136 +154,139 @@ function Details({ data }) {
     }
   }, []);
 
+  // Transpose the data
+  const transposeData = vesselcolumns.map((column) => ({
+    Field: column.title,
+    Value: parsedVesselData[column.dataIndex],
+  }));
   return (
-    <>
-      <div className="mx-2">
-        <div className="flex items-center mt-14">
-          <RxArrowLeft
-            cursor={"pointer"}
-            onClick={() => router.back()}
-            className="ml-12"
-            fontSize={25}
-          />
-          <span
-            className=" ml-2 text-sm font-medium"
-            style={{ cursor: "pointer" }}
-          >
-            Back
-          </span>
-        </div>
-
-        <div className="mx-12 mb-8 mt-4">
-          <Heading level={4} text="Fishing Vessels Details" />
-        </div>
-        <Row className="items-center mb-8">
-          <Col span={6}></Col>
-          <Col span={18} className="flex justify-end">
-            {showButtons ? (
-              <FilledButton
-                // disabled={platformData.length > 1}
-                style={{ marginLeft: "auto" }}
-                text="+ Save Fishing Report"
-                className="rounded-full border-lightgreen bg-lightgreen text-white"
-                onClick={handleFishingSave}
-                disabled={!(platformDataEntered && tripDataEntered)}
-              />
-            ) : (
-              <FilledButton
-                // disabled={platformData.length > 1}
-                style={{ marginLeft: "auto" }}
-                text="+ Add Fishing Data"
-                className="rounded-full border-midnight bg-midnight text-white"
-                onClick={() => setShowButtons(true)}
-              />
-            )}
-          </Col>
-        </Row>
-
-        {/*----------------------------------- Platform Data -------------------------------------*/}
-
-        <OwnPlatformTable
-          platformData={platformData}
-          setPlatformData={setPlatformData}
-          init_platform_data={init_platform_data}
-          report_key={"sr"}
-          platformDataState={{
-            platformDataEntered: platformDataEntered,
-            setPlatformDataEntered: setPlatformDataEntered,
-          }}
-          reportKeys={{
-            dtg: "sr_dtg",
-            pf_id: "sr_pf_id",
-            position: "sr_position",
-            fuel: "sr_fuelrem",
-            info: "sr_info",
-            patrolType: "sr_patroltype",
-            action: "sr_action",
-          }}
-          showButtons={showButtons}
-        />
-        {/*----------------------------------- Vessel Data -------------------------------------*/}
-
-        <div className="mb-5 flex">
-          <Heading level={5} text="Vessel Data" />
-        </div>
-        <section className="shadow border-tableborder border-2 mb-10 rounded-md">
-          <Table
-            scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-            columns={vesselcolumns}
-            dataSource={[parsedVesselData]}
-            pagination={false}
-          />
-        </section>
-
-        {/*----------------------------------- Trip Data -------------------------------------*/}
-        <FishingTripTable
-          tripData={tripData}
-          setTripData={setTripData}
-          tripDataState={{
-            tripDataEntered: tripDataEntered,
-            setTripDataEntered: setTripDataEntered,
-          }}
-          showButtons={showButtons}
-        />
-
-        {/*----------------------------------- Nakwa Data -------------------------------------*/}
-
-        <NakwaTable
-          nakwaData={nakwaData}
-          setNakwaData={setNakwaData}
-          nakwaDataState={{
-            nakwaDataEntered: nakwaDataEntered,
-            setNakwaDataEntered: setNakwaDataEntered,
-          }}
-          showButtons={showButtons}
-        />
-
-        {/*----------------------------------- Owner Data -------------------------------------*/}
-
-        <OwnerTable
-          ownerData={ownerData}
-          setOwnerData={setOwnerData}
-          showButtons={showButtons}
-        />
-
-        {/*----------------------------------- Crew Data -------------------------------------*/}
-
-        <CrewTable
-          crewData={crewData}
-          setCrewData={setCrewData}
-          showButtons={showButtons}
-          labelConfig="page1"
-        />
-
-        {/*----------------------------------- Goods Data -------------------------------------*/}
-
-        <GoodsTable
-          goodsData={goodsData}
-          setGoodsData={setGoodsData}
-          showButtons={showButtons}
+    <div>
+      <div>
+        <PageHeader
+          title="Fishing Vessels Details"
+          placeholder="Search by Vessel ID/Name or Reg No"
+          showButton={false} // Pass true to show the button or false to hide it
+          showSearchBox={false}
         />
       </div>
-    </>
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end">
+          {showButtons ? (
+            <FilledButton
+              // disabled={platformData.length > 1}
+              style={{ marginLeft: "auto" }}
+              text="Save Fishing Data"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+              onClick={handleFishingSave}
+              disabled={!(platformDataEntered && tripDataEntered)}
+            />
+          ) : (
+            <FilledButton
+              // disabled={platformData.length > 1}
+              style={{ marginLeft: "auto" }}
+              text="+ Add Fishing Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={() => setShowButtons(true)}
+            />
+          )}
+        </Col>
+      </Row>
+
+      {/*----------------------------------- Vessel Data -------------------------------------*/}
+
+      <div className=" flex">
+        <Heading className="ml-5 " level={5} text="Vessel Data" />
+      </div>
+      <section className="mb-10">
+        {/* <AntdTable
+          scrollConfig={{ x: true }}
+          columns={vesselcolumns}
+          data={[parsedVesselData]}
+          pagination={false}
+        /> */}
+        <AntdTable
+          scrollConfig={{ y: "325px" }}
+          pagination={false}
+          columns={[
+            { title: "Field", dataIndex: "Field" },
+            { title: "Value", dataIndex: "Value" },
+          ]}
+          data={transposeData}
+        />
+      </section>
+
+      {/*----------------------------------- Platform Data -------------------------------------*/}
+
+      <OwnPlatformTable
+        platformData={platformData}
+        setPlatformData={setPlatformData}
+        init_platform_data={init_platform_data}
+        report_key={"sr"}
+        platformDataState={{
+          platformDataEntered: platformDataEntered,
+          setPlatformDataEntered: setPlatformDataEntered,
+        }}
+        reportKeys={{
+          dtg: "sr_dtg",
+          pf_id: "sr_pf_id",
+          position: "sr_position",
+          fuel: "sr_fuelrem",
+          info: "sr_info",
+          patrolType: "sr_patroltype",
+          action: "sr_action",
+        }}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Trip Data -------------------------------------*/}
+      <FishingTripTable
+        tripData={tripData}
+        setTripData={setTripData}
+        tripDataState={{
+          tripDataEntered: tripDataEntered,
+          setTripDataEntered: setTripDataEntered,
+        }}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Nakwa Data -------------------------------------*/}
+
+      <NakwaTable
+        nakwaData={nakwaData}
+        setNakwaData={setNakwaData}
+        nakwaDataState={{
+          nakwaDataEntered: nakwaDataEntered,
+          setNakwaDataEntered: setNakwaDataEntered,
+        }}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Owner Data -------------------------------------*/}
+
+      <OwnerTable
+        ownerData={ownerData}
+        setOwnerData={setOwnerData}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Crew Data -------------------------------------*/}
+
+      <CrewTable
+        crewData={crewData}
+        setCrewData={setCrewData}
+        showButtons={showButtons}
+        labelConfig="page1"
+      />
+
+      {/*----------------------------------- Goods Data -------------------------------------*/}
+
+      <GoodsTable
+        goodsData={goodsData}
+        setGoodsData={setGoodsData}
+        showButtons={showButtons}
+      />
+    </div>
   );
 }
 

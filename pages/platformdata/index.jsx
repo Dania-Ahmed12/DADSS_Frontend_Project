@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { RxArrowLeft } from "react-icons/rx";
 import AntdTable from "../../src/components/table/AntdTable";
-import FilledButton from "../../src/components/button/FilledButton";
-import { Col, Form, Input, Modal, Row } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import Heading from "../../src/components/title/Heading";
+import { Form, Modal } from "antd";
 import SimpleButton from "../../src/components/button/SimpleButton";
 import InputBox from "../../src/components/form/InputBox";
 import SelectBox from "../../src/components/form/SelectBox";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import {
-  addPlatformData,
-  fetchAllPlatformData,
-} from "../../src/redux/thunks/platformData";
+import { fetchAllPlatformData } from "../../src/redux/thunks/platformData";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "antd/lib/form/Form";
-import Cookies from "js-cookie";
 import { platform_type_list } from "../../src/helper/dropdown";
 import axios from "axios";
+import PageHeader from "../../src/components/pageheader/pageHeader";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -46,11 +39,13 @@ function PlatformId() {
     {
       title: "Platform ID",
       dataIndex: "pf_id",
+      ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
             <StyledInput>
               <InputBox
+                style={{ width: 150 }}
                 placeholder="Platform ID"
                 name="pf_id"
                 minLength={6}
@@ -73,11 +68,13 @@ function PlatformId() {
     {
       title: "Full Name",
       dataIndex: "pf_name",
+      ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
             <StyledInput>
               <InputBox
+                style={{ width: 150 }}
                 placeholder="Name"
                 name="pf_name"
                 minLength={3}
@@ -94,6 +91,7 @@ function PlatformId() {
     {
       title: "Type",
       dataIndex: "pf_type",
+      ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -101,6 +99,7 @@ function PlatformId() {
               <SelectBox
                 placeholder="Vessels"
                 name="pf_type"
+                style={{ width: 150 }}
                 rules={[{ required: true, message: "Required" }]}
                 options={platform_type_list.map((item) => ({
                   value: item,
@@ -117,6 +116,7 @@ function PlatformId() {
     {
       title: "Squadron",
       dataIndex: "pf_squadron",
+      ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -139,6 +139,7 @@ function PlatformId() {
                     label: "OSRON 28 SQN",
                   },
                 ]}
+                style={{ width: 150 }}
               />
             </StyledInput>
           );
@@ -150,11 +151,17 @@ function PlatformId() {
     {
       title: "CO",
       dataIndex: "pf_co",
+      ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
             <StyledInput>
-              <InputBox placeholder="CO" name="pf_co" rules={[req_rule]} />
+              <InputBox
+                placeholder="CO"
+                name="pf_co"
+                rules={[req_rule]}
+                style={{ width: 150 }}
+              />
             </StyledInput>
           );
         } else {
@@ -169,7 +176,11 @@ function PlatformId() {
         if (showInputs && index === 0) {
           return (
             <StyledInput>
-              <InputBox placeholder="Other Info" name="pf_info" />
+              <InputBox
+                placeholder="Other Info"
+                name="pf_info"
+                style={{ width: 150 }}
+              />
             </StyledInput>
           );
         } else {
@@ -184,22 +195,24 @@ function PlatformId() {
         if (showInputs && index === 0) {
           return (
             <Form.Item style={{ display: "flex" }}>
-              <SimpleButton
-                onClick={handleDelete}
-                style={{
-                  fontWeight: "bold",
-                }}
-                text="Cancel"
-              />
-              <SimpleButton
-                htmlType="submit"
-                style={{
-                  fontWeight: "bold",
-                  color: "white",
-                  backgroundColor: "#51AE3B",
-                }}
-                text="Save"
-              />
+              <div style={{ display: "flex" }}>
+                <SimpleButton
+                  onClick={handleDelete}
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                  text="Cancel"
+                />
+                <SimpleButton
+                  htmlType="submit"
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    backgroundColor: "#51AE3B",
+                  }}
+                  text="Save"
+                />
+              </div>
             </Form.Item>
           );
         } else {
@@ -208,9 +221,7 @@ function PlatformId() {
       },
     },
   ];
-  const handleBack = () => {
-    router.push("/");
-  };
+
   const handleShowInput = () => {
     setShowInputs(true);
     setDisabled(true);
@@ -275,44 +286,16 @@ function PlatformId() {
 
   return (
     <>
-      <ToastContainer />
-      <div className="flex items-center mt-14">
-        <RxArrowLeft
-          onClick={handleBack}
-          cursor={"pointer"}
-          className="ml-14"
-          fontSize={25}
+      <div>
+        <PageHeader
+          title="MSA Platform Data (View/Add)"
+          btnTitle="+ Add Platform"
+          onSearchChange={setSearchData}
+          onNavigate={handleShowInput}
+          placeholder="Search"
+          showButton={true}
         />
-        <span
-          onClick={handleBack}
-          className=" ml-2 text-sm font-medium"
-          style={{ cursor: "pointer" }}
-        >
-          Back
-        </span>
       </div>
-      <Row className="mx-14 mb-8 mt-4">
-        <Col span={11}>
-          <Heading level={4} text="MSA Platform Data (View/Add)" />
-        </Col>
-        <Col span={8}>
-          <Input
-            size="large"
-            placeholder="Search"
-            allowClear
-            prefix={<SearchOutlined />}
-            className="search-input"
-            onChange={(e) => setSearchData(e.target.value)}
-          />
-        </Col>
-        <Col className="flex justify-center items-center" span={4} offset={1}>
-          <FilledButton
-            text="+Add Platform"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleShowInput}
-          />
-        </Col>
-      </Row>
       <div>
         <AntdTable
           form={form}

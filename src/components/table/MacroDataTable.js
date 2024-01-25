@@ -13,6 +13,7 @@ import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
+import AntdTable from "./AntdTable";
 
 const MacroDataTable = (props) => {
   const { intelMacroData, setIntelMacroData, init_macro_data, showButtons } =
@@ -301,31 +302,63 @@ const MacroDataTable = (props) => {
     },
   ];
 
+  // return (
+  //   <Form className="mb-8" form={macroDataForm} onFinish={onMacroDataFinish}>
+  //     <Row className="mb-5">
+  //       <Col span={24} className="flex justify-between">
+  //         <Heading level={5} text="Macro Data" />
+  //         {/* If the showButtons variable is true, the content inside the
+  //         parentheses will be rendered; otherwise, it won't. */}
+  //         {showButtons && (
+  //           <FilledButton
+  // disabled={macroDataEntered}
+  // text="+Add Macro Data"
+  // className="rounded-full border-midnight bg-midnight text-white"
+  // onClick={handleMacroDataShowInput}
+  //           />
+  //         )}
+  //       </Col>
+  //     </Row>
+  //     <StyledDiv>
+  //       <Table
+  // columns={ownMacroDataFormColumns}
+  // dataSource={[intelMacroData]}
+  // pagination={false}
+  //       />
+  //     </StyledDiv>
+  //   </Form>
+  // );
   return (
-    <Form className="mb-8" form={macroDataForm} onFinish={onMacroDataFinish}>
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Macro Data" />
-          {/* If the showButtons variable is true, the content inside the
-          parentheses will be rendered; otherwise, it won't. */}
+    <div className="mb-10">
+      <Row>
+        <Col span={12}>
+          <Heading
+            className="ml-5 flex justify-start"
+            level={5}
+            text="Intel Macro Data"
+          />
+        </Col>
+        <Col span={12} className=" flex justify-end">
           {showButtons && (
             <FilledButton
               disabled={macroDataEntered}
-              text="+Add Macro Data"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Intel Macro Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-5"
               onClick={handleMacroDataShowInput}
             />
           )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          columns={ownMacroDataFormColumns}
-          dataSource={[intelMacroData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        form={macroDataForm}
+        onFinish={onMacroDataFinish}
+        columns={ownMacroDataFormColumns}
+        data={[intelMacroData]}
+        pagination={false}
+      />
+    </div>
   );
 };
 

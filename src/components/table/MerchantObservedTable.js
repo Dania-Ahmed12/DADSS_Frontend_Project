@@ -15,6 +15,7 @@ import PositionBox from "../form/PositionBox";
 import { type_list, movement_list, port_list } from "../../helper/dropdown";
 import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import React from "react";
+import AntdTable from "./AntdTable";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -22,10 +23,9 @@ const StyledInput = styled.div`
   }
 `;
 function MerchantObservedTable(props) {
-  const { merchantObservedData, setMerchantObservedData } = props;
+  const { merchantObservedData, setMerchantObservedData , showButtons } = props;
   const [MerchantObservedForm] = useForm();
   const [merchantObservedKey, setMerchantObservedKey] = useState("");
-
 
   const [showInputs, setShowInputs] = useState({
     merchantObservedColumns: false,
@@ -117,7 +117,6 @@ function MerchantObservedTable(props) {
     }
   };
 
-
   const merchantObservedColumns = [
     {
       title: "Longitude",
@@ -158,13 +157,13 @@ function MerchantObservedTable(props) {
     {
       title: "Vessel Name",
       ellipsis: true,
-
       dataIndex: "grm_name",
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Vessel Name"
               name="grm_name"
               rules={[
@@ -188,6 +187,7 @@ function MerchantObservedTable(props) {
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grm_type"
               placeholder="Select Type"
               rules={[
@@ -241,6 +241,7 @@ function MerchantObservedTable(props) {
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grm_lpoc"
               placeholder="Select"
               rules={[
@@ -265,6 +266,7 @@ function MerchantObservedTable(props) {
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+            style={{width:150}}
               name="grm_npoc"
               placeholder="Select"
               rules={[
@@ -364,35 +366,36 @@ function MerchantObservedTable(props) {
   ];
 
   return (
-    <Form
-      form={MerchantObservedForm}
-      onFinish={onMerchantObservedFinish}
-      className="mb-8"
-    >
+    <div className="mb-10">
       <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Merchant Observed" />
-          <FilledButton
-            text="+Add Merchant Observed"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleMerchantShowInput}
-            disabled={merchantObservedKey !== ""}
-          />
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Merchant Observed" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+Add Merchant Observed"
+              className="rounded-full border-midnight bg-midnight text-white"
+              onClick={handleMerchantShowInput}
+              disabled={merchantObservedKey !== ""}
+            />
+          )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={merchantObservedColumns}
-          dataSource={
-            showInputs.merchantObservedColumns
-              ? [{}, ...merchantObservedData]
-              : merchantObservedData
-          }
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+
+      <AntdTable
+        form={MerchantObservedForm}
+        onFinish={onMerchantObservedFinish}
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+        columns={merchantObservedColumns}
+        data={
+          showInputs.merchantObservedColumns
+            ? [{}, ...merchantObservedData]
+            : merchantObservedData
+        }
+        pagination={true}
+      />
+    </div>
   );
 }
 

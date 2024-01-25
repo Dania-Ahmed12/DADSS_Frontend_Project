@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AntdTable from "../../src/components/table/AntdTable.js";
-import { Col, Input, Row, Tooltip } from "antd";
-import FilledButton from "../../src/components/button/FilledButton.js";
-import Heading from "../../src/components/title/Heading.js";
-import { RxArrowLeft } from "react-icons/rx";
-import { SearchOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGeneralReport } from "../../src/redux/thunks/generalReportData.js";
-import { decimalToDMS } from "../../src/helper/position";
 import { GeneralReportColumn } from "../../src/helper/DataColumns.js";
+import PageHeader from "../../src/components/pageheader/pageHeader.js";
 
 const IconsStylingWrap = styled.div`
   display: flex;
@@ -64,9 +59,6 @@ function Index() {
       },
     },
   ];
-  const handleBack = () => {
-    router.push("/");
-  };
   const handleNavigate = () => {
     router.push("/generalreport/addgeneralinput");
   };
@@ -74,50 +66,21 @@ function Index() {
     dispatch(fetchGeneralReport(searchData));
   }, [searchData]);
   return (
-    <div>
-      <div className="flex items-center mt-14">
-        <RxArrowLeft
-          onClick={handleBack}
-          cursor={"pointer"}
-          className="ml-14"
-          fontSize={25}
+    <>
+      <div>
+        <PageHeader
+          title="General Report (View/Add)"
+          btnTitle="+ Add Report"
+          onSearchChange={setSearchData}
+          onNavigate={handleNavigate}
+          placeholder="Search"
+          showButton={true}
         />
-        <span
-          onClick={handleBack}
-          className=" ml-2 text-sm font-medium"
-          style={{ cursor: "pointer" }}
-        >
-          Back
-        </span>
       </div>
-      <Row className="mx-14 mb-8 mt-4">
-        <Col span={11}>
-          <Heading level={4} text="General Report (View/Add)" />
-        </Col>
-        <Col span={8}>
-          <Input
-            size="large"
-            // placeholder="Search"
-            allowClear
-            prefix={<SearchOutlined />}
-            className="search-input"
-            placeholder="Search by Platform ID or Patrol Type"
-            onChange={(e) => setSearchData(e.target.value)}
-          />
-        </Col>
-        <Col className="flex justify-center items-center" span={4} offset={1}>
-          <FilledButton
-            text="+Add General Report"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleNavigate}
-            // disabled={disabled}
-          />
-        </Col>
-      </Row>
       <div>
         <AntdTable columns={columns} data={data} loading={isLoading} />
       </div>
-    </div>
+    </>
   );
 }
 

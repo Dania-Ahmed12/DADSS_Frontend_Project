@@ -30,6 +30,7 @@ import {
   DMStodecimal,
   dtgToString,
 } from "../../helper/position";
+import AntdTable from "../table/AntdTable";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -59,7 +60,6 @@ function FishingNakwaTable(props) {
     });
   };
 
-
   const nakwaDataEdited = () => {
     const editedValues = nakwaForm.getFieldValue();
 
@@ -68,7 +68,6 @@ function FishingNakwaTable(props) {
     }
     setShowInputs({ ...showInputs, nakwa_editing: false });
   };
-
 
   const handleNakwaShowInput = () => {
     setShowInputs({ ...showInputs, nakwaColumns: true });
@@ -275,27 +274,60 @@ function FishingNakwaTable(props) {
   ];
 
   return (
-    <Form form={nakwaForm} onFinish={onNakwaFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Nakwa Details" />
-          {/* {showButtons && (<FilledButton
-              disabled={nakwaDataEntered}
-              text="+Add Nakwa Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+    // <Form form={nakwaForm} onFinish={onNakwaFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Nakwa Details" />
+    //       {/* {showButtons && (<FilledButton
+    //           disabled={nakwaDataEntered}
+    //           text="+Add Nakwa Details"
+    //           className="rounded-full border-midnight bg-midnight text-white"
+    //           onClick={handleNakwaShowInput}
+    //         />)} */}
+    //     </Col>
+    //   </Row>
+
+    //   <StyledDiv>
+    //     <Table
+    //       columns={nakwaColumns}
+    //       dataSource={[nakwaData]}
+    //       pagination={false}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Nakwa Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+ Add Nakwa Details"
+              className="rounded-full border-midnight bg-midnight text-white mx-8"
               onClick={handleNakwaShowInput}
-            />)} */}
+              disabled={nakwaDataEntered}
+            />
+          )}
         </Col>
       </Row>
 
-      <StyledDiv>
-        <Table
-          columns={nakwaColumns}
-          dataSource={[nakwaData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        columns={nakwaColumns}
+        data={[nakwaData]}
+        pagination={false}
+        form={nakwaForm}
+        onFinish={onNakwaFinish}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

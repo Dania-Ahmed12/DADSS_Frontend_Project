@@ -5,18 +5,15 @@ import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
-import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast,} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
-import { positiontoDMS, DMStodecimal } from "../../helper/position";
-import PositionBox from "../form/PositionBox";
-import { type_list, movement_list } from "../../helper/dropdown";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
+import AntdTable from "../table/AntdTable";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -276,8 +273,8 @@ function OwnerTable(props) {
     {
       title: "Mobile Number",
       dataIndex: "sro_cell",
-      ellipsis:true,
-      
+      ellipsis: true,
+
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -391,29 +388,62 @@ function OwnerTable(props) {
   ];
 
   return (
-    <Form form={ownerForm} onFinish={onOwnerFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Owner Details" />
+    // <Form form={ownerForm} onFinish={onOwnerFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Owner Details" />
+    //       {showButtons && (
+    //         <FilledButton
+    //           text="+Add Owner Details"
+    //           className="rounded-full border-midnight bg-midnight text-white"
+    //           onClick={handleOwnerColumnShowInput}
+    //           disabled={ownerKey !== ""}
+    //         />
+    //       )}
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //       columns={ownerColumns}
+    //       dataSource={showInputs.ownerColumns ? [{}, ...ownerData] : ownerData}
+    //       pagination={true}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Owner Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              text="+Add Owner Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Owner Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handleOwnerColumnShowInput}
               disabled={ownerKey !== ""}
             />
           )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={ownerColumns}
-          dataSource={showInputs.ownerColumns ? [{}, ...ownerData] : ownerData}
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        columns={ownerColumns}
+        data={showInputs.ownerColumns ? [{}, ...ownerData] : ownerData}
+        pagination={true}
+        form={ownerForm}
+        onFinish={onOwnerFinish}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import DateBox from "../form/DateBox";
 import { useDispatch, useSelector } from "react-redux";
 import { addSituationReport } from "../../redux/thunks/situationUploadData";
+import AntdTable from "./AntdTable";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -181,6 +182,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_mmsi"
               rules={[
                 {
@@ -211,6 +213,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_imo"
               rules={[
                 {
@@ -233,6 +236,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_ship_name"
               rules={[
                 {
@@ -255,6 +259,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_flag"
               rules={[
                 {
@@ -277,6 +282,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 180 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -341,6 +347,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="sit_lpoc"
               rules={[
                 {
@@ -363,6 +370,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="sit_last_port_country"
               rules={[
                 {
@@ -385,6 +393,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="sit_npoc"
               rules={[
                 {
@@ -407,6 +416,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="sit_next_port_country"
               rules={[
                 {
@@ -429,6 +439,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="sit_course"
               //   min={1}
               type="number"
@@ -453,6 +464,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="sit_speed"
               type="number"
               rules={[
@@ -476,6 +488,7 @@ function SituationTable(props) {
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="sit_source"
               rules={[
                 {
@@ -574,42 +587,41 @@ function SituationTable(props) {
 
   return (
     <>
-      <Form form={situationForm} onFinish={onSituationFinish} className="mb-8">
-        <Row className="mb-8">
-          <Col span={24} className="flex justify-end mb-8">
+      <div className="mb-10">
+        <Row className="items-center mb-4">
+          <Col span={6}></Col>
+          <Col span={18} className="flex justify-end mt-4 mb-3">
             <FilledButton
               disabled={situationData.length == 0}
               style={{ marginLeft: "auto" }}
-              text="+ Save Situation Report"
+              text="Save Situation Report"
               onClick={sendSituationalReprot}
-              className="rounded-full border-lightgreen bg-lightgreen text-white"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
             />
           </Col>
-          <Col span={24} className="flex justify-between">
-            <Heading level={5} text="Situation Report" />
-
+          <Col span={24} className="flex justify-between mb-3 ">
+            <Heading level={5} className="ml-5" text="Situation Report" />
             <FilledButton
-              text="+Add Situation Report"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Situation Report"
+              className="rounded-full border-midnight bg-midnight text-white mr-6"
               onClick={handleSituationColumnShowInput}
               disabled={situationReportKey !== ""}
             />
           </Col>
         </Row>
-
-        <StyledDiv>
-          <Table
-            scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-            columns={situationColumns}
-            dataSource={
-              showInputs.situationColumns
-                ? [{}, ...situationData]
-                : situationData
-            }
-            pagination={true}
-          />
-        </StyledDiv>
-      </Form>
+        {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+        <AntdTable
+          form={situationForm}
+          onFinish={onSituationFinish}
+          scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+          columns={situationColumns}
+          data={
+            showInputs.situationColumns ? [{}, ...situationData] : situationData
+          }
+          pagination={true}
+        />
+      </div>
     </>
   );
 }

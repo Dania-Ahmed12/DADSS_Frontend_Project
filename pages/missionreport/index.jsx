@@ -49,7 +49,7 @@ function Index() {
     <div>
       <PageHeader
         title="Mission Report (List View)"
-        btnTitle="+ Add Mission Report"
+        btnTitle="+ Add Report"
         onSearchChange={setSearchData}
         onNavigate={handleNavigate}
         placeholder="Search by platform ID"

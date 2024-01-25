@@ -15,13 +15,14 @@ import React from "react";
 import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import PositionBox from "../form/PositionBox";
 import { type_list, movement_list } from "../../helper/dropdown";
+import AntdTable from "./AntdTable";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
   }
 `;
 function FishingDensityTable(props) {
-  const { fishingDensityData, setFishingDensityData } = props;
+  const { fishingDensityData, setFishingDensityData , showButtons } = props;
   const [FishingDensityForm] = useForm();
   const [fishingDensityKey, setFishingDensityKey] = useState("");
 
@@ -115,10 +116,10 @@ function FishingDensityTable(props) {
     }
   };
 
-
   const fishingColumns = [
     {
       title: "Longitude",
+      ellipsis: true,
       dataIndex: ["grd_position", "dms", 0],
       render: (text, record, index) => {
         if (
@@ -137,6 +138,9 @@ function FishingDensityTable(props) {
     },
     {
       title: "Latitude",
+      // width: 335,
+      ellipsis: true,
+
       dataIndex: ["grd_position", "dms", 1],
       render: (text, record, index) => {
         if (
@@ -144,8 +148,11 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index)
         ) {
           return (
-            <StyledInput>
-              <PositionBox name={["grd_position", "dms", 1]} coordinate={1} />
+            <StyledInput style={{width:"auto"}}>
+              <PositionBox
+                name={["grd_position", "dms", 1]}
+                coordinate={1}
+              />
             </StyledInput>
           );
         } else {
@@ -163,6 +170,7 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              // style={{ width: 150 }}
               placeholder="Vessels"
               name="grd_qty"
               min={1}
@@ -188,6 +196,7 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index) ? (
           <StyledInput>
             <SelectBox
+              // style={{ width: 150 }}
               name="grd_type"
               placeholder="Select Type"
               rules={[
@@ -213,6 +222,7 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grd_movement"
               placeholder="Select"
               rules={[
@@ -318,47 +328,82 @@ function FishingDensityTable(props) {
   ];
 
   return (
-    <Form
-      form={FishingDensityForm}
-      onFinish={onFishingDensityFinish}
-      className="mb-8"
-    >
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Fishing Density" />
-          <FilledButton
-            text="+Add Fishing Density"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleFishingColumnShowInput}
-            // disabled={isEditing} // Disable the button when editing
-            disabled={fishingDensityKey !== ""}
-          />
+    // <Form
+    // form={FishingDensityForm}
+    // onFinish={onFishingDensityFinish}
+    //   className="mb-8"
+    // >
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Fishing Density" />
+    //       <FilledButton
+    //         text="+Add Fishing Density"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    //         onClick={handleFishingColumnShowInput}
+    //         // disabled={isEditing} // Disable the button when editing
+    //         disabled={fishingDensityKey !== ""}
+    //       />
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //       columns={fishingColumns}
+    //       dataSource={
+    //         showInputs.fishingColumns
+    //           ? [{}, ...fishingDensityData]
+    //           : fishingDensityData
+    //       }
+    //       //   showInputs.fishingColumns
+    //       //     ? fishingDensityData
+    //       //     : fishingDensityData.length > 1
+    //       //     ? fishingDensityData
+    //       //         .map((item, index) => ({
+    //       //           ...item,
+    //       //           key: index,
+    //       //         }))
+    //       //         .slice(1)
+    //       //     : []
+    //       // }
+    //       pagination={true}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Fishing Density" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+ Add Fishing Density"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={handleFishingColumnShowInput}
+              disabled={fishingDensityKey !== ""}
+            />
+          )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={fishingColumns}
-          dataSource={
-            showInputs.fishingColumns
-              ? [{}, ...fishingDensityData]
-              : fishingDensityData
-          }
-          //   showInputs.fishingColumns
-          //     ? fishingDensityData
-          //     : fishingDensityData.length > 1
-          //     ? fishingDensityData
-          //         .map((item, index) => ({
-          //           ...item,
-          //           key: index,
-          //         }))
-          //         .slice(1)
-          //     : []
-          // }
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+      scrollConfig={{x:true}}
+        form={FishingDensityForm}
+        onFinish={onFishingDensityFinish}
+        // scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        columns={fishingColumns}
+        data={
+          showInputs.fishingColumns
+            ? [{}, ...fishingDensityData]
+            : fishingDensityData
+        }
+        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

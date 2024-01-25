@@ -11,12 +11,17 @@ function RegistedMerchantVesselDetails({ data }) {
     <>
       <div>
         <PageHeader
-          title="Merchant Vessels Details"
+          title="Merchant Vessel Details"
           showButton={false}
           showSearchBox={false}
         />
         <div>
-          <AntdTable columns={columns} data={data} />
+          <AntdTable
+            scrollConfig={{ x: true }}
+            columns={columns}
+            data={data}
+            pagination={false}
+          />
         </div>
       </div>
     </>

@@ -26,7 +26,7 @@ function Index() {
     ...shipBreakColumns,
 
     {
-      title: "Action cxcvxc",
+      title: "Action",
       dataIndex: "action",
       render: (text, record) => {
         return (
@@ -52,7 +52,7 @@ function Index() {
     <div>
       <PageHeader
         title="Ship Breaking (List View)"
-        btnTitle="+ Add Ship breaking Report"
+        btnTitle="+ Add Report"
         onSearchChange={setSearchData}
         onNavigate={handleNavigate}
         placeholder="Search by Ex Name"

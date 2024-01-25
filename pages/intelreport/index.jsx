@@ -49,7 +49,7 @@ function Index() {
     <div>
       <PageHeader
         title="Intel Report (List View)"
-        btnTitle="+ Add Intel Report"
+        btnTitle="+ Add Report"
         onSearchChange={setSearchData}
         onNavigate={handleNavigate}
         placeholder="Search by Reporter Name or Jetty"

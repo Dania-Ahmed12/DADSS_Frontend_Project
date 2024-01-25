@@ -37,9 +37,7 @@ function Index() {
     router.push("/registeredvessels/vesselregistration");
   };
 
-  const handleBack = () => {
-    router.push("/");
-  };
+
   useEffect(() => {
     dispatch(fetchRegisteredVessel(searchData));
   }, [searchData]);
@@ -48,7 +46,7 @@ function Index() {
     <>
       <PageHeader
         title="Registered Fishing Vessels (List View)"
-        btnTitle="+ Register a Vessel"
+        btnTitle="+ Register Vessel"
         onSearchChange={setSearchData}
         onNavigate={handleClick}
         placeholder="Search by Vessel ID, Name or Reg No"

@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import DateBox from "../form/DateBox";
 import { useDispatch } from "react-redux";
 import { addLostReport } from "../../redux/thunks/jmisLostReportUploadData";
+import AntdTable from "./AntdTable";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -29,7 +30,7 @@ function LostReportTable(props) {
   const dispatch = useDispatch();
 
   const { lostReport, setLostReport } = props;
-  console.log(lostReport)
+  console.log(lostReport);
   const [lostReportForm] = useForm();
   const [lostReportKey, setLostReportKey] = useState("");
 
@@ -122,9 +123,7 @@ function LostReportTable(props) {
       lostReportForm.resetFields();
     }
   };
-  console.log(lostReport)
-
-
+  console.log(lostReport);
 
   const sendLostReports = async () => {
     try {
@@ -134,37 +133,37 @@ function LostReportTable(props) {
       setLostReport([]);
     } catch (error) {}
   };
-const sendLostReport = async () => {
-  try {
-    // const finalData = lostReport.map((report) => ({
-    //   ...report,
-    //   lr_position: {
-    //     ...report.lr_position,
-    //     type: "Point",
-    //     coordinates: DMStodecimal(report.lr_position.dms),
-    //   },
-    // }));
-    // console.log(finalData)
+  const sendLostReport = async () => {
+    try {
+      // const finalData = lostReport.map((report) => ({
+      //   ...report,
+      //   lr_position: {
+      //     ...report.lr_position,
+      //     type: "Point",
+      //     coordinates: DMStodecimal(report.lr_position.dms),
+      //   },
+      // }));
+      // console.log(finalData)
 
-    // Extracting only coordinates
-    const coordinatesOnly = lostReport.map((report) => ({
-      ...report,
-      lr_position: {
-        type: "Point",
-        coordinates: [
-          report.lr_position.coordinates[0],
-          report.lr_position.coordinates[1],
-        ],
-      },
-    }));
-    console.log(coordinatesOnly)
-    // Dispatch the action with the data
-    dispatch(addLostReport(coordinatesOnly));
-    setLostReport([]);
-  } catch (error) {
-    // Handle the error
-  }
-};
+      // Extracting only coordinates
+      const coordinatesOnly = lostReport.map((report) => ({
+        ...report,
+        lr_position: {
+          type: "Point",
+          coordinates: [
+            report.lr_position.coordinates[0],
+            report.lr_position.coordinates[1],
+          ],
+        },
+      }));
+      console.log(coordinatesOnly);
+      // Dispatch the action with the data
+      dispatch(addLostReport(coordinatesOnly));
+      setLostReport([]);
+    } catch (error) {
+      // Handle the error
+    }
+  };
 
   const lostReportColumn = [
     {
@@ -214,6 +213,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_imo"
               rules={[
                 {
@@ -240,6 +240,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_ship_name"
               rules={[
                 {
@@ -262,6 +263,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_flag"
               rules={[
                 {
@@ -284,6 +286,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 180 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -313,6 +316,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="lr_total_crew"
               type="number"
               rules={[
@@ -338,6 +342,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="lr_track_status"
               rules={[
                 {
@@ -401,6 +406,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="lr_created_by"
               rules={[
                 {
@@ -460,6 +466,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="lr_remarks"
               rules={[
                 {
@@ -484,6 +491,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="lr_coi_number"
               type="number"
               rules={[
@@ -509,6 +517,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="lr_subscriber_code"
               rules={[
                 {
@@ -535,6 +544,7 @@ const sendLostReport = async () => {
             <InputNumBox
               name="lr_pr_number"
               type="number"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -558,6 +568,7 @@ const sendLostReport = async () => {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="lr_action_addresses_codes"
               rules={[
                 {
@@ -655,40 +666,73 @@ const sendLostReport = async () => {
   ];
 
   return (
-    <Form form={lostReportForm} onFinish={onLostReportFinish} className="mb-8">
-      <Row className="mb-8">
-        <Col span={24} className="flex justify-end mb-8">
+    // <Form form={lostReportForm} onFinish={onLostReportFinish} className="mb-8">
+    //   <Row className="mb-8">
+    //     <Col span={24} className="flex justify-end mb-8">
+    //       <FilledButton
+    //         disabled={lostReport.length == 0}
+    //         style={{ marginLeft: "auto" }}
+    //         text="Save Lost Report"
+    //         onClick={sendLostReport}
+    //         className="rounded-full border-lightgreen bg-lightgreen text-white"
+    //       />
+    //     </Col>
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Lost Report" />
+
+    //       <FilledButton
+    //         text="+ Add Lost Report"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    //         onClick={handleLostReportColumnShowInput}
+    //         disabled={lostReportKey !== ""}
+    //       />
+    //     </Col>
+    //   </Row>
+
+    //   <StyledDiv>
+    //     <Table
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //       columns={lostReportColumn}
+    //       dataSource={
+    //         showInputs.lostReportColumn ? [{}, ...lostReport] : lostReport
+    //       }
+    //       pagination={true}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end mt-4 mb-3">
           <FilledButton
             disabled={lostReport.length == 0}
             style={{ marginLeft: "auto" }}
-            text="+ Save Lost Report"
+            text="Save Lost Report"
             onClick={sendLostReport}
-            className="rounded-full border-lightgreen bg-lightgreen text-white"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
           />
         </Col>
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Lost Report" />
-
+        <Col span={24} className="flex justify-between mb-3 ">
+          <Heading level={5} className="ml-5" text="Situation Report" />
           <FilledButton
             text="+ Add Lost Report"
-            className="rounded-full border-midnight bg-midnight text-white"
+            className="rounded-full border-midnight bg-midnight text-white mr-6"
             onClick={handleLostReportColumnShowInput}
-            disabled={lostReportKey !== ""}
+            disabled={lostReportKey!== ""}
           />
         </Col>
       </Row>
-
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={lostReportColumn}
-          dataSource={
-            showInputs.lostReportColumn ? [{}, ...lostReport] : lostReport
-          }
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+        columns={lostReportColumn}
+        data={showInputs.lostReportColumn ? [{}, ...lostReport] : lostReport}
+        pagination={true}
+        form={lostReportForm}
+        onFinish={onLostReportFinish}
+      />
+    </div>
   );
 }
 

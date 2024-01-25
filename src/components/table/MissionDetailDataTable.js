@@ -17,6 +17,7 @@ import { mission_details_vessel_type } from "../../helper/dropdown";
 import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import SimpleButton from "../button/SimpleButton";
 import SelectBox from "../form/SelectBox";
+import AntdTable from "./AntdTable";
 
 const StyledDiv = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -51,7 +52,7 @@ const IconsStylingWrap = styled.div`
 `;
 
 function MissionDetailDataTable(props) {
-  const { missionDetail, setMissionDetail } = props;
+  const { missionDetail, setMissionDetail , showButtons} = props;
   const [missionDetailForm] = useForm();
 
   // used to track the currently editing item's index in the mission detail array.
@@ -177,7 +178,7 @@ function MissionDetailDataTable(props) {
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
-            style={{width:100}}
+              style={{ width: 100 }}
               name="mrd_mmsi"
               rules={[
                 {
@@ -473,7 +474,7 @@ function MissionDetailDataTable(props) {
     {
       title: "Vessel Type",
       dataIndex: "mrd_vessel_type",
-      ellipsis:true,
+      ellipsis: true,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
@@ -611,35 +612,60 @@ function MissionDetailDataTable(props) {
     },
   ];
   return (
-    <Form
-      form={missionDetailForm}
-      onFinish={onMissionDetailDataFinish}
-      className="mb-8"
-    >
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Mission Details" />
-          <FilledButton
-            text="+Add Mission Detail"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleMissionDataColumnShowInput}
-            disabled={missionDetailDataKey !== ""}
-          />
+    // <Form
+    // form={missionDetailForm}
+    // onFinish={onMissionDetailDataFinish}
+    //   className="mb-8"
+    // >
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Mission Details" />
+    //       <FilledButton
+    //         text="+Add Mission Detail"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    //         onClick={handleMissionDataColumnShowInput}
+    //         disabled={missionDetailDataKey !== ""}
+    //       />
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    //       columns={missionDetailsDataColumns}
+    //       dataSource={
+    //         showInputs.missionDetailColumns
+    //           ? [{}, ...missionDetail]
+    //           : missionDetail
+    //       }
+    //       pagination={true}
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Mission Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+ Add Mission Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={handleMissionDataColumnShowInput}
+              disabled={missionDetailDataKey!== ""}
+            />
+          )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          columns={missionDetailsDataColumns}
-          dataSource={
-            showInputs.missionDetailColumns
-              ? [{}, ...missionDetail]
-              : missionDetail
-          }
-          pagination={true}
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        form={missionDetailForm}
+        onFinish={onMissionDetailDataFinish}
+        columns={missionDetailsDataColumns}
+        data={showInputs.missionDetailColumns ? [{}, ...missionDetail] : missionDetail}
+      />
+    </div>
   );
 }
 

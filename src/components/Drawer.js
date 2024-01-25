@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu, Typography, theme, Modal } from "antd";
 import styled from "styled-components";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -26,63 +26,28 @@ import { withAuth } from "./withAuth";
 import FilledButton from "./button/FilledButton";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import { LoadingOutlined } from "@ant-design/icons";
 
-const CsvUploadComponent = dynamic(() => import("./button/CsvButton"), {
-  ssr: false,
-  loading: () => (
-    <LoadingOutlined style={{ color: "#012169", fontSize: "40px" }} />
-  ),
-});
-const CosposUploadComponent = dynamic(() => import("./button/CosposButton"), {
-  ssr: false,
-  loading: () => (
-    <LoadingOutlined style={{ color: "#012169", fontSize: "40px" }} />
-  ),
-});
-const JmisLostReportUploadComponent = dynamic(
-  () => import("./button/JmisLostReportButton"),
-  {
-    ssr: false,
-    loading: () => (
-      <LoadingOutlined style={{ color: "#012169", fontSize: "40px" }} />
-    ),
-  }
-);
-const JmisPNSCDatatUploadComponent = dynamic(
-  () => import("./button/PNSCButton"),
-  {
-    ssr: false,
-    loading: () => (
-      <LoadingOutlined style={{ color: "#012169", fontSize: "40px" }} />
-    ),
-  }
-);
-const SituationUploadComponent = dynamic(
-  () => import("./button/SituationButton"),
-  {
-    ssr: false,
-    loading: () => (
-      <LoadingOutlined style={{ color: "#012169", fontSize: "40px" }} />
-    ),
-  }
-);
+
+
 const { Content, Footer, Sider, Header } = Layout;
 
 const Drawer = (props) => {
   const [collapsed, setCollapsed] = useState(false);
 
-  // State for controlling the modal
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalType, setModalType] = useState(""); // Add this line
-  const [csvModalVisible, setCsvModalVisible] = useState(false);
-  const [cosposModalVisible, setCosposModalVisible] = useState(false);
-  const [jmisLostReportModalVisible, setJmisLostReportModalVisible] =
-    useState(false);
-  const [jmisPNSCModalVisible, setJmisPNSCModalVisible] = useState(false);
-  const [situationModalVisible, setSituationModalVisible] = useState(false);
+    useEffect(() => {
+      const handleResize = () => {
+        setCollapsed(window.innerWidth <= 900); // 768px is typical width for md
+      };
 
+      // Initial setup
+      handleResize();
+
+      // Event listener for window resize
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
   const router = useRouter();
 
   function getItem(label, key, icon, children, type) {
@@ -205,7 +170,7 @@ const Drawer = (props) => {
     ),
     getItem(
       <Link href="/merchantVesselDetails" style={{ color: "white" }}>
-        Merchant Vessel Details
+        Merchant Vessel
       </Link>,
       "14",
       <TbDeviceDesktopAnalytics color="white" size={20} />
@@ -416,50 +381,6 @@ const Drawer = (props) => {
     router.push("/");
   };
 
-  const openModal = (type) => {
-    switch (type) {
-      case "csv":
-        setCsvModalVisible(true);
-        break;
-      case "cospos":
-        setCosposModalVisible(true);
-        break;
-      case "jmisLostReport":
-        setJmisLostReportModalVisible(true);
-        break;
-      case "jmisPNSC":
-        setJmisPNSCModalVisible(true);
-        break;
-      case "situation":
-        setSituationModalVisible(true);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const closeModal = (type) => {
-    switch (type) {
-      case "csv":
-        setCsvModalVisible(false);
-        break;
-      case "cospos":
-        setCosposModalVisible(false);
-        break;
-      case "jmisLostReport":
-        setJmisLostReportModalVisible(false);
-        break;
-      case "jmisPNSC":
-        setJmisPNSCModalVisible(false);
-        break;
-      case "situation":
-        setSituationModalVisible(false);
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <StyledSection>
       <Layout style={{ height: "auto" }}>
@@ -535,7 +456,7 @@ const Drawer = (props) => {
             <FilledButton
               text="Logout"
               onClick={handleLogout}
-              className="border-midnight bg-midnight text-white"
+              className="ml-8 border-midnight bg-midnight text-white"
             />
            
           </Header>

@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import DateBox from "../form/DateBox";
 import { useDispatch } from "react-redux";
 import { addPnscReport } from "../../redux/thunks/jmisPnscUploadData";
+import AntdTable from "./AntdTable";
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -124,7 +125,7 @@ function PnscTable(props) {
     }
   };
 
-  console.log(pnscReport)
+  console.log(pnscReport);
 
   const sendPnscReport = async () => {
     try {
@@ -149,6 +150,7 @@ function PnscTable(props) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 180 }}
                 format="YYYY-MM-DD HH:mm:ss"
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
@@ -182,6 +184,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="mv_imo"
               rules={[
                 {
@@ -204,6 +207,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 180 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -267,6 +271,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="ps_country"
               rules={[
                 {
@@ -291,6 +296,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="ps_status_symbol"
               rules={[
                 {
@@ -315,6 +321,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 180 }}
               name="ps_status_symbol_remarks"
               rules={[
                 {
@@ -343,6 +350,7 @@ function PnscTable(props) {
             <StyledInput>
               <DateBox
                 format="YYYY-MM-DD HH:mm:ss"
+                style={{ width: 180 }}
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
                 }}
@@ -375,6 +383,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="ps_track_number"
               //   min={1}
               type="number"
@@ -399,6 +408,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 180 }}
               name="ps_course"
               type="number"
               rules={[
@@ -424,6 +434,7 @@ function PnscTable(props) {
             <InputNumBox
               name="ps_speed"
               type="number"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -447,6 +458,7 @@ function PnscTable(props) {
           <StyledInput>
             <InputBox
               name="ps_lastport"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -469,6 +481,7 @@ function PnscTable(props) {
           <StyledInput>
             <InputBox
               name="ps_next_port"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -491,6 +504,7 @@ function PnscTable(props) {
           <StyledInput>
             <InputBox
               name="ps_track_label"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -513,6 +527,7 @@ function PnscTable(props) {
           <StyledInput>
             <InputBox
               name="ps_track_type"
+              style={{ width: 180 }}
               rules={[
                 {
                   required: true,
@@ -609,75 +624,41 @@ function PnscTable(props) {
   ];
 
   return (
-    // <Form form={pnscReportForm} onFinish={onPnscReportFinish} className="mb-8">
-    //   <Row className="mb-8">
-    //     <Col span={24} className="flex justify-end mb-8">
-    //       <FilledButton
-    //         disabled={pnscReport.length == 0}
-    //         style={{ marginLeft: "auto" }}
-    //         text="+ Save Lost Report"
-    //         onClick={sendPnscReport}
-    //         className="rounded-full border-lightgreen bg-lightgreen text-white"
-    //       />
-    //     </Col>
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Lost Report" />
-
-    //       <FilledButton
-    //         text="+ Add Lost Report"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handlePnscReportColumnShowInput}
-    //         disabled={pnscReportKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //       columns={pnscReportColumn}
-    //       dataSource={
-    //         showInputs.pnscReportColumn ? [{}, ...pnscReport] : pnscReport
-    //       }
-    //       pagination={true}
-    //     />
-    //   </StyledDiv>
-    // </Form>
-
-    <Form form={pnscReportForm} onFinish={onPnscReportFinish} className="mb-8">
-      <Row className="mb-8">
-        <Col span={24} className="flex justify-end mb-8">
-          <FilledButton
-            disabled={pnscReport.length == 0}
+        <div className="mb-10">
+        <Row className="items-center mb-4">
+          <Col span={6}></Col>
+          <Col span={18} className="flex justify-end mt-4 mb-3">
+            <FilledButton
+              disabled={pnscReport.length == 0}
             style={{ marginLeft: "auto" }}
-            text="+ Save PNSC Report"
+            text="Save PNSC Report"
             onClick={sendPnscReport}
-            className="rounded-full border-lightgreen bg-lightgreen text-white"
-          />
-        </Col>
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="PNSC Report" />
-
-          <FilledButton
-            text="+ Add PNSC Report"
-            className="rounded-full border-midnight bg-midnight text-white"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
+            />
+          </Col>
+          <Col span={24} className="flex justify-between mb-3 ">
+            <Heading level={5} className="ml-5" text="Situation Report" />
+            <FilledButton
+      text="+ Add PNSC Report"
+            className="rounded-full border-midnight bg-midnight text-white mr-6"
             onClick={handlePnscReportColumnShowInput}
             disabled={pnscReportKey !== ""}
-          />
-        </Col>
-      </Row>
-
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={pnscReportColumn}
-          dataSource={
+            />
+          </Col>
+        </Row>
+        {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+        <AntdTable
+          scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+         columns={pnscReportColumn}
+          data={
             showInputs.pnscReportColumn ? [{}, ...pnscReport] : pnscReport
           }
           pagination={true}
+          form={pnscReportForm} 
+          onFinish={onPnscReportFinish}
         />
-      </StyledDiv>
-    </Form>
+      </div>
   );
 }
 

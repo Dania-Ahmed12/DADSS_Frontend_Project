@@ -37,6 +37,7 @@ function Addintelinput() {
   const init_macro_data = { ir_pf_id: Cookies.get("u_pf_id") };
   const [intelMacroData, setIntelMacroData] = useState(init_macro_data);
   const [macroDataEntered, setMacroDataEntered] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
   const [jettyData, setJettyData] = useState([]);
 
   const handleSendIntelReport = async () => {
@@ -112,32 +113,50 @@ function Addintelinput() {
 
   return (
     <>
-      <PageHeader showButton={false} showSearchBox={false} title="ADD Report" />
-      <Row>
-        <Col span={23} className="flex items-center justify-end mb-8">
-          <FilledButton
-            text="Save Report"
-            loading={IntelDetailReportState.isLoading}
-            disabled={!macroDataEntered}
-            onClick={handleSendIntelReport}
-            className="rounded-full border-lightgreen bg-lightgreen text-white"
-            htmlType="submit"
-          />
+      <PageHeader
+        showButton={false}
+        showSearchBox={false}
+        title="Add Intel Report Details"
+      />
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end">
+          {showButtons ? (
+            <FilledButton
+              style={{ marginLeft: "auto" }}
+              text="Save Intel Data"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+              disabled={!macroDataEntered}
+              onClick={handleSendIntelReport}
+            />
+          ) : (
+            <FilledButton
+              style={{ marginLeft: "auto" }}
+              text="+ Add Intel Macro Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={() => setShowButtons(true)}
+            />
+          )}
         </Col>
       </Row>
+
       {/*-----------------------------------Marco data  (First Table)-------------------------------------*/}
       <MacroDataTable
         intelMacroData={intelMacroData}
         setIntelMacroData={setIntelMacroData}
         init_macro_data={init_macro_data}
-        showButtons={true}
+        showButtons={showButtons}
         intelMacroDataState={{
           macroDataEntered: macroDataEntered,
           setMacroDataEntered: setMacroDataEntered,
         }}
       />
       {/*-----------------------------------Jeety data  (Second Table)-------------------------------------*/}
-      <JettyDataTable jettyData={jettyData} setJettyData={setJettyData} />
+      <JettyDataTable
+        jettyData={jettyData}
+        setJettyData={setJettyData}
+        showButtons={showButtons}
+      />
     </>
   );
 }

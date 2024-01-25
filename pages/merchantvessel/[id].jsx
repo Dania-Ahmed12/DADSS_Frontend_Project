@@ -14,6 +14,7 @@ import axios from "axios";
 import { MerchantDetailColumns } from "../../src/helper/DataColumns";
 import GoodsTable from "../../src/components/specialTables/GoodsTable";
 import PageHeader from "../../src/components/pageheader/pageHeader";
+import AntdTable from "../../src/components/table/AntdTable";
 
 function Details({ data }) {
   const [showButtons, setShowButtons] = useState(false);
@@ -21,6 +22,7 @@ function Details({ data }) {
   const dispatch = useDispatch();
   const { id, vessel } = router.query;
   const parsedVesselData = JSON.parse(vessel);
+  console.log(vessel);
   const init_platform_data = { msr_pf_id: Cookies.get("u_pf_id") };
   const [platformData, setPlatformData] = useState(init_platform_data);
   const [platformDataEntered, setPlatformDataEntered] = useState(false);
@@ -30,6 +32,12 @@ function Details({ data }) {
 
   // Table columns for displaying merchant vessel details
   const vesselcolumns = [...MerchantDetailColumns];
+
+  // Transpose the data
+  const transposeData = vesselcolumns.map((column) => ({
+    Field: column.title,
+    Value: parsedVesselData[column.dataIndex],
+  }));
 
   // Function to handle saving merchant report
   const handleMerchantSave = () => {
@@ -76,142 +84,148 @@ function Details({ data }) {
     }
   };
 
- 
-   useEffect(() => {
-     processTripDetails();
-     processGoodDetails();
-   }, []);
+  useEffect(() => {
+    processTripDetails();
+    processGoodDetails();
+  }, []);
 
-   const processTripDetails = () => {
-     //   // Process tripDetails if it exists and has not been processed before
-     if (data?.tripDetails && !tripDataEntered) {
-       //     // Update tripData state with spread properties of data.tripDetails
-       setTripData({
-         ...data.tripDetails,
-         //       // Additional modifications to specific properties using dayjs
-         msr_movement: data.msr_movement,
-         msr2_lpocdtg: dayjs(data.tripDetails.msr2_lpocdtg),
-         msr2_npoceta: dayjs(data.tripDetails.msr2_npoceta),
-       });
-       setTripDataEntered(true);
-     }
-   };
+  const processTripDetails = () => {
+    //   // Process tripDetails if it exists and has not been processed before
+    if (data?.tripDetails && !tripDataEntered) {
+      //     // Update tripData state with spread properties of data.tripDetails
+      setTripData({
+        ...data.tripDetails,
+        //       // Additional modifications to specific properties using dayjs
+        msr_movement: data.msr_movement,
+        msr2_lpocdtg: dayjs(data.tripDetails.msr2_lpocdtg),
+        msr2_npoceta: dayjs(data.tripDetails.msr2_npoceta),
+      });
+      setTripDataEntered(true);
+    }
+  };
 
-   const processGoodDetails = () => {
-     //   // Process goodDetails if it exists
-     if (data?.goodDetails) {
-       //     // Update goodsData state by mapping over each item and modifying msrg_confiscated
-       setGoodsData(
-         data.goodDetails.map((item) => ({
-           ...item,
-       //   If item is equal to the string "Yes," it sets msrg_confiscated to true; otherwise, it sets it to false. 
-           msrg_confiscated: item.msrg_confiscated ? "Yes" : "No",
-         }))
-       );
-     }
-   };
+  const processGoodDetails = () => {
+    //   // Process goodDetails if it exists
+    if (data?.goodDetails) {
+      //     // Update goodsData state by mapping over each item and modifying msrg_confiscated
+      setGoodsData(
+        data.goodDetails.map((item) => ({
+          ...item,
+          //   If item is equal to the string "Yes," it sets msrg_confiscated to true; otherwise, it sets it to false.
+          msrg_confiscated: item.msrg_confiscated ? "Yes" : "No",
+        }))
+      );
+    }
+  };
 
   return (
-    <>
-      <div className="mx-2">
-        <PageHeader showSearchBox={false} title="Merchant Vessels Details" />
-        <Row className="items-center mb-8">
-          <Col span={6}></Col>
-          <Col span={18} className="flex justify-end">
-            {/*
+    <div>
+      <PageHeader showSearchBox={false} title="Merchant Vessels Details" />
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end">
+          {/*
   Conditional rendering using the ternary operator:
   If 'showButtons' is true, render the "Save Merchant Report" button.
   If 'showButtons' is false, render the "Add Merchant Data" button.
 */}
-            {showButtons ? (
-              <FilledButton
-                style={{ marginLeft: "auto" }}
-                text="+ Save Merchant Report"
-                className="rounded-full border-lightgreen bg-lightgreen text-white"
-                onClick={handleMerchantSave}
-                disabled={!(platformDataEntered && tripDataEntered)}
-              />
-            ) : (
-              <FilledButton
-                style={{ marginLeft: "auto" }}
-                text="+ Add Merchant Data"
-                className="rounded-full border-midnight bg-midnight text-white"
-                onClick={() => setShowButtons(true)}
-              />
-            )}
-          </Col>
-        </Row>
-
-        {/*----------------------------------- Platform Data -------------------------------------*/}
-
-        <OwnPlatformTable
-          platformData={platformData}
-          setPlatformData={setPlatformData}
-          init_platform_data={init_platform_data}
-          report_key={"msr"}
-          platformDataState={{
-            platformDataEntered: platformDataEntered,
-            setPlatformDataEntered: setPlatformDataEntered,
-          }}
-          reportKeys={{
-            dtg: "msr_dtg",
-            pf_id: "msr_pf_id",
-            position: "msr_position",
-            fuel: "msr_fuelrem",
-            info: "msr_info",
-            patrolType: "msr_patroltype",
-            action: "msr_action",
-          }}
-          showButtons={showButtons}
-        />
-
-        {/*----------------------------------- Vessel Data -------------------------------------*/}
-
-        <div className="mb-5 flex">
-          <Heading level={5} text=" Merchant Vessel Data" />
-        </div>
-        <section className="shadow border-tableborder border-2 mb-10 rounded-md">
-          <Row>
-            <Table
-              scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-              columns={vesselcolumns}
-              dataSource={[parsedVesselData]}
-              pagination={false}
-              showHeader={true}
+          {showButtons ? (
+            <FilledButton
+              // disabled={platformData.length > 1}
+              style={{ marginLeft: "auto" }}
+              text="Save Merchant Data"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+              onClick={handleMerchantSave}
+              disabled={!(platformDataEntered && tripDataEntered)}
             />
-          </Row>
-        </section>
+          ) : (
+            <FilledButton
+              // disabled={platformData.length > 1}
+              style={{ marginLeft: "auto" }}
+              text="+ Add Merchant Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={() => setShowButtons(true)}
+            />
+          )}
+        </Col>
+      </Row>
 
-        {/*----------------------------------- Trip Data -------------------------------------*/}
-        <MerchantTripTable
-          tripData={tripData}
-          setTripData={setTripData}
-          tripDataState={{
-            tripDataEntered: tripDataEntered,
-            setTripDataEntered: setTripDataEntered,
-          }}
-          showButtons={showButtons}
-        />
+      {/*----------------------------------- Vessel Data -------------------------------------*/}
 
-        {/*----------------------------------- Good Detail Data -------------------------------------*/}
-
-        <GoodsTable
-          goodsData={goodsData}
-          setGoodsData={setGoodsData}
-          showButtons={showButtons}
-          reportKeys={{
-            item: "msrg_item",
-            qty: "msrg_qty",
-            denomination: "msrg_denomination",
-            category: "msrg_category",
-            subcategory: "msrg_subcategory",
-            confiscated: "msrg_confiscated",
-            value: "msrg_value",
-            source: "msrg_source",
-          }}
-        />
+      <div className=" flex">
+        <Heading className="ml-5 " level={5} text="Vessel Data" />
       </div>
-    </>
+      <section className="mb-10">
+        {/* <AntdTable
+          scrollConfig={{ x: true }}
+          columns={vesselcolumns}
+          data={[parsedVesselData]}
+          pagination={false}
+          showHeader={true}
+        /> */}
+        <AntdTable
+          scrollConfig={{ y: "325px" }}
+          pagination={false}
+          columns={[
+            { title: "Field", dataIndex: "Field" },
+            { title: "Value", dataIndex: "Value" },
+          ]}
+          data={transposeData}
+        />
+      </section>
+
+      {/*----------------------------------- Platform Data -------------------------------------*/}
+
+      <OwnPlatformTable
+        platformData={platformData}
+        setPlatformData={setPlatformData}
+        init_platform_data={init_platform_data}
+        report_key={"msr"}
+        platformDataState={{
+          platformDataEntered: platformDataEntered,
+          setPlatformDataEntered: setPlatformDataEntered,
+        }}
+        reportKeys={{
+          dtg: "msr_dtg",
+          pf_id: "msr_pf_id",
+          position: "msr_position",
+          fuel: "msr_fuelrem",
+          info: "msr_info",
+          patrolType: "msr_patroltype",
+          action: "msr_action",
+        }}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Trip Data -------------------------------------*/}
+      <MerchantTripTable
+        tripData={tripData}
+        setTripData={setTripData}
+        tripDataState={{
+          tripDataEntered: tripDataEntered,
+          setTripDataEntered: setTripDataEntered,
+        }}
+        showButtons={showButtons}
+      />
+
+      {/*----------------------------------- Good Detail Data -------------------------------------*/}
+
+      <GoodsTable
+        goodsData={goodsData}
+        setGoodsData={setGoodsData}
+        showButtons={showButtons}
+        reportKeys={{
+          item: "msrg_item",
+          qty: "msrg_qty",
+          denomination: "msrg_denomination",
+          category: "msrg_category",
+          subcategory: "msrg_subcategory",
+          confiscated: "msrg_confiscated",
+          value: "msrg_value",
+          source: "msrg_source",
+        }}
+      />
+    </div>
   );
 }
 

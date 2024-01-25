@@ -108,15 +108,15 @@ function TripTable(props) {
     }
   };
 
-   const reportKeys = props.reportKeys
-     ? props.reportKeys
-     : {
-         depjetty: "sr_depjetty",
-         depdt: "sr_depdt",
-         pc: "sr_pc",
-         pcissuedt: "sr_pcissuedt",
-         movement: "sr_movement",
-       };
+  const reportKeys = props.reportKeys
+    ? props.reportKeys
+    : {
+        depjetty: "sr_depjetty",
+        depdt: "sr_depdt",
+        pc: "sr_pc",
+        pcissuedt: "sr_pcissuedt",
+        movement: "sr_movement",
+      };
   const tripColumns = [
     {
       title: "Departure",
@@ -153,7 +153,6 @@ function TripTable(props) {
           return (
             <StyledInput>
               <DateBox
-              
                 format="YYYY-MM-DD"
                 // showTime={{
                 //   defaultValue: dayjs("00:00:00", "HH:mm:ss"),

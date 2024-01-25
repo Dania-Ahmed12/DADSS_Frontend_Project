@@ -18,7 +18,6 @@ import { Select } from "antd";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import countryList from "country-list";
 
-
 function Register() {
   const router = useRouter();
   const [form] = useForm();
@@ -95,14 +94,13 @@ function Register() {
           ),
           sb_credit_let: convertToBoolean(validatedValues.sb_credit_let),
           sb_dtg: validatedValues.sb_dtg,
-          mv_imo : validatedValues.mv_imo,
-          mv_flag : validatedValues.mv_flag , 
-          mv_ship_name : validatedValues.mv_ship_name,
-          mv_ais_type_summary:validatedValues.mv_ais_type_summary,
+          mv_imo: validatedValues.mv_imo,
+          mv_flag: validatedValues.mv_flag,
+          mv_ship_name: validatedValues.mv_ship_name,
+          mv_ais_type_summary: validatedValues.mv_ais_type_summary,
           sb_comm_equip_list: validatedValues.sb_comm_equip_list,
-          
         };
-        console.log("shipping data ",data)
+        console.log("shipping data ", data);
 
         // Navigate to the next page with the prepared data
         router.push({
@@ -162,7 +160,7 @@ function Register() {
       <Form
         form={form}
         layout="vertical"
-        className="shadow mx-14 px-3 py-10 bg-white"
+        className="shadow mx-5 px-3 py-10 bg-white"
         onFinish={handleSubmit}
       >
         <Row className="flex justify-center">
@@ -313,7 +311,6 @@ function Register() {
               name="sb_mast_nationality"
               className="input"
               placeholder="Pakistani"
-        
             />
 
             <InputBox

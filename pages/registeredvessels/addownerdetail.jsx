@@ -1,17 +1,14 @@
 import { Col, Form, Row } from "antd";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import OutlineButton from "../../src/components/button/OutlineButton";
 import InputBox from "../../src/components/form/InputBox";
-import Heading from "../../src/components/title/Heading";
-import { RxArrowLeft } from "react-icons/rx";
 import SelectBox from "../../src/components/form/SelectBox";
 import styled from "styled-components";
 import { useForm } from "antd/lib/form/Form";
 import { saveRegistedVessel } from "../../src/redux/thunks/registeredVesselData";
 import { useSelector, useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import { country_list, ethnicity_list } from "../../src/helper/dropdown";
 import DateBox from "../../src/components/form/DateBox";
 import "react-toastify/dist/ReactToastify.css";
@@ -81,176 +78,184 @@ function Addownerdetail() {
 
   return (
     <StyledDiv>
-      <PageHeader
-        showSearchBox={false}
-        title="Vessel Registration/Add Owner Detail"
-        sessionStorage={handleBack}
-      />
-      <Form
-        form={form}
-        layout="vertical"
-        className="shadow mx-14 px-3 py-10 bg-white"
-      >
-        <Row className="flex justify-center">
-          <Col span={11}>
-            <InputBox
-              label="Name"
-              name="rvo_name"
-              className="input"
-              placeholder="to be provided"
-              maxLength={25}
-              pattern="/^[a-zA-Z\s]*$/"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter a name",
-                },
-                {
-                  pattern: /^[a-zA-Z\s]*$/,
-                  message: "Name must contain only letters and spaces",
-                },
-              ]}
-            />
-            <SelectBox
-              label="ID Type"
-              name="rvo_idtype"
-              className="input"
-              placeholder="CNIC"
-              options={[
-                { value: "CNIC", label: "CNIC" },
-                { value: "Passport", label: "Passport" },
-              ]}
-              rules={[{ required: true, message: "Please select a ID Type!" }]}
-            />
-            <DateBox
-              label="ID Exp. Date"
-              name="rvo_idexpdt"
-              className="input"
-              format="YYYY-MM-DD"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter an ID expiration date",
-                },
-              ]}
-            />
-            <InputBox
-              label="Share %"
-              name="rvo_share"
-              type="number"
-              className="input"
-              placeholder="45"
-              suffix="%"
-              maxLength={3}
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter a share percentage",
-                },
-                {
-                  pattern: /^([1-9]|[1-9]\d|100)$/,
-                  message: "Invalid share percentage format (1-100%)",
-                },
-              ]}
-            />
-          </Col>
-          <Col span={11} offset={1}>
-            <SelectBox
-              label="Nationality"
-              name="rvo_nationality"
-              className="input"
-              placeholder="Pakistan"
-              options={country_list.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-              rules={[
-                { required: true, message: "Please select a nationality!" },
-              ]}
-            />
-            <InputBox
-              label="ID Number"
-              name="rvo_id"
-              className="input"
-              placeholder="42221-458964-2"
-              minLength={6}
-              maxLength={12}
-              pattern="/^[0-9]+$/"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the ID Number!",
-                },
-                {
-                  pattern: /^[0-9]+$/,
-                  message: "ID Number can only contain numbers.",
-                },
-                {
-                  min: 6,
-                  message: "User ID must be at least 6 characters long.",
-                },
-                {
-                  max: 12,
-                  message: "User ID cannot be more than 12 characters long.",
-                },
-              ]}
-            />
-            <SelectBox
-              label="Ethnicity"
-              name="rvo_ethnicity"
-              className="input"
-              placeholder="Select Ethnicity"
-              options={ethnicity_list.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-              rules={[
-                { required: true, message: "Please select a ethnicity!" },
-              ]}
-            />
-            <InputBox
-              label="Mobile Number"
-              className="input"
-              name="rvo_cell"
-              placeholder="0332-4324223"
-              minLength={11}
-              maxLength={11}
-              pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input a valid mobile number!",
-                },
-                {
-                  pattern: /^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/,
-                  message: "Please enter a valid mobile number!",
-                },
-                {
-                  pattern: /^\d{11}$/,
-                  message: "Please enter a valid 11-digit mobile number!",
-                },
-              ]}
-            />
-          </Col>
-        </Row>
-        <Row className="flex justify-center">
-          <Col span={23} className="flex justify-end">
-            <div>
-              <OutlineButton
-                text="Cancel"
-                onClick={handleBack}
-                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+      <div>
+        {" "}
+        <PageHeader
+          showSearchBox={false}
+          title="Vessel Registration/Add Owner Detail"
+          sessionStorage={handleBack}
+        />
+      </div>
+      <div>
+        {" "}
+        <Form
+          form={form}
+          layout="vertical"
+          className="shadow mx-14 px-3 py-10 bg-white"
+        >
+          <Row className="flex justify-center">
+            <Col span={11}>
+              <InputBox
+                label="Name"
+                name="rvo_name"
+                className="input"
+                placeholder="to be provided"
+                maxLength={25}
+                pattern="/^[a-zA-Z\s]*$/"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter a name",
+                  },
+                  {
+                    pattern: /^[a-zA-Z\s]*$/,
+                    message: "Name must contain only letters and spaces",
+                  },
+                ]}
               />
-              <FilledButton
-                text="Save"
-                loading={isLoading}
-                onClick={handleSubmit}
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+              <SelectBox
+                label="ID Type"
+                name="rvo_idtype"
+                className="input"
+                placeholder="CNIC"
+                options={[
+                  { value: "CNIC", label: "CNIC" },
+                  { value: "Passport", label: "Passport" },
+                ]}
+                rules={[
+                  { required: true, message: "Please select a ID Type!" },
+                ]}
               />
-            </div>
-          </Col>
-        </Row>
-      </Form>
+              <DateBox
+                label="ID Exp. Date"
+                name="rvo_idexpdt"
+                className="input"
+                format="YYYY-MM-DD"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter an ID expiration date",
+                  },
+                ]}
+              />
+              <InputBox
+                label="Share %"
+                name="rvo_share"
+                type="number"
+                className="input"
+                placeholder="45"
+                suffix="%"
+                maxLength={3}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter a share percentage",
+                  },
+                  {
+                    pattern: /^([1-9]|[1-9]\d|100)$/,
+                    message: "Invalid share percentage format (1-100%)",
+                  },
+                ]}
+              />
+            </Col>
+            <Col span={11} offset={1}>
+              <SelectBox
+                label="Nationality"
+                name="rvo_nationality"
+                className="input"
+                placeholder="Pakistan"
+                options={country_list.map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select a nationality!" },
+                ]}
+              />
+              <InputBox
+                label="ID Number"
+                name="rvo_id"
+                className="input"
+                placeholder="42221-458964-2"
+                minLength={6}
+                maxLength={12}
+                pattern="/^[0-9]+$/"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the ID Number!",
+                  },
+                  {
+                    pattern: /^[0-9]+$/,
+                    message: "ID Number can only contain numbers.",
+                  },
+                  {
+                    min: 6,
+                    message: "User ID must be at least 6 characters long.",
+                  },
+                  {
+                    max: 12,
+                    message: "User ID cannot be more than 12 characters long.",
+                  },
+                ]}
+              />
+              <SelectBox
+                label="Ethnicity"
+                name="rvo_ethnicity"
+                className="input"
+                placeholder="Select Ethnicity"
+                options={ethnicity_list.map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+                rules={[
+                  { required: true, message: "Please select a ethnicity!" },
+                ]}
+              />
+              <InputBox
+                label="Mobile Number"
+                className="input"
+                name="rvo_cell"
+                placeholder="0332-4324223"
+                minLength={11}
+                maxLength={11}
+                pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input a valid mobile number!",
+                  },
+                  {
+                    pattern: /^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/,
+                    message: "Please enter a valid mobile number!",
+                  },
+                  {
+                    pattern: /^\d{11}$/,
+                    message: "Please enter a valid 11-digit mobile number!",
+                  },
+                ]}
+              />
+            </Col>
+          </Row>
+          <Row className="flex justify-center">
+            <Col span={23} className="flex justify-end">
+              <div>
+                <OutlineButton
+                  text="Cancel"
+                  onClick={handleBack}
+                  className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+                />
+                <FilledButton
+                  text="Save"
+                  loading={isLoading}
+                  onClick={handleSubmit}
+                  className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+                />
+              </div>
+            </Col>
+          </Row>
+        </Form>
+      </div>
     </StyledDiv>
   );
 }

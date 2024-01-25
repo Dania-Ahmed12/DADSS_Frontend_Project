@@ -13,6 +13,7 @@ import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import SimpleButton from "../button/SimpleButton";
+import AntdTable from "./AntdTable";
 
 const JettyDataTable = (props) => {
   // Function to handle the deletion of an image
@@ -33,7 +34,7 @@ const JettyDataTable = (props) => {
     });
   };
 
-  const { jettyData, setJettyData } = props;
+  const { jettyData, setJettyData, showButtons } = props;
   const [jettyDataForm] = useForm();
 
   // used to track the currently editing item's index in the jettyData array.
@@ -516,29 +517,59 @@ const JettyDataTable = (props) => {
     },
   ];
   return (
-    <Form form={jettyDataForm} onFinish={onjettyDataFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Intel Report Details" />
-          <FilledButton
-            text="+Add Intel Report Detail"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleJettyDataColumnShowInput}
-            disabled={jettyDataKey !== ""}
-          />
+    // <Form form={jettyDataForm} onFinish={onjettyDataFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Intel Report Details" />
+    //       <FilledButton
+    //         text="+Add Intel Report Detail"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    // onClick={handleJettyDataColumnShowInput}
+    // disabled={jettyDataKey !== ""}
+    //       />
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    //       columns={jettyDataColumns}
+    //       dataSource={
+    //         showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData
+    //       }
+    //       pagination={true}
+    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Jetty Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <FilledButton
+              text="+ Add Jetty Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={handleJettyDataColumnShowInput}
+              disabled={jettyDataKey !== ""}
+            />
+          )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          columns={jettyDataColumns}
-          dataSource={
-            showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData
-          }
-          pagination={true}
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        form={jettyDataForm}
+        onFinish={onjettyDataFinish}
+        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        columns={jettyDataColumns}
+        data={showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData}
+        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 };
 

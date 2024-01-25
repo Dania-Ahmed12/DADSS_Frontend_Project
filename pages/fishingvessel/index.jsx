@@ -26,14 +26,14 @@ function Index() {
       render: (text, record) => {
         if (record.rv_key) {
           return (
-            <Tooltip placement="topLeft" title={text}>
+            <div>
               <a
                 className="text-midnight font-semibold"
                 onClick={() => handleDetails(record?.rv_key, record)}
               >
                 View/Add Special Report
               </a>
-            </Tooltip>
+            </div>
           );
         }
       },
@@ -45,9 +45,7 @@ function Index() {
       query: { vessel: JSON.stringify(payload) },
     });
   };
-  const handleBack = () => {
-    router.back();
-  };
+ 
   useEffect(() => {
     dispatch(fetchRegisteredVessel(searchData));
   }, [searchData]);
@@ -57,12 +55,16 @@ function Index() {
       <PageHeader
         title="Special Report Fishing Vessels (List View)"
         onSearchChange={(value) => setSearchData(value)}
-        // btnTitle="+ Add Special Report"
         placeholder="Search by Vessel ID/Name or Reg No"
         showButton={false} // Pass true to show the button or false to hide it
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable
+          scrollConfig={{ x: true }}
+          columns={columns}
+          data={data}
+          loading={isLoading}
+        />
       </div>
     </div>
   );

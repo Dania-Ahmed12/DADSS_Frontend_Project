@@ -11,11 +11,10 @@ import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
-
-
+import AntdTable from "./AntdTable";
 
 function MacroMissionDataTable(props) {
-  const { missionData, setMissionData, init_mission_data } = props;
+  const { missionData, setMissionData, init_mission_data, showButtons } = props;
 
   // Checking if `props.reportKeys` is provided, otherwise using default values
   const reportKeys = props.reportKeys
@@ -119,7 +118,7 @@ function MacroMissionDataTable(props) {
       dataIndex: reportKeys.datetime,
       ellipsis: true,
       render: (text, record, index) => {
-        // When in data entry or editing mode, display DateBox component 
+        // When in data entry or editing mode, display DateBox component
         if (showInputs.missionDataColumns | showInputs.missionData_editing) {
           return (
             <StyledInput>
@@ -230,31 +229,61 @@ function MacroMissionDataTable(props) {
   ];
 
   return (
-    <Form
-      className="mb-8"
-      form={missionDataForm}
-      onFinish={onMissionDataFinish}
-    >
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Macro Data" />
-          <FilledButton
-            disabled={missionDataEntered}
-            text="+ Add Macro Data"
-            className="rounded-full border-midnight bg-midnight text-white"
-            onClick={handleMissionDataShowInput}
+    // <Form
+    //   className="mb-8"
+    // form={missionDataForm}
+    // onFinish={onMissionDataFinish}
+    // >
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Macro Data" />
+    //       <FilledButton
+    //         disabled={missionDataEntered}
+    //         text="+ Add Macro Data"
+    //         className="rounded-full border-midnight bg-midnight text-white"
+    //         onClick={handleMissionDataShowInput}
+    //       />
+    //     </Col>
+    //   </Row>
+
+    //   <StyledDiv>
+    //     <Table
+    //       columns={ownMissionDataFormColumns}
+    //       dataSource={[missionData]}
+    //       pagination={false}
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      <Row>
+        <Col span={12}>
+          <Heading
+            className="ml-5 flex justify-start"
+            level={5}
+            text="Mission Macro Data"
           />
         </Col>
+        <Col span={12} className=" flex justify-end">
+          {showButtons && (
+            <FilledButton
+              disabled={missionDataEntered}
+              text="+ Add Intel Macro Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-5"
+              onClick={handleMissionDataShowInput}
+            />
+          )}
+        </Col>
       </Row>
-
-      <StyledDiv>
-        <Table
-          columns={ownMissionDataFormColumns}
-          dataSource={[missionData]}
-          pagination={false}
-        />
-      </StyledDiv>
-    </Form>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        form={missionDataForm}
+        onFinish={onMissionDataFinish}
+        columns={ownMissionDataFormColumns}
+        data={[missionData]}
+        pagination={false}
+      />
+    </div>
   );
 }
 

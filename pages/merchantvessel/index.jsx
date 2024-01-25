@@ -61,7 +61,12 @@ function Index() {
         showButton={false} // Pass true to show the button or false to hide it
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable
+          scrollConfig={{ x: true }}
+          columns={columns}
+          data={data}
+          loading={isLoading}
+        />
       </div>
     </div>
   );

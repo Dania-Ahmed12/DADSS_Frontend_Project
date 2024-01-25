@@ -18,6 +18,7 @@ import { type_list, movement_list } from "../../helper/dropdown";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import { Select, Typography } from "antd";
+import AntdTable from "../table/AntdTable";
 const { Title } = Typography;
 
 const StyledInput = styled.div`
@@ -524,30 +525,64 @@ function CrewTable(props) {
   ];
 
   return (
-    <Form form={crewForm} onFinish={onCrewFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Crew Details" />
+    // <Form form={crewForm} onFinish={onCrewFinish} className="mb-8">
+    //   <Row className="mb-5">
+    //     <Col span={24} className="flex justify-between">
+    //       <Heading level={5} text="Crew Details" />
+    //       {showButtons && (
+    //         <FilledButton
+    //           text="+ Add Crew Details"
+    //           className="rounded-full border-midnight bg-midnight text-white"
+    //           onClick={handleCrewColumnShowInput}
+    //           disabled={crewKey !== ""}
+    //         />
+    //       )}
+    //     </Col>
+    //   </Row>
+    //   <StyledDiv>
+    //     <Table
+    // scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+    // columns={crewColumns}
+    // dataSource={showInputs.crewColumns ? [{}, ...crewData] : crewData}
+    // pagination={true}
+    // className={className} // Use the className prop here
+    //     />
+    //   </StyledDiv>
+    // </Form>
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Crew Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
               text="+ Add Crew Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handleCrewColumnShowInput}
               disabled={crewKey !== ""}
             />
           )}
         </Col>
       </Row>
-      <StyledDiv>
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={crewColumns}
-          dataSource={showInputs.crewColumns ? [{}, ...crewData] : crewData}
-          pagination={true}
-          className={className} // Use the className prop here
-        />
-      </StyledDiv>
-    </Form>
+
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+      <AntdTable
+        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        columns={crewColumns}
+        data={showInputs.crewColumns ? [{}, ...crewData] : crewData}
+        pagination={true}
+        className={className} // Use the className prop here
+        form={crewForm}
+        onFinish={onCrewFinish}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

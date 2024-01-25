@@ -34,6 +34,7 @@ function Addmissioninput() {
   const MissionReportState = useSelector((state) => state.saveMissionReport);
   const [missionDataEntered, setMissionDataEntered] = useState(false);
   const [missionDetail, setMissionDetail] = useState([]);
+  const [showButtons, setShowButtons] = useState(false);
 
   // Function to handle saving mission report
   const handleSendMissionReport = async () => {
@@ -51,9 +52,8 @@ function Addmissioninput() {
           navigation: router,
         };
 
-         dispatch(saveMissionReport(newFinal));
-      } catch (error) {
-      }
+        dispatch(saveMissionReport(newFinal));
+      } catch (error) {}
     } else {
     }
   };
@@ -61,23 +61,36 @@ function Addmissioninput() {
   return (
     <>
       <PageHeader showButton={false} showSearchBox={false} title="ADD Report" />
-      <Row>
-        <Col span={23} className="flex items-center justify-end mb-8">
-          <FilledButton
-            text="Save Report"
-            loading={MissionReportState.isLoading}
-            disabled={!missionDataEntered}
-            onClick={handleSendMissionReport}
-            className="rounded-full border-lightgreen bg-lightgreen text-white"
-            htmlType="submit"
-          />
+
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end">
+          {showButtons ? (
+            <FilledButton
+              style={{ marginLeft: "auto" }}
+              text="Save Mission Data"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+              loading={MissionReportState.isLoading}
+              disabled={!missionDataEntered}
+              onClick={handleSendMissionReport}
+            />
+          ) : (
+            <FilledButton
+              style={{ marginLeft: "auto" }}
+              text="+ Add Mission Macro Data"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
+              onClick={() => setShowButtons(true)}
+            />
+          )}
         </Col>
       </Row>
+
       {/*-----------------------------------mission macro data data  (First Table)-------------------------------------*/}
       <MissionDataTable
         missionData={missionData}
         setMissionData={setMissionData}
         init_mission_data={init_mission_data}
+        showButtons={showButtons}
         MissionDataState={{
           missionDataEntered: missionDataEntered,
           setMissionDataEntered: setMissionDataEntered,
@@ -85,6 +98,7 @@ function Addmissioninput() {
       />
       {/*-----------------------------------mission detail data (Second Table)-------------------------------------*/}
       <MissionDetailDataTable
+        showButtons={showButtons}
         missionDetail={missionDetail}
         setMissionDetail={setMissionDetail}
       />
@@ -93,4 +107,3 @@ function Addmissioninput() {
 }
 
 export default Addmissioninput;
-

@@ -8,8 +8,10 @@ import { decimalToDMS } from "../../src/helper/position";
 import axios from "axios";
 import dayjs from "dayjs";
 import { GeneralReportColumn } from "../../src/helper/DataColumns";
+import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function GeneralDetails({ data }) {
+  console.log(data);
   const router = useRouter();
   const vesselcolumns = [
     ...GeneralReportColumn,
@@ -17,6 +19,54 @@ function GeneralDetails({ data }) {
       title: "Other Info",
       dataIndex: "gr_info",
     },
+  ];
+
+  function transposeData(data) {
+    if (!data) return [];
+
+    const transposedData = [];
+    transposedData.push({
+      Field: "Platform ID",
+      Value: data.gr_pf_id,
+    });
+    transposedData.push({
+      Field: "Date Time",
+      Value: dayjs(data.gr_dtg).format("YYYY-MM-DD HH:mm:ss"),
+    });
+
+    const longitude = data.gr_position.coordinates[0];
+    const formattedLongitude = decimalToDMS(longitude, 0);
+    transposedData.push({
+      Field: "Latitude",
+      Value: formattedLongitude,
+    });
+    const latitude = data.gr_position.coordinates[1];
+    const formattedLatitude = decimalToDMS(latitude, 1);
+    transposedData.push({
+      Field: "Latitude",
+      Value: formattedLatitude,
+    });
+
+    transposedData.push({
+      Field: "Fuel Remaining ",
+      Value: data.gr_fuelrem,
+    });
+
+    transposedData.push({
+      Field: "Patrol Type",
+      Value: data.gr_patroltype,
+    });
+
+    return transposedData;
+  }
+
+  // Prepare transposed data
+  const transposedData = transposeData(data);
+
+  // Define columns for transposed data table
+  const transposedColumns = [
+    { title: "Data", dataIndex: "Field" },
+    { title: "Value", dataIndex: "Value" },
   ];
   const fishingColumns = [
     {
@@ -194,10 +244,14 @@ function GeneralDetails({ data }) {
     },
   ];
 
-
   return (
-    <div className="mx-2">
-      <div className="flex items-center mt-14">
+    <>
+      <PageHeader
+        showButton={false}
+        showSearchBox={false}
+        title="ADD General Report"
+      />
+      {/* <div className="flex items-center mt-14">
         <RxArrowLeft
           cursor={"pointer"}
           onClick={() => router.back()}
@@ -214,13 +268,28 @@ function GeneralDetails({ data }) {
 
       <div className="mx-12 mb-8 mt-4">
         <Heading level={4} text="Report Details" />
-      </div>
-      <Row className="mb-8 flex items-center justify-end"></Row>
+      </div> */}
+      {/* <Row className="mb-8 flex items-center justify-end"></Row>
       <header className="flex">
         <Heading level={4} text="Vessel Data" />
-      </header>
-      <section className="shadow border-tableborder border-2 mb-12 rounded-md">
-        <AntdTable columns={vesselcolumns} data={[data]} pagination={false} />
+      </header> */}
+      <div className="mt-4 flex">
+        <Heading className="ml-5 " level={5} text="Vessel Data" />
+      </div>
+      <section className="mb-10">
+        {/* <AntdTable
+          scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+          columns={vesselcolumns}
+          data={[data]}
+          pagination={false}
+        /> */}
+        <AntdTable
+          scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+          // scrollConfig={{ y: "325px" }}
+          columns={transposedColumns}
+          data={transposedData} // Remove the square brackets
+          pagination={false}
+        />
       </section>
       {tableItems.map((item, index) => {
         return (
@@ -234,7 +303,7 @@ function GeneralDetails({ data }) {
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
 

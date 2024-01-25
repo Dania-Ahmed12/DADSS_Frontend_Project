@@ -7,6 +7,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { RegVesselColumn } from "../../src/helper/DataColumns";
 import TableItemRenderer from "../../src/components/table/RenderTable";
+import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function RegisteredVesselDetails({ data }) {
   const router = useRouter();
@@ -16,18 +17,23 @@ function RegisteredVesselDetails({ data }) {
     {
       title: "Length (Meters)",
       dataIndex: "rv_length",
+      ellipsis: true,
     },
     {
       title: "Breadth (Meters)",
       dataIndex: "rv_breadth",
+      ellipsis: true,
     },
     {
       title: "Tonnage (Gross Tonnage)",
       dataIndex: "rv_tonnage",
+      ellipsis: true,
     },
     {
       title: "Registered ON ",
       dataIndex: "rv_rdt",
+      ellipsis: true,
+
       ellipsis: true,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
@@ -104,49 +110,29 @@ function RegisteredVesselDetails({ data }) {
   ];
 
   return (
-    <div className="mx-2">
-      <div className="flex items-center mt-14">
-        <RxArrowLeft
-          cursor={"pointer"}
-          onClick={() => router.back()}
-          className="ml-12"
-          fontSize={25}
+    <div>
+      <PageHeader
+        title="Fishing Vessels Details"
+        showButton={false}
+        showSearchBox={false}
+      />
+      <div className="mb-10">
+        <AntdTable
+          columns={vesselcolumns}
+          data={data}
+          pagination={false}
+          scrollConfig={{ x: true }}
         />
-        <span
-          className=" ml-2 text-sm font-medium"
-          style={{ cursor: "pointer" }}
-        >
-          Back
-        </span>
       </div>
-
-      <div className="mx-12 mb-8 mt-4">
-        <Heading level={4} text="Vessels Details" />
-      </div>
-      <section className="shadow border-tableborder border-2 mb-12 rounded-md">
-        <AntdTable columns={vesselcolumns} data={data} pagination={false} />
-      </section>
       {tableItems.map((item, index) => (
         <>
-          {/* <div key={index}>
-            <header className="flex">
-              <Heading level={4} text={item.title} />
-            </header>
-            <div className="mb-12">
-              <AntdTable
-                columns={item.columns}
-                data={item.data}
-                pagination={item.pagination}
-                scrollConfig={{ x: 250 }} // Customize scroll configuration
-              />
-            </div>
-          </div> */}
           <TableItemRenderer
             key={index}
             title={item.title}
             columns={item.columns}
             data={item.data}
-            pagination={item.pagination}
+            // pagination={item.pagination}
+            pagination={false}
           />
         </>
       ))}

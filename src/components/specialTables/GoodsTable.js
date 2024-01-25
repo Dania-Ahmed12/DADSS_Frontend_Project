@@ -13,6 +13,7 @@ import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
 import { sumggled_items_subCategories } from "../../helper/dropdown";
+import AntdTable from "../table/AntdTable";
 
 function GoodsTable(props) {
   const { goodsData, setGoodsData, showButtons } = props;
@@ -428,33 +429,44 @@ function GoodsTable(props) {
       },
     },
   ];
+  // Log goodsData in the GoodsTable component
+  console.log("goodsData:", goodsData);
 
   return (
-    <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8">
-      <Row className="mb-5">
-        <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Goods Details" />
+    <div className="mb-10">
+      {/* //{" "} */}
+      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading className="ml-5" level={5} text="Goods Details" />
+        </Col>
+        <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              text="+Add Goods Details"
-              className="rounded-full border-midnight bg-midnight text-white"
+              text="+ Add Goods Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handleGoodsColumnShowInput}
               disabled={goodsKey !== ""}
             />
           )}
         </Col>
       </Row>
-      <StyledDiv>
-        {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-        <Table
-          scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-          columns={goodsColumns}
-          dataSource={showInputs.goodsColumns ? [{}, ...goodsData] : goodsData}
-          pagination={true}
-        />
-      </StyledDiv>
-    </Form>
+      <AntdTable
+        form={goodsForm}
+        onFinish={onGoodsFinish}
+        scrollConfig={{ x: true }}
+        columns={goodsColumns}
+        data={showInputs.goodsColumns ? [{}, ...goodsData] : goodsData}
+        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
+        pagination={true}
+      />
+
+      {/* //{" "} */}
+      {/* </Form> */}
+    </div>
   );
 }
 

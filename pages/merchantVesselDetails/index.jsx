@@ -57,14 +57,17 @@ const index = () => {
 
   return (
     <>
-      <PageHeader
-        title="Merchant Vessel Details"
-        showButton={false}
-        onSearchChange={(value) => setSearchData(value)}
-        placeholder="Search by IMO"
-      />
-
-      <AntdTable columns={columns} data={data} loading={isLoading} />
+      <div>
+        <PageHeader
+          title="Merchant Vessel Details"
+          showButton={false}
+          onSearchChange={(value) => setSearchData(value)}
+          placeholder="Search by IMO"
+        />
+      </div>
+      <div>
+        <AntdTable columns={columns} data={data} loading={isLoading} />
+      </div>
     </>
   );
 };
