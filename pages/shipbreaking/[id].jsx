@@ -136,12 +136,19 @@ function transposeData(data) {
       value = value ? "Yes" : "No";
     }
     // Format date values using dayjs
-    if (
-      typeof value === "string" &&
-      value.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/)
-    ) {
-      value = dayjs(value).format("YYYY-MM-DD HH:mm:ss");
-    }
+  if (typeof value === "string" && value.includes("T")) {
+    // Parse the value into a Date object
+    const dateObj = new Date(value);
+    // Extract the desired parts
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // Month is zero-based, so we add 1
+    const date = String(dateObj.getDate()).padStart(2, "0");
+    const hour = String(dateObj.getHours()).padStart(2, "0");
+    const minute = String(dateObj.getMinutes()).padStart(2, "0");
+    const second = String(dateObj.getSeconds()).padStart(2, "0");
+    // Construct the formatted date string
+    value = `${year}-${month}-${date} ${hour}:${minute}:${second}`;
+  }
     transposedData.push({
       Field: column.title,
       Value: value,

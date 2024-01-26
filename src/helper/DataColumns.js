@@ -237,6 +237,7 @@ export const shipBreakColumns = [
     title: "Date Time",
     dataIndex: "sb_dtg",
     ellipsis: true,
+    width:220,
     render: (text) => {
       const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "";
       return dtg;
