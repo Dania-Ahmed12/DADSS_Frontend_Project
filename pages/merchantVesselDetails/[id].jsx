@@ -13,30 +13,6 @@ import { Modal } from "antd";
 
 
 
-
-// const ExpandedTableBody = styled.div`
-//   .ant-table-thead {
-//     .ant-table-cell {
-//       // background-color: #0e4bb0 !important; /* Apply your desired background color */
-// background-color:#0942a5 !important;
-//       color: white; /* Example: Change text color to white */
-//     }
-//   }
-
-
-//   .ant-table-tbody {
-//     .ant-table-cell {
-//       background: #74bef5;
-//       border-color: transparent !important;
-//     }
-
-//     .ant-table-cell:hover {
-//       background: skyblue !important; /* Apply your desired background color */
-//       color: white; /* Example: Change text color to white */
-//       border-color: transparent !important;
-//     }
-//   }
-// `;
 const ExpandedTableBody = styled.div`
   .ant-table-thead {
     .ant-table-cell {
@@ -47,7 +23,6 @@ const ExpandedTableBody = styled.div`
 
   .ant-table-tbody {
     .ant-table-cell {
-      // background:#4096FF;
       background:transparent
       border-color: transparent !important;
       border-top-color:transparent
@@ -60,6 +35,10 @@ const ExpandedTableBody = styled.div`
       border-color: transparent !important;
       border-top-color:transparent !important
       border-radius: 0% !important;
+    }
+      .ant-table-row:hover .custom-a{
+      color:white !important;
+      cursor:pointer
     }
   }
 `;
@@ -133,9 +112,10 @@ function Details({ data }) {
           showTitle: false,
         },
         render: (text, record) => (
-          <Tooltip placement="topLeft">
-            <a
-              className="text-midnight font-semibold"
+          <div 
+          // >
+            // {/* <a */}
+              className="text-midnight font-semibold custom-a"
               onClick={() => {
                 console.log(record.mtd_key); // Log the expanded data to see its structure
                 setClickedRowData(record.mtd_key);
@@ -143,8 +123,8 @@ function Details({ data }) {
               }}
             >
               View
-            </a>
-          </Tooltip>
+            {/* </a> */}
+          </div>
         ),
       },
     ];
