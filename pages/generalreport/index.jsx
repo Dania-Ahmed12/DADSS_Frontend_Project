@@ -2,37 +2,10 @@ import React, { useEffect, useState } from "react";
 import AntdTable from "../../src/components/table/AntdTable.js";
 import { useRouter } from "next/router.js";
 import Link from "next/link.js";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGeneralReport } from "../../src/redux/thunks/generalReportData.js";
 import { GeneralReportColumn } from "../../src/helper/DataColumns.js";
 import PageHeader from "../../src/components/pageheader/pageHeader.js";
-
-const IconsStylingWrap = styled.div`
-  display: flex;
-  .editIcon {
-    color: #28387e;
-    background-color: #f0f3f8;
-    border-radius: 20px;
-    font-size: 25px;
-    padding: 5px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  .deleteIcon {
-    color: #e96162;
-    background-color: #f9e7e8;
-    border-radius: 20px;
-    font-size: 25px;
-    padding: 5px;
-    cursor: pointer;
-  }
-  .details {
-    color: #28387e;
-    padding: 5px;
-    cursor: pointer;
-  }
-`;
 
 function Index() {
   const router = useRouter();
@@ -45,16 +18,16 @@ function Index() {
     {
       title: "Action",
       dataIndex: "action",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         return (
-          <IconsStylingWrap>
             <Link
               href={`/generalreport/${record.gr_key}`}
               className="text-midnight ml-2 font-semibold"
             >
               Details
             </Link>
-          </IconsStylingWrap>
         );
       },
     },
@@ -78,7 +51,7 @@ function Index() {
         />
       </div>
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast,} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
@@ -14,11 +14,7 @@ import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import AntdTable from "../table/AntdTable";
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
+
 function OwnerTable(props) {
   const { ownerData, setOwnerData, showButtons } = props;
   const [ownerForm] = useForm();
@@ -104,12 +100,15 @@ function OwnerTable(props) {
   const ownerColumns = [
     {
       title: "Name",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_name",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Name"
               name="sro_name"
               rules={[
@@ -127,12 +126,15 @@ function OwnerTable(props) {
     },
     {
       title: "Nationality",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_nationality",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Nationality"
               name="sro_nationality"
               rules={[
@@ -150,12 +152,15 @@ function OwnerTable(props) {
     },
     {
       title: "ID Type",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_idtype",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="ID Type"
               name="sro_idtype"
               rules={[
@@ -173,12 +178,15 @@ function OwnerTable(props) {
     },
     {
       title: "ID Number",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_id",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="ID"
               name="sro_id"
               rules={[
@@ -196,18 +204,16 @@ function OwnerTable(props) {
     },
     {
       title: "ID Exp. Date",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_idexpdt",
-      ellipsis: true,
       render: (text, record, index) => {
         if ((showInputs.ownerColumns && index === 0) | isOwnerEditing(index)) {
           return (
             <StyledInput>
               <DateBox
-                style={{ with: 100 }}
+                style={{ with: 250 }}
                 format="YYYY-MM-DD"
-                // showTime={{
-                //   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                // }}
                 name="sro_idexpdt"
                 rules={[
                   {
@@ -225,12 +231,15 @@ function OwnerTable(props) {
     },
     {
       title: "Ethnicity",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_ethnicity",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Ethinicity"
               name="sro_ethnicity"
               rules={[
@@ -248,12 +257,15 @@ function OwnerTable(props) {
     },
     {
       title: "Share (%)",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_share",
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Share"
               name="sro_share"
               type="number"
@@ -272,14 +284,15 @@ function OwnerTable(props) {
     },
     {
       title: "Mobile Number",
+      ellipsis: false,
+      width: 250,
       dataIndex: "sro_cell",
-      ellipsis: true,
-
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="0332-4324223"
               name="sro_cell"
               pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
@@ -388,32 +401,7 @@ function OwnerTable(props) {
   ];
 
   return (
-    // <Form form={ownerForm} onFinish={onOwnerFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Owner Details" />
-    //       {showButtons && (
-    //         <FilledButton
-    //           text="+Add Owner Details"
-    //           className="rounded-full border-midnight bg-midnight text-white"
-    //           onClick={handleOwnerColumnShowInput}
-    //           disabled={ownerKey !== ""}
-    //         />
-    //       )}
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //       columns={ownerColumns}
-    //       dataSource={showInputs.ownerColumns ? [{}, ...ownerData] : ownerData}
-    //       pagination={true}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
           <Heading className="ml-5" level={5} text="Owner Details" />
@@ -429,29 +417,25 @@ function OwnerTable(props) {
           )}
         </Col>
       </Row>
-
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
         columns={ownerColumns}
         data={showInputs.ownerColumns ? [{}, ...ownerData] : ownerData}
         pagination={true}
         form={ownerForm}
         onFinish={onOwnerFinish}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
 
 export default OwnerTable;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

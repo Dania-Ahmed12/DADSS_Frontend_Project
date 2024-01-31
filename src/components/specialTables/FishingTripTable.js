@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row,  Form,  Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,34 +7,20 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast,} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
-import PositionBox from "../form/PositionBox";
-import { MdModeEditOutline, MdDelete } from "react-icons/md";
+import { MdModeEditOutline} from "react-icons/md";
 import React from "react";
 import DateBox from "../form/DateBox";
-import Cookies from "js-cookie";
 import dayjs from "dayjs";
 import {
-  action_list,
   movement_list,
-  patrol_type_list,
   port_list,
 } from "../../helper/dropdown";
-import { Cascader, Select, Space } from "antd";
-import {
-  positiontoDMS,
-  DMStodecimal,
-  dtgToString,
-} from "../../helper/position";
 import AntdTable from "../table/AntdTable";
 
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
+
 
 function FishingTripTable(props) {
   const { tripData, setTripData, showButtons } = props;
@@ -112,10 +98,13 @@ function FishingTripTable(props) {
     {
       title: "Departure",
       dataIndex: "sr_depjetty",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Source"
               name="sr_depjetty"
               options={port_list.map((item) => ({ value: item, label: item }))}
@@ -135,15 +124,15 @@ function FishingTripTable(props) {
     {
       title: "Departure Date",
       dataIndex: "sr_depdt",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         if (showInputs.tripColumns | showInputs.trip_editing) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 150 }}
                 format="YYYY-MM-DD"
-                // showTime={{
-                //   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                // }}
                 name="sr_depdt"
                 rules={[
                   {
@@ -161,11 +150,14 @@ function FishingTripTable(props) {
     },
     {
       title: "PC",
+      width: 250,
+      ellipsis: false,
       dataIndex: "sr_pc",
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="PC"
               name="sr_pc"
               rules={[
@@ -184,10 +176,13 @@ function FishingTripTable(props) {
     {
       title: "PC Duration",
       dataIndex: "sr_pcdays",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Days"
               name="sr_pcdays"
               type="number"
@@ -207,16 +202,15 @@ function FishingTripTable(props) {
     {
       title: "PC Issue Date",
       dataIndex: "sr_pcissuedt",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
-        // const dtg = dayjs(record.sr_pcissuedt).format("YYYY-MM-DD");
         if (showInputs.tripColumns | showInputs.trip_editing) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 150 }}
                 format="YYYY-MM-DD"
-                // showTime={{
-                //   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                // }}
                 name="sr_pcissuedt"
                 rules={[
                   {
@@ -235,10 +229,13 @@ function FishingTripTable(props) {
     {
       title: "Movement",
       dataIndex: "sr_movement",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="sr_movement"
               placeholder="Select"
               rules={[
@@ -338,33 +335,7 @@ function FishingTripTable(props) {
   ];
 
   return (
-    // <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Trip Details" />
-    //       {showButtons && (
-    //         <FilledButton
-    //           disabled={tripDataEntered}
-    //           text="+Add Trip Details"
-    //           className="rounded-full border-midnight bg-midnight text-white"
-    //           onClick={handleTripShowInput}
-    //         />
-    //       )}
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    // columns={tripColumns}
-    // dataSource={[tripData]}
-    //       pagination={false}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
           <Heading className="ml-5" level={5} text="Trip Details" />
@@ -384,24 +355,23 @@ function FishingTripTable(props) {
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
+        scrollConfig={{ x: true }}
         columns={tripColumns}
         data={[tripData]}
         pagination={false}
         form={tripForm}
         onFinish={onTripFinish}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
 
 export default FishingTripTable;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

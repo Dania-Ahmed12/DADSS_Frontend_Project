@@ -1,8 +1,5 @@
 import React from "react";
-import { RxArrowLeft } from "react-icons/rx";
-import Heading from "../../src/components/title/Heading";
 import AntdTable from "../../src/components/table/AntdTable";
-import { useRouter } from "next/router";
 import axios from "axios";
 import dayjs from "dayjs";
 import { RegVesselColumn } from "../../src/helper/DataColumns";
@@ -10,31 +7,32 @@ import TableItemRenderer from "../../src/components/table/RenderTable";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function RegisteredVesselDetails({ data }) {
-  const router = useRouter();
 
   const vesselcolumns = [
     ...RegVesselColumn,
     {
       title: "Length (Meters)",
-      dataIndex: "rv_length",
-      ellipsis: true,
+          width: 250,
+    ellipsis: false,
+      dataIndex: "rv_length",    
     },
     {
       title: "Breadth (Meters)",
-      dataIndex: "rv_breadth",
-      ellipsis: true,
+          width: 250,
+    ellipsis: false,
+      dataIndex: "rv_breadth",    
     },
     {
       title: "Tonnage (Gross Tonnage)",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rv_tonnage",
-      ellipsis: true,
     },
     {
       title: "Registered ON ",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rv_rdt",
-      ellipsis: true,
-
-      ellipsis: true,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
@@ -44,52 +42,76 @@ function RegisteredVesselDetails({ data }) {
   const nakwacolumns = [
     {
       title: "Nakwa Name",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvc_name",
     },
     {
       title: "Nakwa/CO Nationality",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvc_nationality",
     },
     {
       title: "Nakwa/CO Ethnicity",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvc_ethnicity",
     },
     {
       title: "Nakwa/CO Cell Number",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvc_cell",
     },
   ];
   const ownercolumns = [
     {
       title: "Name",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_name",
     },
     {
       title: "Nationality",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_nationality",
     },
     {
       title: "ID Type",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_idtype",
     },
     {
       title: "ID Number",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_id",
     },
     {
       title: "ID Exp. Date",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_idexpdt",
     },
     {
       title: "Ethnicity",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_ethnicity",
     },
     {
       title: "Share (%)",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_share",
     },
     {
       title: "Mobile Number",
+          width: 250,
+    ellipsis: false,
       dataIndex: "rvo_cell",
     },
   ];
@@ -127,11 +149,11 @@ function RegisteredVesselDetails({ data }) {
       {tableItems.map((item, index) => (
         <>
           <TableItemRenderer
+          scrollConfig={{x:true}}
             key={index}
             title={item.title}
             columns={item.columns}
             data={item.data}
-            // pagination={item.pagination}
             pagination={false}
           />
         </>

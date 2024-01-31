@@ -107,8 +107,8 @@ function PageHeader(props) {
   };
 
   return (
-    <>
-      <Row className="flex items-center mt-3">
+    <React.Fragment>
+      <Row className="flex items-center ">
         <RxArrowLeft
           onClick={handleBack}
           cursor={"pointer"}
@@ -164,7 +164,7 @@ function PageHeader(props) {
           )}
         </Col>
       </Row>
-    </>
+    </React.Fragment>
   );
 }
 

@@ -68,6 +68,7 @@ function PlatformId() {
     {
       title: "Full Name",
       dataIndex: "pf_name",
+      width: 200,
       ellipsis: true,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -152,6 +153,7 @@ function PlatformId() {
       title: "CO",
       dataIndex: "pf_co",
       ellipsis: true,
+      width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -172,6 +174,7 @@ function PlatformId() {
     {
       title: "Other Info",
       dataIndex: "pf_info",
+      width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -298,6 +301,7 @@ function PlatformId() {
       </div>
       <div>
         <AntdTable
+        scrollConfig={{x:true}}
           form={form}
           onFinish={onFinish}
           columns={columns}

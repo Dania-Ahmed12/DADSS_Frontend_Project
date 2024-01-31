@@ -6,7 +6,7 @@ import { shipBreakColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
 import dayjs from "dayjs";
-import styled from "styled-components";
+import { Col, Descriptions, Row } from "antd";
 
 
   const ShippingDetailcolumns = [
@@ -161,14 +161,53 @@ function transposeData(data) {
 
 
 function RegisteredShipBreakDetails({ data }) {
-  // Prepare transposed data
-  const transposedData = transposeData(data);
+console.log(data)
 
-  // Define columns for transposed data table
-  const transposedColumns = [
-    { title: "Data", dataIndex: "Field" },
-    { title: "Value", dataIndex: "Value" },
+  // Map vesselcolumns to extract label and children
+  // const items = ShippingDetailcolumns.map((column) => {
+    
+  //   let value = data[0][column.dataIndex];
+  //   console.log(value)
+
+  //   // Convert boolean values to "Yes" or "No"
+  //   if (typeof value === "boolean") {
+  //     value = value ? "Yes" : "No";
+  //   }
+
+  //   return {
+  //     label: column.title,
+  //     children:
+  //       column.dataIndex === "sb_dtg" // Check if the current label is "Registered ON"
+  //         ? dayjs(data[column.dataIndex]).format("YYYY-MM-DD HH:mm:ss") // Format the date if it's "Registered ON"
+  //         : value, // Otherwise, use the value as it is
+  //   };
+  // });
+  const items = [
+    // Include fields from merchant_vessel object
+    { label: "IMO", children: data[0].merchant_vessel.mv_imo },
+    { label: "Ship Name", children: data[0].merchant_vessel.mv_ship_name },
+    { label: "Flag", children: data[0].merchant_vessel.mv_flag },
+    {
+      label: "Vessel Type",
+      children: data[0].merchant_vessel.mv_ais_type_summary,
+    },
+    // Include fields from ShippingDetailcolumns
+    ...ShippingDetailcolumns.map((column) => {
+      let value = data[0][column.dataIndex];
+      // Convert boolean values to "Yes" or "No"
+      if (typeof value === "boolean") {
+        value = value ? "Yes" : "No";
+      }
+      return {
+        label: column.title,
+        children:
+          column.dataIndex === "sb_dtg" // Check if the current label is "Registered ON"
+            ? dayjs(data[0][column.dataIndex]).format("YYYY-MM-DD HH:mm:ss") // Format the date if it's "Registered ON"
+            : value, // Otherwise, use the value as it is
+      };
+    }),
   ];
+
 
   // Define crew table
   const CrewDetails = [
@@ -185,11 +224,10 @@ function RegisteredShipBreakDetails({ data }) {
     },
   ];
 
-   const scrollConfig = {
-     y: true, // Enable vertical scrolling
-   };
+  const scrollConfig = {
+    y: true, // Enable vertical scrolling
+  };
 
-   
   // return (
   //   <div>
   //     <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
@@ -224,39 +262,71 @@ function RegisteredShipBreakDetails({ data }) {
   //     </section>
   //   </div>
   // );
-   return (
-     <div>
-       <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
-       <div className="mt-4 flex">
-         <Heading className="ml-5" level={5} text="Ship Break Details" />
-       </div>
-       <section className="mb-10">
-         <div>
-           {/* Display transposed data */}
-           <AntdTable
-           
-              scrollConfig={{ y: '325px' }} // Adjust x-scroll as needed
-             columns={transposedColumns}
-             data={transposedData}
-             pagination={false}
-           />
-         </div>
-       </section>
-       <section>
-         {/* Display crew details */}
-         {tableItems.map((item, index) => (
-           <div key={index}>
-             <TableItemRenderer
-               title={item.title}
-               columns={item.columns}
-               data={item.data}
-               pagination={true}
-             />
-           </div>
-         ))}
-       </section>
-     </div>
-   );
+  return (
+    <div>
+      <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
+      <div className="mt-4 flex">
+        <Heading className="ml-5" level={5} text="Ship Break Details" />
+      </div>
+      <section className="mb-10">
+        <div>
+          {/* <Descriptions
+            size="large"
+            className="mt-1 ml-4 mr-4 descriptionTable"
+            bordered={true}
+            column={{ xs: 1, sm: 2, md: 2, lg: 2 }}
+          >
+            {items.map((item, index) => (
+              <Descriptions.Item key={index} label={item.label}>
+                {item.children}
+              </Descriptions.Item>
+            ))}
+          </Descriptions> */}
+          <Descriptions
+            size="small"
+            className="p-2"
+            bordered={true}
+            colon={true}
+            borderColor="transparent"
+            column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+          >
+            {items.map((item, index) => (
+              <Descriptions.Item
+                key={index}
+                className="flex-container justify-between "
+                span={index === items.length - 1 ? 1 : undefined}
+              >
+                <Row className="flex">
+                  <Col span={10} className="flex justify-start  ">
+                    <div className="descriptionLabel ">{item.label}</div>
+                  </Col>
+                  <Col span={14} className="flex justify-end">
+                    <div className="descriptionChildren ml-5">
+                      {item.children}
+                    </div>
+                  </Col>
+                </Row>
+                {/* </div> */}
+              </Descriptions.Item>
+            ))}
+          </Descriptions>
+        </div>
+      </section>
+      <section>
+        {/* Display crew details */}
+        {tableItems.map((item, index) => (
+          <div key={index}>
+            <TableItemRenderer
+              title={item.title}
+              columns={item.columns}
+              data={item.data}
+              pagination={true}
+            />
+          </div>
+        ))}
+      </section>
+    </div>
+  );
 }
 
 export default RegisteredShipBreakDetails;

@@ -1,4 +1,4 @@
-import { Image } from "antd";
+import { Col, Descriptions, Image, Row } from "antd";
 import React from "react";
 import Heading from "../../src/components/title/Heading";
 import axios from "axios";
@@ -15,37 +15,61 @@ import AntdTable from "../../src/components/table/AntdTable";
 function IntelDetails({ data }) {
   const ownMacroDataFormColumns = [...IntelColumns];
 
-    function transposeData(data) {
-      if (!data) return [];
+  function transposeData(data) {
+    if (!data) return [];
 
-      const transposedData = [];
-      transposedData.push({
-        Field: "Platform ID",
-        Value: data.ir_pf_id,
-      });
-      transposedData.push({
-        Field: "Reporter Name",
-        Value: data.ir_reporter_name,
-      });
+    const transposedData = [];
+    transposedData.push({
+      Field: "Platform ID",
+      Value: data.ir_pf_id,
+    });
+    transposedData.push({
+      Field: "Reporter Name",
+      Value: data.ir_reporter_name,
+    });
 
-      transposedData.push({
-        Field: "Reporting Time",
-        Value: dayjs(data.ir_reporting_time).format("YYYY-MM-DD HH:mm:ss"),
-      });
+    transposedData.push({
+      Field: "Reporting Time",
+      Value: dayjs(data.ir_reporting_time).format("YYYY-MM-DD HH:mm:ss"),
+    });
 
-      transposedData.push({
-        Field: "Jetty",
-        Value: data.ir_jetty,
-      });
+    transposedData.push({
+      Field: "Jetty",
+      Value: data.ir_jetty,
+    });
 
-      transposedData.push({
-        Field: "Total Boats",
-        Value: data.ir_total_boats,
-      });
+    transposedData.push({
+      Field: "Total Boats",
+      Value: data.ir_total_boats,
+    });
 
-      return transposedData;
-    }
+    return transposedData;
+  }
 
+  // Map vesselcolumns to extract label and children
+  const items = [
+    {
+      label: "Platform ID",
+      children: data?.ir_pf_id || "",
+    },
+    {
+      label: "Reporter Name",
+      children: data?.ir_reporter_name || "",
+    },
+    {
+      label: "Reporting Time ",
+      children:
+        dayjs(data?.ir_reporting_time).format("YYYY-MM-DD HH:mm:ss") || "",
+    },
+    {
+      label: "Jetty",
+      children: data?.ir_jetty || "",
+    },
+    {
+      label: "Total Boats",
+      children: data?.ir_total_boats || "",
+    },
+  ];
   const jettyDataColumns = [
     {
       title: "Type of Boat",
@@ -163,17 +187,46 @@ function IntelDetails({ data }) {
         <Heading className="ml-5 " level={5} text="Macro Data" />
       </div>
       <section className="mb-10">
-        {/* <AntdTable
-          columns={ownMacroDataFormColumns}
-          data={[data]}
-          pagination={false}
-        /> */}
-        <AntdTable
-          // scrollConfig={{ y: "325px" }}
-          columns={transposedColumns}
-          data={transposedData} // Remove the square brackets
-          pagination={false}
-        />
+        {/* <Descriptions
+          size="middle"
+          className="mt-5 ml-4 mr-4 descriptionTable"
+          bordered={true}
+          column={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item key={index} label={item.label}>
+              {item.children}
+            </Descriptions.Item>
+          ))}
+        </Descriptions> */}
+        <Descriptions
+          size="small"
+          className="p-2"
+          bordered={true}
+          colon={true}
+          borderColor="transparent"
+          column={{ xs: 1, sm: 2, md: 2, lg: 3}}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item
+              key={index}
+              className="flex-container justify-between "
+              span={index === items.length - 1 ? 1 : undefined}
+            >
+              <Row className="flex">
+                <Col span={10} className="flex justify-start " >
+                  <div className="descriptionLabel ">{item.label}</div>
+                </Col>
+                <Col span={14} className="flex justify-end" >
+                  <div className="descriptionChildren ">
+                    {item.children}
+                  </div>
+                </Col>
+              </Row>
+              {/* </div> */}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
       </section>
       {tableItems.map((item, index) => {
         return (
@@ -183,7 +236,7 @@ function IntelDetails({ data }) {
             columns={item.columns}
             data={item.data}
             pagination={true}
-            scrollConfig={{ x: "100%" }} // Adjust x-scroll as needed
+            scrollConfig={{ x: true }} // Adjust x-scroll as needed
           />
         );
       })}

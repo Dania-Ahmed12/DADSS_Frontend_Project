@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, Typography, theme, Modal } from "antd";
+import { Layout, Menu, Typography, theme, Modal, Button } from "antd";
 import styled from "styled-components";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { MdAnchor } from "react-icons/md";
 import { AiOutlineUser, AiOutlinePieChart } from "react-icons/ai";
 import { MdAppRegistration } from "react-icons/md";
 import { HiOutlineDocumentReport } from "react-icons/hi";
-import { TbDeviceDesktopAnalytics} from "react-icons/tb";
+import { TbDeviceDesktopAnalytics } from "react-icons/tb";
 import {
   GiFishingBoat,
   GiCargoShip,
@@ -27,32 +27,45 @@ import FilledButton from "./button/FilledButton";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
-
-
 const { Content, Footer, Sider, Header } = Layout;
 
 const Drawer = (props) => {
+  const handleLogout = async () => {
+    Cookies.remove("token");
+    Cookies.remove("username");
+    Cookies.remove("userId");
+    Cookies.remove("u_pf_id");
+    Cookies.remove("category");
+    Cookies.remove("is_superuser");
+    // Cookies.remove("u_view_map");
+    // Cookies.remove("u_create_user");
+    // Cookies.remove("u_access_rvdata");
+    // Cookies.remove("u_crew");
+    // Cookies.remove("u_goods");
+    // Cookies.remove("u_owner");
+    // Cookies.remove("u_access_form");
+    router.push("/");
+  };
+
   const [collapsed, setCollapsed] = useState(false);
 
-    useEffect(() => {
-      const handleResize = () => {
-        setCollapsed(window.innerWidth <= 900); // 768px is typical width for md
-      };
+  useEffect(() => {
+    const handleResize = () => {
+      setCollapsed(window.innerWidth <= 900); // 768px is typical width for md
+    };
 
-      // Initial setup
-      handleResize();
+    // Initial setup
+    handleResize();
 
-      // Event listener for window resize
-      window.addEventListener("resize", handleResize);
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
 
-      // Cleanup
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const router = useRouter();
 
   function getItem(label, key, icon, children, type) {
-
-
     if (Cookies.get("category") === "B" && ["2", "3", "8"].includes(key)) {
       return undefined;
     }
@@ -175,6 +188,7 @@ const Drawer = (props) => {
       "14",
       <TbDeviceDesktopAnalytics color="white" size={20} />
     ),
+
     getItem(
       !collapsed ? (
         <p className="text-white font-bold" style={{ padding: "10px 5px" }}>
@@ -364,23 +378,6 @@ const Drawer = (props) => {
     token: { colorBgContainer, colorPrimary, colorHo },
   } = theme.useToken();
 
-  const handleLogout = async () => {
-    Cookies.remove("token");
-    Cookies.remove("username");
-    Cookies.remove("userId");
-    Cookies.remove("u_pf_id");
-    Cookies.remove("category");
-    Cookies.remove("is_superuser");
-    // Cookies.remove("u_view_map");
-    // Cookies.remove("u_create_user");
-    // Cookies.remove("u_access_rvdata");
-    // Cookies.remove("u_crew");
-    // Cookies.remove("u_goods");
-    // Cookies.remove("u_owner");
-    // Cookies.remove("u_access_form");
-    router.push("/");
-  };
-
   return (
     <StyledSection>
       <Layout style={{ height: "auto" }}>
@@ -432,6 +429,64 @@ const Drawer = (props) => {
             items={items}
             inlineCollapsed={collapsed}
           />
+
+          {/* <div
+            onClick={handleLogout}
+            mode="inline"
+            className=" flexcustom-css-logout text-white"
+            style={{
+              // color: colorPrimary,
+              background: "#012169",
+              paddingBottom: "20px",
+            }}
+          >
+              <div>Logout</div>
+              <div className="custom-logout-icon">
+                <img src="/images/arrow.png" alt="Logout Icon" />
+            </div>
+            {/* <Button onClick={handleLogout}>Logout</Button> */}
+          {/* </div> */}
+
+          {/* <Menu
+            onClick={handleLogout}
+            mode="inline"
+            className="custom-css-logout text-white"
+            style={{
+              background: "#012169",
+              paddingBottom: "20px",
+            }}
+          >
+            <div className="custom-logout-icon">
+              <img src="/images/power.png" alt="Logout Icon" />
+            </div>
+            <div className="mt-5 ml-4 media-logout ">Logout</div>
+          </Menu> */}
+
+          <Menu
+            onClick={handleLogout}
+            mode="inline"
+            className="custom-css-logout text-white"
+            style={{
+              background: "#012169",
+              paddingBottom: "20px",
+            }}
+          >
+            {/* Conditionally render based on sidebar collapsed state */}
+            {collapsed ? (
+              // Only show the icon when sidebar is collapsed
+              <div className="custom-logout-icon">
+                <img src="/images/power.png" alt="Logout Icon" />
+              </div>
+            ) : (
+              // Show both icon and text when sidebar is expanded
+              <>
+                <div className="custom-logout-icon">
+                  <img src="/images/power.png" alt="Logout Icon" />
+                </div>
+                <div className="mt-5 ml-4 media-logout ">Logout</div>
+              </>
+            )}
+          </Menu>
         </Sider>
         <Layout style={{ height: "100vh" }}>
           <Header
@@ -441,7 +496,8 @@ const Drawer = (props) => {
               alignItems: "center",
               justifyContent: "end",
               flexWrap: "wrap",
-              background: colorBgContainer,
+              // background: colorBgContainer,
+              background: "#FAF9F6",
             }}
           >
             <Typography
@@ -453,15 +509,15 @@ const Drawer = (props) => {
             >
               {/* Hello {Cookies.get("username").toUpperCase()} */}
             </Typography>
-            <FilledButton
+            {/* <FilledButton
               text="Logout"
               onClick={handleLogout}
               className="ml-8 border-midnight bg-midnight text-white"
-            />
-           
+            /> */}
           </Header>
           <Content
-            className="p-4"
+              className="p-2"
+
             style={{
               // background: colorBgContainer,
               background: "#FAF9F6",
@@ -470,13 +526,6 @@ const Drawer = (props) => {
           >
             {props.children}
           </Content>
-          {/* <Footer className="h-auto flex items-end">
-            <div>
-              Copyright <span className="font-bold">Dadss</span> ©2023 All
-              Rights reserved
-            </div>
-          </Footer>
-           */}
           <Footer className="h-auto flex items-end">
             <div>
               Copyright <span className="font-bold">Dadss</span> ©{" "}

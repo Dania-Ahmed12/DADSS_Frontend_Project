@@ -1,7 +1,6 @@
-import { Col, Row, Table, Tooltip } from "antd";
+import { Col, Descriptions, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
-import { RxArrowLeft } from "react-icons/rx";
 import Heading from "../../src/components/title/Heading";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -47,22 +46,26 @@ function Details({ data }) {
     {
       title: "Length (Meters)",
       dataIndex: "rv_length",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
     },
     {
       title: "Breadth (Meters)",
       dataIndex: "rv_breadth",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
     },
     {
-      title: "Tonnage (Gross Tonnage)",
+      title: "Gross Tonnage",
       dataIndex: "rv_tonnage",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
     },
     {
       title: "Registered ON",
       dataIndex: "rv_rdt",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
@@ -154,31 +157,39 @@ function Details({ data }) {
     }
   }, []);
 
-const transposeData = vesselcolumns.map((column) => {
-  let value = parsedVesselData[column.dataIndex];
-  // Check if the value is a string and contains 'T'
-  if (typeof value === "string" && value.includes("T")) {
-    // Parse the value into a Date object
-    const dateObj = new Date(value);
-    // Extract the desired parts
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // Month is zero-based, so we add 1
-    const date = String(dateObj.getDate()).padStart(2, "0");
-    const hour = String(dateObj.getHours()).padStart(2, "0");
-    const minute = String(dateObj.getMinutes()).padStart(2, "0");
-    const second = String(dateObj.getSeconds()).padStart(2, "0");
-    // Construct the formatted date string
-    value = `${year}-${month}-${date} ${hour}:${minute}:${second}`;
-  }
-  return {
-    Field: column.title,
-    Value: value,
-  };
-});
+  // Map vesselcolumns to extract label and children
+const items = vesselcolumns.map((column) => ({
+  label: column.title,
+  children:
+    column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
+      ? dayjs(parsedVesselData[column.dataIndex]).format("YYYY-MM-DD HH:mm:ss") // Format the date if it's "Registered ON"
+      : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
+}));
 
+  const transposeData = vesselcolumns.map((column) => {
+    let value = parsedVesselData[column.dataIndex];
+    // Check if the value is a string and contains 'T'
+    if (typeof value === "string" && value.includes("T")) {
+      // Parse the value into a Date object
+      const dateObj = new Date(value);
+      // Extract the desired parts
+      const year = dateObj.getFullYear();
+      const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // Month is zero-based, so we add 1
+      const date = String(dateObj.getDate()).padStart(2, "0");
+      const hour = String(dateObj.getHours()).padStart(2, "0");
+      const minute = String(dateObj.getMinutes()).padStart(2, "0");
+      const second = String(dateObj.getSeconds()).padStart(2, "0");
+      // Construct the formatted date string
+      value = `${year}-${month}-${date} ${hour}:${minute}:${second}`;
+    }
+    return {
+      Field: column.title,
+      Value: value,
+    };
+  });
 
   return (
-    <div>
+    <>
       <div>
         <PageHeader
           title="Fishing Vessels Details"
@@ -217,21 +228,44 @@ const transposeData = vesselcolumns.map((column) => {
         <Heading className="ml-5 " level={5} text="Vessel Data" />
       </div>
       <section className="mb-10">
-        {/* <AntdTable
-          scrollConfig={{ x: true }}
-          columns={vesselcolumns}
-          data={[parsedVesselData]}
-          pagination={false}
-        /> */}
-        <AntdTable
-          scrollConfig={{ y: "325px" }}
-          pagination={false}
-          columns={[
-            { title: "Field", dataIndex: "Field" },
-            { title: "Value", dataIndex: "Value" },
-          ]}
-          data={transposeData}
-        />
+        {/* <Descriptions
+          size="middle"
+          className="mt-5 ml-4 mr-4 descriptionTable"
+          bordered={true}
+          column={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item key={index} label={item.label}>
+              {item.children}
+            </Descriptions.Item>
+          ))}
+        </Descriptions> */}
+        <Descriptions
+          size="small"
+          className="p-2"
+          bordered={true}
+          colon={true}
+          borderColor="transparent"
+          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item
+              key={index}
+              className="flex-container justify-between "
+              span={index === items.length - 1 ? 1 : undefined}
+            >
+              <Row className="flex">
+                <Col span={10} className="flex justify-start ">
+                  <div className="descriptionLabel ">{item.label}</div>
+                </Col>
+                <Col span={14} className="flex justify-end">
+                  <div className="descriptionChildren ">{item.children}</div>
+                </Col>
+              </Row>
+              {/* </div> */}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
       </section>
 
       {/*----------------------------------- Platform Data -------------------------------------*/}
@@ -304,7 +338,7 @@ const transposeData = vesselcolumns.map((column) => {
         setGoodsData={setGoodsData}
         showButtons={showButtons}
       />
-    </div>
+    </>
   );
 }
 

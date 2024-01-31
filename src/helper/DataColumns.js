@@ -6,7 +6,8 @@ export const RegVesselColumn = [
   {
     title: "Vessel ID Number",
     dataIndex: "rv_id",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       return text;
     },
@@ -14,7 +15,8 @@ export const RegVesselColumn = [
   {
     title: "Registration Number",
     dataIndex: "rv_regno",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       return text;
     },
@@ -22,7 +24,8 @@ export const RegVesselColumn = [
   {
     title: "Vessel Name",
     dataIndex: "rv_name",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       return text;
     },
@@ -30,7 +33,8 @@ export const RegVesselColumn = [
   {
     title: "Type",
     dataIndex: "rv_type",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       return text;
     },
@@ -38,10 +42,14 @@ export const RegVesselColumn = [
   {
     title: "Flag",
     dataIndex: "rv_flag",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Province",
     dataIndex: "rv_province",
+    width: 250,
+    ellipsis: false,
   },
 ];
 
@@ -56,10 +64,12 @@ export const MerVesselColumn = [
   },
   {
     title: "Ship ID",
+
     dataIndex: "mv_ship_id",
   },
   {
     title: "Ship Name",
+    width: 200,
     dataIndex: "mv_ship_name",
   },
   {
@@ -69,6 +79,7 @@ export const MerVesselColumn = [
   {
     title: "Type",
     dataIndex: "mv_type_name",
+    width: 200,
   },
   {
     title: "AIS Type",
@@ -78,31 +89,33 @@ export const MerVesselColumn = [
 export const MerchantDetailColumns = [
   ...MerVesselColumn,
   {
-    title: "Call Sign",
-    dataIndex: "mv_call_sign",
-  },
-  {
     title: "Ship Type",
     dataIndex: "mv_ship_type",
   },
   {
+    title: "Call Sign",
+    dataIndex: "mv_call_sign",
+  },
+
+  {
     title: "Length",
     dataIndex: "mv_length",
   },
-  {
-    title: "Tonnage (Gross tonnage)",
-    dataIndex: "mv_grt",
-  },
+
   {
     title: "Width",
     dataIndex: "mv_width",
+  },
+  {
+    title: "Gross Tonnage",
+    dataIndex: "mv_grt",
   },
   {
     title: "Dead Weight",
     dataIndex: "mv_dwt",
   },
   {
-    title: "Year in built",
+    title: "Year built",
     dataIndex: "mv_year_built",
   },
 ];
@@ -111,12 +124,14 @@ export const GeneralReportColumn = [
   {
     title: "Platform ID",
     dataIndex: "gr_pf_id",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Latitude",
     dataIndex: "gr_position",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text, record) => {
       if (record.gr_position) {
         var val = record.gr_position.coordinates[1];
@@ -128,7 +143,8 @@ export const GeneralReportColumn = [
   {
     title: "Longitude",
     dataIndex: "gr_position",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text, record) => {
       if (record.gr_position) {
         var val = record.gr_position.coordinates[0];
@@ -140,15 +156,20 @@ export const GeneralReportColumn = [
   {
     title: "Patrol Type",
     dataIndex: "gr_patroltype",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Fuel Remaining (%)",
     dataIndex: "gr_fuelrem",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Date Time",
     dataIndex: "gr_dtg",
-    ellipsis: true,
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
       return dtg;
@@ -160,12 +181,12 @@ export const Missioncolumns = [
   {
     title: "Platform ID",
     dataIndex: "mr_pf_id",
-    ellipsis: true,
+    ellipsis: false,
   },
   {
     title: "Date Time",
     dataIndex: "mr_dtg",
-    ellipsis: true,
+    ellipsis: false,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
       return dtg;
@@ -174,7 +195,7 @@ export const Missioncolumns = [
   {
     title: "Registered ON",
     dataIndex: "mr_rdt",
-    ellipsis: true,
+    ellipsis: false,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
       return dtg;
@@ -232,25 +253,10 @@ export const IntelColumns = [
   },
 ];
 
-export const shipBreakColumns = [
-  {
-    title: "Date Time",
-    dataIndex: "sb_dtg",
-    ellipsis: true,
-    width:220,
-    render: (text) => {
-      const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "";
-      return dtg;
-    },
-  },
+export const MerchantShipColumn = [
   {
     title: "IMO",
     render: (record) => record?.merchant_vessel?.mv_imo,
-  },
-  {
-    title: "IMO Verified",
-    dataIndex: "sb_imo_verified",
-    render: (value) => (value ? "Yes" : "No"),
   },
   {
     title: "Ship Name",
@@ -264,6 +270,24 @@ export const shipBreakColumns = [
     title: "Vessel Type",
     render: (record) => record?.merchant_vessel?.mv_ais_type_summary,
   },
+];
+export const shipBreakColumns = [
+  {
+    title: "Date Time",
+    dataIndex: "sb_dtg",
+    ellipsis: false,
+    width: 220,
+    render: (text) => {
+      const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "";
+      return dtg;
+    },
+  },
+  {
+    title: "IMO Verified",
+    dataIndex: "sb_imo_verified",
+    render: (value) => (value ? "Yes" : "No"),
+  },
+
   {
     title: "LPOC",
     dataIndex: "sb_lpoc",

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Tooltip, theme } from "antd";
+import { Col, Descriptions, Row, Tooltip, theme } from "antd";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import axios from "axios";
 import { decimalToDMS } from "../../src/helper/position";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import Heading from "../../src/components/title/Heading";
-import { MerVesselColumn } from "../../src/helper/DataColumns";
+import { MerVesselColumn, MerchantDetailColumns } from "../../src/helper/DataColumns";
 import AntdTable from "../../src/components/table/AntdTable";
 import { Modal } from "antd";
+
 
 
 
 const ExpandedTableBody = styled.div`
   .ant-table-thead {
     .ant-table-cell {
-      background-color: #0942a5 !important;
+    background-color: #0942a5 !important;
       color: white;
     }
   }
@@ -44,23 +45,33 @@ const ExpandedTableBody = styled.div`
 `;
 
 
-function Details({ data }) {
+function Details({ data , firstData }) {
+  console.log(data);
+  console.log(firstData);
   const router = useRouter();
-
   // Retrieve merchant vessel details from the query parameter
   const { id, vessel } = router.query;
   const [modalVisible, setModalVisible] = useState(false);
   const [clickedRowData, setClickedRowData] = useState(null);
 
   const parsedVesselData = JSON.parse(vessel);
-  const Macrocolumns = [...MerVesselColumn];
-  // Transpose the data
-  const transposedData = Macrocolumns.map((column) => ({
-    Field: column.title,
-    Value: parsedVesselData[column.dataIndex],
+  const Macrocolumns = [
+    { title: "ID", dataIndex: "mv_key" },
+    ...MerchantDetailColumns,
+  ];
+
+  // Map vesselcolumns to extract label and children
+  const items = Macrocolumns.map((column) => ({
+    label: column.title,
+    children:
+      column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
+        ? dayjs(parsedVesselData[column.dataIndex]).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ) // Format the date if it's "Registered ON"
+        : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
   }));
 
-  const expandedRowRender = (record) => {
+  const expandedRowRender = (record, condition , index) => {
     const columns = [
       {
         title: "Longitude",
@@ -112,28 +123,25 @@ function Details({ data }) {
           showTitle: false,
         },
         render: (text, record) => (
-          <div 
-          // >
-            // {/* <a */}
-              className="text-midnight font-semibold custom-a"
-              onClick={() => {
-                console.log(record.mtd_key); // Log the expanded data to see its structure
-                setClickedRowData(record.mtd_key);
-                setModalVisible(true);
-              }}
-            >
-              View
-            {/* </a> */}
+          <div
+            className="text-midnight font-semibold custom-a"
+            onClick={() => {
+              console.log(record.mtd_key); // Log the expanded data to see its structure
+              setClickedRowData(record.mtd_key);
+              setModalVisible(true);
+            }}
+          >
+            View
           </div>
         ),
       },
     ];
-    return (
+    const firstTable = (
       <ExpandedTableBody>
         <AntdTable
           components={{
             body: {
-              wrapper: ExpandedTableBody, // Use the styled component here
+              wrapper: ExpandedTableBody,
             },
           }}
           pagination={true}
@@ -145,6 +153,28 @@ function Details({ data }) {
         />
       </ExpandedTableBody>
     );
+    const secondTable = (
+      <ExpandedTableBody>
+        <AntdTable
+          components={{
+            body: {
+              wrapper: ExpandedTableBody,
+            },
+          }}
+          pagination={false}
+          columns={columns}
+          scrollConfig={{ x: true }}
+          data={record.expandedData.length > 0 ? [record.expandedData[0]] : []}
+          size="small"
+          style={{ float: "right", backgroundColor: "black" }}
+        />
+      </ExpandedTableBody>
+    );
+  if (index === 0) {
+    return firstTable;
+  } else {
+    return secondTable;
+  }
   };
 
   const columns = [
@@ -198,9 +228,6 @@ function Details({ data }) {
   ];
 
   const expandedDetailColumns = [
-    { title:"key",
-      dataIndex:"mtd_key",
-      render: (text, record) => record.expandedData?.[0]?.mtd_key },
     {
       title: "Longitude",
       dataIndex: "mtd_longitude",
@@ -251,34 +278,29 @@ function Details({ data }) {
       dataIndex: "mtd_course",
       render: (text, record) => record.expandedData?.[0]?.mtd_course,
     },
-
-    // {
-
-    //   title: "Timestamp ",
-    //   dataIndex: "mtd_timestamp",
-    //   render: (text, record) => {
-    //     const time = record.expandedData?.[0]?.mtd_timestamp;
-    //     const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-    //     return dtg;
-    //   },
-    // },
     {
       title: "Timestamp",
       dataIndex: "mtd_timestamp",
-      render: (text, record) => {
+      render: (_text, record) => {
         if (record.expandedData && record.expandedData.length > 0) {
-          const time = record.expandedData[0].mtd_timestamp;
-          const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-          return dtg;
+          const time = record.expandedData[0]?.mtd_timestamp;
+          if (time) {
+            const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
+            return dtg;
+          } else {
+            return "No date";
+          }
+        } else {
+          return null;
         }
-        return null; // or any default value if timestamp data is not available
       },
     },
-    // {
-    //   title: "UTC Seconds",
-    //   dataIndex: "mtd_utc_seconds",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_utc_seconds,
-    // },
+
+    {
+      title: "UTC Seconds",
+      dataIndex: "mtd_utc_seconds",
+      render: (text, record) => record.expandedData?.[0]?.mtd_utc_seconds,
+    },
 
     {
       title: "Draught",
@@ -291,94 +313,89 @@ function Details({ data }) {
       render: (text, record) => record.expandedData?.[0]?.mtd_rot,
     },
 
-    // {
-    //   title: "Last Port",
-    //   dataIndex: "mtd_last_port",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_last_port,
-    // },
-    // {
-    //   title: "Last Port Unlocode",
-    //   dataIndex: "mtd_last_port_unlocode",
-    //   render: (text, record) =>
-    //     record.expandedData?.[0]?.mtd_last_port_unlocode,
-    // },
-    // {
-    //   title: "Last Port Country",
-    //   dataIndex: "mtd_last_port_country",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_last_port_country,
-    // },
+    {
+      title: "Last Port",
+      dataIndex: "mtd_last_port",
+      render: (text, record) => record.expandedData?.[0]?.mtd_last_port,
+    },
+    {
+      title: "Current Port ID",
+      dataIndex: "mtd_current_id",
+      render: (text, record) => record.expandedData?.[0]?.mtd_current_id,
+    },
+    {
+      title: "Current Port",
+      dataIndex: "mtd_current_port",
+      render: (text, record) => record.expandedData?.[0]?.mtd_current_port,
+    },
+    {
+      title: "Current Port Unlocode",
+      dataIndex: "mtd_current_port_unlocode",
+      render: (text, record) =>
+        record.expandedData?.[0]?.mtd_current_port_unlocode,
+    },
+    {
+      title: "Current Port Country",
+      dataIndex: "mtd_current_port_country",
+      render: (text, record) =>
+        record.expandedData?.[0]?.mtd_current_port_country,
+    },
+    {
+      title: "Next Port ID",
+      dataIndex: "mtd_next_port_id",
+      render: (text, record) => record.expandedData?.[0]?.mtd_next_port_id,
+    },
+    {
+      title: "Next Port",
+      dataIndex: "mtd_next_port_name",
+      render: (text, record) => record.expandedData?.[0]?.mtd_next_port_name,
+    },
+    {
+      title: "Next Port Unlocode",
+      dataIndex: "mtd_next_port_unlocode",
+      render: (text, record) =>
+        record.expandedData?.[0]?.mtd_next_port_unlocode,
+    },
+    {
+      title: "Next Port Country",
+      dataIndex: "mtd_next_port_country",
+      render: (text, record) => record.expandedData?.[0]?.mtd_next_port_country,
+    },
+    {
+      title: "ETA Calculated",
+      dataIndex: "mtd_eta_calc",
+      render: (_text, record) => {
+        if (record.expandedData && record.expandedData.length > 0) {
+          const time = record.expandedData[0]?.mtd_eta_calc;
+          if (time) {
+            const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
+            return dtg;
+          } else {
+            return "-";
+          }
+        } else {
+          return null;
+        }
+      },
+    },
 
-    // {
-    //   title: "Last Port Time",
-    //   dataIndex: "mtd_last_port_time",
-    //   render: (text, record) => {
-    //     if (record.expandedData && record.expandedData.length > 0) {
-    //       const time = record.expandedData[0].mtd_last_port_time;
-    //       const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-    //       return dtg;
-    //     }
-    //     return null; // or any default value if timestamp data is not available
-    //   },
-    // },
-    // {
-    //   title: "Current Port",
-    //   dataIndex: "mtd_current_port",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_current_port,
-    // },
-    // {
-    //   title: "Current Port Unlocode",
-    //   dataIndex: "mtd_current_port_unlocode",
-    //   render: (text, record) =>
-    //     record.expandedData?.[0]?.mtd_current_port_unlocode,
-    // },
-    // {
-    //   title: "Current Port Country",
-    //   dataIndex: "mtd_current_port_country",
-    //   render: (text, record) =>
-    //     record.expandedData?.[0]?.mtd_current_port_country,
-    // },
-    // {
-    //   title: "Next Port",
-    //   dataIndex: "mtd_next_port_name",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_next_port_name,
-    // },
-    // {
-    //   title: "Next Port Unlocode",
-    //   dataIndex: "mtd_next_port_unlocode",
-    //   render: (text, record) =>
-    //     record.expandedData?.[0]?.mtd_next_port_unlocode,
-    // },
-    // {
-    //   title: "Next Port Country",
-    //   dataIndex: "mtd_next_port_country",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_next_port_country,
-    // },
-
-    // {
-    //   title: "ETA Calculated",
-    //   dataIndex: "mtd_eta_calc",
-    //   render: (text, record) => {
-    //     if (record.expandedData && record.expandedData.length > 0) {
-    //       const time = record.expandedData[0].mtd_eta_calc;
-    //       const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-    //       return dtg;
-    //     }
-    //     return null; // or any default value if timestamp data is not available
-    //   },
-    // },
-
-    // {
-    //   title: "ETA Updated",
-    //   dataIndex: "mtd_eta_updated",
-    //   render: (text, record) => {
-    //     if (record.expandedData && record.expandedData.length > 0) {
-    //       const time = record.expandedData[0].mtd_eta_updated;
-    //       const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-    //       return dtg;
-    //     }
-    //     return null; // or any default value if timestamp data is not available
-    //   },
-    // },
+    {
+      title: "ETA Updated",
+      dataIndex: "mtd_eta_updated",
+      render: (_text, record) => {
+        if (record.expandedData && record.expandedData.length > 0) {
+          const time = record.expandedData[0]?.mtd_eta_updated;
+          if (time) {
+            const dtg = dayjs(time).format("YYYY-MM-DD HH:mm:ss");
+            return dtg;
+          } else {
+            return "-";
+          }
+        } else {
+          return null;
+        }
+      },
+    },
     {
       title: "Distance to go",
       dataIndex: "mtd_distance_to_go",
@@ -390,46 +407,38 @@ function Details({ data }) {
       render: (text, record) =>
         record.expandedData?.[0]?.mtd_distance_travelled,
     },
-    // {
-    //   title: "Average Speed",
-    //   dataIndex: "mtd_awg_speed",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_awg_speed,
-    // },
-    // {
-    //   title: "Maximum Speed",
-    //   dataIndex: "mtd_max_speed",
-    //   render: (text, record) => record.expandedData?.[0]?.mtd_max_speed,
-    // },
+    {
+      title: "Average Speed",
+      dataIndex: "mtd_awg_speed",
+      render: (text, record) => record.expandedData?.[0]?.mtd_awg_speed,
+    },
+    {
+      title: "Maximum Speed",
+      dataIndex: "mtd_max_speed",
+      render: (text, record) => record.expandedData?.[0]?.mtd_max_speed,
+    },
   ];
 
-  const filteredData = data.map((item) => {
-    console.log(item);
-    console.log(item.expandedData.map((expandedItem) => expandedItem.mtd_key));
-
-    const filteredExpandedData = item.expandedData.filter((expandedItem) => {
-      return expandedItem.mtd_key === clickedRowData;
+  const filteredData = data
+    .filter((item) => {
+      const filteredExpandedData = item.expandedData.filter((expandedItem) => {
+        return expandedItem.mtd_key === clickedRowData;
+      });
+      return (
+        filteredExpandedData.length > 0 &&
+        filteredExpandedData[0].mtd_max_speed !== null
+      );
+    })
+    .map((item) => {
+      const filteredExpandedData = item.expandedData.filter((expandedItem) => {
+        return expandedItem.mtd_key === clickedRowData;
+      });
+      return {
+        ...item,
+        expandedData: filteredExpandedData,
+      };
     });
 
-    filteredExpandedData.map((expandedItem) => {
-      console.log(expandedItem.mtd_key);
-      console.log(expandedItem);
-      console.log(expandedItem[3])
-    });
-
-    return {
-      ...item,
-      expandedData: filteredExpandedData,
-    };
-  });
-
-  // console.log(data.[3].mtd_timestamp)
-const {
-  token: { rowExpandedBg, rowHoverBg },
-} = theme.useToken();
-const ExpandedRow = styled.div`
-  background-color: ${(props) => rowExpandedBg};
-  background: #e6f7ff !important;
-`;
   return (
     <>
       <div>
@@ -439,47 +448,120 @@ const ExpandedRow = styled.div`
           showSearchBox={false}
         />
       </div>
-      <div className="mb-4">
-        <AntdTable
-          scrollConfig={{ x: true }}
-          pagination={false}
-          columns={[
-            { title: "Field", dataIndex: "Field" },
-            { title: "Value", dataIndex: "Value" },
-          ]}
-          data={transposedData}
-        />
+
+      <div className="mb-4 descriptionTable">
+        <Descriptions
+          // size="middle"
+          size="small"
+          className="p-2"
+          bordered={true}
+          colon={true}
+          borderColor="transparent"
+          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item
+              key={index}
+              className="flex-container justify-between "
+            >
+              <Row className="flex">
+                <Col span={8} className="flex justify-start  ">
+                  <div className="descriptionLabel ">{item.label}</div>
+                </Col>
+                <Col span={14} className="flex justify-end">
+                  <div className="descriptionChildren ml-5">{item.children}</div>
+                </Col>
+              </Row>
+              {/* </div> */}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
       </div>
 
-      <div className="mt-10">
-        <div className="flex">
-          <Heading className="ml-5 " level={5} text="Trip Details" />
-        </div>
+      <div className="flex mb-4">
+        <Heading className="ml-5 " level={5} text="Last/Current Port" />
+      </div>
+      <section>
+        <AntdTable
+          scrollConfig={{ x: true }}
+          pagination={true}
+          columns={columns}
+          data={data.length > 0 ? [data[0]] : []}
+          expandable={{
+            // expandedRowRender,
+            // defaultExpandedRowKeys: ["0"],
+            expandedRowRender: (record, index) =>
+              expandedRowRender(record, index, 1),
+            defaultExpandedRowKeys: ["0"],
+          }}
+        />
+      </section>
+
+      <div className="flex mb-4">
+        <Heading className="ml-5 " level={5} text="History" />
+      </div>
+      <section className="mb-10">
         <AntdTable
           scrollConfig={{ x: true }}
           pagination={true}
           columns={columns}
           data={data}
           expandable={{
-            expandedRowRender,
+            // expandedRowRender,
+            // defaultExpandedRowKeys: ["0"],
+            expandedRowRender: (record, index) =>
+              expandedRowRender(record, index, 0),
             defaultExpandedRowKeys: ["0"],
           }}
         />
-      </div>
-      <div>
+      </section>
+
+      <div className="descriptionTable">
         <Modal
-          width={"70%"}
+          width={"100%"}
           visible={modalVisible}
           onCancel={() => setModalVisible(false)}
           footer={null}
         >
-            <AntdTable
-              pagination={false}
-              className="customize-antTable" // Use the className prop here
-              scrollConfig={{ x: true }}
-              columns={expandedDetailColumns}
-              data={filteredData}
-            />
+          <Heading className="ml-1" level={4} text="Observations" />
+          <Descriptions
+            size="small"
+            className="p-2"
+            bordered={true}
+            colon={true}
+            borderColor="transparent"
+            column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+          >
+            {filteredData.map((row, rowIndex) => (
+              <React.Fragment key={rowIndex}>
+                {expandedDetailColumns.map((column, colIndex) => (
+                  <Descriptions.Item
+                    key={colIndex}
+                    className="flex-container justify-between  "
+                    // Conditionally set the colspan for the last column
+                    span={
+                      colIndex === expandedDetailColumns.length - 1
+                        ? 1
+                        : undefined
+                    }
+                  >
+                    <Row className="flex ">
+                      <Col span={10} className="flex justify-start">
+                        <div className="descriptionLabel">{column.title}</div>
+                      </Col>
+                      <Col span={14} className=" flex justify-end  ">
+                        <div className="descriptionChildren">
+                          {column.render(null, {
+                            expandedData: row.expandedData,
+                          })}
+                        </div>
+                      </Col>
+                    </Row>
+                  </Descriptions.Item>
+                ))}
+              </React.Fragment>
+            ))}
+          </Descriptions>
         </Modal>
       </div>
     </>
@@ -512,15 +594,18 @@ export async function getServerSideProps(context) {
         return null;
       });
 
+
       // Wait for all expanded data promises to resolve
       const expandedData = await Promise.all(expandedDataPromises);
+
+
 
       // Add the expandedData to each row in the data array
       const dataWithExpandedData = data.map((row, index) => ({
         ...row,
         expandedData: expandedData[index],
       }));
-
+   
       return {
         props: {
           data: dataWithExpandedData,

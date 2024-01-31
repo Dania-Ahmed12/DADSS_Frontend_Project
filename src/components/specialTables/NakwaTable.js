@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row, Form,  Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,36 +7,15 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import InputNumBox from "../form/InputNumBox";
-import PositionBox from "../form/PositionBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
-import DateBox from "../form/DateBox";
-import Cookies from "js-cookie";
-import dayjs from "dayjs";
 import {
-  action_list,
   country_list,
   ethnicity_list,
-  movement_list,
-  patrol_type_list,
-  port_list,
 } from "../../helper/dropdown";
-import { Cascader, Select, Space } from "antd";
-import {
-  positiontoDMS,
-  DMStodecimal,
-  dtgToString,
-} from "../../helper/position";
 import AntdTable from "../table/AntdTable";
-
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
 
 function FishingNakwaTable(props) {
   const { nakwaData, setNakwaData, showButtons } = props;
@@ -100,10 +79,13 @@ function FishingNakwaTable(props) {
     {
       title: "Name",
       dataIndex: "src_name",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.nakwaColumns | showInputs.nakwa_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Enter Name"
               name="src_name"
               rules={[
@@ -122,10 +104,13 @@ function FishingNakwaTable(props) {
     {
       title: "Nationality",
       dataIndex: "src_nationality",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.nakwaColumns | showInputs.nakwa_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Nationality"
               name="src_nationality"
               options={country_list.map((item) => ({
@@ -148,10 +133,13 @@ function FishingNakwaTable(props) {
     {
       title: "Ethnicity",
       dataIndex: "src_ethnicity",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.nakwaColumns | showInputs.nakwa_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Ethnicity"
               name="src_ethnicity"
               options={ethnicity_list.map((item) => ({
@@ -174,10 +162,13 @@ function FishingNakwaTable(props) {
     {
       title: "Cell Number",
       dataIndex: "src_cell",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.nakwaColumns | showInputs.nakwa_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="0321-1234567"
               name="src_cell"
               // options={port_list.map((item) => ({value: item, label: item}))}
@@ -274,30 +265,7 @@ function FishingNakwaTable(props) {
   ];
 
   return (
-    // <Form form={nakwaForm} onFinish={onNakwaFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Nakwa Details" />
-    //       {/* {showButtons && (<FilledButton
-    //           disabled={nakwaDataEntered}
-    //           text="+Add Nakwa Details"
-    //           className="rounded-full border-midnight bg-midnight text-white"
-    //           onClick={handleNakwaShowInput}
-    //         />)} */}
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       columns={nakwaColumns}
-    //       dataSource={[nakwaData]}
-    //       pagination={false}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
           <Heading className="ml-5" level={5} text="Nakwa Details" />
@@ -317,26 +285,25 @@ function FishingNakwaTable(props) {
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
         columns={nakwaColumns}
         data={[nakwaData]}
         pagination={false}
         form={nakwaForm}
         onFinish={onNakwaFinish}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
 
 export default FishingNakwaTable;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
+
 const IconsStylingWrap = styled.div`
   display: flex;
   /* gap: 20px; */

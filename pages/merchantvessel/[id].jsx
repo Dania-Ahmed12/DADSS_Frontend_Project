@@ -1,4 +1,4 @@
-import { Col, Row, Table } from "antd";
+import { Col, Descriptions, Row, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import Heading from "../../src/components/title/Heading";
@@ -37,6 +37,17 @@ function Details({ data }) {
   const transposeData = vesselcolumns.map((column) => ({
     Field: column.title,
     Value: parsedVesselData[column.dataIndex],
+  }));
+
+  // Map vesselcolumns to extract label and children
+  const items = vesselcolumns.map((column) => ({
+    label: column.title,
+    children:
+      column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
+        ? dayjs(parsedVesselData[column.dataIndex]).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ) // Format the date if it's "Registered ON"
+        : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
   }));
 
   // Function to handle saving merchant report
@@ -156,22 +167,45 @@ function Details({ data }) {
         <Heading className="ml-5 " level={5} text="Vessel Data" />
       </div>
       <section className="mb-10">
-        {/* <AntdTable
-          scrollConfig={{ x: true }}
-          columns={vesselcolumns}
-          data={[parsedVesselData]}
-          pagination={false}
-          showHeader={true}
-        /> */}
-        <AntdTable
-          scrollConfig={{ y: "325px" }}
-          pagination={false}
-          columns={[
-            { title: "Field", dataIndex: "Field" },
-            { title: "Value", dataIndex: "Value" },
-          ]}
-          data={transposeData}
-        />
+{/*  
+        <Descriptions
+          size="middle"
+          className="mt-5 ml-4 mr-4 descriptionTable"
+          bordered={true}
+          column={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item key={index} label={item.label}>
+              {item.children}
+            </Descriptions.Item>
+          ))}
+        </Descriptions> */}
+        <Descriptions
+          size="small"
+          className="p-2"
+          bordered={true}
+          colon={true}
+          borderColor="transparent"
+          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
+        >
+          {items.map((item, index) => (
+            <Descriptions.Item
+              key={index}
+              className="flex-container justify-between "
+              span={index === items.length - 1 ? 1 : undefined}
+            >
+              <Row className="flex">
+                <Col span={10} className="flex justify-start ">
+                  <div className="descriptionLabel ">{item.label}</div>
+                </Col>
+                <Col span={14} className="flex justify-end">
+                  <div className="descriptionChildren ">{item.children}</div>
+                </Col>
+              </Row>
+              {/* </div> */}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
       </section>
 
       {/*----------------------------------- Platform Data -------------------------------------*/}

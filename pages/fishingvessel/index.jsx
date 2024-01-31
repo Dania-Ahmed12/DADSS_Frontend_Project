@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AntdTable from "../../src/components/table/AntdTable";
-import { Tooltip } from "antd";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegisteredVessel } from "../../src/redux/thunks/registeredVesselData";
@@ -20,9 +19,8 @@ function Index() {
       title: "Details",
       dataIndex: "detail",
       key: "view",
-      ellipsis: {
-        showTitle: false,
-      },
+      width: 250,
+      ellipsis: false,
       render: (text, record) => {
         if (record.rv_key) {
           return (
@@ -39,6 +37,7 @@ function Index() {
       },
     },
   ];
+
   const handleDetails = (id, payload) => {
     router.push({
       pathname: `fishingvessel/${id}`,

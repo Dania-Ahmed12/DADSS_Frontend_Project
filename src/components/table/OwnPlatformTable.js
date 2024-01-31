@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Form, Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -138,12 +138,13 @@ function OwnPlatformTable(props) {
     {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
-      ellipsis: true,
+      ellipsis: false,
     },
     {
       title: "Date Time ",
       dataIndex: reportKeys.dtg,
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       // text would be the value of the "Date Time" column for the current row.
       // record would be the entire data record for the current row.
       // index would be the index of the current row in the dataset.
@@ -178,6 +179,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Longitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: [reportKeys.position, "dms", 0],
       render: (text, record, index) => {
         if (showInputs.platformColumns | showInputs.platform_editing) {
@@ -196,6 +199,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Latitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: [reportKeys.position, "dms", 1],
       render: (text, record, index) => {
         if (showInputs.platformColumns | showInputs.platform_editing) {
@@ -214,6 +219,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Patrol Type",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.patrolType,
       render: (text, record, index) => {
         return showInputs.platformColumns | showInputs.platform_editing ? (
@@ -238,6 +245,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Action type",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.action,
       render: (text, record, index) => {
         return showInputs.platformColumns | showInputs.platform_editing ? (
@@ -262,7 +271,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Fuel Remaining",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.fuel,
       render: (text, record, index) => {
         return showInputs.platformColumns | showInputs.platform_editing ? (
@@ -287,7 +297,8 @@ function OwnPlatformTable(props) {
     },
     {
       title: "Other Info",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.info,
       render: (text, record, index) => {
         return showInputs.platformColumns | showInputs.platform_editing ? (
@@ -392,35 +403,7 @@ function OwnPlatformTable(props) {
   }
 
   return (
-    // <Form form={platformForm} onFinish={onPlatformFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Own Platform Data" />
-    //       {/* If the showButtons variable is true, the content inside the
-    //       parentheses will be rendered; otherwise, it won't. */}
-    //       {showButtons && (
-    //         <FilledButton
-    //           disabled={platformDataEntered}
-    //           text="+Add Own Platform Data"
-    //           className="rounded-full border-midnight bg-midnight text-white"
-    //           onClick={handlePlatformShowInput}
-    //         />
-    //       )}
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    // columns={ownPlatformColumns}
-    // dataSource={[platformData]}
-    //       pagination={false}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12}>
           <Heading
@@ -440,7 +423,6 @@ function OwnPlatformTable(props) {
           )}
         </Col>
       </Row>
-
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
@@ -451,9 +433,6 @@ function OwnPlatformTable(props) {
         form={platformForm}
         onFinish={onPlatformFinish}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
@@ -465,11 +444,6 @@ const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
   }
-`;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

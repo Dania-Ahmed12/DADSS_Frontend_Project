@@ -6,7 +6,7 @@ import styled from "styled-components";
 import PageHeader from "../../src/components/pageheader/pageHeader.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShipBreakingReport } from "../../src/redux/thunks/shipbreakingReportData.js";
-import { shipBreakColumns } from "../../src/helper/DataColumns.js";
+import { MerchantShipColumn, shipBreakColumns } from "../../src/helper/DataColumns.js";
 
 function Index() {
   const router = useRouter();
@@ -24,6 +24,8 @@ function Index() {
   // Columns configuration for the AntdTable component
   const columns = [
     ...shipBreakColumns,
+
+    ...MerchantShipColumn,
 
     {
       title: "Action",

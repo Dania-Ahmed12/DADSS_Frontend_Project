@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
-import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
@@ -16,13 +15,9 @@ import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import PositionBox from "../form/PositionBox";
 import { type_list, movement_list } from "../../helper/dropdown";
 import AntdTable from "./AntdTable";
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
+
 function FishingDensityTable(props) {
-  const { fishingDensityData, setFishingDensityData , showButtons } = props;
+  const { fishingDensityData, setFishingDensityData, showButtons } = props;
   const [FishingDensityForm] = useForm();
   const [fishingDensityKey, setFishingDensityKey] = useState("");
 
@@ -119,7 +114,8 @@ function FishingDensityTable(props) {
   const fishingColumns = [
     {
       title: "Longitude",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grd_position", "dms", 0],
       render: (text, record, index) => {
         if (
@@ -138,9 +134,8 @@ function FishingDensityTable(props) {
     },
     {
       title: "Latitude",
-      // width: 335,
-      ellipsis: true,
-
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grd_position", "dms", 1],
       render: (text, record, index) => {
         if (
@@ -148,11 +143,8 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index)
         ) {
           return (
-            <StyledInput style={{width:"auto"}}>
-              <PositionBox
-                name={["grd_position", "dms", 1]}
-                coordinate={1}
-              />
+            <StyledInput style={{ width: "auto" }}>
+              <PositionBox name={["grd_position", "dms", 1]} coordinate={1} />
             </StyledInput>
           );
         } else {
@@ -162,7 +154,8 @@ function FishingDensityTable(props) {
     },
     {
       title: "Number of Vessels",
-      ellipsis: true,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grd_qty",
       render: (text, record, index) => {
         // return isFishingDensityEditing(record) ? (
@@ -170,7 +163,7 @@ function FishingDensityTable(props) {
           isFishingDensityEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              // style={{ width: 150 }}
+              style={{ width: 150 }}
               placeholder="Vessels"
               name="grd_qty"
               min={1}
@@ -191,12 +184,13 @@ function FishingDensityTable(props) {
     {
       title: "Vessel Type",
       dataIndex: "grd_type",
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.fishingColumns && index === 0) |
           isFishingDensityEditing(index) ? (
           <StyledInput>
             <SelectBox
-              // style={{ width: 150 }}
+              style={{ width: 150 }}
               name="grd_type"
               placeholder="Select Type"
               rules={[
@@ -215,8 +209,9 @@ function FishingDensityTable(props) {
     },
     {
       title: "Vessel Movement",
-      ellipsis: true,
+      ellipsis: false,
       dataIndex: "grd_movement",
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.fishingColumns && index === 0) |
           isFishingDensityEditing(index) ? (
@@ -328,47 +323,6 @@ function FishingDensityTable(props) {
   ];
 
   return (
-    // <Form
-    // form={FishingDensityForm}
-    // onFinish={onFishingDensityFinish}
-    //   className="mb-8"
-    // >
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Fishing Density" />
-    //       <FilledButton
-    //         text="+Add Fishing Density"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handleFishingColumnShowInput}
-    //         // disabled={isEditing} // Disable the button when editing
-    //         disabled={fishingDensityKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //       columns={fishingColumns}
-    //       dataSource={
-    //         showInputs.fishingColumns
-    //           ? [{}, ...fishingDensityData]
-    //           : fishingDensityData
-    //       }
-    //       //   showInputs.fishingColumns
-    //       //     ? fishingDensityData
-    //       //     : fishingDensityData.length > 1
-    //       //     ? fishingDensityData
-    //       //         .map((item, index) => ({
-    //       //           ...item,
-    //       //           key: index,
-    //       //         }))
-    //       //         .slice(1)
-    //       //     : []
-    //       // }
-    //       pagination={true}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
@@ -388,31 +342,26 @@ function FishingDensityTable(props) {
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-      scrollConfig={{x:true}}
+        scrollConfig={{ x: true }}
         form={FishingDensityForm}
         onFinish={onFishingDensityFinish}
-        // scroll={{ x: "auto" }} // Set the scroll property as per your requirements
         columns={fishingColumns}
         data={
           showInputs.fishingColumns
             ? [{}, ...fishingDensityData]
             : fishingDensityData
         }
-        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
 
 export default FishingDensityTable;
 
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

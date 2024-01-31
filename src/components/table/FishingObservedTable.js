@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,9 +7,8 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import PositionBox from "../form/PositionBox";
 import { type_list, movement_list } from "../../helper/dropdown";
@@ -17,13 +16,8 @@ import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import React from "react";
 import AntdTable from "./AntdTable";
 
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
 function FishingObservedTable(props) {
-  const { fishingObservedData, setFishingObservedData  , showButtons} = props;
+  const { fishingObservedData, setFishingObservedData, showButtons } = props;
   const [FishingObservedForm] = useForm();
   const [fishingObservedKey, setFishingObservedKey] = useState("");
 
@@ -120,6 +114,8 @@ function FishingObservedTable(props) {
   const fishingObservedColumns = [
     {
       title: "Longitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grf_position", "dms", 0],
       render: (text, record, index) => {
         if (
@@ -138,6 +134,8 @@ function FishingObservedTable(props) {
     },
     {
       title: "Latitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grf_position", "dms", 1],
       render: (text, record, index) => {
         if (
@@ -157,7 +155,8 @@ function FishingObservedTable(props) {
     {
       title: "Vessel Name",
       dataIndex: "grf_name",
-      ellipsis: true,
+      width: 250,
+      ellipsis: false,
       render: (text, record, index) => {
         return (showInputs.fishingObservedColumns && index === 0) |
           isFishingObservedEditing(index) ? (
@@ -182,6 +181,8 @@ function FishingObservedTable(props) {
     {
       title: "Vessel Type",
       dataIndex: "grf_type",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.fishingObservedColumns && index === 0) |
           isFishingObservedEditing(index) ? (
@@ -207,7 +208,8 @@ function FishingObservedTable(props) {
     {
       title: "Vessel Movement",
       dataIndex: "grf_movement",
-      ellipsis:true,
+      width: 250,
+      ellipsis: false,
       render: (text, record, index) => {
         return (showInputs.fishingObservedColumns && index === 0) |
           isFishingObservedEditing(index) ? (
@@ -313,57 +315,15 @@ function FishingObservedTable(props) {
   ];
 
   return (
-    // <Form
-    //   form={FishingObservedForm}
-    //   onFinish={onFishingObservedFinish}
-    //   className="mb-8"
-    // >
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Fishing Observed" />
-    //       <FilledButton
-    //         text="+Add Fishing Observed"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handleFishingShowInput}
-    //         disabled={fishingObservedKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //       columns={fishingObservedColumns}
-    //       dataSource={
-    //         showInputs.fishingObservedColumns
-    //           ? [{}, ...fishingObservedData]
-    //           : fishingObservedData
-    //       }
-    //       // dataSource={
-    //       //   showInputs.fishingObservedColumns
-    //       //     ? fishingObservedData
-    //       //     : fishingObservedData.length > 1
-    //       //     ? fishingObservedData
-    //       //         .map((item, index) => ({
-    //       //           ...item,
-    //       //           key: index,
-    //       //         }))
-    //       //         .slice(1)
-    //       //     : []
-    //       // }
-    //       pagination={true}
-    //     />
-    //   </StyledDiv>
-    // </Form>
-
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Fishing Density" />
+          <Heading className="ml-5" level={5} text="Fishing Observed" />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
             <FilledButton
-              text="+ Add Fishing Density"
+              text="+ Add Fishing Observed"
               className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handleFishingShowInput}
               disabled={fishingObservedKey !== ""}
@@ -383,20 +343,17 @@ function FishingObservedTable(props) {
             ? [{}, ...fishingObservedData]
             : fishingObservedData
         }
-        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }
 
 export default FishingObservedTable;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

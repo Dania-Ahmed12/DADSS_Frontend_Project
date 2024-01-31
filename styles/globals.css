@@ -171,15 +171,12 @@
 /* before hover calendar button  */
 :where(.css-dev-only-do-not-override-sk7ap8).ant-btn-primary:disabled {
     cursor: not-allowed ;
-    /* border-color: #d9d9d9; */
     color: black ;
-    /* background-color: rgba(0, 0, 0, 0.04); */
     box-shadow: none ;
 }
 :where(.css-dev-only-do-not-override-sk7ap8).ant-btn-primary:disabled {
     cursor: not-allowed ;
     border-color: transparent ;
-    /* color: rgba(0, 0, 0, 0.25); */
     background-color: transparent ;
     box-shadow: none ;
 }
@@ -195,3 +192,131 @@
     background-color: transparent;
 }
 
+
+
+
+.custom-css-logout {
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  justify-content: start;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 40px; /* Adjust line height as needed */
+  cursor: pointer;
+  position: sticky;
+  bottom: 0;
+  margin-bottom: 0;
+  height: 40px;
+  background-color: white; /* Adjust background color as needed */
+  padding-left: 10px; /* Add padding to the left */
+  z-index: 100; /* Adjust z-index as needed */
+  margin-top:20px;
+
+}
+
+.custom-css-logout:hover {
+  background-color: #011f63 !important;
+}
+
+.custom-css-logout img {
+  color:#fffd;
+  margin-top:20px;
+  width: 25px;
+  margin-left: 10px; /* Add space between icon and text */
+}
+
+/* Media query to hide text when viewport width is below 768px */
+@media only screen and (max-width: 768px) {
+  .media-logout {
+    display: none; /* Hide text */
+  }
+}
+
+:where(.css-dev-only-do-not-override-sk7ap8).ant-descriptions.ant-descriptions-bordered .ant-descriptions-row {
+    border-bottom: 1px solid transparent !important;
+    border: 1px solid transparent !important;
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+
+}
+:where(.css-dev-only-do-not-override-sk7ap8).ant-descriptions.ant-descriptions-bordered .ant-descriptions-view {
+    border: 1px solid transparent !important;
+}:where(.css-dev-only-do-not-override-sk7ap8).ant-descriptions.ant-descriptions-bordered .ant-descriptions-item-label, :where(.css-dev-only-do-not-override-sk7ap8).ant-descriptions.ant-descriptions-bordered .ant-descriptions-item-content {
+    padding: 16px 24px;
+    border-inline-end: 1px solid transparent !important;
+}
+
+
+.descriptionTable
+{
+  background-color:#FAF9F6 ;
+   padding: 30;
+   border: 10px ;
+    border-radius: 10px;
+  overflow-y: scroll;
+      max-height: 325px; /* Set the maximum height to 220px */
+scroll-behavior: smooth; /* Enable smooth scrolling */
+     scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #9a9a9a transparent; 
+} 
+.descriptionChildern{
+      border-bottom: 1px solid transparent !important;
+    border: 1px solid transparent !important;
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+   background-color: rgb(255, 255, 255) ;
+   width:100%;
+   height:25px;
+   word-break: break-all !important;
+   border: 10px ;
+   margin-left: -5px;
+   box-shadow: rgba(0,0,0,0.05) 0px 6px 24px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px ;
+   border-radius: 5px;
+
+} 
+.descriptionTable::-webkit-scrollbar {
+  width: 2px !important; /* Width of the scrollbar */
+}
+
+.descriptionTable::-webkit-scrollbar-track {
+  background: transparent; /* Background color of the scrollbar track */
+}
+
+.descriptionTable::-webkit-scrollbar-thumb {
+  background-color: #9a9a9a; /* Color of the scrollbar thumb */
+     border-radius: 10px;
+    border: 3px solid #686868;
+  border-radius: 4px; /* Border radius of the scrollbar thumb */
+}
+.ant-descriptions-item-label{
+  font-weight: 600 !important;
+}
+.container-table{
+  margin-bottom: 50px !important;
+}
+.descriptionChildren{
+  padding: 5px;
+  background-color: rgb(255, 255, 255);
+ width: 100%; /* Set children width to 50% for equal width */
+  height: 100%;
+  word-break: keep-all !important;
+
+  border: 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.descriptionLabel{
+  /* width: auto; */
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  word-break: keep-all !important;
+}
+.margin-left-30{
+  margin-right: -15%;
+}
+.margin-left-40{
+  margin-right: -8%;
+  margin-left: 8%;
+
+}

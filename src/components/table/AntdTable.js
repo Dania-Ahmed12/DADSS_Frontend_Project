@@ -45,7 +45,7 @@ const StyledDiv = styled.div`
 
   .ant-table-content::-webkit-scrollbar {
     height: 2px;
-    width: 20px;
+    width: 2px;
     /* width of the entire scrollbar */
   }
   .ant-table-content::-webkit-scrollbar-track {
@@ -56,7 +56,7 @@ const StyledDiv = styled.div`
     background-color: #9a9a9a;
     // backgroundColor:transparent
     /* color of the scroll thumb */
-    border-radius: 20px;
+    border-radius: 10px;
     border: 3px solid #686868;
   }
 `;

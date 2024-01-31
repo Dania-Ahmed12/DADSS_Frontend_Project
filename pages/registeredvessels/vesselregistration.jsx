@@ -181,8 +181,8 @@ function RegisteredVesselData() {
                     message: "Please input a valid mobile number!",
                   },
                   {
-                    pattern: /^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/,
-                    message: "Please enter a valid mobile number!",
+                    pattern: /^\d{11}$/,
+                    message: "Please enter a valid 11-digit mobile number!",
                   },
                 ]}
               />

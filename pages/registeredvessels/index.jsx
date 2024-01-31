@@ -22,6 +22,8 @@ function Index() {
       title: "Details",
       dataIndex: "detail",
       key: "view",
+      width: 250,
+      ellipsis: false,
       render: (text, record) => (
         <Link
           className="text-midnight font-semibold"
@@ -53,7 +55,7 @@ function Index() {
         showButton={true}
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,9 +7,8 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import PositionBox from "../form/PositionBox";
 import { type_list, movement_list, port_list } from "../../helper/dropdown";
@@ -23,7 +22,7 @@ const StyledInput = styled.div`
   }
 `;
 function MerchantObservedTable(props) {
-  const { merchantObservedData, setMerchantObservedData , showButtons } = props;
+  const { merchantObservedData, setMerchantObservedData, showButtons } = props;
   const [MerchantObservedForm] = useForm();
   const [merchantObservedKey, setMerchantObservedKey] = useState("");
 
@@ -120,6 +119,8 @@ function MerchantObservedTable(props) {
   const merchantObservedColumns = [
     {
       title: "Longitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grm_position", "dms", 0],
       render: (text, record, index) => {
         if (
@@ -138,6 +139,8 @@ function MerchantObservedTable(props) {
     },
     {
       title: "Latitude",
+      ellipsis: false,
+      width: 250,
       dataIndex: ["grm_position", "dms", 1],
       render: (text, record, index) => {
         if (
@@ -156,7 +159,8 @@ function MerchantObservedTable(props) {
     },
     {
       title: "Vessel Name",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: "grm_name",
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
@@ -182,6 +186,8 @@ function MerchantObservedTable(props) {
     {
       title: "Vessel Type",
       dataIndex: "grm_type",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
           isMerchantObservedEditing(index) ? (
@@ -207,13 +213,14 @@ function MerchantObservedTable(props) {
     {
       title: "Vessel Movement",
       dataIndex: "grm_movement",
-      ellipsis: true,
-
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="grm_movement"
               placeholder="Select"
               rules={[
@@ -236,6 +243,8 @@ function MerchantObservedTable(props) {
     {
       title: "LPOC",
       dataIndex: "grm_lpoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
           isMerchantObservedEditing(index) ? (
@@ -261,12 +270,14 @@ function MerchantObservedTable(props) {
     {
       title: "NPOC",
       dataIndex: "grm_npoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.merchantObservedColumns && index === 0) |
           isMerchantObservedEditing(index) ? (
           <StyledInput>
             <SelectBox
-            style={{width:150}}
+              style={{ width: 150 }}
               name="grm_npoc"
               placeholder="Select"
               rules={[
@@ -403,7 +414,7 @@ export default MerchantObservedTable;
 const StyledDiv = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+  border-radius: 0px;
 `;
 const IconsStylingWrap = styled.div`
   display: flex;
