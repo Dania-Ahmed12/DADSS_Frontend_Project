@@ -211,7 +211,7 @@ function CreateUser() {
             md={24}
             lg={24}
             xl={24}
-            className="text-center mb-3 lg:text-right lg:mb-2 "
+            className="flex justify-end  text-center mb-3 lg:text-right lg:mb-2 "
           >
             {/* This Col contains the buttons and is aligned to the right on large screens */}
             <Form.Item >

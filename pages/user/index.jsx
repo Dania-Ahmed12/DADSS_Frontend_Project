@@ -57,7 +57,7 @@ function Index() {
           onSearchChange={setSearchData}
           onNavigate={handleClick}
           title="Users (List View)"
-          btnTitleMedia="+"
+          btnTitleMedia="+ Add"
           placeholder="Search"
           btnTitle="+ Create User"
           showButton={true}
