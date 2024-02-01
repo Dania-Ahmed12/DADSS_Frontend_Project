@@ -389,10 +389,8 @@ const Drawer = (props) => {
           breakpoint="lg"
           width={350}
           // collapsedWidth="100"
-          onBreakpoint={(broken) => {
-          }}
-          onCollapse={(collapsed, type) => {
-          }}
+          onBreakpoint={(broken) => {}}
+          onCollapse={(collapsed, type) => {}}
         >
           <div style={{ display: "flex", padding: "10px" }} className="trigger">
             {!collapsed ? (
@@ -488,33 +486,17 @@ const Drawer = (props) => {
             )}
           </Menu>
         </Sider>
-        <Layout style={{ height: "100vh" }}>
+        <Layout className="mt-12" style={{ height: "auto" }}>
           <Header
             style={{
-              // padding: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "end",
-              flexWrap: "wrap",
-              // background: colorBgContainer,
+              height: "auto",
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "end",
+              // flexWrap: "wrap",
               background: "#FAF9F6",
             }}
-          >
-            <Typography
-              style={{
-                paddingRight: "20px",
-                fontSize: "14px",
-                letterSpacing: "2px",
-              }}
-            >
-              {/* Hello {Cookies.get("username").toUpperCase()} */}
-            </Typography>
-            {/* <FilledButton
-              text="Logout"
-              onClick={handleLogout}
-              className="ml-8 border-midnight bg-midnight text-white"
-            /> */}
-          </Header>
+          ></Header>
           <Content
             className="p-2"
             style={{
@@ -525,7 +507,13 @@ const Drawer = (props) => {
           >
             {props.children}
           </Content>
-          <Footer className="h-auto flex items-end">
+          <Footer
+            className="h-auto flex items-end"
+            // style={{
+       
+            //   background: "#FAF9F6",
+            // }}
+          >
             <div>
               Copyright <span className="font-bold">Dadss</span> ©{" "}
               {new Date().getFullYear()} All Rights Reserved

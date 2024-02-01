@@ -5,21 +5,11 @@ const Home = () => {
     <div className="h-full flex justify-center flex-col ">
       <Heading
         level={3}
-        className="whitespace-nowrap p-10"
-        text=" Welcome To DADSS Dashboard..."
+        className="whitespace-nowrap p-0 ml-5 mb-5"
+        text=" Welcome To DADSS Dashboard"
       />
       <Dashboard />
     </div>
   );
 };
 export default Home;
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      data: {
-        title: "Dashboard",
-      },
-    },
-  };
-}
