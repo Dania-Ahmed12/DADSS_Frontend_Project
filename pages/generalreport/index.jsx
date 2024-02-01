@@ -44,7 +44,7 @@ function Index() {
         <PageHeader
           title="General Report (View/Add)"
           btnTitle="+ Add Report"
-          btnTitleMedia="+"
+          btnTitleMedia="+ Add"
           onSearchChange={setSearchData}
           onNavigate={handleNavigate}
           placeholder="Search"
