@@ -91,7 +91,7 @@ function Addownerdetail() {
         <Form
           form={form}
           layout="vertical"
-          className="shadow mx-14 px-3 py-10 bg-white"
+          className="shadow mx-5 px-3 py-10 bg-white"
         >
           <Row className="flex justify-center">
             <Col span={11}>

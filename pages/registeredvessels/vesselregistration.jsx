@@ -92,7 +92,7 @@ function RegisteredVesselData() {
           onFinish={handleSubmit}
         >
           <Row className="flex justify-center">
-            <Col span={11}>
+            <Col xs={24} sm={24} md={11} lg={11} xl={11}>
               <InputBox
                 label="Platform ID"
                 name="rv_id"
@@ -187,7 +187,7 @@ function RegisteredVesselData() {
                 ]}
               />
             </Col>
-            <Col span={11} offset={1}>
+            <Col xs={24} sm={24} md={11} lg={11} xl={11} className="ml-2 mr-2">
               <InputBox
                 label="Vessel ID"
                 className="input"
@@ -311,7 +311,31 @@ function RegisteredVesselData() {
               />
             </Col>
           </Row>
-          <Row className="flex justify-center">
+
+          <Row className="mt-5 flex justify-center">
+            <Col
+              xs={24}
+              sm={24}
+              md={24}
+              lg={24}
+              xl={24}
+              className="flex justify-end text-center mb-3 lg:text-right lg:mb-2 "
+            >
+              <Form.Item >
+                <OutlineButton
+                  text="Cancel"
+                  onClick={handleBack}
+                  className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white ml-3 mb-3 mr-4 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block"
+                />
+                <FilledButton
+                  text="Next"
+                  onClick={handleSubmit}
+                  className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3 mr-3 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block  "
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          {/* <Row className="flex justify-center">
             <Col span={23} className="flex justify-end">
               <div>
                 <OutlineButton
@@ -326,7 +350,7 @@ function RegisteredVesselData() {
                 />
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </Form>
       </div>
     </StyledDiv>

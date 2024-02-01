@@ -49,13 +49,19 @@ function Index() {
       <PageHeader
         title="Registered Fishing Vessels (List View)"
         btnTitle="+ Register Vessel"
+        btnTitleMedia="+ Add"
         onSearchChange={setSearchData}
         onNavigate={handleClick}
         placeholder="Search by Vessel ID, Name or Reg No"
         showButton={true}
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
+        <AntdTable
+          columns={columns}
+          data={data}
+          loading={isLoading}
+          scrollConfig={{ x: true }}
+        />
       </div>
     </>
   );
