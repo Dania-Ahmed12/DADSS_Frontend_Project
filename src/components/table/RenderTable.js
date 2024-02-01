@@ -6,7 +6,7 @@ import AntdTable from "./AntdTable";
 const TableItemRenderer = ({  title, columns, data, pagination }) => (
   <div className="mb-10 ">
     <div>
-      <Heading className="ml-5 " level={5} text={title} />
+      <Heading className="ml-5 " level={4} text={title} />
     </div>
     <div>
       <AntdTable

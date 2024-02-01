@@ -47,15 +47,15 @@ function PageHeader(props) {
         <Col
           xs={24}
           sm={24}
-          md={12}
-          lg={12}
+          md={14}
+          lg={14}
           xl={12}
           xxl={12}
           className="flex justify-start "
         >
           <Heading className=" whitespace-nowrap ml-5" level={4} text={title} />
         </Col>
-        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+        <Col xs={24} sm={24} md={10} lg={10} xl={12} xxl={12}>
           {showSearchBox && (
             <div className="flex justify-end mr-5">
               <Input
