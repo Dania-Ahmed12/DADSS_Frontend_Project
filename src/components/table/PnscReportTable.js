@@ -96,7 +96,6 @@ function PnscTable(props) {
   const onPnscReportFinish = async () => {
     const validatedValues = await pnscReportForm.validateFields();
     // Log the data
-    console.log("Adding data:", validatedValues);
     if (validatedValues) {
       setPnscReport((current) => [
         ...current,
@@ -125,7 +124,6 @@ function PnscTable(props) {
     }
   };
 
-  console.log(pnscReport);
 
   const sendPnscReport = async () => {
     try {

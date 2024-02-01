@@ -30,7 +30,6 @@ function LostReportTable(props) {
   const dispatch = useDispatch();
 
   const { lostReport, setLostReport } = props;
-  console.log(lostReport);
   const [lostReportForm] = useForm();
   const [lostReportKey, setLostReportKey] = useState("");
 
@@ -123,7 +122,6 @@ function LostReportTable(props) {
       lostReportForm.resetFields();
     }
   };
-  console.log(lostReport);
 
   const sendLostReports = async () => {
     try {
@@ -143,7 +141,6 @@ function LostReportTable(props) {
       //     coordinates: DMStodecimal(report.lr_position.dms),
       //   },
       // }));
-      // console.log(finalData)
 
       // Extracting only coordinates
       const coordinatesOnly = lostReport.map((report) => ({
@@ -156,7 +153,6 @@ function LostReportTable(props) {
           ],
         },
       }));
-      console.log(coordinatesOnly);
       // Dispatch the action with the data
       dispatch(addLostReport(coordinatesOnly));
       setLostReport([]);

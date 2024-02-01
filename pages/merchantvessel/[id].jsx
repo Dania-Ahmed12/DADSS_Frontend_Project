@@ -22,7 +22,6 @@ function Details({ data }) {
   const dispatch = useDispatch();
   const { id, vessel } = router.query;
   const parsedVesselData = JSON.parse(vessel);
-  console.log(vessel);
   const init_platform_data = { msr_pf_id: Cookies.get("u_pf_id") };
   const [platformData, setPlatformData] = useState(init_platform_data);
   const [platformDataEntered, setPlatformDataEntered] = useState(false);

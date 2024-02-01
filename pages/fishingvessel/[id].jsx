@@ -158,13 +158,15 @@ function Details({ data }) {
   }, []);
 
   // Map vesselcolumns to extract label and children
-const items = vesselcolumns.map((column) => ({
-  label: column.title,
-  children:
-    column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
-      ? dayjs(parsedVesselData[column.dataIndex]).format("YYYY-MM-DD HH:mm:ss") // Format the date if it's "Registered ON"
-      : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
-}));
+  const items = vesselcolumns.map((column) => ({
+    label: column.title,
+    children:
+      column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
+        ? dayjs(parsedVesselData[column.dataIndex]).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ) // Format the date if it's "Registered ON"
+        : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
+  }));
 
   const transposeData = vesselcolumns.map((column) => {
     let value = parsedVesselData[column.dataIndex];
@@ -212,7 +214,6 @@ const items = vesselcolumns.map((column) => ({
             />
           ) : (
             <FilledButton
-              // disabled={platformData.length > 1}
               style={{ marginLeft: "auto" }}
               text="+ Add Fishing Data"
               className="rounded-full border-midnight bg-midnight text-white mr-4"

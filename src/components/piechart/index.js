@@ -53,7 +53,6 @@ const PieChart = () => {
     ],
   };
   const handleChange = (value) => {
-    //console.log(`selected ${value}`);
   };
   return (
     <>

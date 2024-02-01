@@ -390,10 +390,8 @@ const Drawer = (props) => {
           width={350}
           // collapsedWidth="100"
           onBreakpoint={(broken) => {
-            //console.log(broken);
           }}
           onCollapse={(collapsed, type) => {
-            //console.log(collapsed, type);
           }}
         >
           <div style={{ display: "flex", padding: "10px" }} className="trigger">

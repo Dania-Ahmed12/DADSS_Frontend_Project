@@ -139,7 +139,6 @@ const NarcoticsMap = () => {
     // ]
   });
   const handleChange = (value) => {
-    //console.log(`selected ${value}`);
   };
   return (
     <>

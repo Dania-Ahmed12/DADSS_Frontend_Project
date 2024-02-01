@@ -57,7 +57,6 @@ function Stackbar(props) {
         })),
       };
     });
-    //console.log(stackedData);
     const stack = d3.stack().keys(["arrivals", "departures"]);
 
     stackedData.forEach((locationData) => {

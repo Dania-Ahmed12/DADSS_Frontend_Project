@@ -45,9 +45,8 @@ const ExpandedTableBody = styled.div`
 `;
 
 
-function Details({ data , firstData }) {
-  console.log(data);
-  console.log(firstData);
+function Details({ data }) {
+
   const router = useRouter();
   // Retrieve merchant vessel details from the query parameter
   const { id, vessel } = router.query;
@@ -126,7 +125,6 @@ function Details({ data , firstData }) {
           <div
             className="text-midnight font-semibold custom-a"
             onClick={() => {
-              console.log(record.mtd_key); // Log the expanded data to see its structure
               setClickedRowData(record.mtd_key);
               setModalVisible(true);
             }}

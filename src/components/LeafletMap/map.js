@@ -16,7 +16,6 @@ const MapContainerComponent = ({
   subTitle
 }) => {
   const mapRef = useRef(null);
-  //console.log(data);
 
   useEffect(() => {
     // Initialize the map
@@ -85,7 +84,6 @@ const MapContainerComponent = ({
     // Add this logging statement
     if (data) {
       data.forEach((marker, index) => {
-        //console.log(`Processing marker at index ${index}:`, marker);
         const { lat, lng, label } = marker;
         // Check if lat and lng are defined before creating the marker
         if (lat !== undefined && lng !== undefined) {

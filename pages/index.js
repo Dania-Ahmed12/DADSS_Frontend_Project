@@ -64,11 +64,9 @@ const Home = () => {
         router,
       };
       dispatch(loginApi(valuesWithNav));
-      // //console.log("Success:", validatedValues);
     }
   };
   const onFinishFailed = (errorInfo) => {
-    //console.log("Failed:", errorInfo);
   };
   useEffect(() => {
     if (Cookies.get("token")) {
@@ -78,7 +76,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <ToastContainer /> */}
       <Row className="h-screen flex justify-center">
         <Col span={8} className="flex justify-center items-center">
           <StyledContent>

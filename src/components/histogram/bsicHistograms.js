@@ -5,7 +5,6 @@ import { Col, Row, Select } from "antd";
 
 function BasicHistograms(props) {
   const { title, subTitle, data, isGroup } = props;
-  //console.log("Data prop in DemoColumn:", data);
 
   // Check if the data prop is undefined or not an array
   if (!data || !Array.isArray(data) || data.length === 0) {
@@ -47,8 +46,7 @@ function BasicHistograms(props) {
       },
     },
   };
-  //console.log("Config:", configssss);
-  //console.log("Data:", data);
+
   return (
     <Row
       style={{

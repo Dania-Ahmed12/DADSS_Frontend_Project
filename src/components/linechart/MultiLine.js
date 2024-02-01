@@ -3,12 +3,10 @@ import { Line } from "@ant-design/plots";
 import { Col, Row } from "antd";
 
 const DemoLine = ({ title, subTitle, data }) => {
-  //console.log("Data prop in DemoColumn:", data);
 
   // Check if the data prop is undefined, empty object, or an empty array
   // if (!data || (typeof data === "object" && Object.keys(data).length === 0))
   if (data.length === null || data.length === 0) {
-    //console.log("Data dis not availabe");
     // Return only title and subTitle when data is not available
     return (
       <div>

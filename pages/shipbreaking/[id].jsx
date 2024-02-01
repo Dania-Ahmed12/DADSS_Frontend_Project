@@ -161,13 +161,11 @@ function transposeData(data) {
 
 
 function RegisteredShipBreakDetails({ data }) {
-console.log(data)
 
   // Map vesselcolumns to extract label and children
   // const items = ShippingDetailcolumns.map((column) => {
     
   //   let value = data[0][column.dataIndex];
-  //   console.log(value)
 
   //   // Convert boolean values to "Yes" or "No"
   //   if (typeof value === "boolean") {

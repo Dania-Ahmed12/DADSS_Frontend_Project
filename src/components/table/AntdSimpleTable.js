@@ -66,7 +66,6 @@ function AntdSimpleTable() {
   ]);
   const [editingKey, setEditingKey] = useState("");
   const [count, setCount] = useState(dataSource.length);
-  // //console.log("count", count);
   const isEditing = (record) => record.key === editingKey;
   const edit = (key) => {
     setEditingKey(key);
@@ -115,7 +114,6 @@ function AntdSimpleTable() {
   //     }
   //   });
   // };
-  //   //console.log("count", count);
   const edited = (key) => {
     setDataSource((prevState) => {
       const newState = prevState.map((item) => {

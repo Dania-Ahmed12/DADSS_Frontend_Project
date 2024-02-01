@@ -4,7 +4,6 @@ import Link from "next/link";
 export const withAuth = (WrappedComponent) => {
   const Wrapper = (props) => {
     const { isLoggedIn } = useSelector((store) => store.loginAuth);
-    // //console.log("isLoggedIn", isLoggedIn);
     if (isLoggedIn) {
       return <WrappedComponent {...props} />;
     } else {

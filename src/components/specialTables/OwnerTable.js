@@ -320,6 +320,8 @@ function OwnerTable(props) {
     {
       title: "",
       dataIndex: "action",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showButtons) {
           if (showInputs.ownerColumns && index === 0) {
@@ -404,7 +406,6 @@ function OwnerTable(props) {
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-         
           <Heading
             className=" whitespace-nowrap ml-5"
             level={5}
@@ -413,12 +414,20 @@ function OwnerTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Owner Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleOwnerColumnShowInput}
-              disabled={ownerKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Owner Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleOwnerColumnShowInput}
+                disabled={ownerKey !== ""}
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleOwnerColumnShowInput}
+                disabled={ownerKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>

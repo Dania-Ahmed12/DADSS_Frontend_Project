@@ -4,7 +4,6 @@ import { Col, Row, Select } from "antd";
 
 const DemoColumn = (props) => {
   const { title, subTitle, data, isGroup } = props;
-  //console.log("Data prop in DemoColumn:", data);
 
   // Check if the data prop is undefined or not an array
   if (!data || !Array.isArray(data) || data.length === 0) {

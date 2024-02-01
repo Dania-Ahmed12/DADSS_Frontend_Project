@@ -254,7 +254,6 @@ function RoutesFlowMap() {
   ];
 
   const onHandleChange = (checked) => {
-    //console.log(`switch to ${checked}`);
   };
   return (
     <div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Form,  Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,14 +7,11 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast, } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
-import {
-  country_list,
-  ethnicity_list,
-} from "../../helper/dropdown";
+import { country_list, ethnicity_list } from "../../helper/dropdown";
 import AntdTable from "../table/AntdTable";
 
 function FishingNakwaTable(props) {
@@ -276,12 +273,20 @@ function FishingNakwaTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Nakwa Details"
-              className="rounded-full border-midnight bg-midnight text-white mx-8"
-              onClick={handleNakwaShowInput}
-              disabled={nakwaDataEntered}
-            />
+            <>
+              <FilledButton
+                text="+ Add Nakwa Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleNakwaShowInput}
+                disabled={nakwaDataEntered}
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleNakwaShowInput}
+                disabled={nakwaDataEntered}
+              />
+            </>
           )}
         </Col>
       </Row>

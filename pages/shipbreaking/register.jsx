@@ -100,7 +100,6 @@ function Register() {
           mv_ais_type_summary: validatedValues.mv_ais_type_summary,
           sb_comm_equip_list: validatedValues.sb_comm_equip_list,
         };
-        console.log("shipping data ", data);
 
         // Navigate to the next page with the prepared data
         router.push({

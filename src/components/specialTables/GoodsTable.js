@@ -141,6 +141,8 @@ function GoodsTable(props) {
   const goodsColumns = [
     {
       title: "Item",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.item,
       render: (text, record, index) => {
         // Conditionally render an input field or existing text
@@ -149,7 +151,7 @@ function GoodsTable(props) {
           // If conditions met, render an input field
           <StyledInput>
             <InputBox
-              style={{ width: 100 }}
+              style={{ width: 150 }}
               placeholder="Item"
               name={reportKeys.item}
               rules={[
@@ -169,11 +171,14 @@ function GoodsTable(props) {
     {
       title: "Quantity",
       dataIndex: reportKeys.qty,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Quantity"
               name={reportKeys.qty}
               type="number"
@@ -193,12 +198,14 @@ function GoodsTable(props) {
     {
       title: "Denomination",
       dataIndex: reportKeys.denomination,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 100 }}
+              style={{ width: 150 }}
               placeholder="Denomination"
               name={reportKeys.denomination}
               rules={[
@@ -216,13 +223,15 @@ function GoodsTable(props) {
     },
     {
       title: "Category",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.category,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Category"
               name={reportKeys.category}
               onChange={handleCategoryChange}
@@ -240,13 +249,15 @@ function GoodsTable(props) {
     },
     {
       title: "Sub Category",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.subcategory,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Sub Category"
               name={reportKeys.subcategory}
               onChange={(value) => setSelectedSubcategory(value)}
@@ -274,12 +285,15 @@ function GoodsTable(props) {
     },
     {
       title: "Confiscated",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.confiscated,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Confiscated"
               name={reportKeys.confiscated}
               rules={[
@@ -301,12 +315,15 @@ function GoodsTable(props) {
     },
     {
       title: "Value $",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.value,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Value"
               name={reportKeys.value}
               type="number"
@@ -325,13 +342,15 @@ function GoodsTable(props) {
     },
     {
       title: "Source",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.source,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 100 }}
+              style={{ width: 150 }}
               placeholder="Source"
               name={reportKeys.source}
               rules={[
@@ -429,13 +448,10 @@ function GoodsTable(props) {
       },
     },
   ];
-  // Log goodsData in the GoodsTable component
-  console.log("goodsData:", goodsData);
+
 
   return (
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
           <Heading
@@ -446,12 +462,20 @@ function GoodsTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Goods Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleGoodsColumnShowInput}
-              disabled={goodsKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Goods Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleGoodsColumnShowInput}
+                disabled={goodsKey !== ""}
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleGoodsColumnShowInput}
+                disabled={goodsKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>

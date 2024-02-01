@@ -326,7 +326,6 @@ const Index = () => {
   };
 
   const onChange = (checkedValues) => {
-    //console.log("checked = ", checkedValues);
   };
   useEffect(() => {
     if (value <= 10 && value >= 9) {
@@ -369,15 +368,12 @@ const Index = () => {
     if (value <= 1 && value >= 0) {
       initialHeatColor[12] = "#00008E";
       setHeatColor(heatColor);
-      //console.log(initialHeatColor);
     }
   }, [value]);
 
   const onHandleChange = (checked) => {
-    //console.log(`switch to ${checked}`);
   };
   const handleChange = (value) => {
-    //console.log(`selected ${value}`);
   };
   return (
     <>

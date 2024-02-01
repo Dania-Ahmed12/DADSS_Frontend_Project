@@ -258,6 +258,8 @@ function FishingTripTable(props) {
     {
       title: "",
       dataIndex: "action",
+      width: 250,
+      ellipsis: false,
       render: (text, record, index) => {
         if (showButtons) {
           if (showInputs.tripColumns) {
@@ -346,12 +348,20 @@ function FishingTripTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Trip Details"
-              className="rounded-full border-midnight bg-midnight text-white mx-8"
-              onClick={handleTripShowInput}
-              disabled={tripDataEntered}
-            />
+            <>
+              <FilledButton
+                text="+ Add Trip Details"
+                className="rounded-full border-midnight bg-midnight text-white mx-8 mr-4 custom-css-pageheaderButton"
+                onClick={handleTripShowInput}
+                disabled={tripDataEntered}
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleTripShowInput}
+                disabled={tripDataEntered}
+              />
+            </>
           )}
         </Col>
       </Row>

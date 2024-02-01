@@ -7,7 +7,6 @@ import * as turf from "@turf/turf";
 // const coordinates = [24.800780549836446, 67.02134942614677];
 // const splineInterpolate = (line) => {
 //   const spline = turf.bezierSpline(line);
-//   //console.log(spline);
 //   return spline.geometry.line;
 // };
 // splineInterpolate()
@@ -42,7 +41,6 @@ var featureCollection = turf.featureCollection([
   curved2,
   curved3,
 ]);
-//console.log("curved", featureCollection);
 
 const geojson = {
   type: "FeatureCollection",
@@ -203,7 +201,6 @@ const NarcoticsMap = () => {
     // ]
   });
   const handleChange = (value) => {
-    //console.log(`selected ${value}`);
   };
 
   // React.useEffect(()=> {

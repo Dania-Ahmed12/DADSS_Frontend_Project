@@ -12,7 +12,6 @@ export const fetchMerchantDetails = createAsyncThunk(
       );
       if (response.status === 200) return response.data;
     } catch (error) {
-      console.log("error", error);
     }
   }
 );

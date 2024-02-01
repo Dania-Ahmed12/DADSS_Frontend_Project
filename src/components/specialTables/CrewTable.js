@@ -123,13 +123,15 @@ function CrewTable(props) {
   const commonColumns = [
     {
       title: "Name",
-      // dataIndex: "src_name",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.name,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Name"
               // name="src_name"
               name={reportKeys.name}
@@ -148,13 +150,15 @@ function CrewTable(props) {
     },
     {
       title: "Nationality",
-      // dataIndex: "src_nationality",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.nationality,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="Nationality"
               // name="src_nationality"
               name={reportKeys.nationality}
@@ -176,13 +180,15 @@ function CrewTable(props) {
   const additionalColumn1 = [
     {
       title: "ID Type",
-      // dataIndex: "src_idtype",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.idtype,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="ID Type"
               // name="src_idtype"
               name={reportKeys.idtype}
@@ -201,13 +207,15 @@ function CrewTable(props) {
     },
     {
       title: "ID Number",
-      // dataIndex: "src_id",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.id,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="ID"
               // name="src_id"
               name={reportKeys.id}
@@ -226,19 +234,16 @@ function CrewTable(props) {
     },
     {
       title: "ID Exp. Date",
-      // dataIndex: "src_idexpdt",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.idexpdt,
       render: (text, record, index) => {
         if ((showInputs.crewColumns && index === 0) | isCrewEditing(index)) {
           return (
             <StyledInput>
               <DateBox
-                style={{ width: 180 }}
+                style={{ width: 150 }}
                 format="YYYY-MM-DD"
-                // showTime={{
-                //   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                // }}
-                // name="src_idexpdt"
                 name={reportKeys.idexpdt}
                 rules={[
                   {
@@ -259,7 +264,8 @@ function CrewTable(props) {
     },
     {
       title: "Ethnicity",
-      // dataIndex: "src_ethnicity",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.ethnicity,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
@@ -267,7 +273,7 @@ function CrewTable(props) {
           <StyledInput>
             <InputBox
               placeholder="Ethinicity"
-              // name="src_ethnicity"
+              style={{ width: 150 }}
               name={reportKeys.ethnicity}
               rules={[
                 {
@@ -285,7 +291,8 @@ function CrewTable(props) {
     {
       title: "Mobile Number",
       ellipsis: true,
-      // dataIndex: "src_cell",
+      ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.cell,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
@@ -293,7 +300,7 @@ function CrewTable(props) {
           <StyledInput>
             <InputBox
               placeholder="0332-4324223"
-              // name="src_cell"
+              style={{ width: 150 }}
               name={reportKeys.cell}
               pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
               rules={[
@@ -320,6 +327,8 @@ function CrewTable(props) {
     {
       title: "",
       dataIndex: "action",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showButtons) {
           if (showInputs.crewColumns && index === 0) {
@@ -401,40 +410,6 @@ function CrewTable(props) {
   ];
 
   const additionalColumn2 = [
-    // {
-    //   title: "Total Number of Crew on Board",
-    //   // width:250,
-    //   // dataIndex: "src_ethnicity",
-    //   dataIndex: reportKeys.total,
-    //   render: (text, record, index) => {
-    //     return (showInputs.crewColumns && index === 0) |
-    //       isCrewEditing(index) ? (
-    //       <StyledInput className="mt-4">
-    //         <InputNumBox
-    //           // mode="tags"
-    //           paceholder="Entr Crew Number
-    //           "
-    //           className="input"
-    //           name={reportKeys.total}
-    //           type="number"
-    //           style={{
-    //             width: "100%",
-    //           }}
-    //           // placeholder="Tags Mode"
-    //           // onChange={handleChange}
-    //           rules={[
-    //             {
-    //               required: true,
-    //               message: "Please select a nationality!",
-    //             },
-    //           ]}
-    //         />
-    //       </StyledInput>
-    //     ) : (
-    //       text
-    //     );
-    //   },
-    // },
     {
       title: "",
       dataIndex: "action",
@@ -525,33 +500,8 @@ function CrewTable(props) {
   ];
 
   return (
-    // <Form form={crewForm} onFinish={onCrewFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Crew Details" />
-    //       {showButtons && (
-    //         <FilledButton
-    //           text="+ Add Crew Details"
-    //           className="rounded-full border-midnight bg-midnight text-white"
-    //           onClick={handleCrewColumnShowInput}
-    //           disabled={crewKey !== ""}
-    //         />
-    //       )}
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    // scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    // columns={crewColumns}
-    // dataSource={showInputs.crewColumns ? [{}, ...crewData] : crewData}
-    // pagination={true}
-    // className={className} // Use the className prop here
-    //     />
-    //   </StyledDiv>
-    // </Form>
+   
     <div className="mb-10">
-      {/* //{" "} */}
-      {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
           <Heading
@@ -562,12 +512,20 @@ function CrewTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Crew Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleCrewColumnShowInput}
-              disabled={crewKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Crew Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleCrewColumnShowInput}
+                disabled={crewKey !== ""}
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleCrewColumnShowInput}
+                disabled={crewKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>
@@ -575,7 +533,7 @@ function CrewTable(props) {
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-        scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
         columns={crewColumns}
         data={showInputs.crewColumns ? [{}, ...crewData] : crewData}
         pagination={true}
