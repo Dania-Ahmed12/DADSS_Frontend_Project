@@ -474,16 +474,18 @@ const Drawer = (props) => {
             {/* Conditionally render based on sidebar collapsed state */}
             {collapsed ? (
               // Only show the icon when sidebar is collapsed
-              <div className="custom-logout-icon">
+              <div className="custom-logout-icon" onClick={handleLogout}>
                 <img src="/images/power.png" alt="Logout Icon" />
               </div>
             ) : (
               // Show both icon and text when sidebar is expanded
               <>
-                <div className="custom-logout-icon">
+                <div className="custom-logout-icon" onClick={handleLogout}>
                   <img src="/images/power.png" alt="Logout Icon" />
                 </div>
-                <div className="mt-5 ml-4 media-logout ">Logout</div>
+                <div className="mt-5 ml-4 media-logout " onClick={handleLogout}>
+                  Logout
+                </div>
               </>
             )}
           </Menu>
@@ -516,8 +518,7 @@ const Drawer = (props) => {
             /> */}
           </Header>
           <Content
-              className="p-2"
-
+            className="p-2"
             style={{
               // background: colorBgContainer,
               background: "#FAF9F6",

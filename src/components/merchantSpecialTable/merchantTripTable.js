@@ -350,18 +350,22 @@ return (
   <div className="mb-10">
     <Row>
       <Col span={12} className="flex justify-start">
-        <Heading className="ml-5" level={5} text="Trip Details" />
+        <Heading
+          className="whitespace-nowrap ml-5"
+          level={5}
+          text="Trip Details"
+        />
       </Col>
       <Col span={12} className="flex justify-end">
-          {showButtons && (
-            <FilledButton
-              text="+ Add Trip Details"
-              className="rounded-full border-midnight bg-midnight text-white mx-8"
-              onClick={handleTripShowInput}
-              disabled={tripDataEntered}
-            />
-          )}
-        </Col>
+        {showButtons && (
+          <FilledButton
+            text="+ Add Trip Details"
+            className="rounded-full border-midnight bg-midnight text-white mx-8"
+            onClick={handleTripShowInput}
+            disabled={tripDataEntered}
+          />
+        )}
+      </Col>
     </Row>
     {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
@@ -372,7 +376,6 @@ return (
       form={tripForm}
       onFinish={onTripFinish}
     />
-
   </div>
 );
 }

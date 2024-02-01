@@ -470,8 +470,8 @@ const Index = () => {
         </Col>
       </Row>
       <Heading
-        className="font-normal"
         level={3}
+        className="whitespace-nowrap font-normal "
         text="Fishing Vessel Concentration at Sea/ Fishing Density (POL)"
       />
       <Map

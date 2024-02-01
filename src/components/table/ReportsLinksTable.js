@@ -48,7 +48,11 @@ function ReportsLinksTable(props) {
     <Form form={reportLinkForm} className="mb-8">
       <Row className="mb-5">
         <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Report Links" />
+          <Heading
+            level={5}
+            text="Report Links"
+            className="  whitespace-nowrap ml-5"
+          />
         </Col>
       </Row>
       <StyledDiv>

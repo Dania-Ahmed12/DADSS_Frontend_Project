@@ -184,7 +184,11 @@ function IntelDetails({ data }) {
     <div>
       <PageHeader showSearchBox={false} title="Intel Report " />
       <div className="mt-4 flex">
-        <Heading className="ml-5 " level={5} text="Macro Data" />
+        <Heading
+          className="whitespace-nowrap ml-5 "
+          level={5}
+          text="Macro Data"
+        />
       </div>
       <section className="mb-10">
         {/* <Descriptions
@@ -205,7 +209,7 @@ function IntelDetails({ data }) {
           bordered={true}
           colon={true}
           borderColor="transparent"
-          column={{ xs: 1, sm: 2, md: 2, lg: 3}}
+          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
         >
           {items.map((item, index) => (
             <Descriptions.Item
@@ -214,13 +218,11 @@ function IntelDetails({ data }) {
               span={index === items.length - 1 ? 1 : undefined}
             >
               <Row className="flex">
-                <Col span={10} className="flex justify-start " >
+                <Col span={10} className="flex justify-start ">
                   <div className="descriptionLabel ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end" >
-                  <div className="descriptionChildren ">
-                    {item.children}
-                  </div>
+                <Col span={14} className="flex justify-end">
+                  <div className="descriptionChildren ">{item.children}</div>
                 </Col>
               </Row>
               {/* </div> */}

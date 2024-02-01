@@ -386,7 +386,11 @@ function PlatformTable(props) {
   return (
     <Form form={platformForm} onFinish={onPlatformFinish}>
       <div className="mb-5 flex">
-        <Heading level={5} text="Own Platform Data" />
+        <Heading
+          level={5}
+          text="Own Platform Data"
+          className="whitespace-nowrap "
+        />
         {showButtons && (
           <FilledButton
             disabled={data && platformData.length > 1 ? true : false}

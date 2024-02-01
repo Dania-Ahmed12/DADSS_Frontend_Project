@@ -44,6 +44,7 @@ function Index() {
         <PageHeader
           title="General Report (View/Add)"
           btnTitle="+ Add Report"
+          btnTitleMedia="+"
           onSearchChange={setSearchData}
           onNavigate={handleNavigate}
           placeholder="Search"
@@ -51,7 +52,12 @@ function Index() {
         />
       </div>
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
+        <AntdTable
+          columns={columns}
+          data={data}
+          loading={isLoading}
+          scrollConfig={{ x: true }}
+        />
       </div>
     </>
   );

@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { Col, Row, message } from "antd";
-import Heading from "../../src/components/title/Heading";
 import { useRouter } from "next/router";
-import { RxArrowLeft } from "react-icons/rx";
 import styled from "styled-components";
 import FilledButton from "../../src/components/button/FilledButton";
-import { useForm } from "antd/lib/form/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { saveGeneralReport } from "../../src/redux/thunks/generalReportData";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import FishingDensityTable from "../../src/components/table/FishingDensityTable";
@@ -28,11 +24,7 @@ import {
 import ActivityLikelinessTable from "../../src/components/table/ActivityLikelinessTable";
 import Miscellaneous from "../../src/components/table/miscellaneous";
 import PageHeader from "../../src/components/pageheader/pageHeader";
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
+import Heading from "../../src/components/title/Heading";
 
 const AddGeneralInput = () => {
   const router = useRouter();
@@ -97,20 +89,6 @@ const AddGeneralInput = () => {
         showSearchBox={false}
         title="ADD General Report"
       />
-
-      {/* <Row>
-        <Col span={23} className="flex justify-end mb-4">
-          <FilledButton
-            text="Save Report"
-            loading={generalReportState.isLoading}
-            disabled={!platformDataEntered}
-            onClick={handleSendGeneralReport}
-            className="rounded-full border-lightgreen bg-lightgreen text-white"
-            htmlType="submit"
-          />
-        </Col>
-      </Row> */}
-
       <Row className="items-center mb-4">
         <Col span={6}></Col>
         <Col span={18} className="flex justify-end">
@@ -135,9 +113,7 @@ const AddGeneralInput = () => {
           )}
         </Col>
       </Row>
-
       {/*-----------------------------------Own Platform Data (First Table)-------------------------------------*/}
-
       <OwnPlatformTable
         platformData={platformData}
         setPlatformData={setPlatformData}
@@ -149,21 +125,205 @@ const AddGeneralInput = () => {
           setPlatformDataEntered: setPlatformDataEntered,
         }}
       />
-
+      {/*-----------------------------------Cntinued Already Reported Activity-------------------------------------*/}
+      <Row className="mb-5">
+        <Col>
+          <Heading
+            level={5}
+            text="Continue Already Reported Activity"
+            className="whitespace-nowrap ml-5 flex justify-start"
+          />
+        </Col>
+        <Col>
+          <SelectBox
+            size="medium"
+            placeholder="Choose"
+            className="ml-5 input "
+            options={[
+              { value: "Yes", label: "Yes" },
+              { value: "No", label: "No" },
+            ]}
+          />
+        </Col>
+      </Row>
+      {/*-----------------------------------Report Links (Second Table)-------------------------------------*/}
+      <Heading
+        level={5}
+        text="   Previous Special Reports"
+        className="mb-5 whitespace-nowrap ml-5 flex justify-start"
+      ></Heading>
+      <StyledInput>
+        <Row className="mb-5">
+          <Col>
+            <Heading
+              level={5}
+              text=" Date Time"
+              className="whitespace-nowrap ml-5 flex justify-start"
+            ></Heading>
+          </Col>
+          <Col>
+            <Heading
+              level={5}
+              text="Links"
+              className="whitespace-nowrap ml-5 flex justify-start"
+            ></Heading>
+          </Col>
+        </Row>
+        <Row className="mb-2">
+          <Col className="ml-5 mr-5">
+            <p>22/12/2023</p>
+          </Col>
+          <Col className="ml-5 mr-5">
+            <a
+              href="your_actual_link_here"
+              target="_blank"
+              style={{ color: "blue" }}
+            >
+              https://www.wikipedia.org/
+            </a>
+          </Col>
+        </Row>
+        <Row className="mb-10">
+          <Col className="ml-5 mr-5">
+            <p>22/12/2023</p>
+          </Col>
+          <Col className="ml-5 mr-5">
+            <a
+              href="your_actual_link_here"
+              target="_blank"
+              style={{ color: "blue" }}
+            >
+              https://www.wikipedia.org/
+            </a>
+          </Col>
+        </Row>
+      </StyledInput>
+      {/*-----------------------------------Activity Likely (Second Table)-------------------------------------*/}
+      <ActivityLikelinessTable
+        activtyData={activtyData}
+        showButtons={showButtons}
+        setactivtyData={setactivtyData}
+      />
+      {/*-----------------------------------Limitation Condition  (Second Table)-------------------------------------*/}
+      <StyledInput>
+        <Row className="mb-5">
+          <Col className="mr-5">
+            <Heading
+              level={5}
+              text="Limitation Condition"
+              className="whitespace-nowrap ml-5 mb-2 flex justify-start"
+            />
+            <SelectBox
+              className="ml-5 mb-4"
+              name="machinery defects"
+              placeholder="Select Activity Type"
+              options={condition.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
+          </Col>
+          <Col>
+            <Heading
+              level={5}
+              text="Likeliness"
+              className="whitespace-nowrap ml-5 mb-2 flex justify-start"
+            />
+            <SelectBox
+              className="ml-5"
+              name="machinery defects"
+              placeholder="Select likeliness"
+              options={ReaonCondition.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
+          </Col>
+        </Row>
+      </StyledInput>
+      {/*-----------------------------------Event Support REcieved and Level (Second Table)-------------------------------------*/}
+      <StyledInput>
+        <Row className="mb-5">
+          <Col className="mr-5">
+            <Heading
+              level={5}
+              text="Types of  Event"
+              className="whitespace-nowrap ml-5 mb-2 flex justify-start"
+            />
+            <SelectBox
+              className="ml-5 mb-4"
+              name="machinery defects"
+              placeholder="Select Event Type"
+              options={TypeOfEvents.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
+          </Col>
+          <Col className="mr-5">
+            <Heading
+              level={5}
+              text="Support Recieved"
+              className="whitespace-nowrap ml-5 mb-2 flex justify-start"
+            />
+            <SelectBox
+              className="ml-5 mb-4"
+              name="machinery defects"
+              placeholder="Select Support Recieved"
+              options={supportRecieved.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
+          </Col>
+          <Col>
+            <Heading
+              level={5}
+              text="Support Level"
+              className="whitespace-nowrap ml-5 mb-2 flex justify-start"
+            />
+            <SelectBox
+              className="ml-5"
+              name="machinery defects"
+              placeholder="Select Support Level"
+              options={supportLevel.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
+          </Col>
+        </Row>
+      </StyledInput>
+      {/* -----------------------------------Add Fresh Water %(Second Table)------------------------------------- */}
+      <FreshWaterTable
+        freshWaterData={freshWaterData}
+        setFreshWaterData={setFreshWaterData}
+        showButtons={showButtons}
+      />
+      {/*-----------------------------------Limitation Affecting Ops Commitment (Second Table)-------------------------------------*/}
+      <LimitationOpsCommittment
+        limitOps={limitOps}
+        setLimitOps={setLimitOps}
+        showButtons={showButtons}
+      />
+      {/*-----------------------------------Missceallanous(Second Table)-------------------------------------*/}
+      <Miscellaneous
+        freshWaterData={freshWaterData}
+        showButtons={showButtons}
+        setFreshWaterData={setFreshWaterData}
+      />
       {/*-----------------------------------Fishing Density (Second Table)-------------------------------------*/}
       <FishingDensityTable
         fishingDensityData={fishingDensityData}
         setFishingDensityData={setFishingDensityData}
         showButtons={showButtons}
       />
-
       {/*-----------------------------------Fishing Observed (Third Table)-------------------------------------*/}
       <FishingObservedTable
         fishingObservedData={fishingObservedData}
         setFishingObservedData={setFishingObservedData}
         showButtons={showButtons}
       />
-
       {/* -----------------------------------Merchant Vessel (Fourth Table)------------------------------------- */}
       <MerchantObservedTable
         merchantObservedData={merchantObservedData}
@@ -184,24 +344,8 @@ export async function getServerSideProps() {
     },
   };
 }
-const IconsStylingWrap = styled.div`
-  display: flex;
-  /* gap: 20px; */
-  .editIcon {
-    color: #28387e;
-    background-color: #f0f3f8;
-    border-radius: 20px;
-    font-size: 25px;
-    padding: 5px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  .deleteIcon {
-    color: #e96162;
-    background-color: #f9e7e8;
-    border-radius: 20px;
-    font-size: 25px;
-    padding: 5px;
-    cursor: pointer;
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
   }
 `;

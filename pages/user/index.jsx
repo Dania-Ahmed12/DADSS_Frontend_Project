@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import UserTable from "../../src/components/table/UserTable.js";
 import AntdTable from "../../src/components/table/AntdTable.js";
-import FilledButton from "../../src/components/button/FilledButton.js";
-import { Col, Input, Row, Tooltip } from "antd";
-import Heading from "../../src/components/title/Heading.js";
-import { RxArrowLeft } from "react-icons/rx";
-import { SearchOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../src/redux/thunks/userAuth.js";
@@ -18,45 +12,40 @@ function Index() {
     {
       title: "User ID Number",
       dataIndex: "id",
+      ellipsis: false,
+      width:250,
     },
     {
       title: "UserName",
       dataIndex: "username",
+      ellipsis: false,
+      width:250,
     },
     {
       title: "Date Joined",
       dataIndex: "date_joined",
+      ellipsis: false,
+      width:250,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
-        return text ? (
-          <Tooltip placement="topLeft" title={dtg}>
-            {dtg}
-          </Tooltip>
-        ) : text;
+        return text ? <>{dtg}</> : text;
       },
     },
     {
       title: "Last Login",
       dataIndex: "last_login",
+      ellipsis: false,
+      width:250,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
-        return text ? (
-          <Tooltip placement="topLeft" title={dtg}>
-            {dtg}
-          </Tooltip>
-        ) : text;
+        return text ? <>{dtg}</> : text;
       },
     },
-
   ];
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.getUsers);
   const handleClick = () => {
     router.push("/user/createuser");
-  };
-
-  const handleBack = () => {
-    router.push("/");
   };
   useEffect(() => {
     dispatch(getAllUsers(searchData));
@@ -67,14 +56,15 @@ function Index() {
         <PageHeader
           onSearchChange={setSearchData}
           onNavigate={handleClick}
-          title="Users (List View"
+          title="Users (List View)"
+          btnTitleMedia="+"
           placeholder="Search"
           btnTitle="+ Create User"
           showButton={true}
         />
       </div>
       <div>
-        <AntdTable columns={columns} data={data} />
+        <AntdTable columns={columns} data={data} scrollConfig={{ x: true }} />
       </div>
     </>
   );

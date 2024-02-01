@@ -624,41 +624,43 @@ function PnscTable(props) {
   ];
 
   return (
-        <div className="mb-10">
-        <Row className="items-center mb-4">
-          <Col span={6}></Col>
-          <Col span={18} className="flex justify-end mt-4 mb-3">
-            <FilledButton
-              disabled={pnscReport.length == 0}
+    <div className="mb-10">
+      <Row className="items-center mb-4">
+        <Col span={6}></Col>
+        <Col span={18} className="flex justify-end mt-4 mb-3">
+          <FilledButton
+            disabled={pnscReport.length == 0}
             style={{ marginLeft: "auto" }}
             text="Save PNSC Report"
             onClick={sendPnscReport}
-              className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
-            />
-          </Col>
-          <Col span={24} className="flex justify-between mb-3 ">
-            <Heading level={5} className="ml-5" text="Situation Report" />
-            <FilledButton
-      text="+ Add PNSC Report"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
+          />
+        </Col>
+        <Col span={24} className="flex justify-between mb-3 ">
+          <Heading
+            level={5}
+            className="  whitespace-nowrap ml-5"
+            text="Situation Report"
+          />
+          <FilledButton
+            text="+ Add PNSC Report"
             className="rounded-full border-midnight bg-midnight text-white mr-6"
             onClick={handlePnscReportColumnShowInput}
             disabled={pnscReportKey !== ""}
-            />
-          </Col>
-        </Row>
-        {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+          />
+        </Col>
+      </Row>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-        <AntdTable
-          scrollConfig={{ x: true }} // Set the scroll property as per your requirements
-         columns={pnscReportColumn}
-          data={
-            showInputs.pnscReportColumn ? [{}, ...pnscReport] : pnscReport
-          }
-          pagination={true}
-          form={pnscReportForm} 
-          onFinish={onPnscReportFinish}
-        />
-      </div>
+      <AntdTable
+        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+        columns={pnscReportColumn}
+        data={showInputs.pnscReportColumn ? [{}, ...pnscReport] : pnscReport}
+        pagination={true}
+        form={pnscReportForm}
+        onFinish={onPnscReportFinish}
+      />
+    </div>
   );
 }
 

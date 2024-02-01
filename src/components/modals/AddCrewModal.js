@@ -19,7 +19,11 @@ function AddCrewModal({ open, setIsCmodalOpen }) {
         onCancel={handleCancel}
         footer={null}
       >
-        <Heading level={4} className="p-2 mb-8 border-b-2" text="Add Crew" />
+        <Heading
+          level={4}
+          className="whitespace-nowrap p-2 mb-8 border-b-2"
+          text="Add Crew"
+        />
         <Form layout="vertical">
           <Row className="flex justify-center ">
             <Col span={11}>

@@ -266,7 +266,11 @@ console.log(data)
     <div>
       <PageHeader showSearchBox={false} title="Ship Breaking Report Details" />
       <div className="mt-4 flex">
-        <Heading className="ml-5" level={5} text="Ship Break Details" />
+        <Heading
+          className="whitespace-nowrap ml-5"
+          level={5}
+          text="Ship Break Details"
+        />
       </div>
       <section className="mb-10">
         <div>

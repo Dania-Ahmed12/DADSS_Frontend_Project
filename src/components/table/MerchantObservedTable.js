@@ -297,6 +297,7 @@ function MerchantObservedTable(props) {
     {
       title: "",
       dataIndex: "action",
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.merchantObservedColumns && index === 0) {
           return (
@@ -380,16 +381,28 @@ function MerchantObservedTable(props) {
     <div className="mb-10">
       <Row className="mb-5">
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Merchant Observed" />
+          <Heading
+            className=" whitespace-nowrap ml-5"
+            level={5}
+            text="Merchant Observed"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+Add Merchant Observed"
-              className="rounded-full border-midnight bg-midnight text-white"
-              onClick={handleMerchantShowInput}
-              disabled={merchantObservedKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Merchant Observed"
+                className="rounded-full border-midnight bg-midnight text-white custom-css-pageheaderButton mr-4"
+                onClick={handleMerchantShowInput}
+                disabled={merchantObservedKey !== ""}
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white custom-css-pageheaderButtonMedia mr-4"
+                onClick={handleMerchantShowInput}
+                disabled={merchantObservedKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>

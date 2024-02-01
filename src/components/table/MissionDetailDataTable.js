@@ -644,7 +644,11 @@ function MissionDetailDataTable(props) {
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Mission Details" />
+          <Heading
+            className=" whitespace-nowrap ml-5"
+            level={5}
+            text="Mission Details"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
@@ -652,7 +656,7 @@ function MissionDetailDataTable(props) {
               text="+ Add Mission Details"
               className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={handleMissionDataColumnShowInput}
-              disabled={missionDetailDataKey!== ""}
+              disabled={missionDetailDataKey !== ""}
             />
           )}
         </Col>
@@ -663,7 +667,11 @@ function MissionDetailDataTable(props) {
         form={missionDetailForm}
         onFinish={onMissionDetailDataFinish}
         columns={missionDetailsDataColumns}
-        data={showInputs.missionDetailColumns ? [{}, ...missionDetail] : missionDetail}
+        data={
+          showInputs.missionDetailColumns
+            ? [{}, ...missionDetail]
+            : missionDetail
+        }
       />
     </div>
   );

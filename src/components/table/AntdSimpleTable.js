@@ -381,7 +381,11 @@ function AntdSimpleTable() {
       </div>
       <Row className="p-8 flex">
         <Col span={11}>
-          <Heading level={4} text="Platform Data (View/Add)" />
+          <Heading
+            level={4}
+            className="whitespace-nowrap "
+            text="Platform Data (View/Add)"
+          />
         </Col>
         <Col span={8}>
           <Search size="large" placeholder="Search" allowClear />
@@ -405,7 +409,6 @@ function AntdSimpleTable() {
               position: ["bottomCenter"],
             }}
             rowClassName="editable-row"
-      
           />
         </Col>
       </Row>

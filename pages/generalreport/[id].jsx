@@ -324,9 +324,13 @@ function GeneralDetails({ data }) {
       />
 
       <div className="mt-4 flex">
-        <Heading className="ml-5 " level={5} text="Vessel Data" />
+        <Heading
+          className="whitespace-nowrap ml-5 "
+          level={5}
+          text="Vessel Data"
+        />
       </div>
-      <section className="mb-10">
+      <section className="mb-5">
         {/* <Descriptions
           size="middle"
           className="mt-5 ml-4 mr-4 descriptionTable"

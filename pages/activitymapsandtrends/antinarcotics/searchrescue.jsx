@@ -118,7 +118,7 @@ function SearchRescue() {
         </div>
       </div>
       <Heading
-        className="font-normal"
+        className="whitespace-nowrap font-normal"
         level={3}
         text="Search and Rescue Operations"
       />

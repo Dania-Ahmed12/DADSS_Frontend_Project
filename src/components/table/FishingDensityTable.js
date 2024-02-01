@@ -239,6 +239,7 @@ function FishingDensityTable(props) {
     },
     {
       title: "",
+      width: 250,
       dataIndex: "action",
       render: (text, record, index) => {
         if (showInputs.fishingColumns && index === 0) {
@@ -326,16 +327,28 @@ function FishingDensityTable(props) {
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Fishing Density" />
+          <Heading
+            className="whitespace-nowrap ml-5"
+            level={5}
+            text="Fishing Density"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Fishing Density"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleFishingColumnShowInput}
+             <>
+              <FilledButton
+                    text="+ Add Fishing Density"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                 onClick={handleFishingColumnShowInput}
               disabled={fishingDensityKey !== ""}
-            />
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                 onClick={handleFishingColumnShowInput}
+              disabled={fishingDensityKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>

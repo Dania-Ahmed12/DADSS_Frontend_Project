@@ -21,7 +21,7 @@ function AddFDModal({ open, setIsFDmodalOpen }) {
       >
         <Heading
           level={4}
-          className="p-2 mb-8 border-b-2"
+          className=" whitespace-nowrap p-2 mb-8 border-b-2"
           text="Add Fishing Densities"
         />
         <Form layout="vertical">

@@ -225,7 +225,11 @@ const items = vesselcolumns.map((column) => ({
       {/*----------------------------------- Vessel Data -------------------------------------*/}
 
       <div className=" flex">
-        <Heading className="ml-5 " level={5} text="Vessel Data" />
+        <Heading
+          className="whitespace-nowrap ml-5 "
+          level={5}
+          text="Vessel Data"
+        />
       </div>
       <section className="mb-10">
         {/* <Descriptions

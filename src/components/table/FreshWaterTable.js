@@ -1,32 +1,21 @@
 import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { Col, Row, Table,  Form,  Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
-import InputBox from "../form/InputBox";
-import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
-import { positiontoDMS, DMStodecimal } from "../../helper/position";
-import PositionBox from "../form/PositionBox";
-import {
-  type_list,
-  movement_list,
-  machineryDefects,
-} from "../../helper/dropdown";
-const StyledInput = styled.div`
-  .ant-form-item-explain-error {
-    font-size: 12px;
-  }
-`;
+import AntdTable from "./AntdTable";
+
+
 
 function FreshWaterTable(props) {
-  const { freshWaterData, setFreshWaterData } = props;
+  const { freshWaterData, setFreshWaterData , showButtons } = props;
   const [freshWaterFrom] = useForm();
   const [freshWaterKey, setFreshWaterKey] = useState("");
 
@@ -221,57 +210,59 @@ function FreshWaterTable(props) {
 
   return (
     <>
-      <Form
-        form={freshWaterFrom}
-        onFinish={onFreshWaterFinish}
-        className="mb-8"
-      >
-        <Row className="mb-5 mt-5">
-          <Col span={24} className="flex justify-between">
-            <Heading level={5} text="Add Fresh Water %" />
-            <FilledButton
-              text="+ Fresh Water %"
-              className="rounded-full border-midnight bg-midnight text-white"
-              onClick={handleFreshWaterColumnShowInput}
-              // disabled={isEditing} // Disable the button when editing
-              disabled={freshWaterKey !== ""}
+      <div className="mb-10">
+        <Row>
+          <Col span={12}>
+            <Heading
+              className=" whitespace-nowrap ml-5 flex justify-start "
+              level={5}
+             text="Add Fresh Water %"
             />
           </Col>
+          <Col span={12} className="flex justify-end">
+            {showButtons && (
+              <>
+                <FilledButton
+                   text="+ Fresh Water %"
+                  className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                  onClick={handleFreshWaterColumnShowInput}
+              disabled={freshWaterKey !== ""}
+                />
+                <FilledButton
+                  text="+ Add"
+                  className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handleFreshWaterColumnShowInput}
+              disabled={freshWaterKey !== ""}
+                />
+              </>
+            )}
+          </Col>
         </Row>
-        <StyledDiv>
-          <Table
-            scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-            columns={Columns}
-            dataSource={
+        {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        at the beginning of the list. If not, it just shows the list as it is. */}
+        <AntdTable
+          scrollConfig={{ x: true }}
+          columns={Columns}
+          data={
               showInputs.freshWaterColumn
                 ? [{}, ...freshWaterData]
                 : freshWaterData
             }
-            //   showInputs.fishingColumns
-            //     ? fishingDensityData
-            //     : fishingDensityData.length > 1
-            //     ? fishingDensityData
-            //         .map((item, index) => ({
-            //           ...item,
-            //           key: index,
-            //         }))
-            //         .slice(1)
-            //     : []
-            // }
-            pagination={true}
-          />
-        </StyledDiv>
-      </Form>
+          pagination={false}
+          form={freshWaterFrom}
+          onFinish={onFreshWaterFinish}
+        />
+      </div>
     </>
   );
 }
 
 export default FreshWaterTable;
 
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
+const StyledInput = styled.div`
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
 `;
 const IconsStylingWrap = styled.div`
   display: flex;

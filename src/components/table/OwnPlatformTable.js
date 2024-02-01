@@ -139,6 +139,7 @@ function OwnPlatformTable(props) {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
       ellipsis: false,
+      width: 250,
     },
     {
       title: "Date Time ",
@@ -323,6 +324,8 @@ function OwnPlatformTable(props) {
     {
       title: "",
       dataIndex: "action",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.platformColumns) {
           return (
@@ -407,19 +410,27 @@ function OwnPlatformTable(props) {
       <Row>
         <Col span={12}>
           <Heading
-            className="ml-5 flex justify-start"
+            className=" whitespace-nowrap ml-5 flex justify-start "
             level={5}
             text="Own Platform Data"
           />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Own Platform Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handlePlatformShowInput}
-              disabled={platformDataEntered}
-            />
+            <>
+              <FilledButton
+                text="+ Add Own Platform "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handlePlatformShowInput}
+                disabled={platformDataEntered}
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handlePlatformShowInput}
+                disabled={platformDataEntered}
+              />
+            </>
           )}
         </Col>
       </Row>

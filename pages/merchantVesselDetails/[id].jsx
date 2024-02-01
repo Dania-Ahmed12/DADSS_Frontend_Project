@@ -469,7 +469,9 @@ function Details({ data , firstData }) {
                   <div className="descriptionLabel ">{item.label}</div>
                 </Col>
                 <Col span={14} className="flex justify-end">
-                  <div className="descriptionChildren ml-5">{item.children}</div>
+                  <div className="descriptionChildren ml-5">
+                    {item.children}
+                  </div>
                 </Col>
               </Row>
               {/* </div> */}
@@ -479,7 +481,11 @@ function Details({ data , firstData }) {
       </div>
 
       <div className="flex mb-4">
-        <Heading className="ml-5 " level={5} text="Last/Current Port" />
+        <Heading
+          className="whitespace-nowrap ml-5 "
+          level={5}
+          text="Last/Current Port"
+        />
       </div>
       <section>
         <AntdTable
@@ -498,7 +504,7 @@ function Details({ data , firstData }) {
       </section>
 
       <div className="flex mb-4">
-        <Heading className="ml-5 " level={5} text="History" />
+        <Heading className="whitespace-nowrap ml-5 " level={5} text="History" />
       </div>
       <section className="mb-10">
         <AntdTable
@@ -523,7 +529,11 @@ function Details({ data , firstData }) {
           onCancel={() => setModalVisible(false)}
           footer={null}
         >
-          <Heading className="ml-1" level={4} text="Observations" />
+          <Heading
+            className="whitespace-nowrap ml-1"
+            level={4}
+            text="Observations"
+          />
           <Descriptions
             size="small"
             className="p-2"

@@ -19,7 +19,11 @@ function AddOwnerModal({ open, setIsOmodalOpen }) {
         okType="default"
         footer={null}
       >
-        <Heading level={4} className="p-2 mb-8 border-b-2" text="Add Owner" />
+        <Heading
+          level={4}
+          className="p-2 mb-8 whitespace-nowrap border-b-2"
+          text="Add Owner"
+        />
         <Form layout="vertical">
           <Row className="flex justify-center ">
             <Col span={11}>

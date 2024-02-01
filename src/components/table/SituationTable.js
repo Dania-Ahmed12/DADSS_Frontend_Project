@@ -600,7 +600,11 @@ function SituationTable(props) {
             />
           </Col>
           <Col span={24} className="flex justify-between mb-3 ">
-            <Heading level={5} className="ml-5" text="Situation Report" />
+            <Heading
+              level={5}
+              className="  whitespace-nowrap ml-5"
+              text="Situation Report"
+            />
             <FilledButton
               text="+ Add Situation Report"
               className="rounded-full border-midnight bg-midnight text-white mr-6"

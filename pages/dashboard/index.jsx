@@ -5,7 +5,7 @@ const Home = () => {
     <div className="h-full flex justify-center flex-col ">
       <Heading
         level={3}
-        className="p-10"
+        className="whitespace-nowrap p-10"
         text=" Welcome To DADSS Dashboard..."
       />
       <Dashboard />

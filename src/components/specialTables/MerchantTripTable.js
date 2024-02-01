@@ -320,7 +320,11 @@ function FishingTripTable(props) {
     <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
       <Row className="mb-5">
         <Col span={24} className="flex justify-between">
-          <Heading level={5} text="Trip Details" />
+          <Heading
+            level={5}
+            text="Trip Details"
+            className=" whitespace-nowrap "
+          />
           {showButtons && (
             <FilledButton
               disabled={tripDataEntered}

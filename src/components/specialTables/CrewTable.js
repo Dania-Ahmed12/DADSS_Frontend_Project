@@ -554,7 +554,11 @@ function CrewTable(props) {
       {/* <Form form={goodsForm} onFinish={onGoodsFinish} className="mb-8"> */}
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Crew Details" />
+          <Heading
+            className=" whitespace-nowrap ml-5"
+            level={5}
+            text="Crew Details"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (

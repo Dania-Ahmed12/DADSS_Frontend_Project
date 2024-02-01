@@ -193,11 +193,13 @@ function MissDetails({ data }) {
     <div>
       <PageHeader showSearchBox={false} title="Mission Report " />
       <div className=" mt-4 flex">
-        <Heading className="ml-5 " level={5} text="Macro Data" />
+        <Heading
+          className="whitespace-nowrap ml-5 "
+          level={5}
+          text="Macro Data"
+        />
       </div>
       <section className="mb-10">
-
-
         {/* <Descriptions
           size="middle"
           className="mt-5 ml-4 mr-4 descriptionTable"
@@ -216,7 +218,7 @@ function MissDetails({ data }) {
           bordered={true}
           colon={true}
           borderColor="transparent"
-          column={{ xs: 1, sm: 2, md: 2, lg: 2}}
+          column={{ xs: 1, sm: 2, md: 2, lg: 2 }}
         >
           {items.map((item, index) => (
             <Descriptions.Item
@@ -225,13 +227,11 @@ function MissDetails({ data }) {
               span={index === items.length - 1 ? 1 : undefined}
             >
               <Row className="flex">
-                <Col span={8} className="flex justify-start " >
+                <Col span={8} className="flex justify-start ">
                   <div className="descriptionLabel ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end" >
-                  <div className="descriptionChildren ">
-                    {item.children}
-                  </div>
+                <Col span={14} className="flex justify-end">
+                  <div className="descriptionChildren ">{item.children}</div>
                 </Col>
               </Row>
               {/* </div> */}

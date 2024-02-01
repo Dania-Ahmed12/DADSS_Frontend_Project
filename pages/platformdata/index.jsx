@@ -39,7 +39,8 @@ function PlatformId() {
     {
       title: "Platform ID",
       dataIndex: "pf_id",
-      ellipsis: true,
+      ellipsis: false,
+      width:250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -68,8 +69,8 @@ function PlatformId() {
     {
       title: "Full Name",
       dataIndex: "pf_name",
-      width: 200,
-      ellipsis: true,
+      ellipsis: false,
+      width:250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -92,7 +93,8 @@ function PlatformId() {
     {
       title: "Type",
       dataIndex: "pf_type",
-      ellipsis: true,
+      ellipsis: false,
+      width:250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -117,7 +119,8 @@ function PlatformId() {
     {
       title: "Squadron",
       dataIndex: "pf_squadron",
-      ellipsis: true,
+      ellipsis: false,
+      width:250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -152,7 +155,8 @@ function PlatformId() {
     {
       title: "CO",
       dataIndex: "pf_co",
-      ellipsis: true,
+      ellipsis: false,
+      width:250,
       width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -293,6 +297,7 @@ function PlatformId() {
         <PageHeader
           title="MSA Platform Data (View/Add)"
           btnTitle="+ Add Platform"
+          btnTitleMedia="+"
           onSearchChange={setSearchData}
           onNavigate={handleShowInput}
           placeholder="Search"
@@ -301,7 +306,7 @@ function PlatformId() {
       </div>
       <div>
         <AntdTable
-        scrollConfig={{x:true}}
+          scrollConfig={{ x: true }}
           form={form}
           onFinish={onFinish}
           columns={columns}

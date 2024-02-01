@@ -404,7 +404,12 @@ function OwnerTable(props) {
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Owner Details" />
+         
+          <Heading
+            className=" whitespace-nowrap ml-5"
+            level={5}
+            text="Owner Details"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (

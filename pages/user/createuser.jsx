@@ -1,5 +1,5 @@
-import { Col, Form, Row, Input, Space, Typography, Radio } from "antd";
-import React, { use, useEffect } from "react";
+import { Col, Form, Row, Space, Typography, Radio } from "antd";
+import React, { useEffect } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import OutlineButton from "../../src/components/button/OutlineButton";
 import InputBox from "../../src/components/form/InputBox";
@@ -7,21 +7,14 @@ import SelectBox from "../../src/components/form/SelectBox";
 import PasswordBox from "../../src/components/form/PasswordBox";
 import { useRouter } from "next/router";
 import { useForm } from "antd/lib/form/Form";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { registerApi } from "../../src/redux/thunks/userAuth";
 import { fetchAllPlatformData } from "../../src/redux/thunks/platformData";
 import axios from "axios";
 import styled from "styled-components";
-
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
-const StyledDiv = styled.div`
-  .input {
-    margin-bottom: 20px;
-  }
-`;
 function CreateUser() {
   const router = useRouter();
 
@@ -69,8 +62,7 @@ function CreateUser() {
           theme: "dark",
         });
       }
-      // router.push("/user")
-      // dispatch(registerApi(validatedValues));
+
     }
   };
 
@@ -88,7 +80,7 @@ function CreateUser() {
   };
 
   return (
-    <>
+    <StyledDiv>
       <div>
         <PageHeader title="Create New User" showSearchBox={false} />
       </div>
@@ -98,19 +90,23 @@ function CreateUser() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autocomplete="off"
-        // className="shadow mx-8 px-3 py-10"
-        className="shadow mx-8 px-3 py-10 bg-white"
+        className="shadow mx-5 px-3 py-10 bg-white"
       >
         <Row className="flex justify-center">
-          <Col span={11}>
+          <Col
+            xs={24}
+            sm={24}
+            md={11}
+            lg={11}
+            xl={11}
+            // span={11}
+          >
             <InputBox
               autocomplete="off"
               label="Username"
               name="username"
-              className="input"
+              className="input mb-4"
               placeholder="Username"
-              // minLength={6}
-              // maxLength={12}
               pattern="^[a-zA-Z0-9]+$"
               rules={[
                 { required: true, message: "Please input the User ID!" },
@@ -131,7 +127,7 @@ function CreateUser() {
             <SelectBox
               autocomplete="off"
               name="u_pf_id"
-              className="input"
+              className="input mb-4"
               placeholder="Select Platform"
               label="Select Platform"
               // defaultValue="MSA-Craft-One"
@@ -149,9 +145,18 @@ function CreateUser() {
               rules={[{ required: true, message: "Please select a platform!" }]}
             />
           </Col>
-          <Col span={11} offset={1}>
+          <Col
+            // span={11}
+            xs={24}
+            sm={24}
+            md={11}
+            lg={11}
+            xl={11}
+            className="ml-2 mr-2"
+            // offset={1}
+          >
             <PasswordBox
-              className="input"
+              className="input mb-4"
               autocomplete="off"
               label="Password"
               name="password"
@@ -171,54 +176,70 @@ function CreateUser() {
             />
           </Col>
         </Row>
+
         <Row className="flex justify-center">
-          <Col span={23}>
-            <Typography className="text-lg py-5">
-              Access Point Details
-            </Typography>
+          <Col span={22} className=" mb-4">
+            <Typography className="text-lg">Access Point Details</Typography>
           </Col>
         </Row>
-
-        <Row>
+        <Row className="flex justify-start">
           <Form.Item
             name="category"
+            className="ml-8 mb-4"
             rules={[{ required: true, message: "Please select option!" }]}
           >
-            <Radio.Group buttonStyle="solid">
-              <Space align="left">
-                <Radio.Button value="A">Senior Officer</Radio.Button>
-              </Space>
-              <Space align="center">
-                <Radio.Button value="B">Operator</Radio.Button>
-              </Space>
-              <Space align="right">
-                <Radio.Button value="C">Visualizer</Radio.Button>
-              </Space>
-            </Radio.Group>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+              <Radio.Group buttonStyle="solid">
+                <Space align="left" className="ml-2 mr-2 mb-2">
+                  <Radio.Button value="A">Senior Officer</Radio.Button>
+                </Space>
+                <Space align="center" className="ml-2 mr-2 mb-2">
+                  <Radio.Button value="B">Operator</Radio.Button>
+                </Space>
+                <Space align="right" className="ml-2 mr-2 mb-2">
+                  <Radio.Button value="C">Visualizer</Radio.Button>
+                </Space>
+              </Radio.Group>
+            </Col>
           </Form.Item>
         </Row>
 
-        <Row className="flex justify-center">
-          <Col span={17} className="flex justify-end">
-            <Form.Item>
+        <Row className="mt-5 flex justify-center">
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={24}
+            className="text-center mb-3 lg:text-right lg:mb-2 "
+          >
+            {/* This Col contains the buttons and is aligned to the right on large screens */}
+            <Form.Item >
               <OutlineButton
                 text="Cancel"
-                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white ml-3 mb-3 mr-4 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block"
               />
               <FilledButton
                 htmlType="submit"
                 text="Save"
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3 mr-3 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block  "
               />
             </Form.Item>
           </Col>
         </Row>
       </Form>
-    </>
+    </StyledDiv>
   );
 }
 
 export default CreateUser;
+
+const StyledDiv = styled.div`
+  .input {
+    margin-bottom: 20px;
+  }
+`;
+
 
 export async function getServerSideProps(context) {
   return {

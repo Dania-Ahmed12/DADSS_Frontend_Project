@@ -333,7 +333,7 @@ const MacroDataTable = (props) => {
       <Row>
         <Col span={12}>
           <Heading
-            className="ml-5 flex justify-start"
+            className="whitespace-nowrap ml-5 flex justify-start"
             level={5}
             text="Intel Macro Data"
           />

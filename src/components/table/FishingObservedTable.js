@@ -238,6 +238,7 @@ function FishingObservedTable(props) {
     {
       title: "",
       dataIndex: "action",
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.fishingObservedColumns && index === 0) {
           return (
@@ -318,16 +319,28 @@ function FishingObservedTable(props) {
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
-          <Heading className="ml-5" level={5} text="Fishing Observed" />
+          <Heading
+            className="whitespace-nowrap ml-5"
+            level={5}
+            text="Fishing Observed"
+          />
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Fishing Observed"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleFishingShowInput}
-              disabled={fishingObservedKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Fishing Observed"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleFishingShowInput}
+                disabled={fishingObservedKey !== ""}
+              />
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleFishingShowInput}
+                disabled={fishingObservedKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>

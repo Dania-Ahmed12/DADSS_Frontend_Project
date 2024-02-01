@@ -18,12 +18,16 @@ function TablePageRender(props) {
     <>
       <Row>
         <Col span={19}>
-          <Heading className="ml-8" level={4} text="Own Platform Data" />
+          <Heading
+            className=" whitespace-nowrap ml-5"
+            level={4}
+            text="Own Platform Data"
+          />
         </Col>
         {/* If the showButtons variable is true, the content inside the
         parentheses will be rendered; otherwise, it won't. */}
         <Col className="flex justify-end" span={4}>
-          {showButtons && (
+          {showButton && (
             <FilledButton
               disabled={platformDataEntered}
               text="+ Add Own Platform Data"
