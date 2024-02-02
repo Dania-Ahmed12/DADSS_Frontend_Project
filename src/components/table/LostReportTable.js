@@ -123,14 +123,6 @@ function LostReportTable(props) {
     }
   };
 
-  const sendLostReports = async () => {
-    try {
-      const finalData = lostReport;
-      // Dispatch the action with the data
-      dispatch(addLostReport(finalData));
-      setLostReport([]);
-    } catch (error) {}
-  };
   const sendLostReport = async () => {
     try {
       // const finalData = lostReport.map((report) => ({
@@ -165,7 +157,8 @@ function LostReportTable(props) {
     {
       title: "Reporting DTG",
       dataIndex: "lr_reporting_date",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
         if (
@@ -204,12 +197,14 @@ function LostReportTable(props) {
     {
       title: "IMO",
       dataIndex: "mv_imo",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_imo"
               rules={[
                 {
@@ -231,12 +226,14 @@ function LostReportTable(props) {
     {
       title: "Name",
       dataIndex: "mv_ship_name",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_ship_name"
               rules={[
                 {
@@ -254,12 +251,14 @@ function LostReportTable(props) {
     {
       title: "Flag",
       dataIndex: "mv_flag",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_flag"
               rules={[
                 {
@@ -277,12 +276,14 @@ function LostReportTable(props) {
     {
       title: "Type",
       dataIndex: "mv_ais_type_summary",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <SelectBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -305,14 +306,15 @@ function LostReportTable(props) {
 
     {
       title: "Total Crew ",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       dataIndex: "lr_total_crew",
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_total_crew"
               type="number"
               rules={[
@@ -330,7 +332,8 @@ function LostReportTable(props) {
     },
     {
       title: "Track Status",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_track_status",
       render: (text, record, index) => {
@@ -338,7 +341,7 @@ function LostReportTable(props) {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_track_status"
               rules={[
                 {
@@ -356,7 +359,8 @@ function LostReportTable(props) {
     {
       title: "Created On",
       dataIndex: "lr_created_on",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
         if (
@@ -394,7 +398,8 @@ function LostReportTable(props) {
     },
     {
       title: "Created By",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_created_by",
       render: (text, record, index) => {
@@ -402,7 +407,7 @@ function LostReportTable(props) {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_created_by"
               rules={[
                 {
@@ -420,6 +425,8 @@ function LostReportTable(props) {
     {
       title: "Longitude",
       dataIndex: ["lr_position", "dms", 0],
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (
           (showInputs.lostReportColumn && index === 0) |
@@ -439,6 +446,8 @@ function LostReportTable(props) {
     {
       title: "Latitude",
       dataIndex: ["lr_position", "dms", 1],
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (
           (showInputs.lostReportColumn && index === 0) |
@@ -457,12 +466,14 @@ function LostReportTable(props) {
     {
       title: "Remarks",
       dataIndex: "lr_remarks",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.lostReportColumn && index === 0) |
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_remarks"
               rules={[
                 {
@@ -479,7 +490,8 @@ function LostReportTable(props) {
     },
     {
       title: "COI Number",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_coi_number",
       render: (text, record, index) => {
@@ -487,7 +499,7 @@ function LostReportTable(props) {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_coi_number"
               type="number"
               rules={[
@@ -505,7 +517,8 @@ function LostReportTable(props) {
     },
     {
       title: "Subscriber Code",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_subscriber_code",
       render: (text, record, index) => {
@@ -513,7 +526,7 @@ function LostReportTable(props) {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_subscriber_code"
               rules={[
                 {
@@ -530,7 +543,8 @@ function LostReportTable(props) {
     },
     {
       title: "PR Number",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_pr_number",
       render: (text, record, index) => {
@@ -540,7 +554,7 @@ function LostReportTable(props) {
             <InputNumBox
               name="lr_pr_number"
               type="number"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -556,7 +570,8 @@ function LostReportTable(props) {
     },
     {
       title: "Action Address Code",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "lr_action_addresses_codes",
       render: (text, record, index) => {
@@ -564,7 +579,7 @@ function LostReportTable(props) {
           isLostReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="lr_action_addresses_codes"
               rules={[
                 {
@@ -583,7 +598,8 @@ function LostReportTable(props) {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.lostReportColumn && index === 0) {
           return (
@@ -662,40 +678,6 @@ function LostReportTable(props) {
   ];
 
   return (
-    // <Form form={lostReportForm} onFinish={onLostReportFinish} className="mb-8">
-    //   <Row className="mb-8">
-    //     <Col span={24} className="flex justify-end mb-8">
-    //       <FilledButton
-    //         disabled={lostReport.length == 0}
-    //         style={{ marginLeft: "auto" }}
-    //         text="Save Lost Report"
-    //         onClick={sendLostReport}
-    //         className="rounded-full border-lightgreen bg-lightgreen text-white"
-    //       />
-    //     </Col>
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Lost Report" />
-
-    //       <FilledButton
-    //         text="+ Add Lost Report"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handleLostReportColumnShowInput}
-    //         disabled={lostReportKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //       columns={lostReportColumn}
-    //       dataSource={
-    //         showInputs.lostReportColumn ? [{}, ...lostReport] : lostReport
-    //       }
-    //       pagination={true}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
       <Row className="items-center mb-4">
         <Col span={6}></Col>
@@ -703,7 +685,7 @@ function LostReportTable(props) {
           <FilledButton
             disabled={lostReport.length == 0}
             style={{ marginLeft: "auto" }}
-            text="Save Lost Report"
+            text="Save Report"
             onClick={sendLostReport}
             className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
           />
@@ -712,20 +694,27 @@ function LostReportTable(props) {
           <Heading
             level={5}
             className="whitespace-nowrap ml-5"
-            text="Situation Report"
+            text="Lost Report"
           />
+       
           <FilledButton
             text="+ Add Lost Report"
-            className="rounded-full border-midnight bg-midnight text-white mr-6"
+            className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
             onClick={handleLostReportColumnShowInput}
-            disabled={lostReportKey !== ""}
+            disabled={lostReport.length === 0 && !showInputs.lostReportColumn}
+          />
+          <FilledButton
+            text="+ Add "
+            className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+            onClick={handleLostReportColumnShowInput}
+            disabled={lostReport.length === 0 && !showInputs.lostReportColumn}
           />
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-        scrollConfig={{ x: true }} // Set the scroll property as per your requirements
+        scrollConfig={{ x: true }}
         columns={lostReportColumn}
         data={showInputs.lostReportColumn ? [{}, ...lostReport] : lostReport}
         pagination={true}

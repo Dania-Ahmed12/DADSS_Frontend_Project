@@ -128,27 +128,25 @@ function SituationTable(props) {
     try {
       const finalData = situationData;
       dispatch(addSituationReport(finalData));
-    
+
       setSituationData([]);
-    } catch (error) {
-    
-    }
+    } catch (error) {}
   };
   const situationColumns = [
     {
       title: "DTG",
       dataIndex: "sit_dtg",
-      ellipsis: true,
+      ellipsis: false,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
         if (
           (showInputs.situationColumns && index === 0) ||
-         isSituationEditing(index)
+          isSituationEditing(index)
         ) {
           return (
             <StyledInput>
               <DateBox
-                style={{ width: 180 }}
+                style={{ width: 150 }}
                 format="YYYY-MM-DD HH:mm:ss"
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
@@ -177,12 +175,14 @@ function SituationTable(props) {
     {
       title: "MMSI",
       dataIndex: "mv_mmsi",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_mmsi"
               rules={[
                 {
@@ -208,12 +208,15 @@ function SituationTable(props) {
     {
       title: "IMO",
       dataIndex: "mv_imo",
+      ellipsis: false,
+      width: 250,
+
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_imo"
               rules={[
                 {
@@ -231,12 +234,14 @@ function SituationTable(props) {
     {
       title: "Name",
       dataIndex: "mv_ship_name",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_ship_name"
               rules={[
                 {
@@ -254,12 +259,14 @@ function SituationTable(props) {
     {
       title: "Flag",
       dataIndex: "mv_flag",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_flag"
               rules={[
                 {
@@ -277,12 +284,14 @@ function SituationTable(props) {
     {
       title: "Type",
       dataIndex: "mv_ais_type_summary",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <SelectBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -342,12 +351,14 @@ function SituationTable(props) {
     {
       title: "LPOC",
       dataIndex: "sit_lpoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_lpoc"
               rules={[
                 {
@@ -365,12 +376,14 @@ function SituationTable(props) {
     {
       title: "Last Port Country",
       dataIndex: "sit_last_port_country",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_last_port_country"
               rules={[
                 {
@@ -388,12 +401,14 @@ function SituationTable(props) {
     {
       title: "NPOC",
       dataIndex: "sit_npoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_npoc"
               rules={[
                 {
@@ -411,12 +426,14 @@ function SituationTable(props) {
     {
       title: "Next Port Country",
       dataIndex: "sit_next_port_country",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_next_port_country"
               rules={[
                 {
@@ -434,12 +451,14 @@ function SituationTable(props) {
     {
       title: "Course",
       dataIndex: "sit_course",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_course"
               //   min={1}
               type="number"
@@ -459,12 +478,14 @@ function SituationTable(props) {
     {
       title: "Speed",
       dataIndex: "sit_speed",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_speed"
               type="number"
               rules={[
@@ -483,12 +504,14 @@ function SituationTable(props) {
     {
       title: "Source",
       dataIndex: "sit_source",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.situationColumns && index === 0) |
           isSituationEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="sit_source"
               rules={[
                 {
@@ -507,7 +530,7 @@ function SituationTable(props) {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.situationColumns && index === 0) {
           return (
@@ -594,7 +617,7 @@ function SituationTable(props) {
             <FilledButton
               disabled={situationData.length == 0}
               style={{ marginLeft: "auto" }}
-              text="Save Situation Report"
+              text="Save Report"
               onClick={sendSituationalReprot}
               className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
             />
@@ -605,12 +628,24 @@ function SituationTable(props) {
               className="  whitespace-nowrap ml-5"
               text="Situation Report"
             />
-            <FilledButton
-              text="+ Add Situation Report"
-              className="rounded-full border-midnight bg-midnight text-white mr-6"
-              onClick={handleSituationColumnShowInput}
-              disabled={situationReportKey !== ""}
-            />
+
+              <FilledButton
+                text="+ Add Situation Report"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleSituationColumnShowInput}
+                // disabled={situationReportKey !== ""}
+                disabled={
+                  situationData.length === 0 && !showInputs.situationColumns
+                }
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleSituationColumnShowInput}
+                disabled={
+                  situationData.length === 0 && !showInputs.situationColumns
+                }
+              />
           </Col>
         </Row>
         {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
@@ -632,12 +667,6 @@ function SituationTable(props) {
 
 export default SituationTable;
 
-const StyledDiv = styled.div`
-padding:60px,
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
-`;
 const IconsStylingWrap = styled.div`
   display: flex;
   /* gap: 20px; */

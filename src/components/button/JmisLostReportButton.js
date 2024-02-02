@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "antd";
+import { Button, Col, Row } from "antd";
 import { addJmisLostReportUploadData } from "../../redux/thunks/jmisLostReportUploadData";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -260,28 +260,41 @@ const JmisLostReportButton = ({ onDataLoad }) => {
   return (
     <>
       {" "}
-      <div>
-        <input
-          type="file"
-          onChange={handleFileChange}
-          ref={fileInputRef}
-          accept=".csv"
-        />
-
-        <Button className="mr-3 ml3" onClick={handleUpload}>
-          Upload
-        </Button>
-        <Button
-          className="mr-3 ml-3"
-          onClick={handleLoad} // Define the handleLoad function
-        >
-          Load
-        </Button>
-        <div>
-          {isLoading}
-          {uploadMessage && <p>{uploadMessage}</p>}
+      <Row gutter={[5, 5]}>
+        <div className="flex justify-start">
+          <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+              accept=".csv"
+            />
+          </Col>
         </div>
-      </div>
+
+        <div className="flex justify-end items-center">
+          <Col
+            xs={12}
+            sm={12}
+            md={12}
+            lg={12}
+            xl={12}
+            className="text-center ml-4"
+          >
+            <Button onClick={handleUpload}>Upload</Button>
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
+            <Button onClick={handleLoad}>Load</Button>
+          </Col>
+        </div>
+
+        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+          <div>
+            {isLoading}
+            {uploadMessage && <p>{uploadMessage}</p>}
+          </div>
+        </Col>
+      </Row>
     </>
   );
 };

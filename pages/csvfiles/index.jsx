@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { LoadingOutlined } from "@ant-design/icons";
 import FilledButton from "../../src/components/button/FilledButton.js";
-import { Modal, Table } from "antd";
+import { Col, Modal, Row, Table } from "antd";
 import { useState } from "react";
 import { coordinatesToDMS } from "../../src/helper/position.js";
 import SituationTable from "../../src/components/table/SituationTable.js";
@@ -11,6 +11,7 @@ import utc from "dayjs/plugin/utc";
 import LostReportTable from "../../src/components/table/LostReportTable.js";
 import PnscTable from "../../src/components/table/PnscReportTable.js";
 import PageHeader from "../../src/components/pageheader/pageHeader.js";
+import AntdTable from "../../src/components/table/AntdTable.js";
 
 dayjs.extend(utc);
 
@@ -214,36 +215,60 @@ function Index() {
     <>
       <div>
         <PageHeader
-          placeholder="Search by Vessel ID or Vessel Name"
+          title="CSV Upload"
           showSearchBox={false}
           showButton={false} // Pass true to show the button or false to hide it
         />
       </div>
-      <div className="flex justify-center flex-wrap mt-5">
-        <div className="grid grid-cols-12 grid-rows-1 gap-2">
-          {/*-----------------------------------Cospos Report button-------------------------------------*/}
 
-          <div className="col-span-2 col-start-3">
+      <Row className="flex justify-center items-center ">
+        <Col xs={24} sm={12} md={6} lg={6} xl={6}>
+          <div className="text-center">
             <FilledButton
               type="primary"
               onClick={() => openModal("cospos")}
-              text="Cospos Data"
-              className="border-midnight bg-midnight text-white m-2 "
+              text="Cospos Report"
+              className="border-midnight bg-midnight text-white m-2 w-10/12"
             />
             <Modal
               title="Cospos Data"
               visible={cosposModalVisible} // Update this line
               onCancel={() => closeModal("cospos")} // Pass the correct type to closeModal
               footer={null}
-              l
+              centered={true}
+              width={"auto"}
             >
               <CosposUploadComponent />
             </Modal>
           </div>
-
-          {/*-----------------------------------Lost Report  button-------------------------------------*/}
-
-          <div className="col-span-2 col-start-5">
+        </Col>
+        <Col xs={24} sm={12} md={6} lg={6} xl={6}>
+          <div className="text-center">
+            <FilledButton
+              type="primary"
+              onClick={() => {
+                openModal("jmisPNSC");
+                handleButtonClick("jmisPNSC");
+              }}
+              text="PNSC Report"
+              className="border-midnight bg-midnight text-white m-2 w-10/12"
+            />
+            <Modal
+              title="JMIS PNSC "
+              visible={jmisPNSCModalVisible} // Update this line
+              onCancel={() => closeModal("jmisPNSC")} // Pass the correct type to closeModal
+              footer={null}
+              centered={true}
+              width={"auto"}
+            >
+              <JmisPNSCDatatUploadComponent
+                onDataLoad={(data) => onDataLoad(data, "jmisPNSC")}
+              />
+            </Modal>
+          </div>
+        </Col>
+        <Col xs={24} sm={12} md={6} lg={6} xl={6}>
+          <div className="text-center">
             <FilledButton
               type="primary"
               onClick={() => {
@@ -251,13 +276,15 @@ function Index() {
                 handleButtonClick("jmisLostReport");
               }}
               text="Lost Report"
-              className="border-midnight bg-midnight text-white m-2 "
+              className="border-midnight bg-midnight text-white m-2 w-10/12"
             />
             <Modal
               title="Lost Report"
               visible={jmisLostReportModalVisible} // Update this line
               onCancel={() => closeModal("jmisLostReport")} // Pass the correct type to closeModal
               footer={null}
+              centered={true}
+              width={"auto"}
               l
             >
               <JmisLostReportUploadComponent
@@ -265,35 +292,9 @@ function Index() {
               />
             </Modal>
           </div>
-
-          {/*-----------------------------------PNSC Report  button-------------------------------------*/}
-
-          <div className="col-span-2 col-start-7">
-            <FilledButton
-              type="primary"
-              onClick={() => {
-                openModal("jmisPNSC");
-                handleButtonClick("jmisPNSC");
-              }}
-              text="PNSC Data"
-              className="border-midnight bg-midnight text-white m-2 "
-            />
-            <Modal
-              title="JMIS PNSC "
-              visible={jmisPNSCModalVisible} // Update this line
-              onCancel={() => closeModal("jmisPNSC")} // Pass the correct type to closeModal
-              footer={null}
-              l
-            >
-              <JmisPNSCDatatUploadComponent
-                onDataLoad={(data) => onDataLoad(data, "jmisPNSC")}
-              />
-            </Modal>
-          </div>
-
-          {/*-----------------------------------Situation Report  button-------------------------------------*/}
-
-          <div className="col-span-2 col-start-9">
+        </Col>
+        <Col xs={24} sm={12} md={6} lg={6} xl={6}>
+          <div className="text-center">
             <FilledButton
               type="primary"
               onClick={() => {
@@ -301,21 +302,23 @@ function Index() {
                 handleButtonClick("situation");
               }}
               text="Situation Report"
-              className="border-midnight bg-midnight text-white m-2 "
+              className="border-midnight bg-midnight text-white m-2 w-10/12"
             />
             <Modal
               title="Upload Situation Report"
               visible={situationModalVisible} // Update this line
               onCancel={() => closeModal("situation")} // Pass the correct type to closeModal
               footer={null}
+              centered={true}
+              width={"auto"}
             >
               <SituationUploadComponent
                 onDataLoad={(data) => onDataLoad(data, "situation")}
               />
             </Modal>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
 
       {/* Render the active table based on the state */}
       {activeTable === "situation" && (
@@ -334,12 +337,7 @@ function Index() {
         <PnscTable pnscReport={pnscReport} setPnscReport={setPnscReport} />
       )}
       {activeTable === null && (
-        <Table
-          className="mt-5"
-          dataSource={[]}
-          columns={[]}
-          pagination={false}
-        />
+        <AntdTable className="mt-5" data={[]} columns={[]} pagination={false} />
       )}
     </>
   );

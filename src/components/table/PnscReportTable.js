@@ -124,7 +124,6 @@ function PnscTable(props) {
     }
   };
 
-
   const sendPnscReport = async () => {
     try {
       const finalData = pnscReport;
@@ -138,7 +137,8 @@ function PnscTable(props) {
     {
       title: "Time Stamp",
       dataIndex: "ps_timestamp",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
         if (
@@ -148,7 +148,7 @@ function PnscTable(props) {
           return (
             <StyledInput>
               <DateBox
-                style={{ width: 180 }}
+                style={{ width: 150 }}
                 format="YYYY-MM-DD HH:mm:ss"
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
@@ -177,12 +177,14 @@ function PnscTable(props) {
     {
       title: "IMO",
       dataIndex: "mv_imo",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="mv_imo"
               rules={[
                 {
@@ -200,12 +202,14 @@ function PnscTable(props) {
     {
       title: "Type",
       dataIndex: "mv_ais_type_summary",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <SelectBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               placeholder="Select Type"
               name={"mv_ais_type_summary"}
               options={ais_type_summary.map((item) => ({
@@ -228,6 +232,8 @@ function PnscTable(props) {
     {
       title: "Longitude",
       dataIndex: ["ps_position", "dms", 0],
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (
           (showInputs.pnscReportColumn && index === 0) |
@@ -264,12 +270,14 @@ function PnscTable(props) {
     {
       title: "Country",
       dataIndex: "ps_country",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="ps_country"
               rules={[
                 {
@@ -286,7 +294,8 @@ function PnscTable(props) {
     },
     {
       title: "Status Symbol",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ps_status_symbol",
       render: (text, record, index) => {
@@ -294,7 +303,7 @@ function PnscTable(props) {
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="ps_status_symbol"
               rules={[
                 {
@@ -312,14 +321,15 @@ function PnscTable(props) {
     {
       title: "Status Symbol Remarks",
       dataIndex: "ps_status_symbol_remarks",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="ps_status_symbol_remarks"
               rules={[
                 {
@@ -337,7 +347,8 @@ function PnscTable(props) {
     {
       title: "Status Symbol Assigned Time",
       dataIndex: "ps_status_symbol_assigned_time",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
         if (
@@ -348,7 +359,7 @@ function PnscTable(props) {
             <StyledInput>
               <DateBox
                 format="YYYY-MM-DD HH:mm:ss"
-                style={{ width: 180 }}
+                style={{ width: 150 }}
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
                 }}
@@ -375,13 +386,15 @@ function PnscTable(props) {
     },
     {
       title: "Track Number",
+      ellipsis: false,
+      width: 250,
       dataIndex: "ps_track_number",
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="ps_track_number"
               //   min={1}
               type="number"
@@ -401,12 +414,14 @@ function PnscTable(props) {
     {
       title: "Course",
       dataIndex: "ps_course",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputNumBox
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               name="ps_course"
               type="number"
               rules={[
@@ -425,6 +440,8 @@ function PnscTable(props) {
     {
       title: "Speed",
       dataIndex: "ps_speed",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
@@ -432,7 +449,7 @@ function PnscTable(props) {
             <InputNumBox
               name="ps_speed"
               type="number"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -456,7 +473,7 @@ function PnscTable(props) {
           <StyledInput>
             <InputBox
               name="ps_lastport"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -473,13 +490,15 @@ function PnscTable(props) {
     {
       title: "Next Port",
       dataIndex: "ps_next_port",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
               name="ps_next_port"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -496,13 +515,15 @@ function PnscTable(props) {
     {
       title: "Track Label",
       dataIndex: "ps_track_label",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
               name="ps_track_label"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -519,13 +540,15 @@ function PnscTable(props) {
     {
       title: "Track Type",
       dataIndex: "ps_track_type",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.pnscReportColumn && index === 0) |
           isPnscReportEditing(index) ? (
           <StyledInput>
             <InputBox
               name="ps_track_type"
-              style={{ width: 180 }}
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -543,7 +566,8 @@ function PnscTable(props) {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.pnscReportColumn && index === 0) {
           return (
@@ -629,7 +653,7 @@ function PnscTable(props) {
           <FilledButton
             disabled={pnscReport.length == 0}
             style={{ marginLeft: "auto" }}
-            text="Save PNSC Report"
+            text="Save Report"
             onClick={sendPnscReport}
             className="rounded-full border-lightgreen bg-lightgreen text-white mr-6"
           />
@@ -638,13 +662,23 @@ function PnscTable(props) {
           <Heading
             level={5}
             className="  whitespace-nowrap ml-5"
-            text="Situation Report"
+            text="PNSC Report"
           />
           <FilledButton
             text="+ Add PNSC Report"
-            className="rounded-full border-midnight bg-midnight text-white mr-6"
-            onClick={handlePnscReportColumnShowInput}
-            disabled={pnscReportKey !== ""}
+            className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                        onClick={handlePnscReportColumnShowInput}
+            disabled={
+              pnscReport.length === 0 && !showInputs.pnscReportColumn
+            }
+          />
+          <FilledButton
+            text="+ Add "
+            className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                        onClick={handlePnscReportColumnShowInput}
+            disabled={
+              pnscReport.length === 0 && !showInputs.pnscReportColumn
+            }
           />
         </Col>
       </Row>
