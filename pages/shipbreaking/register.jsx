@@ -8,7 +8,6 @@ import SelectBox from "../../src/components/form/SelectBox";
 import styled from "styled-components";
 import { useForm } from "antd/lib/form/Form";
 import {
-  country_list,
   port_list,
   ais_type_summary,
 } from "../../src/helper/dropdown";
@@ -163,7 +162,7 @@ function Register() {
         onFinish={handleSubmit}
       >
         <Row className="flex justify-center">
-          <Col span={7}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7} >
             <InputBox
               label="IMO"
               placeholder="4587"
@@ -180,17 +179,6 @@ function Register() {
               maxLength={15}
               rules={refactoredRules}
             />
-            {/* <SelectBox
-              label="Flag"
-              name="mv_flag"
-              className="input"
-              placeholder="Pakistan (PK)"
-              onChange={(value) => setFlag(value)}
-              options={country_list.map((item) => ({
-                label: item,
-                value: item,
-              }))}
-            /> */}
             <SelectBox
               label="Flag"
               name="mv_flag"
@@ -201,42 +189,42 @@ function Register() {
               options={countryOptions}
             />
             <InputBox
-              label="Master Name"
+              label="Master"
               name="sb_mast_name"
               className="input"
               placeholder="Hassan"
               rules={refactoredRules}
             />
             <InputBox
-              label="Buyer Company Name"
+              label="Buyer Co.Name"
               name="sb_buyer_comp_name"
               className="input"
               placeholder="Company name"
               rules={refactoredRules}
             />
             <InputBox
-              label="Owner Name"
+              label="Owner"
               name="sb_owner_name"
               className="input"
               placeholder="Owner name"
               rules={refactoredRules}
             />
             <InputBox
-              label="Local Shipping Agent Name"
+              label="Local Shipping Agent"
               name="sb_locshipping_agent_name"
               className="input"
               placeholder="Agent name "
               rules={refactoredRules}
             />
             <InputBox
-              label="Local Shipping Company Name"
+              label="Local Shipping Co.Name"
               name="sb_locshipping_comp_name"
-              className="input"
+              className="input "
               placeholder="Shipping company name "
               rules={refactoredRules}
             />
             <SelectBox
-              label="ISO Certificate"
+              label="ISO  "
               className="input"
               name="sb_iso_cert"
               placeholder="Select"
@@ -247,7 +235,7 @@ function Register() {
               ]}
             />
             <Form.Item
-              label=" Communciation Equipment List"
+              label="Equipment List"
               name="sb_comm_equip_list"
               rules={commonRules}
             >
@@ -262,7 +250,7 @@ function Register() {
               />
             </Form.Item>
           </Col>
-          <Col span={7} offset={1}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7} className="ml-2 mr-2">
             <DateBox
               style={{ width: 180 }}
               label="Date Time"
@@ -313,7 +301,7 @@ function Register() {
             />
 
             <InputBox
-              label="Buyer Company Cell Number"
+              label="Buyer Co.Cell"
               name="sb_buyer_comp_num"
               className="input"
               placeholder="0334-2525356"
@@ -333,7 +321,7 @@ function Register() {
             />
 
             <InputBox
-              label="Owner Cell Number"
+              label="Owner Cell"
               name="sb_owner_num"
               className="input"
               placeholder="0334-2525356"
@@ -353,7 +341,7 @@ function Register() {
             />
 
             <InputBox
-              label="Local Shipping Agent Cell Number"
+              label="Local Shipping Agent Cell"
               name="sb_locshipping_agent_num"
               className="input"
               placeholder="0334-2525356"
@@ -372,7 +360,7 @@ function Register() {
               ]}
             />
             <SelectBox
-              label="Deletion Certificate"
+              label="Deletion "
               name="sb_del_cert"
               className="input"
               placeholder="Select"
@@ -383,7 +371,7 @@ function Register() {
               ]}
             />
             <InputBox
-              label="Embossed Name"
+              label="Embossed"
               name="sb_emb_name"
               className="input"
               placeholder="to be provided"
@@ -391,10 +379,10 @@ function Register() {
               rules={refactoredRules}
             />
           </Col>
-          <Col span={7} offset={1}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7} className="ml-2 mr-2">
             <SelectBox
-              label="Ship flag Registry Certificate"
-              className="input"
+              label="Ship flag Registry "
+              className="input nowrap"
               name="sb_flag_reg_cert"
               placeholder="Select"
               rules={commonRules}
@@ -405,8 +393,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Memorandum of Agreement"
-              className="input"
+              label="Memo Agreement"
+              className="input nowrap"
               name="sb_agreement_memo"
               placeholder="Select"
               rules={commonRules}
@@ -417,8 +405,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Letter of Credit"
-              className="input"
+              label="Letter Credit"
+              className="input nowrap"
               name="sc_credit_let"
               placeholder="Select"
               rules={commonRules}
@@ -429,8 +417,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Any Security Team "
-              className="input"
+              label="Security Team "
+              className="input nowrap"
               name="sb_sec_team"
               placeholder="Select"
               rules={commonRules}
@@ -441,8 +429,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Any Hazardeous Material "
-              className="input"
+              label="Hazardeous Material "
+              className="input nowrap"
               name="sb_haz_material"
               placeholder="Select"
               rules={commonRules}
@@ -453,8 +441,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Gas Free Certicate "
-              className="input"
+              label="Gas Free  "
+              className="input nowrap"
               name="sb_gas_free_cert"
               placeholder="Select"
               rules={commonRules}
@@ -465,8 +453,8 @@ function Register() {
             />
 
             <SelectBox
-              label="Nuclear Waste Free Certifcate"
-              className="input"
+              label="Nuclear Waste Free "
+              className="input nowrap"
               name="sb_waste_free_cert"
               placeholder="Select"
               rules={commonRules}
@@ -477,7 +465,7 @@ function Register() {
             />
             <SelectBox
               label="Import General Manifest"
-              className="input"
+              className="input nowrap"
               name="sb_import_gen_manifest"
               placeholder="Select"
               rules={commonRules}
@@ -487,8 +475,8 @@ function Register() {
               ]}
             />
             <SelectBox
-              label="Good Deceleration Certificate"
-              className="input"
+              label="Good Deceleration "
+              className="input nowrap"
               name="sb_goods_dec_doc"
               placeholder="Select"
               rules={commonRules}
@@ -500,7 +488,7 @@ function Register() {
             <InputBox
               label="Ex Name"
               name="sb_ex_name"
-              className="input"
+              className="input nowrap"
               placeholder="to be provided"
               maxLength={25}
               rules={refactoredRules}
@@ -533,5 +521,8 @@ export default Register;
 const StyledDiv = styled.div`
   .input {
     margin-bottom: 20px;
+  }
+  .nowrap {
+    white-space: nowrap !important;
   }
 `;

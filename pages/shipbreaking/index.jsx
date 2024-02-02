@@ -59,9 +59,10 @@ function Index() {
         onNavigate={handleNavigate}
         placeholder="Search by Ex Name"
         showButton={true}
+        btnTitleMedia="+ Add"
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
       </div>
     </div>
   );

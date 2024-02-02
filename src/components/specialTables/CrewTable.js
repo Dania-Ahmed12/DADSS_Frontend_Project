@@ -500,7 +500,6 @@ function CrewTable(props) {
   ];
 
   return (
-   
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">

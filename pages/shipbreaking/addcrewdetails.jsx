@@ -95,7 +95,7 @@ function Addcrewdetails() {
             <FilledButton
               style={{ marginLeft: "auto" }}
               text="Save Data"
-              className="rounded-full border-lightgreen bg-lightgreen text-white mr-12"
+              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
               loading={isLoading}
               onClick={handleSubmit}
             />
@@ -112,7 +112,7 @@ function Addcrewdetails() {
       <Form
         form={form}
         layout="vertical"
-        className="shadow mx-14 px-3 py-10 bg-white"
+        className="shadow mx-5 px-3 py-10 bg-white"
         onFinish={handleSubmit}
       >
         <Row>
@@ -153,12 +153,7 @@ function Addcrewdetails() {
                 onClick={handleBack}
                 className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
               />
-              {/* <FilledButton
-                text="Save"
-                loading={isLoading}
-                onClick={handleSubmit}
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
-              /> */}
+          
             </div>
           </Col>
         </Row>
