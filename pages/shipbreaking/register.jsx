@@ -7,10 +7,7 @@ import InputBox from "../../src/components/form/InputBox";
 import SelectBox from "../../src/components/form/SelectBox";
 import styled from "styled-components";
 import { useForm } from "antd/lib/form/Form";
-import {
-  port_list,
-  ais_type_summary,
-} from "../../src/helper/dropdown";
+import { port_list, ais_type_summary } from "../../src/helper/dropdown";
 import DateBox from "../../src/components/form/DateBox";
 import dayjs from "dayjs";
 import { Select } from "antd";
@@ -162,7 +159,7 @@ function Register() {
         onFinish={handleSubmit}
       >
         <Row className="flex justify-center">
-          <Col xs={24} sm={24} md={7} lg={7} xl={7} >
+          <Col xs={24} sm={24} md={7} lg={7} xl={7}>
             <InputBox
               label="IMO"
               placeholder="4587"
@@ -252,9 +249,9 @@ function Register() {
           </Col>
           <Col xs={24} sm={24} md={7} lg={7} xl={7} className="ml-2 mr-2">
             <DateBox
-              style={{ width: 180 }}
+              // style={{ width: "180px" }}
               label="Date Time"
-              className="input"
+              className="input w-full"
               name="sb_dtg"
               format="YYYY-MM-DD HH:mm:ss"
               showTime={{
@@ -496,20 +493,27 @@ function Register() {
           </Col>
         </Row>
 
-        <Row className="flex justify-center">
-          <Col span={23} className="flex justify-end">
-            <div>
+        <Row className="mt-5 flex justify-center">
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={24}
+            className="flex justify-end text-center mb-3 lg:text-right lg:mb-2 "
+          >
+            <Form.Item>
               <OutlineButton
                 text="Cancel"
                 onClick={handleBack}
-                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+                className=" rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white ml-3 mb-3 mr-4 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block"
               />
               <FilledButton
                 text="Next"
                 onClick={handleSubmit}
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+                className=" rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3 mr-3 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block  "
               />
-            </div>
+            </Form.Item>
           </Col>
         </Row>
       </Form>
