@@ -147,13 +147,15 @@ const JettyDataTable = (props) => {
     {
       title: "Type of Boat",
       dataIndex: "ird_boat_types",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // Conditionally render an input field or existing text
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="ird_boat_types"
               rules={[
                 {
@@ -172,12 +174,14 @@ const JettyDataTable = (props) => {
     {
       title: "No. of Boats",
       dataIndex: "ird_total_boats",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               name="ird_total_boats"
               min={1}
               type="number"
@@ -197,7 +201,8 @@ const JettyDataTable = (props) => {
     {
       title: "Detected From",
       dataIndex: "ird_detected_from",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
           return (
@@ -226,7 +231,8 @@ const JettyDataTable = (props) => {
     {
       title: "Detected To",
       dataIndex: "ird_detected_to",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
           return (
@@ -255,12 +261,14 @@ const JettyDataTable = (props) => {
     {
       title: "Action Observed",
       dataIndex: "ird_act_observed",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="ird_act_observed"
               rules={[
                 {
@@ -278,12 +286,14 @@ const JettyDataTable = (props) => {
     {
       title: "Transferring",
       dataIndex: "ird_transferring_loc",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="ird_transferring_loc"
               rules={[
                 {
@@ -301,14 +311,15 @@ const JettyDataTable = (props) => {
     {
       title: "Probability",
       dataIndex: "ird_probability",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputNumBox
               name="ird_probability"
-              // suffix="%"
+              style={{ width: 150 }}
               type="number"
               rules={[
                 {
@@ -326,12 +337,14 @@ const JettyDataTable = (props) => {
     {
       title: "Picture Upload",
       dataIndex: "ird_boat_picture",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           (isJettyDataEditing(index) && !record.ird_boat_picture) ? (
           <StyledInput>
             <input
+              style={{ width: 150 }}
               type="file"
               name="ird_boat_picture"
               accept=".png,.jpg,.jpeg,.gif,.tiff"
@@ -369,12 +382,14 @@ const JettyDataTable = (props) => {
     {
       title: "Name of Nakwa",
       dataIndex: "ird_nakwa_name",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="ird_nakwa_name"
               rules={[
                 {
@@ -392,12 +407,14 @@ const JettyDataTable = (props) => {
     {
       title: "Owner Name",
       dataIndex: "ird_owner_name",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="ird_owner_name"
               rules={[
                 {
@@ -415,7 +432,8 @@ const JettyDataTable = (props) => {
     {
       title: "No. of Crew",
       dataIndex: "ird_number_of_crew",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
           isJettyDataEditing(index) ? (
@@ -440,7 +458,8 @@ const JettyDataTable = (props) => {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
           return (
@@ -517,29 +536,6 @@ const JettyDataTable = (props) => {
     },
   ];
   return (
-    // <Form form={jettyDataForm} onFinish={onjettyDataFinish} className="mb-8">
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Intel Report Details" />
-    //       <FilledButton
-    //         text="+Add Intel Report Detail"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    // onClick={handleJettyDataColumnShowInput}
-    // disabled={jettyDataKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    //       columns={jettyDataColumns}
-    //       dataSource={
-    //         showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData
-    //       }
-    //       pagination={true}
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
@@ -551,12 +547,20 @@ const JettyDataTable = (props) => {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Jetty Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleJettyDataColumnShowInput}
-              disabled={jettyDataKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Jetty Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleJettyDataColumnShowInput}
+                disabled={jettyDataKey !== ""}
+              />{" "}
+              <FilledButton
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleJettyDataColumnShowInput}
+                disabled={jettyDataKey !== ""}
+              />
+            </>
           )}
         </Col>
       </Row>
@@ -564,25 +568,18 @@ const JettyDataTable = (props) => {
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
         form={jettyDataForm}
+        scrollConfig={{x:true}}
         onFinish={onjettyDataFinish}
         scroll={{ x: "auto" }} // Set the scroll property as per your requirements
         columns={jettyDataColumns}
         data={showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData}
-        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 };
 
 export default JettyDataTable;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
-`;
+
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;

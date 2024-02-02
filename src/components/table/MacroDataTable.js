@@ -124,17 +124,20 @@ const MacroDataTable = (props) => {
     {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
     },
     {
       title: "Reporter Name",
       dataIndex: reportKeys.name,
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // Check if in edit mode or adding new data
         return showInputs.macroDataColumns | showInputs.macroData_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               placeholder="name"
               name={reportKeys.name}
               rules={[
@@ -154,12 +157,14 @@ const MacroDataTable = (props) => {
     {
       title: "Reporting Time ",
       dataIndex: reportKeys.reporting_time,
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.macroDataColumns | showInputs.macroData_editing) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 180 }}
                 format="YYYY-MM-DD HH:mm:ss"
                 showTime={{
                   defaultValue: dayjs("00:00:00", "HH:mm:ss"),
@@ -184,12 +189,14 @@ const MacroDataTable = (props) => {
     },
     {
       title: "Jetty Name",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       dataIndex: reportKeys.jetty,
       render: (text, record, index) => {
         return showInputs.macroDataColumns | showInputs.macroData_editing ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name={reportKeys.jetty}
               rules={[
                 {
@@ -211,6 +218,7 @@ const MacroDataTable = (props) => {
         return showInputs.macroDataColumns | showInputs.macroData_editing ? (
           <StyledInput>
             <InputNumBox
+              style={{ width: 150 }}
               placeholder="Total Jetty"
               name={reportKeys.t_boats}
               type="number"
@@ -230,7 +238,8 @@ const MacroDataTable = (props) => {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+           ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.macroDataColumns) {
           return (
@@ -302,32 +311,6 @@ const MacroDataTable = (props) => {
     },
   ];
 
-  // return (
-  //   <Form className="mb-8" form={macroDataForm} onFinish={onMacroDataFinish}>
-  //     <Row className="mb-5">
-  //       <Col span={24} className="flex justify-between">
-  //         <Heading level={5} text="Macro Data" />
-  //         {/* If the showButtons variable is true, the content inside the
-  //         parentheses will be rendered; otherwise, it won't. */}
-  //         {showButtons && (
-  //           <FilledButton
-  // disabled={macroDataEntered}
-  // text="+Add Macro Data"
-  // className="rounded-full border-midnight bg-midnight text-white"
-  // onClick={handleMacroDataShowInput}
-  //           />
-  //         )}
-  //       </Col>
-  //     </Row>
-  //     <StyledDiv>
-  //       <Table
-  // columns={ownMacroDataFormColumns}
-  // dataSource={[intelMacroData]}
-  // pagination={false}
-  //       />
-  //     </StyledDiv>
-  //   </Form>
-  // );
   return (
     <div className="mb-10">
       <Row>
@@ -340,18 +323,27 @@ const MacroDataTable = (props) => {
         </Col>
         <Col span={12} className=" flex justify-end">
           {showButtons && (
-            <FilledButton
-              disabled={macroDataEntered}
-              text="+ Add Intel Macro Data"
-              className="rounded-full border-midnight bg-midnight text-white mr-5"
-              onClick={handleMacroDataShowInput}
-            />
+            <>
+              <FilledButton
+                disabled={macroDataEntered}
+                text="+ Add Intel Macro Data"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleMacroDataShowInput}
+              />
+              <FilledButton
+                disabled={macroDataEntered}
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleMacroDataShowInput}
+              />
+            </>
           )}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
+        scrollConfig={{ x: true }}
         form={macroDataForm}
         onFinish={onMacroDataFinish}
         columns={ownMacroDataFormColumns}

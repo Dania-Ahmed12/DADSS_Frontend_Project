@@ -232,37 +232,27 @@ export const IntelColumns = [
   {
     title: "Platform ID",
     dataIndex: "ir_pf_id",
-    ellipsis: {
-      showTitle: false,
-    },
+    width: 250,
+    ellipsis: false,
     render: (text) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
+
   {
     title: "Reporter Name",
     dataIndex: "ir_reporter_name",
-    ellipsis: {
-      showTitle: false,
-    },
+    width: 250,
+    ellipsis: false,
     render: (text, record) => {
-      return (
-        <Tooltip placement="topLeft" title={text}>
-          {text}
-        </Tooltip>
-      );
+      return text;
     },
   },
   {
     title: "Reporting Time",
     dataIndex: "ir_reporting_time",
-    ellipsis: {
-      showTitle: false,
-    },
+    width: 250,
+    ellipsis: false,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
       return dtg;
@@ -271,10 +261,14 @@ export const IntelColumns = [
   {
     title: "Jetty",
     dataIndex: "ir_jetty",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Boats",
     dataIndex: "ir_total_boats",
+    width: 250,
+    ellipsis: false,
   },
 ];
 

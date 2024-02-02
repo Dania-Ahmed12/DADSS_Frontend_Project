@@ -50,13 +50,14 @@ function Index() {
       <PageHeader
         title="Intel Report (List View)"
         btnTitle="+ Add Report"
+        btnTitleMedia="+ Add"
         onSearchChange={setSearchData}
         onNavigate={handleNavigate}
         placeholder="Search by Reporter Name or Jetty"
         showButton={true}
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
       </div>
     </div>
   );

@@ -30,10 +30,6 @@ const JettyDataTable = dynamic(
 function Addintelinput() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const IntelDetailReportState = useSelector(
-    (state) => state.saveIntelDetailReport
-  );
-
   const init_macro_data = { ir_pf_id: Cookies.get("u_pf_id") };
   const [intelMacroData, setIntelMacroData] = useState(init_macro_data);
   const [macroDataEntered, setMacroDataEntered] = useState(false);
