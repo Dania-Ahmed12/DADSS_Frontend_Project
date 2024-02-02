@@ -1,4 +1,4 @@
-import { Col, Descriptions, Row, Table } from "antd";
+import { Col, Descriptions, Row, } from "antd";
 import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import Heading from "../../src/components/title/Heading";
@@ -14,7 +14,6 @@ import axios from "axios";
 import { MerchantDetailColumns } from "../../src/helper/DataColumns";
 import GoodsTable from "../../src/components/specialTables/GoodsTable";
 import PageHeader from "../../src/components/pageheader/pageHeader";
-import AntdTable from "../../src/components/table/AntdTable";
 
 function Details({ data }) {
   const [showButtons, setShowButtons] = useState(false);
@@ -31,12 +30,6 @@ function Details({ data }) {
 
   // Table columns for displaying merchant vessel details
   const vesselcolumns = [...MerchantDetailColumns];
-
-  // Transpose the data
-  const transposeData = vesselcolumns.map((column) => ({
-    Field: column.title,
-    Value: parsedVesselData[column.dataIndex],
-  }));
 
   // Map vesselcolumns to extract label and children
   const items = vesselcolumns.map((column) => ({

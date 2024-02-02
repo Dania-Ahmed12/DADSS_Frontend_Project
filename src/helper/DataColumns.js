@@ -57,33 +57,44 @@ export const MerVesselColumn = [
   {
     title: "MMSI",
     dataIndex: "mv_mmsi",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "IMO",
     dataIndex: "mv_imo",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Ship ID",
-
+    width: 250,
+    ellipsis: false,
     dataIndex: "mv_ship_id",
   },
   {
     title: "Ship Name",
-    width: 200,
+    width: 250,
+    ellipsis: false,
     dataIndex: "mv_ship_name",
   },
   {
     title: "Flag",
     dataIndex: "mv_flag",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Type",
     dataIndex: "mv_type_name",
-    width: 200,
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "AIS Type",
     dataIndex: "mv_ais_type_summary",
+    width: 250,
+    ellipsis: false,
   },
 ];
 export const MerchantDetailColumns = [
@@ -91,32 +102,46 @@ export const MerchantDetailColumns = [
   {
     title: "Ship Type",
     dataIndex: "mv_ship_type",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Call Sign",
     dataIndex: "mv_call_sign",
+    width: 250,
+    ellipsis: false,
   },
 
   {
     title: "Length",
     dataIndex: "mv_length",
+    width: 250,
+    ellipsis: false,
   },
 
   {
     title: "Width",
     dataIndex: "mv_width",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Gross Tonnage",
     dataIndex: "mv_grt",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Dead Weight",
     dataIndex: "mv_dwt",
+    width: 250,
+    ellipsis: false,
   },
   {
     title: "Year built",
     dataIndex: "mv_year_built",
+    width: 250,
+    ellipsis: false,
   },
 ];
 

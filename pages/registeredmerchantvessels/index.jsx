@@ -50,6 +50,7 @@ function Index() {
         <PageHeader
           title="Registered Merchant Vessels (List View)"
           btnTitle="+ Register Vessel"
+          btnTitleMedia="+ Add"
           onSearchChange={setSearchData}
           onNavigate={handleClick}
           placeholder="Search by IMO or Ship Name or MMSI"

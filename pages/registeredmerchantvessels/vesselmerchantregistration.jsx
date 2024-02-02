@@ -113,7 +113,7 @@ function RegisteredVesselData() {
         onFinish={handleSubmit}
       >
         <Row className="flex justify-center">
-          <Col span={7} offset={1}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7}>
             <InputBox
               label="Platform ID"
               name="pf_id"
@@ -175,7 +175,7 @@ function RegisteredVesselData() {
               ]}
             />
           </Col>
-          <Col span={7} offset={1}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7} className="ml-2 mr-2">
             <InputBox
               label="Ship ID"
               name="mv_ship_id"
@@ -248,7 +248,7 @@ function RegisteredVesselData() {
               ]}
             />
           </Col>
-          <Col span={7} offset={1}>
+          <Col xs={24} sm={24} md={7} lg={7} xl={7} className="ml-2 mr-2">
             <InputBox
               label="IMO ID"
               name="mv_imo"
@@ -310,23 +310,31 @@ function RegisteredVesselData() {
             />
           </Col>
         </Row>
-        <Row className="flex justify-center">
-          <Col span={23} className="flex justify-end">
-            <div>
+
+        <Row className="mt-5 flex justify-center">
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={24}
+            className="flex justify-end text-center mb-3 lg:text-right lg:mb-2 "
+          >
+            <Form.Item>
               <OutlineButton
                 text="Cancel"
                 onClick={handleBack}
-                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
+                className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white ml-3 mb-3 mr-4 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block"
               />
               <FilledButton
-                text="Save"
-                loading={isLoading}
+                text="Next"
                 onClick={handleSubmit}
-                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
+                className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3 mr-3 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block  "
               />
-            </div>
+            </Form.Item>
           </Col>
         </Row>
+
       </Form>
     </StyledDiv>
   );

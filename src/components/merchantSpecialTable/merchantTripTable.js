@@ -1,23 +1,19 @@
 import { useState } from "react";
-import { Col, Row, Table, Form, Modal } from "antd";
+import { Col, Row,  Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
-import {
-  movement_list,
-  port_list,
-} from "../../helper/dropdown";
+import { movement_list, port_list } from "../../helper/dropdown";
 import AntdTable from "../table/AntdTable";
-
 
 function MerchantTripTable(props) {
   const { tripData, setTripData, showButtons } = props;
@@ -87,7 +83,7 @@ function MerchantTripTable(props) {
   // Function to handle form submission for adding trip data
   const onTripFinish = async () => {
     const validatedValues = await tripForm.validateFields();
-    // Check if there are validated values 
+    // Check if there are validated values
     if (validatedValues) {
       setTripData({
         // Spread the newly validated form values
@@ -115,6 +111,8 @@ function MerchantTripTable(props) {
     {
       title: "LPOC",
       dataIndex: "msr2_lpoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         // Conditionally render an input field based on 'showInputs' state
         return showInputs.tripColumns | showInputs.trip_editing ? (
@@ -122,6 +120,7 @@ function MerchantTripTable(props) {
           <StyledInput>
             <SelectBox
               placeholder="LPOC"
+              style={{ width: 150 }}
               name="msr2_lpoc"
               options={port_list.map((item) => ({ value: item, label: item }))}
               rules={[
@@ -142,11 +141,14 @@ function MerchantTripTable(props) {
     {
       title: "LPOC Date",
       dataIndex: "msr2_lpocdtg",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         if (showInputs.tripColumns | showInputs.trip_editing) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 150 }}
                 format="YYYY-MM-DD"
                 name="msr2_lpocdtg"
                 rules={[
@@ -166,10 +168,13 @@ function MerchantTripTable(props) {
     {
       title: "NPOC",
       dataIndex: "msr2_npoc",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="NPOC"
               name="msr2_npoc"
               options={port_list.map((item) => ({ value: item, label: item }))}
@@ -189,11 +194,14 @@ function MerchantTripTable(props) {
     {
       title: "NPOC ETA",
       dataIndex: "msr2_npoceta",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         if (showInputs.tripColumns | showInputs.trip_editing) {
           return (
             <StyledInput>
               <DateBox
+                style={{ width: 150 }}
                 format="YYYY-MM-DD"
                 name="msr2_npoceta"
                 rules={[
@@ -213,10 +221,13 @@ function MerchantTripTable(props) {
     {
       title: "Movement",
       dataIndex: "msr_movement",
+      ellipsis: false,
+      width: 250,
       render: (text, record) => {
         return showInputs.tripColumns | showInputs.trip_editing ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               name="msr_movement"
               placeholder="Select"
               rules={[
@@ -239,6 +250,8 @@ function MerchantTripTable(props) {
     {
       title: "",
       dataIndex: "action",
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showButtons) {
           // Check if 'showInputs.tripColumns' is true
@@ -321,63 +334,47 @@ function MerchantTripTable(props) {
     },
   ];
 
-  // return (
-  //   <Form form={tripForm} onFinish={onTripFinish} className="mb-8">
-  //     <Row className="mb-5">
-  //       <Col span={24} className="flex justify-between">
-  //         <Heading level={5} text="Trip Details" />
-  //         {showButtons && (
-  //           <FilledButton
-  //             disabled={tripDataEntered}
-  //             text="+Add Trip Details"
-  //             className="rounded-full border-midnight bg-midnight text-white"
-  //             onClick={handleTripShowInput}
-  //           />
-  //         )}
-  //       </Col>
-  //     </Row>
-
-  //     <StyledDiv>
-  //       <Table
-  //         columns={tripColumns}
-  //         dataSource={[tripData]}
-  //         pagination={false}
-  //       />
-  //     </StyledDiv>
-  //   </Form>
-  // );
-return (
-  <div className="mb-10">
-    <Row>
-      <Col span={12} className="flex justify-start">
-        <Heading
-          className="whitespace-nowrap ml-5"
-          level={5}
-          text="Trip Details"
-        />
-      </Col>
-      <Col span={12} className="flex justify-end">
-        {showButtons && (
-          <FilledButton
-            text="+ Add Trip Details"
-            className="rounded-full border-midnight bg-midnight text-white mx-8"
-            onClick={handleTripShowInput}
-            disabled={tripDataEntered}
+  return (
+    <div className="mb-10">
+      <Row>
+        <Col span={12} className="flex justify-start">
+          <Heading
+            className="whitespace-nowrap ml-5"
+            level={5}
+            text="Trip Details"
           />
-        )}
-      </Col>
-    </Row>
-    {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
+        </Col>
+        <Col span={12} className="flex justify-end">
+          {showButtons && (
+            <>
+              <FilledButton
+                text="+ Add Trip Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleTripShowInput}
+                disabled={tripDataEntered}
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleTripShowInput}
+                disabled={tripDataEntered}
+              />
+            </>
+          )}
+        </Col>
+      </Row>
+      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-    <AntdTable
-      columns={tripColumns}
-      data={[tripData]}
-      pagination={false}
-      form={tripForm}
-      onFinish={onTripFinish}
-    />
-  </div>
-);
+      <AntdTable
+      scrollConfig={{x:true}}
+        columns={tripColumns}
+        data={[tripData]}
+        pagination={false}
+        form={tripForm}
+        onFinish={onTripFinish}
+      />
+    </div>
+  );
 }
 
 export default MerchantTripTable;
