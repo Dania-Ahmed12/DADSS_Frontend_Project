@@ -29,35 +29,41 @@ function VisFormTable() {
     {
       title: "Boat ID ",
       dataIndex: "boat_id",
+      width: 250,
+      ellipsis: false,
     },
     {
       title: "Nakwa Name",
       dataIndex: "nakwa_name",
+      width: 250,
+      ellipsis: false,
     },
     {
       title: "Crew",
       dataIndex: "crew",
+      width: 250,
+      ellipsis: false,
     },
     {
       title: "Departure Date",
       dataIndex: "dep_date",
-      ellipsis: {
-        showTitle: false,
-      },
+      width: 250,
+      ellipsis: false,
       render: renderDate,
     },
     {
       title: "Arrival Data",
       dataIndex: "arrival_date",
-      ellipsis: {
-        showTitle: false,
-      },
+      width: 250,
+      ellipsis: false,
       render: renderDate,
     },
 
     {
       title: "PC Date",
       dataIndex: "pc_date",
+      width: 250,
+      ellipsis: false,
     },
   ];
   return (
@@ -69,7 +75,7 @@ function VisFormTable() {
         showButton={false} // Pass true to show the button or false to hide it
       />
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading} />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}} />
       </div>
     </div>
   );
