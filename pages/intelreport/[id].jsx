@@ -6,46 +6,8 @@ import dayjs from "dayjs";
 import { IntelColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
-import AntdTable from "../../src/components/table/AntdTable";
-
-
-
-
 
 function IntelDetails({ data }) {
-  const ownMacroDataFormColumns = [...IntelColumns];
-
-  function transposeData(data) {
-    if (!data) return [];
-
-    const transposedData = [];
-    transposedData.push({
-      Field: "Platform ID",
-      Value: data.ir_pf_id,
-    });
-    transposedData.push({
-      Field: "Reporter Name",
-      Value: data.ir_reporter_name,
-    });
-
-    transposedData.push({
-      Field: "Reporting Time",
-      Value: dayjs(data.ir_reporting_time).format("YYYY-MM-DD HH:mm:ss"),
-    });
-
-    transposedData.push({
-      Field: "Jetty",
-      Value: data.ir_jetty,
-    });
-
-    transposedData.push({
-      Field: "Total Boats",
-      Value: data.ir_total_boats,
-    });
-
-    return transposedData;
-  }
-
   // Map vesselcolumns to extract label and children
   const items = [
     {
@@ -73,20 +35,23 @@ function IntelDetails({ data }) {
   const jettyDataColumns = [
     {
       title: "Type of Boat",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_boat_types",
     },
     {
       title: "No. of Boats",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_total_boats",
     },
 
     {
       title: "Detected From",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_detected_from",
       render: (text) => {
@@ -97,7 +62,8 @@ function IntelDetails({ data }) {
 
     {
       title: "Detected To",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_detected_to",
       render: (text) => {
@@ -108,27 +74,32 @@ function IntelDetails({ data }) {
 
     {
       title: "Action Observed",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_act_observed",
     },
 
     {
       title: "Transferring",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_transferring_loc",
     },
 
     {
       title: "Probability",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_probability",
     },
     {
       title: "Picture",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
+
       dataIndex: "ird_boat_picture",
       render: (text) =>
         text ? (
@@ -144,22 +115,24 @@ function IntelDetails({ data }) {
 
     {
       title: "Name of Nakwa",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_nakwa_name",
     },
 
     {
       title: "Owner Name",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
 
       dataIndex: "ird_owner_name",
     },
 
     {
       title: "No. of Crew",
-      ellipsis: true,
-
+      ellipsis: false,
+      width: 250,
       dataIndex: "ird_number_of_crew",
     },
   ];
@@ -170,15 +143,6 @@ function IntelDetails({ data }) {
       columns: jettyDataColumns,
       data: data?.intelreportdetails,
     },
-  ];
-
-  // Prepare transposed data
-  const transposedData = transposeData(data);
-
-  // Define columns for transposed data table
-  const transposedColumns = [
-    { title: "Data", dataIndex: "Field" },
-    { title: "Value", dataIndex: "Value" },
   ];
   return (
     <div>

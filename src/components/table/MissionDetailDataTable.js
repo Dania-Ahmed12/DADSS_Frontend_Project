@@ -19,11 +19,6 @@ import SimpleButton from "../button/SimpleButton";
 import SelectBox from "../form/SelectBox";
 import AntdTable from "./AntdTable";
 
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
-`;
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -52,7 +47,7 @@ const IconsStylingWrap = styled.div`
 `;
 
 function MissionDetailDataTable(props) {
-  const { missionDetail, setMissionDetail , showButtons} = props;
+  const { missionDetail, setMissionDetail, showButtons } = props;
   const [missionDetailForm] = useForm();
 
   // used to track the currently editing item's index in the mission detail array.
@@ -171,14 +166,15 @@ function MissionDetailDataTable(props) {
     {
       title: "MMSI",
       dataIndex: "mrd_mmsi",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // Conditionally render an input field or existing text
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
-              style={{ width: 100 }}
+              style={{ width: 150 }}
               name="mrd_mmsi"
               rules={[
                 {
@@ -198,6 +194,38 @@ function MissionDetailDataTable(props) {
           </StyledInput>
         ) : (
           // If conditions not met, render the existing text
+          text
+        );
+      },
+    },
+    {
+      title: "Date Time",
+      dataIndex: "mrd_dtg",
+      ellipsis: false,
+      width: 250,
+      render: (text, record, index) => {
+        return (showInputs.missionDetailColumns && index === 0) |
+          isMissionDetailDataEditing(index) ? (
+          // return (
+          <StyledInput>
+            <DateBox
+              style={{ width: 180 }}
+              format="YYYY-MM-DD HH:mm:ss"
+              showTime={{
+                defaultValue: dayjs("00:00:00", "HH:mm:ss"),
+              }}
+              name="mrd_dtg"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select a date!",
+                },
+              ]}
+            />
+          </StyledInput>
+        ) : missionDetail ? (
+          dayjs(text).format("YYYY-MM-DD HH:mm:ss")
+        ) : (
           text
         );
       },
@@ -241,14 +269,15 @@ function MissionDetailDataTable(props) {
     {
       title: "Course",
       dataIndex: "mrd_course",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputNumBox
               name="mrd_course"
-              //   min={1}
+              style={{ width: 150 }}
               type="number"
               rules={[
                 {
@@ -266,7 +295,8 @@ function MissionDetailDataTable(props) {
     {
       title: "Speed",
       dataIndex: "mrd_speed",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
@@ -274,6 +304,7 @@ function MissionDetailDataTable(props) {
             <InputNumBox
               name="mrd_speed"
               type="number"
+              style={{ width: 150 }}
               rules={[
                 {
                   required: true,
@@ -290,12 +321,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Vessel Name",
       dataIndex: "mrd_vessel_name",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_vessel_name"
               rules={[
                 {
@@ -313,12 +346,14 @@ function MissionDetailDataTable(props) {
     {
       title: "NPOC",
       dataIndex: "mrd_npoc",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_npoc"
               rules={[
                 {
@@ -336,12 +371,14 @@ function MissionDetailDataTable(props) {
     {
       title: "LPOC",
       dataIndex: "mrd_lpoc",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_lpoc"
               rules={[
                 {
@@ -359,12 +396,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Activity Description",
       dataIndex: "mrd_act_desc",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_act_desc"
               rules={[
                 {
@@ -382,12 +421,14 @@ function MissionDetailDataTable(props) {
     {
       title: "AIS Status",
       dataIndex: "mrd_ais_status",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_ais_status"
               rules={[
                 {
@@ -405,12 +446,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Call Details",
       dataIndex: "mrd_call_details",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_call_details"
               rules={[
                 {
@@ -428,12 +471,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Response",
       dataIndex: "mrd_response",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_response"
               rules={[
                 {
@@ -451,12 +496,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Remarks",
       dataIndex: "mrd_remarks",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <InputBox
+              style={{ width: 150 }}
               name="mrd_remarks"
               rules={[
                 {
@@ -474,12 +521,14 @@ function MissionDetailDataTable(props) {
     {
       title: "Vessel Type",
       dataIndex: "mrd_vessel_type",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         return (showInputs.missionDetailColumns && index === 0) |
           isMissionDetailDataEditing(index) ? (
           <StyledInput>
             <SelectBox
+              style={{ width: 150 }}
               placeholder="Vessel Type"
               name={"mrd_vessel_type"}
               options={mission_details_vessel_type.map((item) => ({
@@ -500,41 +549,10 @@ function MissionDetailDataTable(props) {
       },
     },
     {
-      title: "Date Time",
-      dataIndex: "mrd_dtg",
-      ellipsis: true,
-      render: (text, record, index) => {
-        return (showInputs.missionDetailColumns && index === 0) |
-          isMissionDetailDataEditing(index) ? (
-          // return (
-          <StyledInput>
-            <DateBox
-              style={{ width: 180 }}
-              format="YYYY-MM-DD HH:mm:ss"
-              showTime={{
-                defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-              }}
-              name="mrd_dtg"
-              rules={[
-                {
-                  required: true,
-                  message: "Please select a date!",
-                },
-              ]}
-            />
-          </StyledInput>
-        ) : missionDetail ? (
-          dayjs(text).format("YYYY-MM-DD HH:mm:ss")
-        ) : (
-          text
-        );
-      },
-    },
-
-    {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.missionDetailColumns && index === 0) {
           return (
@@ -652,18 +670,27 @@ function MissionDetailDataTable(props) {
         </Col>
         <Col span={12} className="flex justify-end">
           {showButtons && (
-            <FilledButton
-              text="+ Add Mission Details"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={handleMissionDataColumnShowInput}
-              disabled={missionDetailDataKey !== ""}
-            />
+            <>
+              <FilledButton
+                text="+ Add Mission Details"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleMissionDataColumnShowInput}
+                disabled={missionDetailDataKey !== ""}
+              />
+              <FilledButton
+                text="+ Add "
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                disabled={missionDetailDataKey !== ""}
+                onClick={handleMissionDataColumnShowInput}
+              />
+            </>
           )}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
+        scrollConfig={{ x: true }}
         form={missionDetailForm}
         onFinish={onMissionDetailDataFinish}
         columns={missionDetailsDataColumns}

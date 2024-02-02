@@ -111,12 +111,14 @@ function MacroMissionDataTable(props) {
     {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
     },
     {
       title: "Date Time",
       dataIndex: reportKeys.datetime,
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         // When in data entry or editing mode, display DateBox component
         if (showInputs.missionDataColumns | showInputs.missionData_editing) {
@@ -149,7 +151,8 @@ function MacroMissionDataTable(props) {
     {
       title: "",
       dataIndex: "action",
-      ellipsis: true,
+      ellipsis: false,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs.missionDataColumns) {
           return (
@@ -229,31 +232,6 @@ function MacroMissionDataTable(props) {
   ];
 
   return (
-    // <Form
-    //   className="mb-8"
-    // form={missionDataForm}
-    // onFinish={onMissionDataFinish}
-    // >
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Macro Data" />
-    //       <FilledButton
-    //         disabled={missionDataEntered}
-    //         text="+ Add Macro Data"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handleMissionDataShowInput}
-    //       />
-    //     </Col>
-    //   </Row>
-
-    //   <StyledDiv>
-    //     <Table
-    //       columns={ownMissionDataFormColumns}
-    //       dataSource={[missionData]}
-    //       pagination={false}
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
       <Row>
         <Col span={12}>
@@ -265,12 +243,20 @@ function MacroMissionDataTable(props) {
         </Col>
         <Col span={12} className=" flex justify-end">
           {showButtons && (
-            <FilledButton
-              disabled={missionDataEntered}
-              text="+ Add Intel Macro Data"
-              className="rounded-full border-midnight bg-midnight text-white mr-5"
-              onClick={handleMissionDataShowInput}
-            />
+            <>
+              <FilledButton
+                disabled={missionDataEntered}
+                text="+ Add Intel Macro Data"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+                onClick={handleMissionDataShowInput}
+              />
+              <FilledButton
+                disabled={missionDataEntered}
+                text="+ Add"
+                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+                onClick={handleMissionDataShowInput}
+              />
+            </>
           )}
         </Col>
       </Row>
@@ -282,6 +268,7 @@ function MacroMissionDataTable(props) {
         columns={ownMissionDataFormColumns}
         data={[missionData]}
         pagination={false}
+        scrollConfig={{ x: true }}
       />
     </div>
   );
@@ -294,11 +281,7 @@ const StyledInput = styled.div`
     font-size: 12px;
   }
 `;
-const StyledDiv = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
-`;
+
 const IconsStylingWrap = styled.div`
   display: flex;
   /* gap: 20px; */

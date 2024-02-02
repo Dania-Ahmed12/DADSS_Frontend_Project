@@ -2,22 +2,16 @@ import {
   Col,
   Descriptions,
   Row,
-  Table,
   Tooltip,
 } from "antd";
 import React from "react";
-import { RxArrowLeft } from "react-icons/rx";
 import Heading from "../../src/components/title/Heading";
-import { useRouter } from "next/router";
 import axios from "axios";
 import dayjs from "dayjs";
 import {  decimalToDMS } from "../../src/helper/position";
-import { Missioncolumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
-import AntdTable from "../../src/components/table/AntdTable";
 
-  const ownMissionDataFormColumns = [...Missioncolumns];
 
 
 function MissDetails({ data }) {
@@ -25,12 +19,14 @@ function MissDetails({ data }) {
     {
       title: "MMSI",
       dataIndex: "mrd_mmsi",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
     {
       title: "Longitude",
       dataIndex: "mrd_long",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
       render: (text, record) => {
         if (record.mrd_position) {
           var val = record.mrd_position.coordinates[0];
@@ -46,7 +42,8 @@ function MissDetails({ data }) {
     {
       title: "Latitude",
       dataIndex: "mrd_lat",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
       render: (text, record) => {
         if (record.mrd_position) {
           var val = record.mrd_position.coordinates[1];
@@ -62,60 +59,70 @@ function MissDetails({ data }) {
     {
       title: "Course",
       dataIndex: "mrd_course",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "Speed",
       dataIndex: "mrd_speed",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
     {
       title: "Vessel Name",
       dataIndex: "mrd_vessel_name",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "NPOC",
       dataIndex: "mrd_npoc",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "LPOC",
       dataIndex: "mrd_lpoc",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "Activity Description",
       dataIndex: "mrd_act_desc",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "AIS Status",
       dataIndex: "mrd_ais_status",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "Call Details",
       dataIndex: "mrd_call_details",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "Response",
       dataIndex: "mrd_response",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
       title: "Remarks",
       dataIndex: "mrd_remarks",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
     },
 
     {
@@ -126,7 +133,8 @@ function MissDetails({ data }) {
     {
       title: "Date Time",
       dataIndex: "mrd_dtg",
-      ellipsis: true,
+          ellipsis: false,
+      width: 250,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
@@ -134,29 +142,6 @@ function MissDetails({ data }) {
     },
   ];
 
-  function transposeData(data) {
-    if (!data) return [];
-
-    const transposedData = [];
-    transposedData.push({
-      Field: "Platform ID",
-      Value: data.mr_pf_id,
-    });
-
-    transposedData.push({
-      Field: "Date Time",
-
-      Value: dayjs(data.mr_dtg).format("YYYY-MM-DD HH:mm:ss"),
-    });
-
-    transposedData.push({
-      Field: "Registered ON",
-      Value: dayjs(data.mr_rdt).format("YYYY-MM-DD HH:mm:ss"),
-    });
-
-    return transposedData;
-  }
-  // Map vesselcolumns to extract label and children
   const items = [
     {
       label: "Platform ID",
@@ -181,14 +166,6 @@ function MissDetails({ data }) {
     },
   ];
 
-  // Prepare transposed data
-  const transposedData = transposeData(data);
-
-  // Define columns for transposed data table
-  const transposedColumns = [
-    { title: "Data", dataIndex: "Field" },
-    { title: "Value", dataIndex: "Value" },
-  ];
   return (
     <div>
       <PageHeader showSearchBox={false} title="Mission Report " />
@@ -246,6 +223,7 @@ function MissDetails({ data }) {
             title={item.title}
             columns={item.columns}
             data={item.data}
+            
             pagination={true}
           />
         );
