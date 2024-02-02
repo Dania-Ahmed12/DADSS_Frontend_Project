@@ -316,7 +316,7 @@ export const shipBreakColumns = [
     dataIndex: "sb_ex_name",
   },
   {
-    title: "Embosse Name",
+    title: "Embossed",
     dataIndex: "sb_emb_name",
   },
 ];

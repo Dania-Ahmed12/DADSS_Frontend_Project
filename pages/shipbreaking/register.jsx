@@ -360,7 +360,7 @@ function Register() {
               ]}
             />
             <SelectBox
-              label="Deletion "
+              label="Deletion Certificate"
               name="sb_del_cert"
               className="input"
               placeholder="Select"
