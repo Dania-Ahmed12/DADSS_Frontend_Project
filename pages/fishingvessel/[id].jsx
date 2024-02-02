@@ -16,7 +16,6 @@ import GoodsTable from "../../src/components/specialTables/GoodsTable";
 import axios from "axios";
 import { RegVesselColumn } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
-import AntdTable from "../../src/components/table/AntdTable";
 
 function Details({ data }) {
   const [showButtons, setShowButtons] = useState(false);
@@ -168,27 +167,6 @@ function Details({ data }) {
         : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
   }));
 
-  const transposeData = vesselcolumns.map((column) => {
-    let value = parsedVesselData[column.dataIndex];
-    // Check if the value is a string and contains 'T'
-    if (typeof value === "string" && value.includes("T")) {
-      // Parse the value into a Date object
-      const dateObj = new Date(value);
-      // Extract the desired parts
-      const year = dateObj.getFullYear();
-      const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // Month is zero-based, so we add 1
-      const date = String(dateObj.getDate()).padStart(2, "0");
-      const hour = String(dateObj.getHours()).padStart(2, "0");
-      const minute = String(dateObj.getMinutes()).padStart(2, "0");
-      const second = String(dateObj.getSeconds()).padStart(2, "0");
-      // Construct the formatted date string
-      value = `${year}-${month}-${date} ${hour}:${minute}:${second}`;
-    }
-    return {
-      Field: column.title,
-      Value: value,
-    };
-  });
 
   return (
     <>
