@@ -66,7 +66,7 @@ const index = () => {
         />
       </div>
       <div>
-        <AntdTable columns={columns} data={data} loading={isLoading}  />
+        <AntdTable columns={columns} data={data} loading={isLoading} scrollConfig={{x:true}}  />
       </div>
     </>
   );
