@@ -87,7 +87,7 @@ const FishingActivityTrends = () => {
   return (
     <>
       <div>
-        {/* <div>
+        <div>
           <Link href="/">
             <BsArrowLeft size={30} />
             back to
@@ -113,12 +113,12 @@ const FishingActivityTrends = () => {
               defaultValue={dateRange}
             />
           </div>
-        </div> */}
-        <Visualpageheader
+        </div>
+        {/* <Visualpageheader
           setDateRange={(value) => setDateRange(value)}
           dateRange={dateRange}
           showButton={false}
-        />
+        /> */}
         <Row>
           <Col span={24}>
             {loading ? (

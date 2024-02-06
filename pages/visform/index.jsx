@@ -69,7 +69,7 @@ function VisFormTable() {
   return (
     <div>
       <PageHeader
-        title="Special Report VIS Data (List View)"
+        title="Vessel Information System"
         onSearchChange={(value) => setSearchData(value)}
         placeholder="Search by Boat ID or Nakwa Name"
         showButton={false} // Pass true to show the button or false to hide it

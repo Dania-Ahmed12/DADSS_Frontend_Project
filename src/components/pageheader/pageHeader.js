@@ -53,7 +53,7 @@ function PageHeader(props) {
           xxl={12}
           className="flex justify-start "
         >
-          <Heading className=" whitespace-nowrap ml-5" level={4} text={title} />
+          <Heading className="  ml-5" level={4} text={title} />
         </Col>
         <Col xs={24} sm={24} md={10} lg={10} xl={12} xxl={12}>
           {showSearchBox && (

@@ -193,19 +193,26 @@ function Index() {
   return (
     <div className="mb-10">
       <Row className="flex justify-center gap-x-8 gap-y-10">
-        {items.map((items, i) => {
-          if (!items) return null; // Skip items that should not be rendered
+        {items.map((item, i) => {
+          if (!item) return null; // Skip items that should not be rendered
           return (
-            <Col span={6} key={i}>
-              <Link href={items.to}>
-                <div className="bg-white hover:border-blue cursor-pointer rounded-lg shadow-xl border-2 border-slate-200 p-5 h-60">
+            <Col
+              className="whitespace-normal"
+              xs={24}
+              sm={12}
+              md={8}
+              lg={6}
+              key={i}
+            >
+              <Link href={item.to}>
+                <div className="w-dvw bg-white hover:border-blue cursor-pointer rounded-lg shadow-xl border-2 border-slate-200 p-5 h-full">
                   <div className="flex justify-end">
                     <HiOutlineArrowNarrowRight fontSize={25} />
                   </div>
                   <div className="flex flex-col justify-end items-center">
-                    {items.img}
+                    {item.img}
                     <Typography className="text-lg mt-5 text-center">
-                      {items.title}
+                      {item.title}
                     </Typography>
                   </div>
                 </div>

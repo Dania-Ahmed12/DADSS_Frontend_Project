@@ -68,11 +68,33 @@ const Heatmap = () => {
   };
   return (
     <div>
-  
-      <Visualpageheader
-        setDateRange={(value) => setDateRange(value)}
-        dateRange={dateRange}
-      />
+      <div>
+        <Link href="/">
+          <BsArrowLeft size={30} />
+          back to
+          <span
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "#0659ED",
+              paddingLeft: 5,
+            }}
+          >
+            Dashboard
+          </span>
+        </Link>
+      </div>
+      <div className="flex justify-end items-center p-6">
+        <div className="px-2">
+          <div>
+            <p className="font-bold">Select a Date </p>
+          </div>
+          <RangePicker
+            onChange={(value) => setDateRange(value)}
+            defaultValue={dateRange}
+          />
+        </div>
+      </div>
 
       <DensityHeatMap
         title="Fishing Desnity Heat Map"
