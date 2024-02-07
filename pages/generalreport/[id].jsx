@@ -277,7 +277,7 @@ function GeneralDetails({ data }) {
                     marginLeft: "-15px",
                   }}
                 >
-                  <div className="descriptionChildren ">{item.children}</div>
+                  <div className="descriptionChildren mr-5">{item.children}</div>
                 </Col>
               </Row>
               {/* </div> */}

@@ -1,4 +1,4 @@
-import { Col, Descriptions, Row, } from "antd";
+import { Col, Descriptions, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import Heading from "../../src/components/title/Heading";
@@ -194,8 +194,14 @@ function Details({ data }) {
                 <Col span={10} className="flex justify-start ">
                   <div className="descriptionLabel ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end">
-                  <div className="descriptionChildren ">{item.children}</div>
+                <Col
+                  span={14}
+                  className="flex justify-end"
+                  style={{
+                    marginLeft: "-20px",
+                  }}
+                >
+                  <div className="descriptionChildren mr-5">{item.children}</div>
                 </Col>
               </Row>
               {/* </div> */}
