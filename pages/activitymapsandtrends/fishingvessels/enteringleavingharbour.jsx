@@ -8,6 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import dayjs from "dayjs";
 import { harbor_list, type_list } from "../../../src/helper/dropdown";
+import Visualpageheader from "../../../src/components/pageheader/visualpageheader";
 const { RangePicker } = DatePicker;
 const MultiBiDirectionalBar = dynamic(
   () => import("../../../src/components/barchart/MultiBiDirectionalBar"),
@@ -137,7 +138,7 @@ function EnteringLeavingHarbour() {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href="/dashboard">
           <BsArrowLeft size={30} />
           back to
@@ -152,7 +153,8 @@ function EnteringLeavingHarbour() {
             Dashboard
           </span>
         </Link>
-      </div>
+      </div> */}
+      <Visualpageheader/>
 
       {/* <Row className="p-4 flex items-center">
         <Col span={12}></Col>

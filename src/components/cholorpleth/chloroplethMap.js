@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
 import { LoadingOutlined } from "@ant-design/icons";
+import Heading from "../title/Heading";
 
 const MapContainers = dynamic(
   () => import("../../../src/components/LeafletMap/map"),
@@ -43,15 +44,19 @@ const ChloroplethMap = ({ data }) => {
 
   return (
     <>
+      <Heading
+        className="whitespace-nowrap font-normal "
+        level={3}
+        text="Chloropleth"
+      />
       <MapContainers
         center={[22.759320454807195, 62.9907962356869]}
         zoom={6}
+        maxZoom={9} // Set the maximum zoom level to 9
         // style={style}
         geojsonData={data}
         // onEachFeature={onEachFeature}
       ></MapContainers>
-      {/* Tooltip element */}
-      <div className="tooltip"></div>
     </>
   );
 };

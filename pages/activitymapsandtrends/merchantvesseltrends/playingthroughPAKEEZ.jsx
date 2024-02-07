@@ -61,7 +61,7 @@ function PlayingThroughPAKEEZ() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Link href="/">
           <BsArrowLeft size={30} />
           back to
@@ -76,7 +76,9 @@ function PlayingThroughPAKEEZ() {
             Dashboard
           </span>
         </Link>
-      </div>
+      </div> */}
+      <Visualpageheader/>
+
       <div className="flex justify-end items-center p-6">
         <div className="px-2">
           <div>

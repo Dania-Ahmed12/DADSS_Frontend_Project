@@ -86,8 +86,8 @@ const FishingActivityTrends = () => {
 
   return (
     <>
-      <div>
-        <div>
+      <div style={{ overflowY: "hidden" }}>
+        {/* <div>
           <Link href="/">
             <BsArrowLeft size={30} />
             back to
@@ -102,7 +102,9 @@ const FishingActivityTrends = () => {
               Dashboard
             </span>
           </Link>
-        </div>
+        </div> */}
+        <Visualpageheader/>
+
         <div className="flex justify-end items-center p-6">
           <div className="px-2">
             <div>

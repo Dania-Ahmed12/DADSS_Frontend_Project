@@ -11,6 +11,8 @@ import { DatePicker } from "antd";
 const { RangePicker } = DatePicker;
 
 import "leaflet/dist/leaflet.css";
+import Heading from "../../../src/components/title/Heading";
+import Visualpageheader from "../../../src/components/pageheader/visualpageheader";
 
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
@@ -173,7 +175,7 @@ const Heatmap = ({ data }) => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href="/">
           <BsArrowLeft size={30} />
           Back to
@@ -188,8 +190,9 @@ const Heatmap = ({ data }) => {
             Dashboard
           </span>
         </Link>
-      </div>
-      <Row className="p-4">
+      </div> */}
+      <Visualpageheader/>
+      {/* <Row className="p-4">
         <Col span={6}>
           <div className="flex items-center">
             <div className="flex space-between">
@@ -234,11 +237,7 @@ const Heatmap = ({ data }) => {
         </Col>
         <Col span={5} className="flex items-center" offset={1}>
           <div>
-            {/* <input
-              type="date"
-              onChange={(e) => setDateRange(e.target.value)}
-              value={dateRange}
-            /> */}
+         
             <RangePicker
               onChange={(value) => setDateRange(value)}
               defaultValue={dateRange}
@@ -250,11 +249,89 @@ const Heatmap = ({ data }) => {
             <Button onClick={handleApiChange}>Submit</Button>
           </div>
         </Col>
+      </Row> */}
+      <Row className="flex flex-wrap">
+        <Col xs={24} sm={12} md={12} lg={7} xl={7}>
+          <div className="flex justify-start space-between items-center p-6">
+            <div className="px-2">
+              <div>
+                <p className="font-bold">Net Worth</p>
+              </div>
+              <div className="flex items-center">
+                <InputNumber
+                  onChange={(value) =>
+                    setNetWorth({ ...netWorth, netWorthMin: value })
+                  }
+                  min={0}
+                  addonAfter="<="
+                />
+                <InputNumber
+                  min={0}
+                  addonBefore="<="
+                  onChange={(value) =>
+                    setNetWorth({ ...netWorth, netWorthMax: value })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </Col>
+        <Col xs={24} sm={12} md={12} lg={7} xl={7}>
+          <div className="flex justify-start space-between items-center p-6">
+            <div className="px-2">
+              <div>
+                <p className="font-bold">Quantity</p>
+              </div>
+              <div className="flex items-center">
+                <InputNumber
+                  addonAfter="<="
+                  min={0}
+                  onChange={(value) =>
+                    setQuantity({ ...quantity, quantityMin: value })
+                  }
+                />
+                <InputNumber
+                  min={0}
+                  addonBefore="<="
+                  onChange={(value) =>
+                    setQuantity({ ...quantity, quantityMax: value })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </Col>
+        <Col xs={24} sm={12} md={12} lg={7} xl={7}>
+          <div className="flex justify-start space-between items-center p-6">
+            <div className="px-2">
+              <div>
+                <p className="font-bold">Select a Date </p>
+              </div>
+              <RangePicker
+                onChange={(value) => setDateRange(value)}
+                defaultValue={dateRange}
+              />
+            </div>
+          </div>
+        </Col>
+        <Col xs={24} sm={12} md={12} lg={3} xl={3}>
+          <div className="flex justify-end items-center p-11">
+            <div className="px-2">
+              <Button onClick={handleApiChange}>Submit</Button>
+            </div>
+          </div>
+        </Col>
       </Row>
+      <Heading
+        className="whitespace-nowrap font-normal"
+        level={3}
+        text=" Drugs Operation"
+      />
       <div style={{ height: "70vh" }}>
         <MapContainer
           center={[23.756779, 63.300738]}
           zoom={6.4}
+          maxZoom={9} // Set the maximum zoom level to 9
           style={{ width: "100%", height: "100%" }}
         >
           <TileLayer

@@ -12,8 +12,9 @@ const MapContainerComponent = ({
   data,
   center,
   zoom,
-  title, 
-  subTitle
+  title,
+  subTitle,
+  customIconUrl, // New prop for custom icon URL
 }) => {
   const mapRef = useRef(null);
 
@@ -83,11 +84,17 @@ const MapContainerComponent = ({
 
     // Add this logging statement
     if (data) {
+      const customIcon = L.icon({
+        iconUrl: customIconUrl, // Use the provided custom icon URL
+        iconSize: [25, 41], // Adjust based on your icon size
+      });
       data.forEach((marker, index) => {
         const { lat, lng, label } = marker;
         // Check if lat and lng are defined before creating the marker
         if (lat !== undefined && lng !== undefined) {
-          L.marker([lat, lng]).bindPopup(label).addTo(map);
+          L.marker([lat, lng], { icon: customIcon })
+            .bindPopup(label)
+            .addTo(map);
         } else {
           console.error(
             `Invalid LatLng object at index ${index}: (lat: ${lat}, lng: ${lng})`
@@ -103,20 +110,10 @@ const MapContainerComponent = ({
   }, [geojsonData, heatmapData, gradient, data, center, zoom]);
 
   return (
-    <Row
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "white",
-        // padding: "20px",
-        padding:"10px",
-        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-        borderRadius: 10,
-      }}
-    >
+    <Row>
       <Col span={24}>
         <p style={{ fontSize: 24 }}>{title}</p>
-        <p style={{ paddingBottom: 30 }}>{subTitle}</p>
+        <p style={{ paddingBottom: 3 }}>{subTitle}</p>
         {/* <Line {...config} style={{ height: "55vh" }} /> */}
         <div ref={mapRef} style={{ height: "500px", width: "100%" }} />
       </Col>

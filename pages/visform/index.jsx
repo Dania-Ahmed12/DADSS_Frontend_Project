@@ -52,7 +52,7 @@ function VisFormTable() {
       render: renderDate,
     },
     {
-      title: "Arrival Data",
+      title: "Arrival Date",
       dataIndex: "arrival_date",
       width: 250,
       ellipsis: false,

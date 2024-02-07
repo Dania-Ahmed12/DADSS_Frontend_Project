@@ -300,7 +300,7 @@ function PlatformId() {
           btnTitleMedia="+"
           onSearchChange={setSearchData}
           onNavigate={handleShowInput}
-          placeholder="Search"
+          placeholder="Search by Platform ID / Full Name "
           showButton={true}
         />
       </div>

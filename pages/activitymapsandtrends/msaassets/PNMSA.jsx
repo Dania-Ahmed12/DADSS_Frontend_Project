@@ -5,6 +5,7 @@ import { Checkbox, Col, Radio, Row, Select } from "antd";
 import { BsArrowLeft } from "react-icons/bs";
 import Link from "next/link";
 import { DatePicker } from "antd";
+import Visualpageheader from "../../../src/components/pageheader/visualpageheader";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -47,7 +48,7 @@ function PNMSA() {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href="/">
           <BsArrowLeft size={30} />
           back to
@@ -62,7 +63,8 @@ function PNMSA() {
             Dashboard
           </span>
         </Link>
-      </div>
+      </div> */}
+      <Visualpageheader/>
 
       <div className="grid grid-cols-12 grid-rows-1 gap-4 mb-4 mt-3 ">
         <div className="col-span-3">
@@ -136,7 +138,7 @@ function PNMSA() {
         {showAdditionalDropdown && (
           <div className="col-span-2 col-start-8">
             <div>
-              <p className="font-bold">Visuals</p>
+              <p className="font-bold">Calendar Visuals</p>
             </div>
             <Select
               placeholder="Select Chart"

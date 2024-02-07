@@ -49,7 +49,6 @@ const Heatmap = () => {
         `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/fv_con?date_from=${dateFrom}&&date_to=${dateTo}&&season=${season}&&harbor=${harbor}&&type=${vesselType}`
       );
       if (response.status === 200) {
-
         const transformedData = response.data.map((feature) => {
           const coordinates = feature.geometry.coordinates;
           const intensity = feature.properties.intensity;
@@ -63,12 +62,11 @@ const Heatmap = () => {
 
         setFilteredData(transformedData);
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href="/">
           <BsArrowLeft size={30} />
           back to
@@ -83,7 +81,9 @@ const Heatmap = () => {
             Dashboard
           </span>
         </Link>
-      </div>
+      </div> */}
+      <Visualpageheader/>
+
       <div className="flex justify-end items-center p-6">
         <div className="px-2">
           <div>

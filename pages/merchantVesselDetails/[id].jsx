@@ -7,12 +7,12 @@ import { decimalToDMS } from "../../src/helper/position";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import Heading from "../../src/components/title/Heading";
-import { MerVesselColumn, MerchantDetailColumns } from "../../src/helper/DataColumns";
+import {
+  MerVesselColumn,
+  MerchantDetailColumns,
+} from "../../src/helper/DataColumns";
 import AntdTable from "../../src/components/table/AntdTable";
 import { Modal } from "antd";
-
-
-
 
 const ExpandedTableBody = styled.div`
   .ant-table-thead {
@@ -44,9 +44,7 @@ const ExpandedTableBody = styled.div`
   }
 `;
 
-
 function Details({ data }) {
-
   const router = useRouter();
   // Retrieve merchant vessel details from the query parameter
   const { id, vessel } = router.query;
@@ -70,7 +68,7 @@ function Details({ data }) {
         : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
   }));
 
-  const expandedRowRender = (record, condition , index) => {
+  const expandedRowRender = (record, condition, index) => {
     const columns = [
       {
         title: "Longitude",
@@ -168,11 +166,11 @@ function Details({ data }) {
         />
       </ExpandedTableBody>
     );
-  if (index === 0) {
-    return firstTable;
-  } else {
-    return secondTable;
-  }
+    if (index === 0) {
+      return firstTable;
+    } else {
+      return secondTable;
+    }
   };
 
   const columns = [
@@ -451,7 +449,6 @@ function Details({ data }) {
         <Descriptions
           // size="middle"
           size="small"
-          className="p-2"
           bordered={true}
           colon={true}
           borderColor="transparent"
@@ -464,12 +461,16 @@ function Details({ data }) {
             >
               <Row className="flex">
                 <Col span={8} className="flex justify-start  ">
-                  <div className="descriptionLabel ">{item.label}</div>
+                  <div className="descriptionLabel mr-5 ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end">
-                  <div className="descriptionChildren ml-5">
-                    {item.children}
-                  </div>
+                <Col
+                  span={14}
+                  className="flex justify-end  "
+                  style={{
+                    marginLeft: "-15px",
+                  }}
+                >
+                  <div className="descriptionChildren ">{item.children}</div>
                 </Col>
               </Row>
               {/* </div> */}
@@ -522,7 +523,7 @@ function Details({ data }) {
 
       <div className="descriptionTable">
         <Modal
-          width={"100%"}
+          width={"85%"}
           visible={modalVisible}
           onCancel={() => setModalVisible(false)}
           footer={null}
@@ -554,10 +555,14 @@ function Details({ data }) {
                     }
                   >
                     <Row className="flex ">
-                      <Col span={10} className="flex justify-start">
+                      <Col span={10} className="flex justify-start  ">
                         <div className="descriptionLabel">{column.title}</div>
                       </Col>
-                      <Col span={14} className=" flex justify-end  ">
+                      <Col
+                        span={14}
+                        className=" flex justify-end  "
+                     
+                      >
                         <div className="descriptionChildren">
                           {column.render(null, {
                             expandedData: row.expandedData,
@@ -602,18 +607,15 @@ export async function getServerSideProps(context) {
         return null;
       });
 
-
       // Wait for all expanded data promises to resolve
       const expandedData = await Promise.all(expandedDataPromises);
-
-
 
       // Add the expandedData to each row in the data array
       const dataWithExpandedData = data.map((row, index) => ({
         ...row,
         expandedData: expandedData[index],
       }));
-   
+
       return {
         props: {
           data: dataWithExpandedData,

@@ -165,6 +165,8 @@
   background-color: transparent;
   box-shadow: none;
 }
+
+
 /* after hover calendar button  */
 :where(.css-dev-only-do-not-override-sk7ap8).ant-btn-primary {
   color: black;
@@ -175,6 +177,15 @@
     :disabled
   ):hover {
   /* color: black ; */
+  color: #4096ff;
+  background-color: transparent;
+}
+.ant-btn-primary {
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+}
+.ant-btn-primary:not(:disabled):hover {
   color: #4096ff;
   background-color: transparent;
 }
@@ -238,6 +249,25 @@
 :where(
     .css-dev-only-do-not-override-sk7ap8
   ).ant-descriptions.ant-descriptions-bordered
+  .ant-descriptions-item-content {
+  padding: 16px 24px;
+  border-inline-end: 1px solid transparent !important;
+}
+
+.ant-descriptions.ant-descriptions-bordered
+  .ant-descriptions-row {
+  border-bottom: 1px solid transparent !important;
+  border: 1px solid transparent !important;
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+}
+.ant-descriptions.ant-descriptions-bordered
+  .ant-descriptions-view {
+  border: 1px solid transparent !important;
+}
+.ant-descriptions.ant-descriptions-bordered
+  .ant-descriptions-item-label,
+.ant-descriptions.ant-descriptions-bordered
   .ant-descriptions-item-content {
   padding: 16px 24px;
   border-inline-end: 1px solid transparent !important;

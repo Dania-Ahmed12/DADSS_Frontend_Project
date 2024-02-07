@@ -145,6 +145,8 @@ import dayjs from "dayjs";
 import { BsArrowLeft } from "react-icons/bs";
 import { Checkbox, Col, Radio, Row, Select } from "antd";
 import { DatePicker } from "antd";
+import Heading from "../../../src/components/title/Heading";
+import Visualpageheader from "../../../src/components/pageheader/visualpageheader";
 const { RangePicker } = DatePicker;
 
 const DensityMap = dynamic(
@@ -253,11 +255,10 @@ function RoutesFlowMap() {
     },
   ];
 
-  const onHandleChange = (checked) => {
-  };
+  const onHandleChange = (checked) => {};
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href="/">
           <BsArrowLeft size={30} />
           back to
@@ -272,39 +273,53 @@ function RoutesFlowMap() {
             Dashboard
           </span>
         </Link>
-      </div>
-      <Row className="p-4 flex items-center">
-        <Col span={12}>
-          <Radio
-            defaultChecked
-            onChange={onHandleChange}
-            checked
-            style={{ fontSize: 16 }}
-          >
-            Aircraft
-          </Radio>
-          <Radio onChange={onHandleChange} style={{ fontSize: 16 }}>
-            Surface Ships
-          </Radio>
-        </Col>
-        <div className="grid grid-cols-5 grid-rows-1 gap-4 p-4 mx-5 ">
-          <div className="col-start-5 row-start-1">
-            {" "}
-            <div className="px-2">
-              <div>
-                <p className="font-bold">Select a Date </p>
-              </div>
-              <RangePicker
-                // onChange={(value) => setDateRange(value)}
-                defaultValue={dateRange}
-              />
-            </div>
+      </div> */}
+      <Visualpageheader />
+
+      <div className="grid grid-cols-12 grid-rows-1 gap-4 p-4 flex items-center ">
+        <div className="col-span-3">
+          <div>
+            <p className="font-bold invisible ... ">c</p>
+          </div>
+          <div>
+            <Radio
+              defaultChecked
+              // onChange={() => handlePageChange("air")}
+              // checked={currentPage === "air"}
+              onChange={onHandleChange}
+              style={{ fontSize: 16 }}
+            >
+              Aircraft
+            </Radio>
+            {/* </div>
+          <div> */}
+            <Radio
+              // onChange={() => handlePageChange("ship")}
+              // checked={currentPage === "ship"}
+              style={{ fontSize: 16 }}
+              onChange={onHandleChange}
+            >
+              Surface Ships
+            </Radio>
           </div>
         </div>
-        {/* <Col span={12} className="flex justify-end items-center">
-          <RangePicker />
-        </Col> */}
-      </Row>
+
+        <div className="col-span-3 col-start-10">
+          <div className="px-2">
+            <div>
+              <p className="font-bold">Select a Date </p>
+            </div>
+            <RangePicker />
+          </div>
+        </div>
+      </div>
+
+      <Heading
+        className="whitespace-nowrap font-normal "
+        level={3}
+        text="Route Flow Map"
+      />
+
       <DensityMap flightPathData={flightPathData} />
     </div>
   );
