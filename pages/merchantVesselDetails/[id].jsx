@@ -461,7 +461,7 @@ function Details({ data }) {
             >
               <Row className="flex">
                 <Col span={8} className="flex justify-start  ">
-                  <div className="descriptionLabel mr-5 ">{item.label}</div>
+                  <div className="descriptionLabel  ">{item.label}</div>
                 </Col>
                 <Col
                   span={14}
@@ -470,7 +470,9 @@ function Details({ data }) {
                     marginLeft: "-15px",
                   }}
                 >
-                  <div className="descriptionChildren ">{item.children}</div>
+                  <div className="descriptionChildren mr-5">
+                    {item.children}
+                  </div>
                 </Col>
               </Row>
               {/* </div> */}
@@ -561,9 +563,11 @@ function Details({ data }) {
                       <Col
                         span={14}
                         className=" flex justify-end  "
-                     
+                        style={{
+                          marginLeft: "-5px",
+                        }}
                       >
-                        <div className="descriptionChildren">
+                        <div className="descriptionChildren mr-5">
                           {column.render(null, {
                             expandedData: row.expandedData,
                           })}
