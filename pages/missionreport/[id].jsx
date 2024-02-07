@@ -195,7 +195,7 @@ function MissDetails({ data }) {
           bordered={true}
           colon={true}
           borderColor="transparent"
-          column={{ xs: 1, sm: 2, md: 2, lg: 2 }}
+          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
         >
           {items.map((item, index) => (
             <Descriptions.Item
