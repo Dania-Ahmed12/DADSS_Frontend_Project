@@ -209,7 +209,7 @@ function RegisteredShipBreakDetails({ data }) {
                     <div className="descriptionLabel ">{item.label}</div>
                   </Col>
                   <Col span={14} className="flex justify-end">
-                    <div className="descriptionChildren ml-5">
+                    <div className="descriptionChildren mr-5">
                       {item.children}
                     </div>
                   </Col>
