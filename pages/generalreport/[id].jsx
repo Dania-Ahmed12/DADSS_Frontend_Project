@@ -1,187 +1,96 @@
-import { Col, DatePicker, Input, Pagination, Row, Select, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
-import { RxArrowLeft } from "react-icons/rx";
+import { Col, Row, Tooltip } from "antd";
+import React from "react";
 import Heading from "../../src/components/title/Heading";
-import AntdTable from "../../src/components/table/AntdTable";
-import { useRouter } from "next/router";
 import { decimalToDMS } from "../../src/helper/position";
 import axios from "axios";
 import dayjs from "dayjs";
-import { GeneralReportColumn } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
 import { Descriptions } from "antd";
-import styled from "styled-components";
-
-
 
 function GeneralDetails({ data }) {
-
-  const itemss = [
-    {
-      key: "1",
-      label: "UserName",
-      children: "Zhou Maomao",
-    },
-    {
-      key: "2",
-      label: "Telephone",
-      children: "1810000000",
-    },
-    {
-      key: "3",
-      label: "Live",
-      children: "Hangzhou, Zhejiang",
-    },
-    {
-      key: "4",
-      label: "Remark",
-      children: "empty",
-    },
-    {
-      key: "5",
-      label: "Address",
-      children:
-        "No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China",
-    },
-  ];
   const items = [
     {
       label: "Platform ID",
-      children: data?.gr_pf_id || "", 
+      children: data?.gr_pf_id || "",
     },
     {
       label: "Date Time",
-      children: dayjs(data?.gr_dtg).format("YYYY-MM-DD HH:mm:ss") || "", 
+      children: dayjs(data?.gr_dtg).format("YYYY-MM-DD HH:mm:ss") || "",
     },
     {
       label: "Latitude",
-      children: decimalToDMS(data?.gr_position?.coordinates[1], 1) || "",  
+      children: decimalToDMS(data?.gr_position?.coordinates[1], 1) || "",
     },
     {
       label: "Longitude",
-      children: decimalToDMS(data?.gr_position?.coordinates[0], 0) || "",  
+      children: decimalToDMS(data?.gr_position?.coordinates[0], 0) || "",
     },
     {
       label: "Fuel Remaining",
-      children: data?.gr_fuelrem || "", 
+      children: data?.gr_fuelrem || "",
     },
     {
       label: "Patrol Type",
-      children: data?.gr_patroltype || "", 
+      children: data?.gr_patroltype || "",
     },
     {
       label: "Other Info",
-      children: data?.gr_info || "", 
+      children: data?.gr_info || "",
     },
   ];
 
-
-
-  function transposeData(data) {
-  if (!data || data.length < 2) return []; 
-
-    const transposedData = [];
-    transposedData.push({
-      Field: "Platform ID",
-      Value: data.gr_pf_id,
-    });
-    transposedData.push({
-      Field: "Date Time",
-      Value: dayjs(data.gr_dtg).format("YYYY-MM-DD HH:mm:ss"),
-    });
-
-    const longitude = data.gr_position.coordinates[0];
-    const formattedLongitude = decimalToDMS(longitude, 0);
-    transposedData.push({
-      Field: "Latitude",
-      Value: formattedLongitude,
-    });
-    const latitude = data.gr_position.coordinates[1];
-    const formattedLatitude = decimalToDMS(latitude, 1);
-    transposedData.push({
-      Field: "Latitude",
-      Value: formattedLatitude,
-    });
-
-    transposedData.push({
-      Field: "Fuel Remaining ",
-      Value: data.gr_fuelrem,
-    });
-
-    transposedData.push({
-      Field: "Patrol Type",
-      Value: data.gr_patroltype,
-    });
-        transposedData.push({
-          Field: "Other Info",
-          Value: data.gr_info,
-        });
-
-
-
-    return transposedData;
-  }
-
-  // Prepare transposed data
-  const transposedData = transposeData(data);
-
-  // Define columns for transposed data table
-  const transposedColumns = [
-    { title: "Data", dataIndex: "Field" },
-    { title: "Value", dataIndex: "Value" },
-  ];
   const fishingColumns = [
     {
       title: "Latitude",
-      width:250,
+      width: 250,
       dataIndex: "grd_position",
-      ellipsis:false,
+      ellipsis: false,
       render: (text, record) => {
         if (record.grd_position) {
           var val = record.grd_position.coordinates[1];
           const latitude = decimalToDMS(val, 1);
-          return latitude
+          return latitude;
         }
       },
     },
     {
       title: "Longitude",
-      width:250,
+      width: 250,
       dataIndex: "grd_position",
-      ellipsis:false,
+      ellipsis: false,
       render: (text, record) => {
         if (record.grd_position) {
           var val = record.grd_position.coordinates[0];
           const longitude = decimalToDMS(val, 0);
-          return longitude
+          return longitude;
         }
       },
     },
     {
       title: "Number of Vessels",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grd_qty",
     },
     {
       title: "Vessel Type",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grd_type",
     },
     {
       title: "Vessel Movement",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grd_movement",
     },
   ];
   const fishingObservedColumns = [
     {
       title: "Latitude",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grf_position",
       render: (text, record) => {
         if (record.grf_position) {
@@ -197,8 +106,8 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Longitude",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grf_position",
       render: (text, record) => {
         if (record.grf_position) {
@@ -214,28 +123,28 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Vessel Name",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grf_name",
     },
     {
       title: "Type of Vessel",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grf_type",
     },
     {
       title: "Vessel Movement",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grf_movement",
     },
   ];
   const merchantObservedColumns = [
     {
       title: "Latitude",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_position",
       render: (text, record) => {
         if (record.grm_position) {
@@ -251,8 +160,8 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Longitude",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_position",
       render: (text, record) => {
         if (record.grm_position) {
@@ -268,32 +177,32 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Vessel Name",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_name",
     },
     {
       title: "Type of Vessel",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_type",
     },
     {
       title: "Vessel Movement",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_movement",
     },
     {
       title: "LPOC",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_lpoc",
     },
     {
       title: "NPOC",
-      width:250,
-      ellipsis:false,
+      width: 250,
+      ellipsis: false,
       dataIndex: "grm_npoc",
     },
   ];
@@ -359,9 +268,15 @@ function GeneralDetails({ data }) {
             >
               <Row className="flex">
                 <Col span={10} className="flex justify-start ">
-                  <div className="descriptionLabel ">{item.label}</div>
+                  <div className="descriptionLabel  ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end">
+                <Col
+                  span={14}
+                  className="flex justify-end"
+                  style={{
+                    marginLeft: "-15px",
+                  }}
+                >
                   <div className="descriptionChildren ">{item.children}</div>
                 </Col>
               </Row>

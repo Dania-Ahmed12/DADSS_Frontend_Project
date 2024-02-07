@@ -47,7 +47,7 @@ function Index() {
           btnTitleMedia="+ Add"
           onSearchChange={setSearchData}
           onNavigate={handleNavigate}
-          placeholder="Search"
+          placeholder="Search by Platform ID / Patrol Type"
           showButton={true}
         />
       </div>

@@ -12,6 +12,8 @@ import React from "react";
 import { Likeliness, patrol_type_list } from "../../helper/dropdown";
 import { Col, Row } from "antd";
 import AntdTable from "./AntdTable";
+import { Form } from "antd";
+
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
