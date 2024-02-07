@@ -241,7 +241,13 @@ function Details({ data }) {
                 <Col span={10} className="flex justify-start ">
                   <div className="descriptionLabel ">{item.label}</div>
                 </Col>
-                <Col span={14} className="flex justify-end">
+                <Col
+                  span={14}
+                  className="flex justify-end"
+                  style={{
+                    marginLeft: "-15px",
+                  }}
+                >
                   <div className="descriptionChildren ">{item.children}</div>
                 </Col>
               </Row>
