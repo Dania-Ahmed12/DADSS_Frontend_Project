@@ -11,7 +11,6 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "antd/lib/form/Form";
-import { platform_type_list } from "../../src/helper/dropdown";
 import axios from "axios";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
@@ -32,15 +31,36 @@ function PlatformId() {
   const [searchData, setSearchData] = useState("");
   const [form] = useForm();
   const { data, isLoading } = useSelector((state) => state.fetchPlatformData);
-  const router = useRouter();
   const dispatch = useDispatch();
+  // Define state to store the options data
+  const [platformTypes, setPlatformTypes] = useState([]);
+  const [otherSelected, setOtherSelected] = useState(false);
+  const [selectedType, setSelectedType] = useState(""); // Added selectedType state
 
+  const fetchPlatformTypes = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/platform_type`
+      );
+      const types = response.data.map((item) => ({
+        key: item.type_key,
+        title: item.type_title,
+      }));
+      setPlatformTypes(types);
+      console.log(types);
+    } catch (error) {
+      console.error("Error fetching platform types:", error);
+    }
+  };
+  useEffect(() => {
+    fetchPlatformTypes();
+  }, []);
   const columns = [
     {
       title: "Platform ID",
       dataIndex: "pf_id",
       ellipsis: false,
-      width:250,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -70,7 +90,7 @@ function PlatformId() {
       title: "Full Name",
       dataIndex: "pf_name",
       ellipsis: false,
-      width:250,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -92,23 +112,84 @@ function PlatformId() {
     },
     {
       title: "Type",
-      dataIndex: "pf_type",
+      dataIndex: "pf_type_key",
       ellipsis: false,
-      width:250,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
+          // return (
+          //   <StyledInput>
+          //     <SelectBox
+          //       placeholder="Vessels"
+          //       name="pf_type_key"
+          //       style={{ width: 150 }}
+          //       rules={[{ required: true, message: "Required" }]}
+          //       options={[
+          //         ...platformTypes.map((item) => ({
+          //           value: item.key, // Use type_key as value
+          //           label: item.title, // Use type_title as label
+          //         })),
+          //         { value: "Other", label: "Other" },
+          //       ]}
+          //       onChange={(value) => {
+          //         if (value === "Other") {
+          //           setOtherSelected(true);
+          //         } else {
+          //           setOtherSelected(false);
+          //         }
+          //       }}
+          //     />
+
+          //     {otherSelected && (
+          //       <StyledInput>
+          //         <InputBox
+          //           placeholder="Other"
+          //           name="pf_type_key"
+          //           rules={[{ required: true, message: "Required" }]}
+          //           style={{ width: 150 }}
+          //         />
+          //       </StyledInput>
+          //     )}
+          //   </StyledInput>
+          // );
+          const isInitialRow = index === 0;
+          const isShowInputs = showInputs || isInitialRow;
+          const isOtherSelected = selectedType === "Other";
+
           return (
             <StyledInput>
-              <SelectBox
-                placeholder="Vessels"
-                name="pf_type"
-                style={{ width: 150 }}
-                rules={[{ required: true, message: "Required" }]}
-                options={platform_type_list.map((item) => ({
-                  value: item,
-                  lable: item,
-                }))}
-              />
+              {isShowInputs && (
+                <>
+                  {!isOtherSelected && (
+                    <SelectBox
+                      placeholder="Vessels"
+                      name="pf_type_key"
+                      style={{ width: 150 }}
+                      rules={[{ required: true, message: "Required" }]}
+                      options={[
+                        ...platformTypes.map((item) => ({
+                          value: item.key, // Use type_key as value
+                          label: item.title, // Use type_title as label
+                        })),
+                        { value: "Others", label: "Others" },
+                      ]}
+                      onChange={(value) => {
+                        setSelectedType(value);
+                      }}
+                    />
+                  )}
+                  {isOtherSelected && (
+                    <StyledInput>
+                      <InputBox
+                        placeholder="Other"
+                        name="pf_type_key"
+                        rules={[{ required: true, message: "Required" }]}
+                        style={{ width: 150 }}
+                      />
+                    </StyledInput>
+                  )}
+                </>
+              )}
             </StyledInput>
           );
         } else {
@@ -120,7 +201,7 @@ function PlatformId() {
       title: "Squadron",
       dataIndex: "pf_squadron",
       ellipsis: false,
-      width:250,
+      width: 250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (
@@ -156,7 +237,7 @@ function PlatformId() {
       title: "CO",
       dataIndex: "pf_co",
       ellipsis: false,
-      width:250,
+      width: 250,
       width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -187,6 +268,41 @@ function PlatformId() {
                 placeholder="Other Info"
                 name="pf_info"
                 style={{ width: 150 }}
+              />
+            </StyledInput>
+          );
+        } else {
+          return text;
+        }
+      },
+    },
+    {
+      title: "Status",
+      dataIndex: "pf_status",
+      width: 200,
+      render: (text, record, index) => {
+        if (showInputs && index === 0) {
+          return (
+            <StyledInput>
+              <SelectBox
+                placeholder="Status"
+                name="pf_status"
+                style={{ width: 150 }}
+                rules={[req_rule]}
+                options={[
+                  {
+                    value: "OPS",
+                    label: "OPS",
+                  },
+                  {
+                    value: "Non-OPS",
+                    label: "Non-OPS",
+                  },
+               
+                ]}
+                onChange={(value) => {
+                  setSelectedType(value);
+                }}
               />
             </StyledInput>
           );
@@ -246,16 +362,33 @@ function PlatformId() {
       },
     });
   };
-
   const onFinish = async () => {
     const validatedValues = await form.validateFields();
     if (validatedValues) {
+      console.log(validatedValues.pf_type_key);
       try {
+
+             let typeKey;
+             if (validatedValues.pf_type_key === "Other") {
+               const response = await axios.post(
+                 `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/platform_type`,
+                 { type_title: validatedValues.pf_type_key }
+               );
+               console.log(response)
+               typeKey = response.data.type_key;
+             } else {
+               typeKey = validatedValues.pf_type_key;
+             }
+        const formData = {
+          ...validatedValues,
+          pf_type_key: validatedValues.pf_type_key, // Make sure pf_type_key is directly accessed
+        };
+        console.log("Form Data:", formData);
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/platform`,
-          validatedValues
+          formData
         );
-
+        console.log(response.data);
         if (response.status === 201) {
           toast.success("Platform Data Saved", {
             position: "top-right",

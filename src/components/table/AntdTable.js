@@ -75,6 +75,11 @@ function AntdTable({
     // x: true,
   },
 }) {
+    const [pageSize, setPageSize] = useState(5); // Default page size
+
+    const handlePageSizeChange = (value) => {
+      setPageSize(value);
+    };
   return (
     <StyledDiv style={{ margin: 15 }}>
       <Form onFinish={onFinish} form={form}>
@@ -85,8 +90,9 @@ function AntdTable({
           pagination={
             pagination
               ? {
-                  showSizeChanger: false,
-                  defaultPageSize: 5,
+                  showSizeChanger: true, // Enable size changer
+                  pageSizeOptions: ["5", "10", "20", "50" , "100"], // Define options for page size
+                  defaultPageSize: pageSize, // Set default page size
                   position: ["bottomCenter"],
                   itemRender: (page, type, originalElement) => {
                     switch (type) {

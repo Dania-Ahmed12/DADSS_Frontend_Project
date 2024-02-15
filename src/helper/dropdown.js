@@ -29,6 +29,7 @@ export const platform_type_list = [
   "Container Vessels",
   "Reefer Vessels",
   "Bulk carrier",
+  
 ];
 export const port_list = [
   "Qasim",
