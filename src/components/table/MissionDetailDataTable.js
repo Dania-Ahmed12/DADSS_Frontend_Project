@@ -18,6 +18,7 @@ import { positiontoDMS, DMStodecimal } from "../../helper/position";
 import SimpleButton from "../button/SimpleButton";
 import SelectBox from "../form/SelectBox";
 import AntdTable from "./AntdTable";
+import FormTable from "./FromTable";
 
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
@@ -689,7 +690,7 @@ function MissionDetailDataTable(props) {
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-      <AntdTable
+      <FormTable
         scrollConfig={{ x: true }}
         form={missionDetailForm}
         onFinish={onMissionDetailDataFinish}

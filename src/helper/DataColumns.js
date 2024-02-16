@@ -56,12 +56,21 @@ export const RegVesselColumn = [
 export const MerVesselColumn = [
   {
     title: "MMSI",
+    key: "mv_mmsi",
     dataIndex: "mv_mmsi",
     width: 250,
     ellipsis: false,
+    sorter: (a, b) => a.mv_mmsi.localeCompare(b.mv_mmsi),
+    // filters: [{ text: names, value: names }],
+    // filters: names, // Use the populated filter options here
+    sortDirections: ["descend", "ascend"],
+    filterMode: "tree",
+    filterSearch: true,
+    onFilter: (value, record) => record.mv_mmsi.includes(value),
   },
   {
     title: "IMO",
+    key: "mv_imo",
     dataIndex: "mv_imo",
     width: 250,
     ellipsis: false,
@@ -71,11 +80,14 @@ export const MerVesselColumn = [
     width: 250,
     ellipsis: false,
     dataIndex: "mv_ship_id",
+    key: "mv_ship_id",
   },
   {
     title: "Ship Name",
     width: 250,
     ellipsis: false,
+    key: "mv_ship_name",
+
     dataIndex: "mv_ship_name",
   },
   {
@@ -83,18 +95,32 @@ export const MerVesselColumn = [
     dataIndex: "mv_flag",
     width: 250,
     ellipsis: false,
+    key: "mv_flag",
   },
   {
     title: "Type",
     dataIndex: "mv_type_name",
     width: 250,
     ellipsis: false,
+    key: "mv_type_name",
   },
   {
     title: "AIS Type",
+    key: "mv_ais_type_summary",
     dataIndex: "mv_ais_type_summary",
     width: 250,
     ellipsis: false,
+    sorter: (a, b) =>
+      a.mv_ais_type_summary.localeCompare(b.mv_ais_type_summary),
+    sortDirections: ["descend", "ascend"],
+    filters: [
+      { text: "Cargo", value: "Cargo" },
+      { text: "Tanker", value: "Tanker" },
+      { text: "Tug", value: "Tug" },
+      { text: "Special Craft", values: "Special Craft" },
+    ],
+    filterSearch: true,
+    onFilter: (value, record) => record.mv_ais_type_summary.includes(value),
   },
 ];
 export const MerchantDetailColumns = [
@@ -205,12 +231,14 @@ export const GeneralReportColumn = [
 export const Missioncolumns = [
   {
     title: "Platform ID",
+    key: "mr_pf_id",
     dataIndex: "mr_pf_id",
     ellipsis: false,
   },
   {
     title: "Date Time",
     dataIndex: "mr_dtg",
+    key: "mr_dtg",
     ellipsis: false,
     render: (text) => {
       const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
@@ -219,6 +247,7 @@ export const Missioncolumns = [
   },
   {
     title: "Registered ON",
+    key: "mr_rdt",
     dataIndex: "mr_rdt",
     ellipsis: false,
     render: (text) => {
@@ -232,6 +261,8 @@ export const IntelColumns = [
   {
     title: "Platform ID",
     dataIndex: "ir_pf_id",
+    key: "ir_pf_id",
+
     width: 250,
     ellipsis: false,
     render: (text) => {
@@ -242,6 +273,7 @@ export const IntelColumns = [
   {
     title: "Reporter Name",
     dataIndex: "ir_reporter_name",
+    key: "ir_reporter_name",
     width: 250,
     ellipsis: false,
     render: (text, record) => {
@@ -251,6 +283,8 @@ export const IntelColumns = [
   {
     title: "Reporting Time",
     dataIndex: "ir_reporting_time",
+    key: "ir_reporting_time",
+
     width: 250,
     ellipsis: false,
     render: (text) => {
@@ -260,12 +294,16 @@ export const IntelColumns = [
   },
   {
     title: "Jetty",
+    key: "ir_jetty",
+
     dataIndex: "ir_jetty",
     width: 250,
     ellipsis: false,
   },
   {
     title: "Boats",
+    key: "ir_total_boats",
+
     dataIndex: "ir_total_boats",
     width: 250,
     ellipsis: false,
@@ -275,18 +313,26 @@ export const IntelColumns = [
 export const MerchantShipColumn = [
   {
     title: "IMO",
+    key: "mv_imo",
+
     render: (record) => record?.merchant_vessel?.mv_imo,
   },
   {
     title: "Ship Name",
+    key: "mv_ship_name",
+
     render: (record) => record?.merchant_vessel?.mv_ship_name,
   },
   {
     title: "Flag",
+    key: "mv_ship_name",
+
     render: (record) => record?.merchant_vessel?.mv_flag,
   },
   {
     title: "Vessel Type",
+    key: "mv_ais_type_summary",
+
     render: (record) => record?.merchant_vessel?.mv_ais_type_summary,
   },
 ];
@@ -294,6 +340,7 @@ export const shipBreakColumns = [
   {
     title: "Date Time",
     dataIndex: "sb_dtg",
+    key: "sb_dtg",
     ellipsis: false,
     width: 220,
     render: (text) => {
@@ -303,20 +350,28 @@ export const shipBreakColumns = [
   },
   {
     title: "IMO Verified",
+    key: "sb_imo_verified",
+
     dataIndex: "sb_imo_verified",
     render: (value) => (value ? "Yes" : "No"),
   },
 
   {
     title: "LPOC",
+    key: "sb_lpoc",
+
     dataIndex: "sb_lpoc",
   },
   {
     title: "Ex Name",
+    key: "sb_ex_name",
+
     dataIndex: "sb_ex_name",
   },
   {
     title: "Embossed",
+    key: "sb_emb_name",
+
     dataIndex: "sb_emb_name",
   },
 ];

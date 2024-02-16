@@ -1,8 +1,7 @@
-import { Checkbox, Form, Table } from "antd";
+import {Form, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import styled from "styled-components";
-import ReactDragListView from "react-drag-listview"; // Import ReactDragListView
 
 const StyledDiv = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -49,10 +48,6 @@ const StyledDiv = styled.div`
     width: 2px;
     /* width of the entire scrollbar */
   }
-  .table-container {
-    pointer-events: auto; /* Ensure pointer-events are enabled */
-    user-select: auto; /* Allow user selection */
-  }
   .ant-table-content::-webkit-scrollbar-track {
     background: transparent;
     /* color of the tracking area */
@@ -65,7 +60,8 @@ const StyledDiv = styled.div`
     border: 3px solid #686868;
   }
 `;
-function AntdTable({
+
+function FormTable({
   columns,
   data,
   loading,
@@ -73,73 +69,14 @@ function AntdTable({
   form,
   pagination = true,
   expandable,
-  scrollConfig = {},
+  scrollConfig = {
+  },
 }) {
-  // const [dragColumns, setDragColumns] = useState();
-  const [dragColumns, setDragColumns] = useState(columns);
-  const defaultCheckedList = columns.map((item) => item.key);
-  const [checkedList, setCheckedList] = useState(defaultCheckedList);
 
-  const handleToggleColumn = (key) => {
-    const newColumns = dragColumns.map((column) => {
-      if (column.key === key) {
-        return { ...column, hidden: !column.hidden };
-      }
-      return column;
-    });
-    setDragColumns(newColumns);
-  };
-
-  const handleCheckboxChange = (checkedValues) => {
-    setCheckedList(checkedValues);
-    const newColumns = dragColumns.map((column) => ({
-      ...column,
-      hidden: !checkedValues.includes(column.key),
-    }));
-    setDragColumns(newColumns);
-  };
-
-  const options = columns.map(({ key, title }) => ({
-    label: title,
-    value: key,
-  }));
-  const newColumns = columns.map((item) => {
-    if (item.key === "view") {
-      // Return the "Detail" column as is without applying hidden property
-      return item;
-    }
-    return {
-      ...item,
-      hidden: !checkedList.includes(item.key),
-    };
-  });
-
-  useEffect(() => {
-    setDragColumns(columns);
-  }, [columns]);
-
-  const dragProps = {
-    onDragEnd(fromIndex, toIndex) {
-      const newColumns = [...dragColumns];
-      const item = newColumns.splice(fromIndex, 1)[0];
-      newColumns.splice(toIndex, 0, item);
-      setDragColumns(newColumns);
-    },
-    nodeSelector: "th",
-  };
   return (
     <React.Fragment>
-      <div className="flex  justify-start  mt-5 ml-5">
-        <Checkbox.Group
-          className="flex flex-wrap"
-          value={checkedList}
-          options={options}
-          onChange={handleCheckboxChange}
-        />
-      </div>
       <StyledDiv style={{ margin: 15 }}>
         <Form onFinish={onFinish} form={form}>
-          <ReactDragListView.DragColumn {...dragProps}>
             <Table
               expandable={expandable}
               rowClassName="editable-row"
@@ -176,15 +113,16 @@ function AntdTable({
                     }
                   : false
               }
-              columns={dragColumns.filter((column) => !column.hidden)}
+               columns={columns}
               dataSource={data}
               scroll={{ ...scrollConfig }} // Merge with x: true for horizontal scrolling
             />
-          </ReactDragListView.DragColumn>
         </Form>
       </StyledDiv>
     </React.Fragment>
   );
 }
 
-export default AntdTable;
+
+
+export default FormTable;

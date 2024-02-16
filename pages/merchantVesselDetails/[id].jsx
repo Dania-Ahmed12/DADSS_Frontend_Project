@@ -72,6 +72,7 @@ function Details({ data }) {
     const columns = [
       {
         title: "Longitude",
+        key: "mtd_longitude",
         dataIndex: "mtd_longitude",
         width: 120,
         ellipsis: true,
@@ -85,6 +86,8 @@ function Details({ data }) {
       },
       {
         title: "Latitude",
+        key: "mtd_latitude",
+
         dataIndex: "mtd_latitude",
         width: 120,
         ellipsis: true,
@@ -98,14 +101,20 @@ function Details({ data }) {
       },
       {
         title: "Speed",
+        key: "mtd_speed",
+
         dataIndex: "mtd_speed",
       },
       {
         title: "Heading",
+        key: "mtd_heading",
+
         dataIndex: "mtd_heading",
       },
       {
         title: "Time Stamp",
+        key: "mtd_timestamp",
+
         dataIndex: "mtd_timestamp",
         ellipsis: true,
         render: (text) => {
@@ -115,6 +124,8 @@ function Details({ data }) {
       },
       {
         title: "Details",
+        key: "mtd_key",
+
         dataIndex: "mtd_key",
         ellipsis: {
           showTitle: false,
@@ -177,13 +188,16 @@ function Details({ data }) {
     {
       title: "DSRC",
       dataIndex: "mt_dsrc",
+      key:"mt_dsrc",
     },
     {
       title: "Destination",
       dataIndex: "mt_destination",
+      key:"mt_destination",
     },
     {
       title: "ETA",
+      key:"mt_eta",
       dataIndex: "mt_eta",
       width: 150,
       ellipsis: true,
@@ -195,6 +209,7 @@ function Details({ data }) {
 
     {
       title: "First Observed At",
+      key:"mt_first_observed_at",
       dataIndex: "mt_first_observed_at",
       width: 150,
       ellipsis: true,
@@ -205,6 +220,7 @@ function Details({ data }) {
     },
     {
       title: "Last Observed At",
+      key:"mt_last_observed_at",
       dataIndex: "mt_last_observed_at",
       width: 150,
       ellipsis: true,
@@ -215,10 +231,12 @@ function Details({ data }) {
     },
     {
       title: "Observed Duration",
+      key:"mt_observed_duration",
       dataIndex: "mt_observed_duration",
     },
     {
       title: "Trip Status",
+      key:"mt_trip_status",
       dataIndex: "mt_trip_status",
     },
   ];
@@ -226,6 +244,7 @@ function Details({ data }) {
   const expandedDetailColumns = [
     {
       title: "Longitude",
+      key: "mrd_long",
       dataIndex: "mtd_longitude",
       ellipsis: true,
       render: (text, record) => {
@@ -241,6 +260,7 @@ function Details({ data }) {
     },
     {
       title: "Latitude",
+      key: "mtd_latitude",
       dataIndex: "mtd_latitude",
       ellipsis: true,
       render: (text, record) => {
@@ -256,26 +276,31 @@ function Details({ data }) {
     },
     {
       title: "Speed",
+      key: "mtd_speed",
       dataIndex: "mtd_speed",
       render: (text, record) => record.expandedData?.[0]?.mtd_speed,
     },
     {
       title: "Heading",
+      key: "mtd_speed",
       dataIndex: "mtd_heading",
       render: (text, record) => record.expandedData?.[0]?.mtd_heading,
     },
     {
       title: "Status",
+      key: "mtd_status",
       dataIndex: "mtd_status",
       render: (text, record) => record.expandedData?.[0]?.mtd_status,
     },
     {
       title: "Course",
+      key: "mtd_course",
       dataIndex: "mtd_course",
       render: (text, record) => record.expandedData?.[0]?.mtd_course,
     },
     {
       title: "Timestamp",
+      key: "mtd_timestamp",
       dataIndex: "mtd_timestamp",
       render: (_text, record) => {
         if (record.expandedData && record.expandedData.length > 0) {
@@ -294,71 +319,92 @@ function Details({ data }) {
 
     {
       title: "UTC Seconds",
+      key: "mtd_utc_seconds",
       dataIndex: "mtd_utc_seconds",
       render: (text, record) => record.expandedData?.[0]?.mtd_utc_seconds,
     },
 
     {
       title: "Draught",
+      key: "mtd_draught",
       dataIndex: "mtd_draught",
       render: (text, record) => record.expandedData?.[0]?.mtd_draught,
     },
     {
       title: "ROT",
+      key: "mtd_rot",
       dataIndex: "mtd_rot",
       render: (text, record) => record.expandedData?.[0]?.mtd_rot,
     },
 
     {
       title: "Last Port",
+      key: "mtd_last_port",
       dataIndex: "mtd_last_port",
       render: (text, record) => record.expandedData?.[0]?.mtd_last_port,
     },
     {
       title: "Current Port ID",
+      key: "mtd_current_id",
       dataIndex: "mtd_current_id",
       render: (text, record) => record.expandedData?.[0]?.mtd_current_id,
     },
     {
       title: "Current Port",
+      key: "mtd_current_port",
+
       dataIndex: "mtd_current_port",
       render: (text, record) => record.expandedData?.[0]?.mtd_current_port,
     },
     {
       title: "Current Port Unlocode",
+      key: "mtd_current_port_unlocode",
+
       dataIndex: "mtd_current_port_unlocode",
       render: (text, record) =>
         record.expandedData?.[0]?.mtd_current_port_unlocode,
     },
     {
       title: "Current Port Country",
+      key: "mtd_current_port_country",
+
       dataIndex: "mtd_current_port_country",
       render: (text, record) =>
         record.expandedData?.[0]?.mtd_current_port_country,
     },
     {
       title: "Next Port ID",
+      key: "mtd_next_port_id",
+
       dataIndex: "mtd_next_port_id",
       render: (text, record) => record.expandedData?.[0]?.mtd_next_port_id,
     },
     {
       title: "Next Port",
+      key: "mtd_next_port_name",
+
       dataIndex: "mtd_next_port_name",
       render: (text, record) => record.expandedData?.[0]?.mtd_next_port_name,
     },
     {
       title: "Next Port Unlocode",
+      key: "mtd_next_port_unlocode",
+
       dataIndex: "mtd_next_port_unlocode",
       render: (text, record) =>
         record.expandedData?.[0]?.mtd_next_port_unlocode,
     },
     {
       title: "Next Port Country",
+      key: "mtd_next_port_name",
+
       dataIndex: "mtd_next_port_country",
       render: (text, record) => record.expandedData?.[0]?.mtd_next_port_country,
     },
     {
       title: "ETA Calculated",
+      key: "mtd_eta_calc",
+
       dataIndex: "mtd_eta_calc",
       render: (_text, record) => {
         if (record.expandedData && record.expandedData.length > 0) {
@@ -377,6 +423,8 @@ function Details({ data }) {
 
     {
       title: "ETA Updated",
+      key: "mtd_eta_updated",
+
       dataIndex: "mtd_eta_updated",
       render: (_text, record) => {
         if (record.expandedData && record.expandedData.length > 0) {
@@ -394,22 +442,30 @@ function Details({ data }) {
     },
     {
       title: "Distance to go",
+      key: "mtd_distance_to_go",
+
       dataIndex: "mtd_distance_to_go",
       render: (text, record) => record.expandedData?.[0]?.mtd_distance_to_go,
     },
     {
       title: "Distance Travelled",
+      key: "mtd_distance_travelled",
+
       dataIndex: "mtd_distance_travelled",
       render: (text, record) =>
         record.expandedData?.[0]?.mtd_distance_travelled,
     },
     {
       title: "Average Speed",
+      key: "mtd_awg_speed",
+
       dataIndex: "mtd_awg_speed",
       render: (text, record) => record.expandedData?.[0]?.mtd_awg_speed,
     },
     {
       title: "Maximum Speed",
+      key: "mtd_max_speed",
+
       dataIndex: "mtd_max_speed",
       render: (text, record) => record.expandedData?.[0]?.mtd_max_speed,
     },

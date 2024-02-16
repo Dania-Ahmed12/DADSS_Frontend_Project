@@ -28,18 +28,23 @@ function VisFormTable() {
   const columns = [
     {
       title: "Boat ID ",
+      key: "boat_id",
       dataIndex: "boat_id",
       width: 250,
       ellipsis: false,
     },
     {
       title: "Nakwa Name",
+      key: "nakwa_name",
+
       dataIndex: "nakwa_name",
       width: 250,
       ellipsis: false,
     },
     {
       title: "Crew",
+      key: "crew",
+
       dataIndex: "crew",
       width: 250,
       ellipsis: false,
@@ -47,6 +52,8 @@ function VisFormTable() {
     {
       title: "Departure Date",
       dataIndex: "dep_date",
+      key: "dep_date",
+
       width: 250,
       ellipsis: false,
       render: renderDate,
@@ -54,6 +61,8 @@ function VisFormTable() {
     {
       title: "Arrival Date",
       dataIndex: "arrival_date",
+      key: "arrival_date",
+
       width: 250,
       ellipsis: false,
       render: renderDate,
@@ -61,6 +70,8 @@ function VisFormTable() {
 
     {
       title: "PC Date",
+      key: "pc_date",
+
       dataIndex: "pc_date",
       width: 250,
       ellipsis: false,

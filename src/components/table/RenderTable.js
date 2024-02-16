@@ -3,7 +3,7 @@ import React from "react";
 import Heading from "../title/Heading";
 import AntdTable from "./AntdTable";
 
-const TableItemRenderer = ({  title, columns, data, pagination }) => (
+const TableItemRenderer = ({ title, columns, data, pagination }) => (
   <div className="mb-10 ">
     <div>
       <Heading className="ml-5 " level={4} text={title} />

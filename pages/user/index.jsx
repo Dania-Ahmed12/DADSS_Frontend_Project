@@ -12,18 +12,21 @@ function Index() {
     {
       title: "User ID Number",
       dataIndex: "id",
+      key:"id",
       ellipsis: false,
       width:250,
     },
     {
       title: "UserName",
       dataIndex: "username",
+      key:"username",
       ellipsis: false,
       width:250,
     },
     {
       title: "Date Joined",
       dataIndex: "date_joined",
+      key:"date_joined",
       ellipsis: false,
       width:250,
       render: (text) => {
@@ -34,6 +37,7 @@ function Index() {
     {
       title: "Last Login",
       dataIndex: "last_login",
+      key:"last_login",
       ellipsis: false,
       width:250,
       render: (text) => {

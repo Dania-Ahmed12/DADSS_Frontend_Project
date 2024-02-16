@@ -24,6 +24,7 @@ function Index() {
     ...IntelColumns,
     {
       title: "Action",
+      key:"action",
       dataIndex: "action",
       render: (text, record) => {
         return (

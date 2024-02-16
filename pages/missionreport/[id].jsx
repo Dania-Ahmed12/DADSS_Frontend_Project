@@ -18,14 +18,17 @@ function MissDetails({ data }) {
   const missionDetailsDataColumns = [
     {
       title: "MMSI",
+      key: "mrd_mmsi",
       dataIndex: "mrd_mmsi",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
     {
       title: "Longitude",
+      key: "mrd_long",
+
       dataIndex: "mrd_long",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record) => {
         if (record.mrd_position) {
@@ -42,7 +45,9 @@ function MissDetails({ data }) {
     {
       title: "Latitude",
       dataIndex: "mrd_lat",
-          ellipsis: false,
+      key: "mrd_lat",
+
+      ellipsis: false,
       width: 250,
       render: (text, record) => {
         if (record.mrd_position) {
@@ -58,82 +63,106 @@ function MissDetails({ data }) {
     },
     {
       title: "Course",
+      key: "mrd_course",
+
       dataIndex: "mrd_course",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Speed",
+      key: "mrd_speed",
+
       dataIndex: "mrd_speed",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
     {
       title: "Vessel Name",
+      key: "mrd_vessel_name",
+
       dataIndex: "mrd_vessel_name",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "NPOC",
+      key: "mrd_npoc",
+
       dataIndex: "mrd_npoc",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "LPOC",
+      key: "mrd_lpoc",
+
       dataIndex: "mrd_lpoc",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Activity Description",
+      key: "mrd_act_desc",
+
       dataIndex: "mrd_act_desc",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "AIS Status",
+      key: "mrd_ais_status",
+
       dataIndex: "mrd_ais_status",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Call Details",
+      key: "mrd_call_details",
+
       dataIndex: "mrd_call_details",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Response",
+      key: "mrd_response",
+
       dataIndex: "mrd_response",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Remarks",
+      key: "mrd_remarks",
+
       dataIndex: "mrd_remarks",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
 
     {
       title: "Vessel Type",
+      key: "mrd_vessel_type",
+
       dataIndex: "mrd_vessel_type",
     },
 
     {
       title: "Date Time",
+      key: "mrd_mrd_dtg",
+
       dataIndex: "mrd_dtg",
-          ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text) => {
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
@@ -223,7 +252,6 @@ function MissDetails({ data }) {
             title={item.title}
             columns={item.columns}
             data={item.data}
-            
             pagination={true}
           />
         );

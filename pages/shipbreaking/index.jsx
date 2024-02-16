@@ -30,6 +30,7 @@ function Index() {
     {
       title: "Action",
       dataIndex: "action",
+      key:"action",
       render: (text, record) => {
         return (
           <IconsStylingWrap>

@@ -153,8 +153,8 @@ function RegisteredShipBreakDetails({ data }) {
 
   // Define crew table
   const CrewDetails = [
-    { title: "Crew Name", dataIndex: "sbc_name" },
-    { title: "Crew Nationality", dataIndex: "sbc_nationality" },
+    { title: "Crew Name", dataIndex: "sbc_name" , key:"sbc_name" },
+    { title: "Crew Nationality", dataIndex: "sbc_nationality" , key:"sbc_nationality" },
   ];
 
   const tableItems = [

@@ -37,7 +37,7 @@ function IntelDetails({ data }) {
       title: "Type of Boat",
       ellipsis: false,
       width: 250,
-
+      key: "ird_boat_types",
       dataIndex: "ird_boat_types",
     },
     {
@@ -46,12 +46,14 @@ function IntelDetails({ data }) {
       width: 250,
 
       dataIndex: "ird_total_boats",
+      key: "ird_total_boats",
     },
 
     {
       title: "Detected From",
       ellipsis: false,
       width: 250,
+      key: "ird_detected_from",
 
       dataIndex: "ird_detected_from",
       render: (text) => {
@@ -64,6 +66,7 @@ function IntelDetails({ data }) {
       title: "Detected To",
       ellipsis: false,
       width: 250,
+      key: "ird_detected_to",
 
       dataIndex: "ird_detected_to",
       render: (text) => {
@@ -76,6 +79,7 @@ function IntelDetails({ data }) {
       title: "Action Observed",
       ellipsis: false,
       width: 250,
+      key: "ird_act_observed",
 
       dataIndex: "ird_act_observed",
     },
@@ -84,6 +88,7 @@ function IntelDetails({ data }) {
       title: "Transferring",
       ellipsis: false,
       width: 250,
+      key: "ird_transferring_loc",
 
       dataIndex: "ird_transferring_loc",
     },
@@ -92,6 +97,7 @@ function IntelDetails({ data }) {
       title: "Probability",
       ellipsis: false,
       width: 250,
+      key: "ird_probability",
 
       dataIndex: "ird_probability",
     },
@@ -99,6 +105,7 @@ function IntelDetails({ data }) {
       title: "Picture",
       ellipsis: false,
       width: 250,
+      key: "ird_boat_picture",
 
       dataIndex: "ird_boat_picture",
       render: (text) =>
@@ -117,6 +124,7 @@ function IntelDetails({ data }) {
       title: "Name of Nakwa",
       ellipsis: false,
       width: 250,
+      key: "ird_nakwa_name",
 
       dataIndex: "ird_nakwa_name",
     },
@@ -125,6 +133,7 @@ function IntelDetails({ data }) {
       title: "Owner Name",
       ellipsis: false,
       width: 250,
+      key: "ird_owner_name",
 
       dataIndex: "ird_owner_name",
     },
@@ -133,6 +142,8 @@ function IntelDetails({ data }) {
       title: "No. of Crew",
       ellipsis: false,
       width: 250,
+      key: "ird_number_of_crew",
+
       dataIndex: "ird_number_of_crew",
     },
   ];

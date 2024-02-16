@@ -59,6 +59,7 @@ function PlatformId() {
     {
       title: "Platform ID",
       dataIndex: "pf_id",
+      key: "pf_id",
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
@@ -90,6 +91,8 @@ function PlatformId() {
       title: "Full Name",
       dataIndex: "pf_name",
       ellipsis: false,
+      key: "pf_name",
+
       width: 250,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -112,6 +115,8 @@ function PlatformId() {
     },
     {
       title: "Type",
+      key: "pf_type_key",
+
       dataIndex: "pf_type_key",
       ellipsis: false,
       width: 250,
@@ -200,6 +205,8 @@ function PlatformId() {
     {
       title: "Squadron",
       dataIndex: "pf_squadron",
+      key: "pf_squadron",
+
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
@@ -235,6 +242,8 @@ function PlatformId() {
     },
     {
       title: "CO",
+      key: "pf_co",
+
       dataIndex: "pf_co",
       ellipsis: false,
       width: 250,
@@ -259,6 +268,8 @@ function PlatformId() {
     {
       title: "Other Info",
       dataIndex: "pf_info",
+      key: "pf_info",
+
       width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -279,6 +290,8 @@ function PlatformId() {
     {
       title: "Status",
       dataIndex: "pf_status",
+      key: "pf_status",
+
       width: 200,
       render: (text, record, index) => {
         if (showInputs && index === 0) {
@@ -298,7 +311,6 @@ function PlatformId() {
                     value: "Non-OPS",
                     label: "Non-OPS",
                   },
-               
                 ]}
                 onChange={(value) => {
                   setSelectedType(value);
@@ -312,8 +324,10 @@ function PlatformId() {
       },
     },
     {
-      title: "",
+      title: "Action",
       dataIndex: "action",
+      key: "action",
+
       render: (text, record, index) => {
         if (showInputs && index === 0) {
           return (

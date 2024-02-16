@@ -14,6 +14,7 @@ import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import AntdTable from "./AntdTable";
+import FormTable from "./FromTable";
 
 const MacroDataTable = (props) => {
   const { intelMacroData, setIntelMacroData, init_macro_data, showButtons } =
@@ -342,7 +343,7 @@ const MacroDataTable = (props) => {
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-      <AntdTable
+      <FormTable
         scrollConfig={{ x: true }}
         form={macroDataForm}
         onFinish={onMacroDataFinish}

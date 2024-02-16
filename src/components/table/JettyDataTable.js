@@ -14,6 +14,7 @@ import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import SimpleButton from "../button/SimpleButton";
 import AntdTable from "./AntdTable";
+import FormTable from "./FromTable";
 
 const JettyDataTable = (props) => {
   // Function to handle the deletion of an image
@@ -147,7 +148,7 @@ const JettyDataTable = (props) => {
     {
       title: "Type of Boat",
       dataIndex: "ird_boat_types",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         // Conditionally render an input field or existing text
@@ -174,7 +175,7 @@ const JettyDataTable = (props) => {
     {
       title: "No. of Boats",
       dataIndex: "ird_total_boats",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -201,7 +202,7 @@ const JettyDataTable = (props) => {
     {
       title: "Detected From",
       dataIndex: "ird_detected_from",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
@@ -231,7 +232,7 @@ const JettyDataTable = (props) => {
     {
       title: "Detected To",
       dataIndex: "ird_detected_to",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
@@ -261,7 +262,7 @@ const JettyDataTable = (props) => {
     {
       title: "Action Observed",
       dataIndex: "ird_act_observed",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -286,7 +287,7 @@ const JettyDataTable = (props) => {
     {
       title: "Transferring",
       dataIndex: "ird_transferring_loc",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -311,7 +312,7 @@ const JettyDataTable = (props) => {
     {
       title: "Probability",
       dataIndex: "ird_probability",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -337,7 +338,7 @@ const JettyDataTable = (props) => {
     {
       title: "Picture Upload",
       dataIndex: "ird_boat_picture",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -382,7 +383,7 @@ const JettyDataTable = (props) => {
     {
       title: "Name of Nakwa",
       dataIndex: "ird_nakwa_name",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -407,7 +408,7 @@ const JettyDataTable = (props) => {
     {
       title: "Owner Name",
       dataIndex: "ird_owner_name",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -432,7 +433,7 @@ const JettyDataTable = (props) => {
     {
       title: "No. of Crew",
       dataIndex: "ird_number_of_crew",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         return (showInputs.jettyDetailColumns && index === 0) |
@@ -458,7 +459,7 @@ const JettyDataTable = (props) => {
     {
       title: "",
       dataIndex: "action",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         if (showInputs.jettyDetailColumns && index === 0) {
@@ -566,9 +567,9 @@ const JettyDataTable = (props) => {
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-      <AntdTable
+      <FormTable
         form={jettyDataForm}
-        scrollConfig={{x:true}}
+        scrollConfig={{ x: true }}
         onFinish={onjettyDataFinish}
         scroll={{ x: "auto" }} // Set the scroll property as per your requirements
         columns={jettyDataColumns}
