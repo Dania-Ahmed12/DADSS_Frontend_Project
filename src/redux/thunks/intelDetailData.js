@@ -32,18 +32,17 @@ export const saveIntelDetailReport = createAsyncThunk(
       if (response.status === 200 || response.status === 201) {
         return response.data;
       }
-    }
-     catch (error) {
-     toast.error(`Upload failed. Please try again  hwy tis is runnnig ???.`, {
-       position: "top-right",
-       autoClose: 1000,
-       hideProgressBar: false,
-       closeOnClick: true,
-       pauseOnHover: false,
-       draggable: true,
-       progress: undefined,
-       theme: "dark",
-     });
+    } catch (error) {
+      toast.error(`Upload failed. Please try again `, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 );

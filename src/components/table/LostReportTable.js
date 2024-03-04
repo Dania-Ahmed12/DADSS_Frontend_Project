@@ -155,6 +155,7 @@ function LostReportTable(props) {
 
   const lostReportColumn = [
     {
+      key: "lr_reporting_date",
       title: "Reporting DTG",
       dataIndex: "lr_reporting_date",
       ellipsis: false,
@@ -195,6 +196,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "mv_imo",
       title: "IMO",
       dataIndex: "mv_imo",
       ellipsis: false,
@@ -224,6 +226,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "mv_ship_name",
       title: "Name",
       dataIndex: "mv_ship_name",
       ellipsis: false,
@@ -249,6 +252,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "mv_flag",
       title: "Flag",
       dataIndex: "mv_flag",
       ellipsis: false,
@@ -274,6 +278,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "mv_ais_type_summary",
       title: "Type",
       dataIndex: "mv_ais_type_summary",
       ellipsis: false,
@@ -305,6 +310,7 @@ function LostReportTable(props) {
     },
 
     {
+      key: "lr_total_crew",
       title: "Total Crew ",
       ellipsis: false,
       width: 250,
@@ -331,6 +337,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_track_status",
       title: "Track Status",
       ellipsis: false,
       width: 250,
@@ -357,6 +364,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_created_on",
       title: "Created On",
       dataIndex: "lr_created_on",
       ellipsis: false,
@@ -397,6 +405,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_created_by",
       title: "Created By",
       ellipsis: false,
       width: 250,
@@ -423,6 +432,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "longitude",
       title: "Longitude",
       dataIndex: ["lr_position", "dms", 0],
       ellipsis: false,
@@ -444,6 +454,7 @@ function LostReportTable(props) {
     },
 
     {
+      key: "latitude",
       title: "Latitude",
       dataIndex: ["lr_position", "dms", 1],
       ellipsis: false,
@@ -464,6 +475,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_remarks",
       title: "Remarks",
       dataIndex: "lr_remarks",
       ellipsis: false,
@@ -489,6 +501,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_coi_number",
       title: "COI Number",
       ellipsis: false,
       width: 250,
@@ -516,6 +529,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_subscriber_code",
       title: "Subscriber Code",
       ellipsis: false,
       width: 250,
@@ -542,6 +556,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_pr_number",
       title: "PR Number",
       ellipsis: false,
       width: 250,
@@ -569,6 +584,7 @@ function LostReportTable(props) {
       },
     },
     {
+      key: "lr_action_addresses_codes",
       title: "Action Address Code",
       ellipsis: false,
       width: 250,
@@ -596,6 +612,7 @@ function LostReportTable(props) {
     },
 
     {
+      key: "action",
       title: "",
       dataIndex: "action",
       ellipsis: false,
@@ -696,7 +713,7 @@ function LostReportTable(props) {
             className="whitespace-nowrap ml-5"
             text="Lost Report"
           />
-       
+
           <FilledButton
             text="+ Add Lost Report"
             className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"

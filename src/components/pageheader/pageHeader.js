@@ -1,10 +1,12 @@
 import React from "react";
 import { RxArrowLeft } from "react-icons/rx";
 import { useRouter } from "next/router.js";
-import { Col, Input, Row } from "antd";
+import { Button, Col, Input, Row } from "antd";
 import Heading from "../title/Heading";
 import FilledButton from "../button/FilledButton";
 import { SearchOutlined } from "@ant-design/icons";
+import { CSVLink } from "react-csv";
+import ReactToPrint from "react-to-print";
 
 function PageHeader(props) {
   const {
@@ -15,17 +17,22 @@ function PageHeader(props) {
     placeholder,
     showButton,
     showSearchBox = true,
-    sessionStorage,
+    localStorage,
     btnTitleMedia,
+    currentData,
+    componentRef,
   } = props;
   const router = useRouter();
 
   const handleBack = () => {
-    if (typeof sessionStorage === "function") {
-      sessionStorage();
+    if (typeof localStorage === "function") {
+      localStorage();
     }
+    console.log("At back");
     router.back();
   };
+
+  console.log(currentData);
 
   return (
     <React.Fragment>
@@ -66,6 +73,33 @@ function PageHeader(props) {
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder={placeholder}
               />
+              {currentData && (
+                <Button className="rounded-full border-midnight bg-midnight text-white ml-2 custom-css-pageheaderButton">
+                  <CSVLink
+                    filename={title + ".csv"}
+                    data={currentData ? currentData : []}
+                  >
+                    Export to CSV
+                  </CSVLink>
+                </Button>
+              )}
+              {componentRef && (
+                <ReactToPrint
+                  trigger={() => (
+                    <Button
+                      className="rounded-full border-midnight bg-midnight text-white ml-2 custom-css-pageheaderButton"
+                      onClick={() => {
+                        handlePrint(null, () => {
+                          componentRef.current;
+                        });
+                      }}
+                    >
+                      PRINT
+                    </Button>
+                  )}
+                  content={() => componentRef.current}
+                />
+              )}
               {showButton && (
                 <>
                   <FilledButton

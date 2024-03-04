@@ -1,5 +1,5 @@
-import { Col, Form, Row, Space, Typography, Radio } from "antd";
-import React, { useEffect } from "react";
+import { Col, Form, Row} from "antd";
+import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import OutlineButton from "../../src/components/button/OutlineButton";
 import InputBox from "../../src/components/form/InputBox";
@@ -7,34 +7,73 @@ import SelectBox from "../../src/components/form/SelectBox";
 import PasswordBox from "../../src/components/form/PasswordBox";
 import { useRouter } from "next/router";
 import { useForm } from "antd/lib/form/Form";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPlatformData } from "../../src/redux/thunks/platformData";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import styled from "styled-components";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function CreateUser() {
   const router = useRouter();
-
-  const dispatch = useDispatch();
+  const [groupList, setGroupList] = useState([]);
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState([]);
   const [form] = useForm();
 
-  const { data } = useSelector((state) => state.fetchPlatformData);
+  const handlePlatformList = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/platform_list`
+      );
+      if (response.status === 200) {
+        setData(response.data);
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    dispatch(fetchAllPlatformData());
+    // dispatch(fetchAllPlatformData());
+    handlePlatformList();
+    handleGroupRoles();
+
     form.resetFields();
-  }, [dispatch]);
+  }, []);
+
+  const handleGroupRoles = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/group_list`,
+     
+      );
+      if (response.status === 200) {
+        const group_name = response.data;
+        const groupNames = group_name.Groups.map((item) => item.name);
+        setGroupList(groupNames);
+      }
+    } catch (error) {}
+  };
 
   const onFinish = async () => {
     const validatedValues = await form.validateFields();
     if (validatedValues) {
+      const { username, password, u_pf_id } = validatedValues;
+      // Creating user_groups array with only selected values
+      const user_groups = value.map((groupName) => ({
+        name: groupName,
+        added: true,
+      }));
+      // Constructing the data object
+      const postData = {
+        username,
+        password,
+        u_pf_id,
+        user_groups,
+      };
       try {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/register`,
-          validatedValues
+          postData
         );
 
         if (response.status === 201) {
@@ -50,7 +89,7 @@ function CreateUser() {
           });
           router.push("/user");
         }
-      } catch {
+      } catch (error) {
         toast.error("User already exists", {
           position: "top-right",
           autoClose: 1000,
@@ -62,7 +101,6 @@ function CreateUser() {
           theme: "dark",
         });
       }
-
     }
   };
 
@@ -79,6 +117,11 @@ function CreateUser() {
     });
   };
 
+
+    const handleBack = () => {
+
+      router.back();
+    };
   return (
     <StyledDiv>
       <div>
@@ -93,14 +136,7 @@ function CreateUser() {
         className="shadow mx-5 px-3 py-10 bg-white"
       >
         <Row className="flex justify-center">
-          <Col
-            xs={24}
-            sm={24}
-            md={11}
-            lg={11}
-            xl={11}
-            // span={11}
-          >
+          <Col xs={24} sm={24} md={11} lg={11} xl={11}>
             <InputBox
               autocomplete="off"
               label="Username"
@@ -130,31 +166,14 @@ function CreateUser() {
               className="input mb-4"
               placeholder="Select Platform"
               label="Select Platform"
-              // defaultValue="MSA-Craft-One"
               options={data.map((item) => ({
                 value: item.pf_id,
                 label: item.pf_name,
               }))}
-              // options={[
-              //   { value: "MSA-Craft-One", label: "MSA-Craft-One" },
-              //   { value: "SINC", label: "SINC" },
-              //   { value: "MSA-Craft-Two", label: "MSA-Craft-Two" },
-              //   { value: "MSA-Craft-Three", label: "MSA-Craft-Three" },
-              //   { value: "MSA-Craft-Four", label: "MSA-Craft-Four" },
-              // ]}
               rules={[{ required: true, message: "Please select a platform!" }]}
             />
           </Col>
-          <Col
-            // span={11}
-            xs={24}
-            sm={24}
-            md={11}
-            lg={11}
-            xl={11}
-            className="ml-2 mr-2"
-            // offset={1}
-          >
+          <Col xs={24} sm={24} md={11} lg={11} xl={11} className="ml-2 mr-2">
             <PasswordBox
               className="input mb-4"
               autocomplete="off"
@@ -174,34 +193,24 @@ function CreateUser() {
                 },
               ]}
             />
+            <SelectBox
+              mode="multiple"
+              allowClear
+              autocomplete="off"
+              name="roles"
+              className="input mb-4"
+              placeholder="Select Roles"
+              label="Group Roles"
+              value={value}
+              onChange={(newValue) => setValue(newValue)}
+              rules={[{ required: true, message: "Please select" }]}
+              options={groupList.map((groupName, index) => ({
+                value: groupName,
+                label: groupName,
+              }))}
+              disabled={groupList.length === 0} // Disable the SelectBox until groupList is populated
+            />
           </Col>
-        </Row>
-
-        <Row className="flex justify-center">
-          <Col span={22} className=" mb-4">
-            <Typography className="text-lg">Access Point Details</Typography>
-          </Col>
-        </Row>
-        <Row className="flex justify-start">
-          <Form.Item
-            name="category"
-            className="ml-8 mb-4"
-            rules={[{ required: true, message: "Please select option!" }]}
-          >
-            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-              <Radio.Group buttonStyle="solid">
-                <Space align="left" className="ml-2 mr-2 mb-2">
-                  <Radio.Button value="A">Senior Officer</Radio.Button>
-                </Space>
-                <Space align="center" className="ml-2 mr-2 mb-2">
-                  <Radio.Button value="B">Operator</Radio.Button>
-                </Space>
-                <Space align="right" className="ml-2 mr-2 mb-2">
-                  <Radio.Button value="C">Visualizer</Radio.Button>
-                </Space>
-              </Radio.Group>
-            </Col>
-          </Form.Item>
         </Row>
 
         <Row className="mt-5 flex justify-center">
@@ -214,9 +223,10 @@ function CreateUser() {
             className="flex justify-end  text-center mb-3 lg:text-right lg:mb-2 "
           >
             {/* This Col contains the buttons and is aligned to the right on large screens */}
-            <Form.Item >
+            <Form.Item>
               <OutlineButton
                 text="Cancel"
+                onClick={handleBack}
                 className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white ml-3 mb-3 mr-4 lg:mr-2 lg:ml-2 lg:mb-0  lg:inline-block"
               />
               <FilledButton
@@ -239,7 +249,6 @@ const StyledDiv = styled.div`
     margin-bottom: 20px;
   }
 `;
-
 
 export async function getServerSideProps(context) {
   return {

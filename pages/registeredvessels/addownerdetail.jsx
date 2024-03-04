@@ -51,7 +51,7 @@ function Addownerdetail() {
   };
   const handleBack = () => {
     router.back();
-       sessionStorage.setItem(
+       localStorage.setItem(
          "OwnerForm",
          JSON.stringify({
            ...form.getFieldsValue(),
@@ -60,7 +60,7 @@ function Addownerdetail() {
        );
   };
   useEffect(() => {
-    const storedData = sessionStorage.getItem("OwnerForm");
+    const storedData = localStorage.getItem("OwnerForm");
     if (storedData) {
       try {
         const formData = JSON.parse(storedData);
@@ -83,7 +83,7 @@ function Addownerdetail() {
         <PageHeader
           showSearchBox={false}
           title="Vessel Registration/Add Owner Detail"
-          sessionStorage={handleBack}
+          localStorage={handleBack}
         />
       </div>
       <div>
@@ -123,7 +123,7 @@ function Addownerdetail() {
                   { value: "Passport", label: "Passport" },
                 ]}
                 rules={[
-                  { required: true, message: "Please select a ID Type!" },
+                  { required: false, message: "Please select a ID Type!" },
                 ]}
               />
               <DateBox
@@ -133,7 +133,7 @@ function Addownerdetail() {
                 format="YYYY-MM-DD"
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Please enter an ID expiration date",
                   },
                 ]}
@@ -169,7 +169,7 @@ function Addownerdetail() {
                   label: item,
                 }))}
                 rules={[
-                  { required: true, message: "Please select a nationality!" },
+                  { required: false, message: "Please select a nationality!" },
                 ]}
               />
               <InputBox
@@ -190,16 +190,12 @@ function Addownerdetail() {
                     message: "ID Number can only contain numbers.",
                   },
                   {
-                    min: 6,
-                    message: "User ID must be at least 6 characters long.",
-                  },
-                  {
-                    max: 12,
-                    message: "User ID cannot be more than 12 characters long.",
+                    max: 13,
+                    message: "User ID cannot be more than 13 characters long.",
                   },
                 ]}
               />
-              <SelectBox
+              {/* <SelectBox
                 label="Ethnicity"
                 name="rvo_ethnicity"
                 className="input"
@@ -210,6 +206,15 @@ function Addownerdetail() {
                 }))}
                 rules={[
                   { required: true, message: "Please select a ethnicity!" },
+                ]}
+              /> */}
+              <InputBox
+                label="Ethnicity"
+                name="rvo_ethnicity"
+                className="input"
+                placeholder="Enter Ethnicity"
+                rules={[
+                  { required: false, message: "Please enter a ethnicity!" },
                 ]}
               />
               <InputBox
@@ -222,7 +227,7 @@ function Addownerdetail() {
                 pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Please input a valid mobile number!",
                   },
                   {

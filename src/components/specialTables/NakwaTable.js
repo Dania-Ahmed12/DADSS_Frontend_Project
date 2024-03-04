@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Col, Row, Form, Modal } from "antd";
+import { useEffect, useState } from "react";
+import { Col, Row, Form, Modal, InputNumber, Button, Select } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -72,12 +72,15 @@ function FishingNakwaTable(props) {
     }
   };
 
+
   const nakwaColumns = [
     {
+      key: "src_name",
       title: "Name",
       dataIndex: "src_name",
       ellipsis: false,
       width: 250,
+      onFilter: (value, record) => record.src_name.includes(value),
       render: (text, record) => {
         return showInputs.nakwaColumns | showInputs.nakwa_editing ? (
           <StyledInput>
@@ -99,6 +102,7 @@ function FishingNakwaTable(props) {
       },
     },
     {
+      key: "src_nationality",
       title: "Nationality",
       dataIndex: "src_nationality",
       ellipsis: false,
@@ -128,6 +132,7 @@ function FishingNakwaTable(props) {
       },
     },
     {
+      key: "src_ethnicity",
       title: "Ethnicity",
       dataIndex: "src_ethnicity",
       ellipsis: false,
@@ -157,6 +162,7 @@ function FishingNakwaTable(props) {
       },
     },
     {
+      key: "src_cell",
       title: "Cell Number",
       dataIndex: "src_cell",
       ellipsis: false,
@@ -183,10 +189,11 @@ function FishingNakwaTable(props) {
       },
     },
     {
+      key: "action",
       title: "",
       dataIndex: "action",
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.nakwaColumns) {
             return (
               <Form.Item>
@@ -258,7 +265,7 @@ function FishingNakwaTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   return (

@@ -29,11 +29,12 @@ export const fetchPlatformDataSlice = createSlice({
         return {
           ...state,
           isLoading: false,
-          data: action.payload,
+          data: action.payload ? action.payload:[],
           error: "",
         };
       })
       .addCase(fetchAllPlatformData.rejected, (state, action) => {
+
         return {
           ...state,
           isLoading: false,

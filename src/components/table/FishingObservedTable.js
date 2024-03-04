@@ -113,6 +113,7 @@ function FishingObservedTable(props) {
 
   const fishingObservedColumns = [
     {
+      key: "longitude",
       title: "Longitude",
       ellipsis: false,
       width: 250,
@@ -133,6 +134,7 @@ function FishingObservedTable(props) {
       },
     },
     {
+      key: "latitude",
       title: "Latitude",
       ellipsis: false,
       width: 250,
@@ -154,6 +156,7 @@ function FishingObservedTable(props) {
     },
     {
       title: "Vessel Name",
+      key: "grf_name",
       dataIndex: "grf_name",
       width: 250,
       ellipsis: false,
@@ -180,6 +183,7 @@ function FishingObservedTable(props) {
     },
     {
       title: "Vessel Type",
+      key: "grf_type",
       dataIndex: "grf_type",
       ellipsis: false,
       width: 250,
@@ -207,6 +211,7 @@ function FishingObservedTable(props) {
     },
     {
       title: "Vessel Movement",
+      key: "grf_movement",
       dataIndex: "grf_movement",
       width: 250,
       ellipsis: false,
@@ -237,6 +242,7 @@ function FishingObservedTable(props) {
     },
     {
       title: "",
+      key: "action",
       dataIndex: "action",
       width: 250,
       render: (text, record, index) => {
@@ -326,7 +332,7 @@ function FishingObservedTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 text="+ Add Fishing Observed"
@@ -341,7 +347,7 @@ function FishingObservedTable(props) {
                 disabled={fishingObservedKey !== ""}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

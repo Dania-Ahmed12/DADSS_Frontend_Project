@@ -18,12 +18,13 @@ import { RegVesselColumn } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function Details({ data }) {
+  console.log(data);
   const [showButtons, setShowButtons] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const { id, vessel } = router.query;
   const parsedVesselData = JSON.parse(vessel);
-  const init_platform_data = { sr_pf_id: Cookies.get("u_pf_id") };
+  const init_platform_data = { sr_pf_id: localStorage.getItem("u_pf_id") };
 
   const [platformData, setPlatformData] = useState(init_platform_data);
   const [platformDataEntered, setPlatformDataEntered] = useState(false);
@@ -31,7 +32,7 @@ function Details({ data }) {
   const [tripData, setTripData] = useState();
   const [tripDataEntered, setTripDataEntered] = useState(false);
 
-  const [nakwaData, setNakwaData] = useState();
+  const [nakwaData, setNakwaData] = useState([]);
   const [nakwaDataEntered, setNakwaDataEntered] = useState(false);
 
   const [ownerData, setOwnerData] = useState([]);
@@ -43,29 +44,35 @@ function Details({ data }) {
   const vesselcolumns = [
     ...RegVesselColumn,
     {
+      key: "rv_length",
       title: "Length (Meters)",
       dataIndex: "rv_length",
       ellipsis: false,
       width: 250,
     },
     {
+      key: "rv_breadth",
       title: "Breadth (Meters)",
       dataIndex: "rv_breadth",
       ellipsis: false,
       width: 250,
     },
     {
+      key: "rv_tonnage",
       title: "Gross Tonnage",
       dataIndex: "rv_tonnage",
       ellipsis: false,
       width: 250,
     },
     {
+      key: "rv_rdt",
       title: "Registered ON",
       dataIndex: "rv_rdt",
       ellipsis: false,
       width: 250,
       render: (text, record) => {
+          if (!text) return "---";
+
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
       },
@@ -167,7 +174,6 @@ function Details({ data }) {
         : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
   }));
 
-
   return (
     <>
       <div>
@@ -181,7 +187,7 @@ function Details({ data }) {
       <Row className="items-center mb-4">
         <Col span={6}></Col>
         <Col span={18} className="flex justify-end">
-          {showButtons ? (
+          {/* {showButtons ? (
             <FilledButton
               // disabled={platformData.length > 1}
               style={{ marginLeft: "auto" }}
@@ -197,7 +203,15 @@ function Details({ data }) {
               className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={() => setShowButtons(true)}
             />
-          )}
+          )} */}
+          <FilledButton
+            // disabled={platformData.length > 1}
+            style={{ marginLeft: "auto" }}
+            text="Save Fishing Data"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+            onClick={handleFishingSave}
+            disabled={!(platformDataEntered && tripDataEntered)}
+          />
         </Col>
       </Row>
 
@@ -248,7 +262,9 @@ function Details({ data }) {
                     marginLeft: "-15px",
                   }}
                 >
-                  <div className="descriptionChildren mr-5 ">{item.children}</div>
+                  <div className="descriptionChildren mr-5 ">
+                    {item.children}
+                  </div>
                 </Col>
               </Row>
               {/* </div> */}
@@ -277,7 +293,7 @@ function Details({ data }) {
           patrolType: "sr_patroltype",
           action: "sr_action",
         }}
-        showButtons={showButtons}
+        // showButtons={showButtons}
       />
 
       {/*----------------------------------- Trip Data -------------------------------------*/}
@@ -288,7 +304,7 @@ function Details({ data }) {
           tripDataEntered: tripDataEntered,
           setTripDataEntered: setTripDataEntered,
         }}
-        showButtons={showButtons}
+        // showButtons={showButtons}
       />
 
       {/*----------------------------------- Nakwa Data -------------------------------------*/}
@@ -300,7 +316,7 @@ function Details({ data }) {
           nakwaDataEntered: nakwaDataEntered,
           setNakwaDataEntered: setNakwaDataEntered,
         }}
-        showButtons={showButtons}
+        // showButtons={showButtons}
       />
 
       {/*----------------------------------- Owner Data -------------------------------------*/}

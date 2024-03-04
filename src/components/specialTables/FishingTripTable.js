@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row,  Form,  Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -7,20 +7,15 @@ import FilledButton from "../button/FilledButton";
 import InputBox from "../form/InputBox";
 import SelectBox from "../form/SelectBox";
 import { useForm } from "antd/lib/form/Form";
-import { toast,} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputNumBox from "../form/InputNumBox";
-import { MdModeEditOutline} from "react-icons/md";
+import { MdModeEditOutline } from "react-icons/md";
 import React from "react";
 import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
-import {
-  movement_list,
-  port_list,
-} from "../../helper/dropdown";
+import { movement_list, port_list } from "../../helper/dropdown";
 import AntdTable from "../table/AntdTable";
-
-
 
 function FishingTripTable(props) {
   const { tripData, setTripData, showButtons } = props;
@@ -96,6 +91,7 @@ function FishingTripTable(props) {
 
   const tripColumns = [
     {
+      key: "sr_depjetty",
       title: "Departure",
       dataIndex: "sr_depjetty",
       width: 250,
@@ -122,6 +118,7 @@ function FishingTripTable(props) {
       },
     },
     {
+      key: "sr_depdt",
       title: "Departure Date",
       dataIndex: "sr_depdt",
       width: 250,
@@ -149,6 +146,7 @@ function FishingTripTable(props) {
       },
     },
     {
+      key: "sr_pc",
       title: "PC",
       width: 250,
       ellipsis: false,
@@ -174,6 +172,7 @@ function FishingTripTable(props) {
       },
     },
     {
+      key: "sr_pcdays",
       title: "PC Duration",
       dataIndex: "sr_pcdays",
       width: 250,
@@ -200,6 +199,7 @@ function FishingTripTable(props) {
       },
     },
     {
+      key: "sr_pcissuedt",
       title: "PC Issue Date",
       dataIndex: "sr_pcissuedt",
       width: 250,
@@ -227,6 +227,7 @@ function FishingTripTable(props) {
       },
     },
     {
+      key: "sr_movement",
       title: "Movement",
       dataIndex: "sr_movement",
       width: 250,
@@ -257,11 +258,12 @@ function FishingTripTable(props) {
     },
     {
       title: "",
+      key: "action",
       dataIndex: "action",
       width: 250,
       ellipsis: false,
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.tripColumns) {
             return (
               <Form.Item>
@@ -333,7 +335,7 @@ function FishingTripTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   return (
@@ -347,7 +349,7 @@ function FishingTripTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 text="+ Add Trip Details"
@@ -362,7 +364,7 @@ function FishingTripTable(props) {
                 disabled={tripDataEntered}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
 

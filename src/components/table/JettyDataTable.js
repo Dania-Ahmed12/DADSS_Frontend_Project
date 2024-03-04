@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table, Form, Modal } from "antd";
+import { Col, Row, Table, Form, Modal, Image } from "antd";
 import Heading from "../title/Heading";
 import styled from "styled-components";
 import FilledButton from "../button/FilledButton";
@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import SimpleButton from "../button/SimpleButton";
 import AntdTable from "./AntdTable";
 import FormTable from "./FromTable";
+import { showToastSuccess } from "../../helper/MyToast";
 
 const JettyDataTable = (props) => {
   // Function to handle the deletion of an image
@@ -35,7 +36,7 @@ const JettyDataTable = (props) => {
     });
   };
 
-  const { jettyData, setJettyData, showButtons } = props;
+  const { jettyData, setJettyData, showButtons, isLoading } = props;
   const [jettyDataForm] = useForm();
 
   // used to track the currently editing item's index in the jettyData array.
@@ -58,7 +59,7 @@ const JettyDataTable = (props) => {
 
   // Function to show input fields for adding Jetty data
   const handleJettyDataColumnShowInput = () => {
-    setImageFile(null);
+    // setImageFile(null);
     jettyDataForm.resetFields();
     setShowInputs({ ...showInputs, jettyDetailColumns: true });
   };
@@ -103,10 +104,14 @@ const JettyDataTable = (props) => {
   const jettyDataEdited = (key, index) => {
     const editedValues = jettyDataForm.getFieldValue();
     // Create a new object with the edited values
+
     const newEdited = {
       ...editedValues,
-      ird_boat_picture: imageFile,
+      ird_boat_picture: imageFile
+        ? imageFile
+        : jettyData[key]["ird_boat_picture"],
     };
+
     // Update the Jetty data state by replacing the item at the specified key/index with the new edited item
     setJettyData((previous) => {
       const newItems = [...previous];
@@ -129,16 +134,7 @@ const JettyDataTable = (props) => {
           ird_boat_picture: imageFile, // Include the image file in the state
         },
       ]);
-      toast.success(`Jetty Detail data added`, {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      showToastSuccess(`Jetty Detail data added`);
       setShowInputs({ ...showInputs, jettyDetailColumns: false });
       jettyDataForm.resetFields();
     }
@@ -205,7 +201,10 @@ const JettyDataTable = (props) => {
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
-        if (showInputs.jettyDetailColumns && index === 0) {
+        if (
+          (showInputs.jettyDetailColumns && index === 0) |
+          isJettyDataEditing(index)
+        ) {
           return (
             <StyledInput>
               <DateBox
@@ -235,7 +234,10 @@ const JettyDataTable = (props) => {
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
-        if (showInputs.jettyDetailColumns && index === 0) {
+        if (
+          (showInputs.jettyDetailColumns && index === 0) |
+          isJettyDataEditing(index)
+        ) {
           return (
             <StyledInput>
               <DateBox
@@ -354,15 +356,22 @@ const JettyDataTable = (props) => {
           </StyledInput>
         ) : (
           <div>
-            {text ? (
+            {text && record.ird_boat_picture ? (
               <div>
                 {/* Display the uploaded picture or show "No picture" if no picture is present */}
                 <IconsStylingWrap>
                   <span>
-                    {record.ird_boat_picture
-                      ? record.ird_boat_picture.name
-                      : "No picture"}
+                    {typeof record.ird_boat_picture === "string" ? (
+                      <Image
+                        src={text}
+                        alt="Boat"
+                        style={{ maxWidth: "100px", maxHeight: "100px" }}
+                      />
+                    ) : (
+                      record.ird_boat_picture.name
+                    )}
                   </span>
+
                   {isJettyDataEditing(index) ? (
                     // Display delete icon only when the row is being edited
                     <MdDelete
@@ -487,7 +496,7 @@ const JettyDataTable = (props) => {
           );
         }
         if (!showInputs.jettyDataEdited) {
-          if (jettyData.length && !isJettyDataEditing(index)) {
+          if (jettyData.length && !isJettyDataEditing(index) && showButtons) {
             return (
               <IconsStylingWrap>
                 <MdModeEditOutline
@@ -567,10 +576,11 @@ const JettyDataTable = (props) => {
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-      <FormTable
+      <AntdTable
         form={jettyDataForm}
         scrollConfig={{ x: true }}
         onFinish={onjettyDataFinish}
+        loading={isLoading}
         scroll={{ x: "auto" }} // Set the scroll property as per your requirements
         columns={jettyDataColumns}
         data={showInputs.jettyDetailColumns ? [{}, ...jettyData] : jettyData}

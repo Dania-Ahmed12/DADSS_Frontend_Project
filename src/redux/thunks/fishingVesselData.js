@@ -7,7 +7,21 @@ export const fetchFishingById = createAsyncThunk(
   async (key) => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/fishing/rvkey/${key}`
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/fishing/${key}`
+      );
+      if (response.status === 200) return response.data;
+    } catch (error) {}
+  }
+);
+
+export const fetchFishingData = createAsyncThunk(
+  "fishingReport/fetch",
+  async (search_data) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/fishing?search=${
+          search_data ? search_data : ""
+        }`
       );
       if (response.status === 200) return response.data;
     } catch (error) {}
@@ -24,20 +38,7 @@ export const saveFishingVessel = createAsyncThunk(
       );
 
       if (response.status === 200 || response.status === 201) {
-      toast.success(`Data Save Successfully`, {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-        return response.data;
-      }
-    } catch (error) {
-        toast.error(`Error . Please try again.`, {
+        toast.success(`Data Save Successfully`, {
           position: "top-right",
           autoClose: 1000,
           hideProgressBar: false,
@@ -47,7 +48,19 @@ export const saveFishingVessel = createAsyncThunk(
           progress: undefined,
           theme: "dark",
         });
-
+        return response.data;
+      }
+    } catch (error) {
+      toast.error(`Error . Please try again.`, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 );

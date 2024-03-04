@@ -243,7 +243,7 @@ function MacroMissionDataTable(props) {
           />
         </Col>
         <Col span={12} className=" flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 disabled={missionDataEntered}
@@ -258,7 +258,7 @@ function MacroMissionDataTable(props) {
                 onClick={handleMissionDataShowInput}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

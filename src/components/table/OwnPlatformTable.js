@@ -136,12 +136,14 @@ function OwnPlatformTable(props) {
 
   const ownPlatformColumns = [
     {
+      key: "pf_id",
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
       ellipsis: false,
       width: 250,
     },
     {
+      key: "dtg",
       title: "Date Time ",
       dataIndex: reportKeys.dtg,
       ellipsis: false,
@@ -179,6 +181,7 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "longitude",
       title: "Longitude",
       ellipsis: false,
       width: 250,
@@ -199,6 +202,7 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "latitude",
       title: "Latitude",
       ellipsis: false,
       width: 250,
@@ -219,6 +223,8 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "patrol type",
+
       title: "Patrol Type",
       ellipsis: false,
       width: 250,
@@ -245,6 +251,8 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "action type",
+
       title: "Action type",
       ellipsis: false,
       width: 250,
@@ -271,6 +279,8 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "fuel remainig",
+
       title: "Fuel Remaining",
       ellipsis: false,
       width: 250,
@@ -297,6 +307,8 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "other",
+
       title: "Other Info",
       ellipsis: false,
       width: 250,
@@ -322,6 +334,8 @@ function OwnPlatformTable(props) {
       },
     },
     {
+      key: "action",
+
       title: "",
       dataIndex: "action",
       ellipsis: false,
@@ -416,22 +430,22 @@ function OwnPlatformTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
-            <>
-              <FilledButton
-                text="+ Add Own Platform "
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                onClick={handlePlatformShowInput}
-                disabled={platformDataEntered}
-              />
-              <FilledButton
-                text="+ Add"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                onClick={handlePlatformShowInput}
-                disabled={platformDataEntered}
-              />
-            </>
-          )}
+          {/* {showButtons && ( */}
+          <>
+            <FilledButton
+              text="+ Add Own Platform "
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+              onClick={handlePlatformShowInput}
+              disabled={platformDataEntered}
+            />
+            <FilledButton
+              text="+ Add"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handlePlatformShowInput}
+              disabled={platformDataEntered}
+            />
+          </>
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

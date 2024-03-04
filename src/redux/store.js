@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { fetchPlatformDataSlice } from "./slice/plaftformDataSlice";
 import {
+  fetchRegisteredVesselIDSlice,
   fetchRegisteredVesselSlice,
   saveRegisteredVesselSlice,
 } from "./slice/registeredVesselSlice";
@@ -12,6 +13,7 @@ import {
   loginSlice,
   registerSlice,
   getAllUsersSlice,
+  getUsersIDSlice,
 } from "./slice/userAuthSlice";
 import { addUploadDataSlice } from "./slice/uploadData";
 import { fetchVisReportSlice } from "./slice/visReportSlice";
@@ -20,10 +22,13 @@ import {
   saveRegisteredMerchantVesselSlice,
 } from "./slice/registeredMerchantVesselSlice";
 import {
+  fetchIntelReportIDSlice,
   fetchIntelReportSlice,
   saveIntelReportSlice,
 } from "./slice/intelReportSlice";
 import {
+  fetchMissionReporIDSlice,
+  fetchMissionReporIDtSlice,
   fetchMissionReportSlice,
   saveMissionReportSlice,
 } from "./slice/missionReportSlice";
@@ -43,6 +48,8 @@ import { addSitutationalReportDataSlice } from "./slice/addSituationalReport";
 import { addLostReportDataSlice } from "./slice/addLostReport";
 import { addPnscReportDataSlice } from "./slice/addPnscReport";
 import { fetchMerchantVesselDetailsSlice } from "./slice/merchatDetailsDataSlice";
+import { fetchFishingVesselReportSlice, fetchFishingVesselSlice } from "./slice/fishingVesselSlice";
+import { fetchMerchantVesselReportSlice, fetchMerchantVesselSlice } from "./slice/merchantVesselSlice";
 const store = configureStore({
   reducer: {
     fetchPlatformData: fetchPlatformDataSlice.reducer,
@@ -55,21 +62,27 @@ const store = configureStore({
     // addPlatformData: addPlatformDataSlice.reducer,
     fetchRegisteredVesselData: fetchRegisteredVesselSlice.reducer,
     saveRegisteredVesselData: saveRegisteredVesselSlice.reducer,
+    fetchRegisteredVesselIDData:fetchRegisteredVesselIDSlice.reducer,
     fetchRegisteredMerchantVesselData:
       fetchRegisteredMerchantVesselSlice.reducer,
     saveRegisteredMerchantVesselData: saveRegisteredMerchantVesselSlice.reducer,
-    fetchMerchantVesselDetails:fetchMerchantVesselDetailsSlice.reducer,
+    fetchMerchantVesselDetails: fetchMerchantVesselDetailsSlice.reducer,
     // fetchRegistedVesselById: fetchRegistedVesselByIdSlice.reducer,
     fetchGeneralReport: fetchGeneralReportSlice.reducer,
     fetchIntelReport: fetchIntelReportSlice.reducer,
+    fetchIntelReportID:fetchIntelReportIDSlice.reducer,
     fetchIntelDetailReport: fetchIntelDetailReportSlice.reducer,
     fetchMissionReport: fetchMissionReportSlice.reducer,
+    fetchMissionReportID:fetchMissionReporIDSlice.reducer,
     fetchShipBreakingReport: fetchShipBreakingnReportSlice.reducer,
     // fetchGeneralById: fetchGeneralReportByIdSlice.reducer,
-    // fetchMerchantVessel: fetchMerchantVesselSlice.reducer,
-    // fetchFishingVessel: fetchFishingVesselSlice.reducer,
+    fetchMerchantVessel: fetchMerchantVesselSlice.reducer,
+     fetchFishingVessel: fetchFishingVesselSlice.reducer,
+     fetchFishingVesselReport:fetchFishingVesselReportSlice.reducer,
+     fetchMerchantVesselReport:fetchMerchantVesselReportSlice.reducer,
     loginAuth: loginSlice.reducer,
     register: registerSlice.reducer,
+    fetchUserID:getUsersIDSlice.reducer,
     saveGeneralReport: saveGeneralReportSlice.reducer,
     saveIntelReport: saveIntelReportSlice.reducer,
     saveIntelDetailReport: saveIntelDetailReportSlice.reducer,

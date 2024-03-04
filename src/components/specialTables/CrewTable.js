@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { useEffect, useState } from "react";
+import { Col, Row, Table, Input, Form, InputNumber, Modal, Button } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -19,6 +19,7 @@ import DateBox from "../form/DateBox";
 import dayjs from "dayjs";
 import { Select, Typography } from "antd";
 import AntdTable from "../table/AntdTable";
+import FormTable from "../table/FromTable";
 const { Title } = Typography;
 
 const StyledInput = styled.div`
@@ -30,6 +31,10 @@ function CrewTable(props) {
   const { crewData, setCrewData, showButtons, labelConfig, className } = props;
   const [crewForm] = useForm();
   const [crewKey, setCrewKey] = useState("");
+  const [filterValueBtw, setFilterValueBtw] = useState([null, null]);
+  const [filterValue, setFilterValue] = useState(null);
+  const [filterOperator, setFilterOperator] = useState("eq");
+  const [filteredDataSource, setFilteredDataSource] = useState(null);
 
   const [showInputs, setShowInputs] = useState({
     crewColumns: false,
@@ -108,6 +113,24 @@ function CrewTable(props) {
     }
   };
 
+  useEffect(() => {
+    if (crewData) {
+      setFilteredDataSource(crewData);
+    }
+  }, [crewData]);
+
+  const extractUniqueValues = (crewData, attribute) => {
+    if (!crewData) {
+      return [];
+    }
+    return [...new Set(crewData.map((item) => item[attribute]))].map(
+      (value) => ({
+        text: value,
+        value: value,
+      })
+    );
+  };
+
   const reportKeys = props.reportKeys
     ? props.reportKeys
     : {
@@ -124,8 +147,16 @@ function CrewTable(props) {
     {
       title: "Name",
       ellipsis: false,
+      key: "name",
       width: 250,
       dataIndex: reportKeys.name,
+
+      // filters: extractUniqueValues(crewData, reportKeys.name),
+      // sorter: (a, b) => a[reportKeys.name].localeCompare(b[reportKeys.name]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.name].includes(value),
+
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
@@ -151,8 +182,15 @@ function CrewTable(props) {
     {
       title: "Nationality",
       ellipsis: false,
+      key: "nationality",
       width: 250,
       dataIndex: reportKeys.nationality,
+
+      // filters: extractUniqueValues(crewData, reportKeys.nationality),
+      // sorter: (a, b) => a[reportKeys.nationality].localeCompare(b[reportKeys.nationality]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.nationality].includes(value),
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
@@ -182,7 +220,14 @@ function CrewTable(props) {
       title: "ID Type",
       ellipsis: false,
       width: 250,
+      key: "idtype",
       dataIndex: reportKeys.idtype,
+      // filters: extractUniqueValues(crewData, reportKeys.idtype),
+      // sorter: (a, b) =>
+      //   a[reportKeys.idtype].localeCompare(b[reportKeys.idtype]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.idtype].includes(value),
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
@@ -209,6 +254,14 @@ function CrewTable(props) {
       title: "ID Number",
       ellipsis: false,
       width: 250,
+      key: "id",
+      // filters: extractUniqueValues(crewData, reportKeys.id),
+      // sorter: (a, b) =>
+      //   a[reportKeys.id].localeCompare(b[reportKeys.id]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.id].includes(value),
+
       dataIndex: reportKeys.id,
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
@@ -236,6 +289,9 @@ function CrewTable(props) {
       title: "ID Exp. Date",
       ellipsis: false,
       width: 250,
+      key: "idexpdt",
+      // sorter: (a, b) => a[reportKeys.idexpdt] - b[reportKeys.idexpdt], // Numerical comparison
+
       dataIndex: reportKeys.idexpdt,
       render: (text, record, index) => {
         if ((showInputs.crewColumns && index === 0) | isCrewEditing(index)) {
@@ -266,7 +322,15 @@ function CrewTable(props) {
       title: "Ethnicity",
       ellipsis: false,
       width: 250,
+      key: "ethnicity",
       dataIndex: reportKeys.ethnicity,
+
+      // filters: extractUniqueValues(crewData, reportKeys.ethnicity),
+      // sorter: (a, b) =>
+      //   a[reportKeys.ethnicity].localeCompare(b[reportKeys.ethnicity]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.ethnicity].includes(value),
       render: (text, record, index) => {
         return (showInputs.crewColumns && index === 0) |
           isCrewEditing(index) ? (
@@ -290,7 +354,8 @@ function CrewTable(props) {
     },
     {
       title: "Mobile Number",
-      ellipsis: true,
+      key: "cell",
+      // sorter: (a, b) => a[reportKeys.cell] - b[reportKeys.cell], // Numerical comparison
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.cell,
@@ -327,10 +392,11 @@ function CrewTable(props) {
     {
       title: "",
       dataIndex: "action",
+      key: "action",
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.crewColumns && index === 0) {
             return (
               <Form.Item>
@@ -406,15 +472,16 @@ function CrewTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   const additionalColumn2 = [
     {
+      key: "action",
       title: "",
       dataIndex: "action",
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.crewColumns && index === 0) {
             return (
               <Form.Item>
@@ -490,7 +557,7 @@ function CrewTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   const crewColumns = [
@@ -498,7 +565,6 @@ function CrewTable(props) {
     ...(labelConfig === "page1" ? additionalColumn1 : []),
     ...(labelConfig === "page2" ? additionalColumn2 : []),
   ];
-
   return (
     <div className="mb-10">
       <Row>
@@ -510,7 +576,7 @@ function CrewTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 text="+ Add Crew Details"
@@ -525,12 +591,9 @@ function CrewTable(props) {
                 disabled={crewKey !== ""}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
-
-      {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
-        at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
         scrollConfig={{ x: true }} // Set the scroll property as per your requirements
         columns={crewColumns}
@@ -540,9 +603,6 @@ function CrewTable(props) {
         form={crewForm}
         onFinish={onCrewFinish}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }

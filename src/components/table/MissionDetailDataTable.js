@@ -580,7 +580,11 @@ function MissionDetailDataTable(props) {
           );
         }
         if (!showInputs.missionDetailColumns) {
-          if (missionDetail.length && !isMissionDetailDataEditing(index)) {
+          if (
+            missionDetail.length &&
+            !isMissionDetailDataEditing(index) &&
+            showButtons
+          ) {
             return (
               <IconsStylingWrap>
                 <MdModeEditOutline
@@ -631,35 +635,6 @@ function MissionDetailDataTable(props) {
     },
   ];
   return (
-    // <Form
-    // form={missionDetailForm}
-    // onFinish={onMissionDetailDataFinish}
-    //   className="mb-8"
-    // >
-    //   <Row className="mb-5">
-    //     <Col span={24} className="flex justify-between">
-    //       <Heading level={5} text="Mission Details" />
-    //       <FilledButton
-    //         text="+Add Mission Detail"
-    //         className="rounded-full border-midnight bg-midnight text-white"
-    //         onClick={handleMissionDataColumnShowInput}
-    //         disabled={missionDetailDataKey !== ""}
-    //       />
-    //     </Col>
-    //   </Row>
-    //   <StyledDiv>
-    //     <Table
-    //       columns={missionDetailsDataColumns}
-    //       dataSource={
-    //         showInputs.missionDetailColumns
-    //           ? [{}, ...missionDetail]
-    //           : missionDetail
-    //       }
-    //       pagination={true}
-    //       scroll={{ x: "auto" }} // Set the scroll property as per your requirements
-    //     />
-    //   </StyledDiv>
-    // </Form>
     <div className="mb-10">
       <Row>
         <Col span={12} className="flex justify-start">
@@ -690,7 +665,7 @@ function MissionDetailDataTable(props) {
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
-      <FormTable
+      <AntdTable
         scrollConfig={{ x: true }}
         form={missionDetailForm}
         onFinish={onMissionDetailDataFinish}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table,  Form,  Modal } from "antd";
+import { Col, Row, Table, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -12,10 +12,8 @@ import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import React from "react";
 import AntdTable from "./AntdTable";
 
-
-
 function FreshWaterTable(props) {
-  const { freshWaterData, setFreshWaterData , showButtons } = props;
+  const { freshWaterData, setFreshWaterData, showButtons } = props;
   const [freshWaterFrom] = useForm();
   const [freshWaterKey, setFreshWaterKey] = useState("");
 
@@ -98,6 +96,7 @@ function FreshWaterTable(props) {
     {
       title: "Fresh Water %",
       dataIndex: "medical_evac",
+      key:"freshwater",
       render: (text, record, index) => {
         return (showInputs.freshWaterColumn && index === 0) |
           isFreshWaterEditing(index) ? (
@@ -125,6 +124,7 @@ function FreshWaterTable(props) {
 
     {
       title: "",
+      key:"action",
       dataIndex: "action",
       render: (text, record, index) => {
         if (showInputs.freshWaterColumn && index === 0) {
@@ -216,23 +216,23 @@ function FreshWaterTable(props) {
             <Heading
               className=" whitespace-nowrap ml-5 flex justify-start "
               level={5}
-             text="Add Fresh Water %"
+              text="Add Fresh Water %"
             />
           </Col>
           <Col span={12} className="flex justify-end">
             {showButtons && (
               <>
                 <FilledButton
-                   text="+ Fresh Water %"
+                  text="+ Fresh Water %"
                   className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
                   onClick={handleFreshWaterColumnShowInput}
-              disabled={freshWaterKey !== ""}
+                  disabled={freshWaterKey !== ""}
                 />
                 <FilledButton
                   text="+ Add"
                   className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-              onClick={handleFreshWaterColumnShowInput}
-              disabled={freshWaterKey !== ""}
+                  onClick={handleFreshWaterColumnShowInput}
+                  disabled={freshWaterKey !== ""}
                 />
               </>
             )}
@@ -244,10 +244,10 @@ function FreshWaterTable(props) {
           scrollConfig={{ x: true }}
           columns={Columns}
           data={
-              showInputs.freshWaterColumn
-                ? [{}, ...freshWaterData]
-                : freshWaterData
-            }
+            showInputs.freshWaterColumn
+              ? [{}, ...freshWaterData]
+              : freshWaterData
+          }
           pagination={false}
           form={freshWaterFrom}
           onFinish={onFreshWaterFinish}

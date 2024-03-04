@@ -1,4 +1,4 @@
-import { Col, Descriptions, Row } from "antd";
+import { Col, Row, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import FilledButton from "../../src/components/button/FilledButton";
 import Heading from "../../src/components/title/Heading";
@@ -14,6 +14,7 @@ import axios from "axios";
 import { MerchantDetailColumns } from "../../src/helper/DataColumns";
 import GoodsTable from "../../src/components/specialTables/GoodsTable";
 import PageHeader from "../../src/components/pageheader/pageHeader";
+import AntdTable from "../../src/components/table/AntdTable";
 
 function Details({ data }) {
   const [showButtons, setShowButtons] = useState(false);
@@ -30,17 +31,6 @@ function Details({ data }) {
 
   // Table columns for displaying merchant vessel details
   const vesselcolumns = [...MerchantDetailColumns];
-
-  // Map vesselcolumns to extract label and children
-  const items = vesselcolumns.map((column) => ({
-    label: column.title,
-    children:
-      column.dataIndex === "rv_rdt" // Check if the current label is "Registered ON"
-        ? dayjs(parsedVesselData[column.dataIndex]).format(
-            "YYYY-MM-DD HH:mm:ss"
-          ) // Format the date if it's "Registered ON"
-        : parsedVesselData[column.dataIndex], // Otherwise, use the value as it is
-  }));
 
   // Function to handle saving merchant report
   const handleMerchantSave = () => {
@@ -122,146 +112,117 @@ function Details({ data }) {
   };
 
   return (
-    <div>
-      <PageHeader showSearchBox={false} title="Merchant Vessels Details" />
-      <Row className="items-center mb-4">
-        <Col span={6}></Col>
-        <Col span={18} className="flex justify-end">
-          {/*
+    <>
+      <div className="mx-2">
+        <PageHeader showSearchBox={false} title="Merchant Vessels Details" />
+        <Row className="items-center mb-8">
+          <Col span={6}></Col>
+          <Col span={18} className="flex justify-end">
+            {/*
   Conditional rendering using the ternary operator:
   If 'showButtons' is true, render the "Save Merchant Report" button.
   If 'showButtons' is false, render the "Add Merchant Data" button.
 */}
-          {showButtons ? (
+            {/* {showButtons ? (
+              <FilledButton
+                style={{ marginLeft: "auto" }}
+                text="+ Save Merchant Report"
+                className="rounded-full border-lightgreen bg-lightgreen text-white"
+                onClick={handleMerchantSave}
+                disabled={!(platformDataEntered && tripDataEntered)}
+              />
+            ) : (
+              <FilledButton
+                style={{ marginLeft: "auto" }}
+                text="+ Add Merchant Data"
+                className="rounded-full border-midnight bg-midnight text-white"
+                onClick={() => setShowButtons(true)}
+              />
+            )} */}
             <FilledButton
-              // disabled={platformData.length > 1}
               style={{ marginLeft: "auto" }}
-              text="Save Merchant Data"
-              className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+              text="+ Save Merchant Report"
+              className="rounded-full border-lightgreen bg-lightgreen text-white"
               onClick={handleMerchantSave}
               disabled={!(platformDataEntered && tripDataEntered)}
             />
-          ) : (
-            <FilledButton
-              // disabled={platformData.length > 1}
-              style={{ marginLeft: "auto" }}
-              text="+ Add Merchant Data"
-              className="rounded-full border-midnight bg-midnight text-white mr-4"
-              onClick={() => setShowButtons(true)}
-            />
-          )}
-        </Col>
-      </Row>
+          </Col>
+        </Row>
 
-      {/*----------------------------------- Vessel Data -------------------------------------*/}
+        {/*----------------------------------- Platform Data -------------------------------------*/}
 
-      <div className=" flex">
-        <Heading
-          className="whitespace-nowrap ml-5 "
-          level={5}
-          text="Vessel Data"
+        <OwnPlatformTable
+          platformData={platformData}
+          setPlatformData={setPlatformData}
+          init_platform_data={init_platform_data}
+          report_key={"msr"}
+          platformDataState={{
+            platformDataEntered: platformDataEntered,
+            setPlatformDataEntered: setPlatformDataEntered,
+          }}
+          reportKeys={{
+            dtg: "msr_dtg",
+            pf_id: "msr_pf_id",
+            position: "msr_position",
+            fuel: "msr_fuelrem",
+            info: "msr_info",
+            patrolType: "msr_patroltype",
+            action: "msr_action",
+          }}
+          showButtons={showButtons}
+        />
+
+        {/*----------------------------------- Vessel Data -------------------------------------*/}
+
+        <div className="">
+          <Heading className="ml-5 " level={5} text=" Merchant Vessel Data" />
+        </div>
+        {/* <section className="">
+          <Row> */}
+        <div className="mb-10"> 
+          <AntdTable
+            scroll={{ x: "auto" }} // Set the scroll property as per your requirements
+            columns={vesselcolumns}
+            data={[parsedVesselData]}
+            pagination={false}
+            scrollConfig={{ x: true }}
+
+            // showHeader={true}
+          />
+        </div>
+        {/* </Row>
+        </section> */}
+
+        {/*----------------------------------- Trip Data -------------------------------------*/}
+        <MerchantTripTable
+          tripData={tripData}
+          setTripData={setTripData}
+          tripDataState={{
+            tripDataEntered: tripDataEntered,
+            setTripDataEntered: setTripDataEntered,
+          }}
+          showButtons={showButtons}
+        />
+
+        {/*----------------------------------- Good Detail Data -------------------------------------*/}
+
+        <GoodsTable
+          goodsData={goodsData}
+          setGoodsData={setGoodsData}
+          showButtons={showButtons}
+          reportKeys={{
+            item: "msrg_item",
+            qty: "msrg_qty",
+            denomination: "msrg_denomination",
+            category: "msrg_category",
+            subcategory: "msrg_subcategory",
+            confiscated: "msrg_confiscated",
+            value: "msrg_value",
+            source: "msrg_source",
+          }}
         />
       </div>
-      <section className="mb-10">
-        {/*  
-        <Descriptions
-          size="middle"
-          className="mt-5 ml-4 mr-4 descriptionTable"
-          bordered={true}
-          column={{ xs: 1, sm: 2, md: 3, lg: 3 }}
-        >
-          {items.map((item, index) => (
-            <Descriptions.Item key={index} label={item.label}>
-              {item.children}
-            </Descriptions.Item>
-          ))}
-        </Descriptions> */}
-        <Descriptions
-          size="small"
-          className="p-2"
-          bordered={true}
-          colon={true}
-          borderColor="transparent"
-          column={{ xs: 1, sm: 2, md: 2, lg: 3 }}
-        >
-          {items.map((item, index) => (
-            <Descriptions.Item
-              key={index}
-              className="flex-container justify-between "
-              span={index === items.length - 1 ? 1 : undefined}
-            >
-              <Row className="flex">
-                <Col span={10} className="flex justify-start ">
-                  <div className="descriptionLabel ">{item.label}</div>
-                </Col>
-                <Col
-                  span={14}
-                  className="flex justify-end"
-                  style={{
-                    marginLeft: "-20px",
-                  }}
-                >
-                  <div className="descriptionChildren mr-5">{item.children}</div>
-                </Col>
-              </Row>
-              {/* </div> */}
-            </Descriptions.Item>
-          ))}
-        </Descriptions>
-      </section>
-
-      {/*----------------------------------- Platform Data -------------------------------------*/}
-
-      <OwnPlatformTable
-        platformData={platformData}
-        setPlatformData={setPlatformData}
-        init_platform_data={init_platform_data}
-        report_key={"msr"}
-        platformDataState={{
-          platformDataEntered: platformDataEntered,
-          setPlatformDataEntered: setPlatformDataEntered,
-        }}
-        reportKeys={{
-          dtg: "msr_dtg",
-          pf_id: "msr_pf_id",
-          position: "msr_position",
-          fuel: "msr_fuelrem",
-          info: "msr_info",
-          patrolType: "msr_patroltype",
-          action: "msr_action",
-        }}
-        showButtons={showButtons}
-      />
-
-      {/*----------------------------------- Trip Data -------------------------------------*/}
-      <MerchantTripTable
-        tripData={tripData}
-        setTripData={setTripData}
-        tripDataState={{
-          tripDataEntered: tripDataEntered,
-          setTripDataEntered: setTripDataEntered,
-        }}
-        showButtons={showButtons}
-      />
-
-      {/*----------------------------------- Good Detail Data -------------------------------------*/}
-
-      <GoodsTable
-        goodsData={goodsData}
-        setGoodsData={setGoodsData}
-        showButtons={showButtons}
-        reportKeys={{
-          item: "msrg_item",
-          qty: "msrg_qty",
-          denomination: "msrg_denomination",
-          category: "msrg_category",
-          subcategory: "msrg_subcategory",
-          confiscated: "msrg_confiscated",
-          value: "msrg_value",
-          source: "msrg_source",
-        }}
-      />
-    </div>
+    </>
   );
 }
 

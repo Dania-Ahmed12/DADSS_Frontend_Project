@@ -14,7 +14,6 @@ import { Col, Row } from "antd";
 import AntdTable from "./AntdTable";
 import { Form } from "antd";
 
-
 const StyledInput = styled.div`
   .ant-form-item-explain-error {
     font-size: 12px;
@@ -104,6 +103,7 @@ function ActivityLikelinessTable(props) {
 
   const Columns = [
     {
+      key: "activity",
       title: "Activity",
       dataIndex: "Activity",
       render: (text, record, index) => {
@@ -132,6 +132,7 @@ function ActivityLikelinessTable(props) {
     },
     {
       title: "Likeliness",
+      key: "likeliness",
       dataIndex: "Fuel",
       render: (text, record, index) => {
         return (showInputs.activityLikelinessColumn && index === 0) |
@@ -160,6 +161,7 @@ function ActivityLikelinessTable(props) {
 
     {
       title: "",
+      key: "action",
       dataIndex: "action",
       render: (text, record, index) => {
         if (showInputs.activityLikelinessColumn && index === 0) {

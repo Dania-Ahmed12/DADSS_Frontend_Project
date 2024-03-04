@@ -1,12 +1,66 @@
 import React from "react";
 import AntdTable from "../../src/components/table/AntdTable";
 import axios from "axios";
-import { MerchantDetailColumns } from "../../src/helper/DataColumns";
+import { MerVesselColumn } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function RegistedMerchantVesselDetails({ data }) {
   // Columns configuration for AntdTable component
-  const columns = [...MerchantDetailColumns];
+  // const columns = [...MerchantDetailColumns];
+const columns = [
+    ...MerVesselColumn,
+    {
+      key: "mv_ship_type",
+      title: "Ship Type",
+      dataIndex: "mv_ship_type",
+      width: 250,
+      ellipsis: false,
+    },
+    {
+      key: "mv_call_sign",
+      title: "Call Sign",
+      dataIndex: "mv_call_sign",
+      width: 250,
+      ellipsis: false,
+    },
+
+    {
+      key: "mv_length",
+      title: "Length",
+      dataIndex: "mv_length",
+      width: 250,
+      ellipsis: false,
+    },
+
+    {
+      key: "mv_width",
+      title: "Width",
+      dataIndex: "mv_width",
+      width: 250,
+      ellipsis: false,
+    },
+    {
+      title: "Gross Tonnage",
+      key: "mv_grt",
+      dataIndex: "mv_grt",
+      width: 250,
+      ellipsis: false,
+    },
+    {
+      title: "Dead Weight",
+      dataIndex: "mv_dwt",
+      key: "mv_dwt",
+      width: 250,
+      ellipsis: false,
+    },
+    {
+      key: "mv_year_built",
+      title: "Year built",
+      dataIndex: "mv_year_built",
+      width: 250,
+      ellipsis: false,
+    },
+  ];
   return (
     <>
       <div>

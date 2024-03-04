@@ -3,14 +3,12 @@ import { useForm } from "antd/lib/form/Form";
 import { loginApi } from "../src/redux/thunks/userAuth";
 import { useDispatch, useSelector } from "react-redux";
 import InputBox from "../src/components/form/InputBox";
-import FilledButton from "../src/components/button/FilledButton";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import styled from "styled-components";
-import { LoginTopImage, LoginImageNew } from "../public";
+import {  LoginImageNew } from "../public";
 import { ButtonWrapper } from "../src/components/button/ButtonWrapper";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const StyledContent = styled.div`
   .form-label {
@@ -66,10 +64,10 @@ const Home = () => {
       dispatch(loginApi(valuesWithNav));
     }
   };
-  const onFinishFailed = (errorInfo) => {
-  };
+  const onFinishFailed = (errorInfo) => {};
   useEffect(() => {
-    if (Cookies.get("token")) {
+    const token = localStorage.getItem("accessToken")
+    if (token) {
       router.push("/dashboard");
     }
   }, []);

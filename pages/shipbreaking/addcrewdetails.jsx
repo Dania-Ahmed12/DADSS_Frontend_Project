@@ -23,9 +23,9 @@ function Addcrewdetails() {
 
   const handleBack = () => {
     router.back();
-    // Store form data in sessionStorage
-    sessionStorage.setItem("crewForm", JSON.stringify(form.getFieldsValue()));
-    sessionStorage.setItem("crewData", JSON.stringify(crewData));
+    // Store form data in localStorage
+    localStorage.setItem("crewForm", JSON.stringify(form.getFieldsValue()));
+    localStorage.setItem("crewData", JSON.stringify(crewData));
   };
 
   // Handler for form submission
@@ -59,9 +59,9 @@ function Addcrewdetails() {
   };
 
   useEffect(() => {
-        // Retrieve stored form data from sessionStorage
-    const storedData = sessionStorage.getItem("crewForm");
-    const storedCrewData = sessionStorage.getItem("crewData");
+        // Retrieve stored form data from localStorage
+    const storedData = localStorage.getItem("crewForm");
+    const storedCrewData = localStorage.getItem("crewData");
 
     if (storedData) {
       try {
@@ -84,7 +84,7 @@ function Addcrewdetails() {
       <PageHeader
         showSearchBox={false}
         title="Ship Breakage Registration/Add Crew Detail"
-        sessionStorage={handleBack}
+       localStorage={handleBack}
       />
 
 

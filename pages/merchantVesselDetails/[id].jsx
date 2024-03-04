@@ -118,6 +118,8 @@ function Details({ data }) {
         dataIndex: "mtd_timestamp",
         ellipsis: true,
         render: (text) => {
+          if (!text) return "---";
+
           const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
           return dtg;
         },
@@ -188,20 +190,22 @@ function Details({ data }) {
     {
       title: "DSRC",
       dataIndex: "mt_dsrc",
-      key:"mt_dsrc",
+      key: "mt_dsrc",
     },
     {
       title: "Destination",
       dataIndex: "mt_destination",
-      key:"mt_destination",
+      key: "mt_destination",
     },
     {
       title: "ETA",
-      key:"mt_eta",
+      key: "mt_eta",
       dataIndex: "mt_eta",
       width: 150,
       ellipsis: true,
       render: (text) => {
+          if (!text) return "---";
+
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
       },
@@ -209,34 +213,36 @@ function Details({ data }) {
 
     {
       title: "First Observed At",
-      key:"mt_first_observed_at",
+      key: "mt_first_observed_at",
       dataIndex: "mt_first_observed_at",
       width: 150,
       ellipsis: true,
       render: (text) => {
+          if (!text) return "---";
+
         const dtg = dayjs(text).format("YYYY-MM-DD HH:mm:ss");
         return dtg;
       },
     },
     {
       title: "Last Observed At",
-      key:"mt_last_observed_at",
+      key: "mt_last_observed_at",
       dataIndex: "mt_last_observed_at",
       width: 150,
       ellipsis: true,
       render: (text) => {
-        const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : null;
+        const dtg = text ? dayjs(text).format("YYYY-MM-DD HH:mm:ss") : "---";
         return dtg;
       },
     },
     {
       title: "Observed Duration",
-      key:"mt_observed_duration",
+      key: "mt_observed_duration",
       dataIndex: "mt_observed_duration",
     },
     {
       title: "Trip Status",
-      key:"mt_trip_status",
+      key: "mt_trip_status",
       dataIndex: "mt_trip_status",
     },
   ];
@@ -612,24 +618,34 @@ function Details({ data }) {
                         : undefined
                     }
                   >
-                    <Row className="flex ">
-                      <Col span={10} className="flex justify-start  ">
-                        <div className="descriptionLabel">{column.title}</div>
-                      </Col>
-                      <Col
-                        span={14}
-                        className=" flex justify-end  "
-                        style={{
-                          marginLeft: "-5px",
-                        }}
-                      >
-                        <div className="descriptionChildren mr-5">
-                          {column.render(null, {
-                            expandedData: row.expandedData,
-                          })}
-                        </div>
-                      </Col>
-                    </Row>
+                    <>
+                      <Row className="flex">
+                        <Col
+                          span={10}
+                          className="flex justify-start align-center "
+                          style={{
+                            marginTop: "5px",
+                          }}
+                        >
+                          <div className="descriptionLabel">{column.title}</div>
+                        </Col>
+                        <Col
+                          span={14}
+                          className="flex justify-end align-center"
+                        >
+                          <div
+                            className="descriptionChildren mr-5"
+                            style={{
+                              padding: "4px",
+                            }}
+                          >
+                            {column.render(null, {
+                              expandedData: row.expandedData,
+                            }) || "--"}
+                          </div>
+                        </Col>
+                      </Row>
+                    </>
                   </Descriptions.Item>
                 ))}
               </React.Fragment>

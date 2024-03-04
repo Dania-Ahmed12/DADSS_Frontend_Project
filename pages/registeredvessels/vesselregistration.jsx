@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 
 function RegisteredVesselData() {
-  const pf_id = Cookies.get("u_pf_id");
+  const pf_id = localStorage.getItem("u_pf_id")
   const router = useRouter();
   const [form] = useForm();
   const [flag, setFlag] = useState("India");
@@ -25,7 +25,7 @@ function RegisteredVesselData() {
   const handleSubmit = async () => {
     try {
       const validatedValues = await form.validateFields();
-      sessionStorage.setItem("formData", JSON.stringify(form.getFieldsValue()));
+     localStorage.setItem("formData", JSON.stringify(form.getFieldsValue()));
       if (validatedValues) {
         const nakwaDetails = {
           rvc_name: validatedValues.rvc_name,
@@ -60,7 +60,7 @@ function RegisteredVesselData() {
   // When the component mounts
   useEffect(() => {
     // Check if there is saved form data in local storage
-    const savedFormData = sessionStorage.getItem("formData");
+    const savedFormData =localStorage.getItem("formData");
 
     if (savedFormData) {
       // Populate the form with saved data
@@ -69,8 +69,8 @@ function RegisteredVesselData() {
   }, []);
 
   const handleBack = () => {
-    sessionStorage.removeItem("formData");
-    sessionStorage.removeItem("OwnerForm");
+   localStorage.removeItem("formData");
+   localStorage.removeItem("OwnerForm");
     router.back();
   };
 
@@ -80,7 +80,7 @@ function RegisteredVesselData() {
         {" "}
         <PageHeader
           showSearchBox={false}
-          sessionStorage={handleBack}
+          localStorage={handleBack}
           title="Fishing Vessel Registration"
         />
       </div>
@@ -95,7 +95,7 @@ function RegisteredVesselData() {
             <Col xs={24} sm={24} md={11} lg={11} xl={11}>
               <InputBox
                 label="Platform ID"
-                name="rv_id"
+                name="pf_id"
                 className="input"
                 defaultValue={pf_id}
                 disabled={true}
@@ -111,7 +111,7 @@ function RegisteredVesselData() {
                   { required: true, message: "Please enter vessel name" },
                 ]}
               />
-              <SelectBox
+              {/* <SelectBox
                 label="Flag"
                 name="rv_flag"
                 className="input"
@@ -121,6 +121,13 @@ function RegisteredVesselData() {
                   label: item,
                   value: item,
                 }))}
+                rules={[{ required: true, message: "Please select a flag" }]}
+              /> */}
+              <InputBox
+                label="Flag"
+                name="rv_flag"
+                className="input"
+                placeholder="Pakistan (PK)"
                 rules={[{ required: true, message: "Please select a flag" }]}
               />
               <SelectBox
@@ -144,7 +151,7 @@ function RegisteredVesselData() {
                 minLength={3}
                 maxLength={15}
                 rules={[
-                  { required: true, message: "Please enter the gross tonnage" },
+                  { required: false, message: "Please enter the gross tonnage" },
                   {
                     pattern: /^\d+$/,
                     message: "Please enter a valid gross tonnage",
@@ -177,7 +184,7 @@ function RegisteredVesselData() {
                 pattern={/^\+?[0-9]+(-[0-9]+)*$|^[0-9]+$/}
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Please input a valid mobile number!",
                   },
                   {
@@ -234,7 +241,16 @@ function RegisteredVesselData() {
                   },
                 ]}
               />
-              <SelectBox
+              <InputBox
+                label="Province"
+                name="rv_province"
+                className="input"
+                placeholder="Enter Province"
+                rules={[
+                  { required: false, message: "Please select a province!" },
+                ]}
+              />
+              {/* <SelectBox
                 label="Province"
                 name="rv_province"
                 className="input"
@@ -246,7 +262,7 @@ function RegisteredVesselData() {
                 rules={[
                   { required: true, message: "Please select a province!" },
                 ]}
-              />
+              /> */}
               <InputBox
                 label="Length (meters)"
                 name="rv_length"
@@ -256,7 +272,7 @@ function RegisteredVesselData() {
                 maxLength={15}
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Please enter the length in meters",
                   },
                   {
@@ -274,7 +290,7 @@ function RegisteredVesselData() {
                 maxLength={15}
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Please enter the breath in meters",
                   },
                   {
@@ -293,10 +309,10 @@ function RegisteredVesselData() {
                   label: item,
                 }))}
                 rules={[
-                  { required: true, message: "Please select a nationality!" },
+                  { required: false, message: "Please select a nationality!" },
                 ]}
               />
-              <SelectBox
+              {/* <SelectBox
                 label="Nakwa/CO Ethnicity"
                 name="rvc_ethnicity"
                 placeholder="Select Ethnicity"
@@ -307,6 +323,15 @@ function RegisteredVesselData() {
                 }))}
                 rules={[
                   { required: true, message: "Please select ethnicity!" },
+                ]} */}
+              {/* /> */}
+              <InputBox
+                label="Nakwa/CO Ethnicity"
+                name="rvc_ethnicity"
+                placeholder="Enter Ethnicity"
+                className="input"
+                rules={[
+                  { required: false, message: "Please select ethnicity!" },
                 ]}
               />
             </Col>
@@ -321,7 +346,7 @@ function RegisteredVesselData() {
               xl={24}
               className="flex justify-end text-center mb-3 lg:text-right lg:mb-2 "
             >
-              <Form.Item >
+              <Form.Item>
                 <OutlineButton
                   text="Cancel"
                   onClick={handleBack}
@@ -335,22 +360,6 @@ function RegisteredVesselData() {
               </Form.Item>
             </Col>
           </Row>
-          {/* <Row className="flex justify-center">
-            <Col span={23} className="flex justify-end">
-              <div>
-                <OutlineButton
-                  text="Cancel"
-                  onClick={handleBack}
-                  className="rounded-full font-semibold border-gray pl-10 pr-10 bg-gray text-white"
-                />
-                <FilledButton
-                  text="Next"
-                  onClick={handleSubmit}
-                  className="rounded-full font-semibold pl-10 pr-10 border-midnight bg-midnight text-white ml-3"
-                />
-              </div>
-            </Col>
-          </Row> */}
         </Form>
       </div>
     </StyledDiv>

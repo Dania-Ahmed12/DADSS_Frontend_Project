@@ -125,13 +125,13 @@ const MacroDataTable = (props) => {
     {
       title: "Platform ID",
       dataIndex: reportKeys.pf_id,
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
     },
     {
       title: "Reporter Name",
       dataIndex: reportKeys.name,
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         // Check if in edit mode or adding new data
@@ -158,7 +158,7 @@ const MacroDataTable = (props) => {
     {
       title: "Reporting Time ",
       dataIndex: reportKeys.reporting_time,
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         if (showInputs.macroDataColumns | showInputs.macroData_editing) {
@@ -190,7 +190,7 @@ const MacroDataTable = (props) => {
     },
     {
       title: "Jetty Name",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       dataIndex: reportKeys.jetty,
       render: (text, record, index) => {
@@ -239,7 +239,7 @@ const MacroDataTable = (props) => {
     {
       title: "",
       dataIndex: "action",
-           ellipsis: false,
+      ellipsis: false,
       width: 250,
       render: (text, record, index) => {
         if (showInputs.macroDataColumns) {
@@ -323,7 +323,7 @@ const MacroDataTable = (props) => {
           />
         </Col>
         <Col span={12} className=" flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 disabled={macroDataEntered}
@@ -338,7 +338,7 @@ const MacroDataTable = (props) => {
                 onClick={handleMacroDataShowInput}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

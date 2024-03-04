@@ -31,7 +31,7 @@ const AddGeneralInput = () => {
   const dispatch = useDispatch();
   const [showButtons, setShowButtons] = useState(false);
 
-  const init_platform_data = { gr_pf_id: Cookies.get("u_pf_id") };
+  const init_platform_data = { gr_pf_id: localStorage.getItem("u_pf_id") };
 
 
   const [platformData, setPlatformData] = useState(init_platform_data);
@@ -92,7 +92,7 @@ const AddGeneralInput = () => {
       <Row className="items-center mb-4">
         <Col span={6}></Col>
         <Col span={18} className="flex justify-end">
-          {showButtons ? (
+          {/* {showButtons ? (
             <FilledButton
               loading={generalReportState.isLoading}
               // disabled={platformData.length > 1}
@@ -110,7 +110,16 @@ const AddGeneralInput = () => {
               className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={() => setShowButtons(true)}
             />
-          )}
+          )} */}
+          <FilledButton
+            loading={generalReportState.isLoading}
+            // disabled={platformData.length > 1}
+            style={{ marginLeft: "auto" }}
+            text="Save Report"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+            onClick={handleSendGeneralReport}
+            disabled={!platformDataEntered}
+          />
         </Col>
       </Row>
       {/*-----------------------------------Own Platform Data (First Table)-------------------------------------*/}
@@ -126,7 +135,7 @@ const AddGeneralInput = () => {
         }}
       />
       {/*-----------------------------------Cntinued Already Reported Activity-------------------------------------*/}
-      <Row className="mb-5">
+      {/* <Row className="mb-5">
         <Col>
           <Heading
             level={5}
@@ -145,14 +154,14 @@ const AddGeneralInput = () => {
             ]}
           />
         </Col>
-      </Row>
+      </Row> */}
       {/*-----------------------------------Report Links (Second Table)-------------------------------------*/}
-      <Heading
+      {/* <Heading
         level={5}
         text="   Previous Special Reports"
         className="mb-5 whitespace-nowrap ml-5 flex justify-start"
-      ></Heading>
-      <StyledInput>
+      ></Heading> */}
+      {/* <StyledInput>
         <Row className="mb-5">
           <Col>
             <Heading
@@ -197,15 +206,15 @@ const AddGeneralInput = () => {
             </a>
           </Col>
         </Row>
-      </StyledInput>
+      </StyledInput> */}
       {/*-----------------------------------Activity Likely (Second Table)-------------------------------------*/}
-      <ActivityLikelinessTable
+      {/* <ActivityLikelinessTable
         activtyData={activtyData}
         showButtons={showButtons}
         setactivtyData={setactivtyData}
-      />
+      /> */}
       {/*-----------------------------------Limitation Condition  (Second Table)-------------------------------------*/}
-      <StyledInput>
+      {/* <StyledInput>
         <Row className="mb-5">
           <Col className="mr-5">
             <Heading
@@ -240,9 +249,9 @@ const AddGeneralInput = () => {
             />
           </Col>
         </Row>
-      </StyledInput>
+      </StyledInput> */}
       {/*-----------------------------------Event Support REcieved and Level (Second Table)-------------------------------------*/}
-      <StyledInput>
+      {/* <StyledInput>
         <Row className="mb-5">
           <Col className="mr-5">
             <Heading
@@ -293,25 +302,25 @@ const AddGeneralInput = () => {
             />
           </Col>
         </Row>
-      </StyledInput>
+      </StyledInput> */}
       {/* -----------------------------------Add Fresh Water %(Second Table)------------------------------------- */}
-      <FreshWaterTable
+      {/* <FreshWaterTable
         freshWaterData={freshWaterData}
         setFreshWaterData={setFreshWaterData}
         showButtons={showButtons}
-      />
+      /> */}
       {/*-----------------------------------Limitation Affecting Ops Commitment (Second Table)-------------------------------------*/}
-      <LimitationOpsCommittment
+      {/* <LimitationOpsCommittment
         limitOps={limitOps}
         setLimitOps={setLimitOps}
         showButtons={showButtons}
-      />
+      /> */}
       {/*-----------------------------------Missceallanous(Second Table)-------------------------------------*/}
-      <Miscellaneous
+      {/* <Miscellaneous
         freshWaterData={freshWaterData}
         showButtons={showButtons}
         setFreshWaterData={setFreshWaterData}
-      />
+      /> */}
       {/*-----------------------------------Fishing Density (Second Table)-------------------------------------*/}
       <FishingDensityTable
         fishingDensityData={fishingDensityData}

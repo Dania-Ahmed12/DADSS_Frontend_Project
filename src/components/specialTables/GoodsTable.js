@@ -1,5 +1,14 @@
-import { useState } from "react";
-import { Col, Row, Table, Form, Modal } from "antd";
+import { useEffect, useState } from "react";
+import {
+  Col,
+  Row,
+  Table,
+  Form,
+  Modal,
+  Button,
+  InputNumber,
+  Select,
+} from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -34,6 +43,10 @@ function GoodsTable(props) {
   // State for managing selected category and subcategory
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [filterValueBtw, setFilterValueBtw] = useState([null, null]);
+  const [filterValue, setFilterValue] = useState(null);
+  const [filterOperator, setFilterOperator] = useState("eq");
+  const [filteredDataSource, setFilteredDataSource] = useState(null);
 
   // Handler for category change to update selected category and reset subcategory
   const handleCategoryChange = (value) => {
@@ -138,12 +151,139 @@ function GoodsTable(props) {
         value: "srg_value",
         source: "srg_source",
       };
+
+  useEffect(() => {
+    if (goodsData) {
+      setFilteredDataSource(goodsData);
+    }
+  }, [goodsData]);
+
+  const extractUniqueValues = (goodsData, attribute) => {
+    if (!goodsData) {
+      return [];
+    }
+    return [...new Set(goodsData.map((item) => item[attribute]))].map(
+      (value) => ({
+        text: value,
+        value: value,
+      })
+    );
+  };
+  const applyFilter = (attribute) => {
+    let filteredData = [...goodsData];
+    if (filterOperator === "btw") {
+      // Handle Between filter
+      if (filterValueBtw.every((val) => val !== null)) {
+        const min = parseFloat(filterValueBtw[0]);
+        const max = parseFloat(filterValueBtw[1]);
+        filteredData = filteredData.filter(
+          (record) =>
+            parseFloat(record[attribute]) >= min &&
+            parseFloat(record[attribute]) <= max
+        );
+      }
+    } else {
+      // Handle other filters
+      if (filterValue !== null) {
+        switch (filterOperator) {
+          case "eq":
+            filteredData = filteredData.filter(
+              (record) => parseFloat(record[attribute]) === filterValue
+            );
+            break;
+          case "gt":
+            filteredData = filteredData.filter(
+              (record) => parseFloat(record[attribute]) > filterValue
+            );
+            break;
+          case "lt":
+            filteredData = filteredData.filter(
+              (record) => parseFloat(record[attribute]) < filterValue
+            );
+            break;
+          default:
+            console.warn("Invalid filter operator selected.");
+        }
+      }
+    }
+
+    setFilteredDataSource(filteredData);
+  };
+
+  const resetFilter = () => {
+    setFilterValue(null);
+    setFilterValueBtw([null, null]);
+    setFilterOperator("eq");
+    setFilteredDataSource(goodsData);
+  };
+
+  const renderFilterDropdown = (attribute, placeholder) => (
+    <div style={{ padding: 4, width: 200 }}>
+      <Select
+        defaultValue="eq"
+        style={{ width: 190, marginTop: 8 }}
+        onChange={(value) => setFilterOperator(value)}
+      >
+        <Select.Option value="eq">Equal</Select.Option>
+        <Select.Option value="gt">Greater Than</Select.Option>
+        <Select.Option value="lt">Less Than</Select.Option>
+        <Select.Option value="btw">Between</Select.Option>
+      </Select>
+      {filterOperator === "btw" && (
+        <div style={{ display: "flex", marginTop: 8 }}>
+          <InputNumber
+            style={{ width: 95 }}
+            placeholder="Min"
+            value={filterValueBtw[0]}
+            onChange={(value) => setFilterValueBtw([value, filterValueBtw[1]])}
+          />
+          <span style={{ margin: "0 8px" }}>to</span>
+          <InputNumber
+            style={{ width: 95 }}
+            placeholder="Max"
+            value={filterValueBtw[1]}
+            onChange={(value) => setFilterValueBtw([filterValueBtw[0], value])}
+          />
+        </div>
+      )}
+      {filterOperator !== "btw" && (
+        <div style={{ marginTop: 8 }}>
+          <InputNumber
+            style={{ width: 190 }}
+            placeholder={placeholder}
+            value={filterValue}
+            onChange={(value) => setFilterValue(value)}
+          />
+        </div>
+      )}
+      <div className="ant-table-filter-dropdown-btns">
+        <Button
+          className="ant-btn ant-btn-primary ant-btn-sm"
+          onClick={() => applyFilter(attribute)}
+        >
+          OK
+        </Button>
+        <Button
+          className="ant-btn ant-btn-link ant-btn-sm"
+          onClick={resetFilter}
+        >
+          Reset
+        </Button>
+      </div>
+    </div>
+  );
   const goodsColumns = [
     {
       title: "Item",
+      key: "item",
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.item,
+      // filters: extractUniqueValues(goodsData, reportKeys.item),
+      // sorter: (a, b) => a[reportKeys.item].localeCompare(b[reportKeys.item]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.item].includes(value),
       render: (text, record, index) => {
         // Conditionally render an input field or existing text
         return (showInputs.goodsColumns && index === 0) |
@@ -169,8 +309,11 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "qty",
       title: "Quantity",
       dataIndex: reportKeys.qty,
+      // filterDropdown: () => renderFilterDropdown(reportKeys.qty, "Number"),
+      // sorter: (a, b) => a[reportKeys.qty] - b[reportKeys.qty], // Numerical comparison
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
@@ -196,9 +339,17 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "denomination",
       title: "Denomination",
       dataIndex: reportKeys.denomination,
       ellipsis: false,
+      // filters: extractUniqueValues(goodsData, reportKeys.denomination),
+      // sorter: (a, b) =>
+      //   a[reportKeys.denomination].localeCompare(b[reportKeys.denomination]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) =>
+      //   record[reportKeys.denomination].includes(value),
       width: 250,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
@@ -222,10 +373,17 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "category",
       title: "Category",
       ellipsis: false,
       width: 250,
-      dataIndex: reportKeys.category,
+      // filters: extractUniqueValues(goodsData, reportKeys.category),
+      // sorter: (a, b) =>
+      //   a[reportKeys.category].localeCompare(b[reportKeys.category]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.category].includes(value),
+      // dataIndex: reportKeys.category,
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
@@ -248,10 +406,18 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "subcategory",
       title: "Sub Category",
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.subcategory,
+      // filters: extractUniqueValues(goodsData, reportKeys.subcategory),
+      // sorter: (a, b) =>
+      //   a[reportKeys.subcategory].localeCompare(b[reportKeys.subcategory]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) =>
+      //   record[reportKeys.subcategory].includes(value),
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
@@ -284,10 +450,18 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "confiscated",
       title: "Confiscated",
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.confiscated,
+      // filters: extractUniqueValues(goodsData, reportKeys.confiscated),
+      // sorter: (a, b) =>
+      //   a[reportKeys.confiscated].localeCompare(b[reportKeys.confiscated]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) =>
+      //   record[reportKeys.confiscated].includes(value),
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
@@ -314,10 +488,13 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "value",
       title: "Value $",
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.value,
+      // filterDropdown: () => renderFilterDropdown(reportKeys.value, "Number"),
+      // sorter: (a, b) => a[reportKeys.value] - b[reportKeys.value], // Numerical comparison
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
@@ -341,10 +518,17 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "source",
       title: "Source",
       ellipsis: false,
       width: 250,
       dataIndex: reportKeys.source,
+      // filters: extractUniqueValues(goodsData, reportKeys.source),
+      // sorter: (a, b) =>
+      //   a[reportKeys.source].localeCompare(b[reportKeys.source]),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[reportKeys.source].includes(value),
       render: (text, record, index) => {
         return (showInputs.goodsColumns && index === 0) |
           isGoodsEditing(index) ? (
@@ -367,10 +551,11 @@ function GoodsTable(props) {
       },
     },
     {
+      key: "action",
       title: "",
       dataIndex: "action",
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.goodsColumns && index === 0) {
             return (
               <Form.Item>
@@ -446,9 +631,8 @@ function GoodsTable(props) {
           }
         }
       },
-    },
+    // },
   ];
-
 
   return (
     <div className="mb-10">
@@ -461,22 +645,22 @@ function GoodsTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
-            <>
-              <FilledButton
-                text="+ Add Goods Details"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                onClick={handleGoodsColumnShowInput}
-                disabled={goodsKey !== ""}
-              />
-              <FilledButton
-                text="+ Add "
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                onClick={handleGoodsColumnShowInput}
-                disabled={goodsKey !== ""}
-              />
-            </>
-          )}
+          {/* {showButtons && ( */}
+          <>
+            <FilledButton
+              text="+ Add Goods Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+              onClick={handleGoodsColumnShowInput}
+              disabled={goodsKey !== ""}
+            />
+            <FilledButton
+              text="+ Add "
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handleGoodsColumnShowInput}
+              disabled={goodsKey !== ""}
+            />
+          </>
+          {/* )} */}
         </Col>
       </Row>
 
@@ -487,13 +671,14 @@ function GoodsTable(props) {
         onFinish={onGoodsFinish}
         scrollConfig={{ x: true }}
         columns={goodsColumns}
-        data={showInputs.goodsColumns ? [{}, ...goodsData] : goodsData}
-        // dataSource={showInputs.goodsColumns ? [{}] : goodsData}
+        // data={showInputs.goodsColumns ? [{}, ...goodsData] : goodsData}
+        data={
+          showInputs.goodsColumns
+            ? [{}, ...filteredDataSource]
+            : filteredDataSource || goodsData
+        }
         pagination={true}
       />
-
-      {/* //{" "} */}
-      {/* </Form> */}
     </div>
   );
 }

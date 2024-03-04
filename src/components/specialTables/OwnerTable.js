@@ -1,5 +1,15 @@
-import { useState } from "react";
-import { Col, Row, Table, Input, Form, InputNumber, Modal } from "antd";
+import { useEffect, useState } from "react";
+import {
+  Col,
+  Row,
+  Table,
+  Input,
+  Form,
+  InputNumber,
+  Modal,
+  Button,
+  Select,
+} from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -19,6 +29,10 @@ function OwnerTable(props) {
   const { ownerData, setOwnerData, showButtons } = props;
   const [ownerForm] = useForm();
   const [ownerKey, setOwnerKey] = useState("");
+  const [filterValueBtw, setFilterValueBtw] = useState([null, null]);
+  const [filterValue, setFilterValue] = useState(null);
+  const [filterOperator, setFilterOperator] = useState("eq");
+  const [filteredDataSource, setFilteredDataSource] = useState(null);
   const [showInputs, setShowInputs] = useState({
     ownerColumns: false,
   });
@@ -97,12 +111,38 @@ function OwnerTable(props) {
     }
   };
 
+  useEffect(() => {
+    if (ownerData) {
+      setFilteredDataSource(ownerData);
+    }
+  }, [ownerData]);
+
+  const extractUniqueValues = (ownerData, attribute) => {
+    if (!ownerData) {
+      return [];
+    }
+    return [...new Set(ownerData.map((item) => item[attribute]))].map(
+      (value) => ({
+        text: value,
+        value: value,
+      })
+    );
+  };
+
   const ownerColumns = [
     {
+      key: "sro_name",
       title: "Name",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_name",
+
+      // filters: extractUniqueValues(ownerData, "sro_name"),
+      // sorter: (a, b) => a.sro_name.localeCompare(b.sro_name),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record.sro_name.includes(value),
+
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -125,10 +165,17 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_nationality",
       title: "Nationality",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_nationality",
+
+      // filters: extractUniqueValues(ownerData, "sro_nationality"),
+      // sorter: (a, b) => a.sro_nationality.localeCompare(b.sro_nationality),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record.sro_nationality.includes(value),
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -151,10 +198,17 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_idtype",
       title: "ID Type",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_idtype",
+
+      // filters: extractUniqueValues(ownerData, "sro_idtype"),
+      // sorter: (a, b) => a.sro_idtype.localeCompare(b.sro_idtype),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record.sro_idtype.includes(value),
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -177,10 +231,16 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_id",
       title: "ID Number",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_id",
+      // filters: extractUniqueValues(ownerData, "sro_id"),
+      // sorter: (a, b) => a.sro_id.localeCompare(b.sro_id),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[sro_id].includes(value),
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -203,10 +263,13 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_idexpdt",
       title: "ID Exp. Date",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_idexpdt",
+      // sorter: (a, b) => a.sro_idexpdt - b.sro_idexpdt,
+
       render: (text, record, index) => {
         if ((showInputs.ownerColumns && index === 0) | isOwnerEditing(index)) {
           return (
@@ -230,10 +293,16 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_ethnicity",
       title: "Ethnicity",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_ethnicity",
+      // filters: extractUniqueValues(ownerData, "sro_ethnicity"),
+      // sorter: (a, b) => a.sro_ethnicity.localeCompare(b.sro_ethnicity),
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[sro_ethnicity].includes(value),
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -256,10 +325,19 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_share",
       title: "Share (%)",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_share",
+
+      // filters: extractUniqueValues(ownerData, "sro_share"),
+      // // sorter: (a, b) => a.sro_share - localeCompare(b.sro_share),
+      // sorter: (a, b) => a.sro_share - b.sro_share,
+
+      // sortDirections: ["descend", "ascend"],
+      // filterSearch: true,
+      // onFilter: (value, record) => record[sro_share].includes(value),
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -283,10 +361,13 @@ function OwnerTable(props) {
       },
     },
     {
+      key: "sro_cell",
       title: "Mobile Number",
       ellipsis: false,
       width: 250,
       dataIndex: "sro_cell",
+      // sorter: (a, b) => a.sro_cell - b.sro_cell,
+
       render: (text, record, index) => {
         return (showInputs.ownerColumns && index === 0) |
           isOwnerEditing(index) ? (
@@ -319,11 +400,12 @@ function OwnerTable(props) {
     },
     {
       title: "",
+      key: "action",
       dataIndex: "action",
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           if (showInputs.ownerColumns && index === 0) {
             return (
               <Form.Item>
@@ -399,7 +481,7 @@ function OwnerTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   return (
@@ -413,22 +495,22 @@ function OwnerTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
-            <>
-              <FilledButton
-                text="+ Add Owner Details"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                onClick={handleOwnerColumnShowInput}
-                disabled={ownerKey !== ""}
-              />
-              <FilledButton
-                text="+ Add"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                onClick={handleOwnerColumnShowInput}
-                disabled={ownerKey !== ""}
-              />
-            </>
-          )}
+          {/* {showButtons && ( */}
+          <>
+            <FilledButton
+              text="+ Add Owner Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+              onClick={handleOwnerColumnShowInput}
+              disabled={ownerKey !== ""}
+            />
+            <FilledButton
+              text="+ Add"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handleOwnerColumnShowInput}
+              disabled={ownerKey !== ""}
+            />
+          </>
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

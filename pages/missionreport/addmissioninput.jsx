@@ -28,7 +28,7 @@ const MissionDetailDataTable = dynamic(
 
 function Addmissioninput() {
   const router = useRouter();
-  const init_mission_data = { mr_pf_id: Cookies.get("u_pf_id") };
+  const init_mission_data = { mr_pf_id: localStorage.getItem("u_pf_id") };
   const [missionData, setMissionData] = useState(init_mission_data);
   const dispatch = useDispatch();
   const MissionReportState = useSelector((state) => state.saveMissionReport);
@@ -65,7 +65,7 @@ function Addmissioninput() {
       <Row className="items-center mb-4">
         <Col span={6}></Col>
         <Col span={18} className="flex justify-end">
-          {showButtons ? (
+          {/* {showButtons ? (
             <FilledButton
               style={{ marginLeft: "auto" }}
               text="Save Mission Data"
@@ -81,7 +81,15 @@ function Addmissioninput() {
               className="rounded-full border-midnight bg-midnight text-white mr-4"
               onClick={() => setShowButtons(true)}
             />
-          )}
+          )} */}
+          <FilledButton
+            style={{ marginLeft: "auto" }}
+            text="Save Mission Data"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+            loading={MissionReportState.isLoading}
+            disabled={!missionDataEntered}
+            onClick={handleSendMissionReport}
+          />
         </Col>
       </Row>
 
@@ -98,7 +106,8 @@ function Addmissioninput() {
       />
       {/*-----------------------------------mission detail data (Second Table)-------------------------------------*/}
       <MissionDetailDataTable
-        showButtons={showButtons}
+        // showButtons={showButtons}
+        showButtons={true}
         missionDetail={missionDetail}
         setMissionDetail={setMissionDetail}
       />

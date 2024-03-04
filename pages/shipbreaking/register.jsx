@@ -39,9 +39,9 @@ function Register() {
   // Handler to navigate back
   const handleBack = () => {
     router.back();
-    sessionStorage.removeItem("shipBreakingForm");
-    sessionStorage.removeItem("crewForm");
-    sessionStorage.removeItem("crewData");
+    localStorage.removeItem("shipBreakingForm");
+    localStorage.removeItem("crewForm");
+    localStorage.removeItem("crewData");
   };
 
   // Function to convert a string value to a boolean
@@ -105,8 +105,8 @@ function Register() {
           },
         });
       }
-      // // Store the form data in sessionStorage
-      sessionStorage.setItem(
+      // // Store the form data in localStorage
+      localStorage.setItem(
         "shipBreakingForm",
         JSON.stringify({
           ...form.getFieldsValue(),
@@ -129,9 +129,9 @@ function Register() {
     },
   ];
 
-  // Effect hook to load stored form data from sessionStorage
+  // Effect hook to load stored form data from localtorage
   useEffect(() => {
-    const storedData = sessionStorage.getItem("shipBreakingForm");
+    const storedData = localStorage.getItem("shipBreakingForm");
     if (storedData) {
       try {
         const formData = JSON.parse(storedData);
@@ -149,7 +149,7 @@ function Register() {
       <PageHeader
         showSearchBox={false}
         title="Ship Breakage Registration"
-        sessionStorage={handleBack}
+        localStorage={handleBack}
       />
 
       <Form

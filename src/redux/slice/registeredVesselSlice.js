@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRegisteredVessel, saveRegistedVessel, fetchRegistedVesselById } from "../thunks/registeredVesselData";
+import { fetchRegisteredVessel, saveRegistedVessel, fetchRegisteredVesselID } from "../thunks/registeredVesselData";
 
 export const fetchRegisteredVesselSlice = createSlice({
   name: "fetchRegisteredVesselData",
@@ -73,7 +73,40 @@ export const saveRegisteredVesselSlice = createSlice({
     
   },
 });
+export const fetchRegisteredVesselIDSlice = createSlice({
+  name: "fetchRegisteredVesselIDData",
+  initialState: {
+    isLoading: false,
+    data: [],
+    error: "",
+  },
 
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRegisteredVesselID.pending, (state) => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      })
+      .addCase(fetchRegisteredVesselID.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          data: action.payload,
+          error: "",
+        };
+      })
+      .addCase(fetchRegisteredVesselID.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+        };
+      });
+  },
+});
 
 // export const fetchRegistedVesselByIdSlice = createSlice({
 //   name: "fetchRegistedVesselById",

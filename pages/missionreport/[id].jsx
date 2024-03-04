@@ -1,20 +1,96 @@
-import {
-  Col,
-  Descriptions,
-  Row,
-  Tooltip,
-} from "antd";
-import React from "react";
+import { Col, Descriptions, Row, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
 import Heading from "../../src/components/title/Heading";
 import axios from "axios";
 import dayjs from "dayjs";
-import {  decimalToDMS } from "../../src/helper/position";
+import { coordinatesToDMS, decimalToDMS } from "../../src/helper/position";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
+import dynamic from "next/dynamic";
+import FilledButton from "../../src/components/button/FilledButton";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMissionReportID } from "../../src/redux/thunks/missionReportData";
+import { hasPermission } from "../../src/helper/permission";
 
+const MissionDetailDataTable = dynamic(
+  () => import("../../src/components/table/MissionDetailDataTable"),
+  {
+    ssr: false,
+  }
+);
 
+function MissDetails() {
+  const [missionDetail, setMissionDetail] = useState([]);
+  const dispatch = useDispatch();
+  const changePermission = hasPermission("change_missionreport");
 
-function MissDetails({ data }) {
+  const router = useRouter();
+  const { mr_key } = router.query; // Extract rv_key from query parameters
+  console.log(mr_key)
+  const { data} = useSelector(
+    (state) => state.fetchMissionReportID
+  );
+  console.log(data)
+  // Fetch vessel details based on rv_key
+  useEffect(() => {
+    if (mr_key) {
+      dispatch(fetchMissionReportID(mr_key));
+    }
+  }, [mr_key]);
+
+  // useEffect(() => {
+  //   const newMissionDetail = data.missionreportdetails.map((item) => {
+  //     return {
+  //       ...item,
+  //       mrd_dtg: item.mrd_dtg ? dayjs(item.mrd_dtg) : null,
+  //       mrd_position: {
+  //         ...item.mrd_position,
+  //         dms: [
+  //           coordinatesToDMS(item.mrd_position.coordinates, 0),
+  //           coordinatesToDMS(item.mrd_position.coordinates, 1),
+  //         ],
+  //       },
+  //     };
+  //   });
+  //   setMissionDetail(newMissionDetail);
+  // }, [data]);
+    useEffect(() => {
+      if (data && data.missionreportdetails) {
+        const newMissionDetail = data.missionreportdetails.map((item) => ({
+          ...item,
+          mrd_dtg: item.mrd_dtg ? dayjs(item.mrd_dtg) : null,
+          mrd_position: {
+            ...item.mrd_position,
+            dms: [
+              coordinatesToDMS(item.mrd_position.coordinates, 0),
+              coordinatesToDMS(item.mrd_position.coordinates, 1),
+            ],
+          },
+        }));
+        setMissionDetail(newMissionDetail);
+      }
+    }, []);
+
+  console.log(missionDetail)
+  const handleEditSave = async () => {
+    try {
+      // Combine mission data and details
+      const finalData = {
+        ...data,
+        missionreportdetails: missionDetail,
+      };
+      console.log(finalData);
+
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/misrep/${data.mr_key}`,
+        finalData
+      );
+    } catch (error) {
+      console.error("Error fetching platform types:", error);
+    }
+  };
+
   const missionDetailsDataColumns = [
     {
       title: "MMSI",
@@ -197,7 +273,21 @@ function MissDetails({ data }) {
 
   return (
     <div>
-      <PageHeader showSearchBox={false} title="Mission Report " />
+      <PageHeader
+        showButton={false}
+        showSearchBox={false}
+        title="Mission Report"
+      />
+      <div className="flex justify-end">
+        {changePermission && (
+          <FilledButton
+            style={{ marginLeft: "auto" }}
+            text="Save Mission Data"
+            className="rounded-full border-lightgreen bg-lightgreen text-white mr-4"
+            onClick={handleEditSave}
+          />
+        )}
+      </div>
       <div className=" mt-4 flex">
         <Heading
           className="whitespace-nowrap ml-5 "
@@ -206,18 +296,6 @@ function MissDetails({ data }) {
         />
       </div>
       <section className="mb-10">
-        {/* <Descriptions
-          size="middle"
-          className="mt-5 ml-4 mr-4 descriptionTable"
-          bordered={true}
-          column={{ xs: 1, sm: 2, md: 3, lg: 3 }}
-        >
-          {items.map((item, index) => (
-            <Descriptions.Item key={index} label={item.label}>
-              {item.children}
-            </Descriptions.Item>
-          ))}
-        </Descriptions> */}
         <Descriptions
           size="small"
           className="p-2"
@@ -245,43 +323,14 @@ function MissDetails({ data }) {
           ))}
         </Descriptions>
       </section>
-      {tableItems.map((item, index) => {
-        return (
-          <TableItemRenderer
-            key={index}
-            title={item.title}
-            columns={item.columns}
-            data={item.data}
-            pagination={true}
-          />
-        );
-      })}
+      <MissionDetailDataTable
+        // showButtons={false}
+        showButtons={changePermission}
+        missionDetail={missionDetail}
+        setMissionDetail={setMissionDetail}
+      />
     </div>
   );
 }
 
 export default MissDetails;
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/misrep/${id}`
-    );
-    if (response.status === 200) {
-      return {
-        props: {
-          data: response.data,
-          title: `Intel Report Details (${id})`,
-        },
-      };
-    }
-  } catch {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/404",
-      },
-      props: {},
-    };
-  }
-}

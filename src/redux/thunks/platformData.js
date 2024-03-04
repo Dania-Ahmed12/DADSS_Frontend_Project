@@ -6,14 +6,15 @@ export const fetchAllPlatformData = createAsyncThunk(
   "data/fetch",
   async (search_data) => {
     try {
+
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/platform?search=${
           search_data ? search_data : ""
-        }`
+        }`,
+      
       );
       if (response.status === 200) return response.data;
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 

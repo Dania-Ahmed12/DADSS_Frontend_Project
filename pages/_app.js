@@ -36,20 +36,9 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>{pageProps?.title}</title>
         <link
-        // href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
-        // rel="stylesheet"
         ></link>
       </Head>
-      {/* <Provider store={store}>
-        
-        {!isPageWithoutDrawer ? (
-          <Drawer>
-            <Component {...pageProps} />
-          </Drawer>
-        ) : (
-          <Component {...pageProps} />
-        )}
-      </Provider> */}
+  
       <Provider store={store}>
         <ToastContainer /> {/* ToastContainer should be a child of Provider */}
         {!isPageWithoutDrawer ? (

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMerchantById } from "../thunks/merchantVesselData";
+import { fetchMerchantById, fetchMerchantData } from "../thunks/merchantVesselData";
 export const fetchMerchantVesselSlice = createSlice({
   name: "fetchMerchantVessel",
   initialState: {
@@ -41,6 +41,42 @@ export const fetchMerchantVesselSlice = createSlice({
           error: "",
         };
       })    
+  },
+});
+
+
+export const fetchMerchantVesselReportSlice = createSlice({
+  name: "fetchMerchantVesselReport",
+  initialState: {
+    isLoading: false,
+    data: [],
+    error: "",
+  },
+
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMerchantData.pending, (state) => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      })
+      .addCase(fetchMerchantData.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          data: action.payload,
+          error: "",
+        };
+      })
+      .addCase(fetchMerchantData.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+        };
+      });
   },
 });
 

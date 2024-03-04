@@ -183,10 +183,9 @@ const items = [
     "/activitymapsandtrends/merchantvesseltrends/visitingpakistan",
     "6"
   ),
-  getItem(require("/public/images/home/Icons-18.svg"), "/generalreport", "7"),
-  getItem(require("/public/images/home/Icons-19.svg"), "/merchantvessel", "8"),
-  getItem(require("/public/images/home/Icons-20.svg"), "/fishingvessel", "9"),
-
+  // getItem(require("/public/images/home/Icons-18.svg"), "/generalreport", "7"),
+  // getItem(require("/public/images/home/Icons-19.svg"), "/merchantvessel", "8"),
+  // getItem(require("/public/images/home/Icons-20.svg"), "/fishingvessel", "9"),
   // Add more items here if needed
 ];
 function Index() {
@@ -205,7 +204,8 @@ function Index() {
               key={i}
             >
               <Link href={item.to}>
-                <div className="w-dvw bg-white hover:border-blue cursor-pointer rounded-lg shadow-xl border-2 border-slate-200 p-5 h-full">
+                <div 
+                className="w-dvw bg-white hover:border-blue cursor-pointer rounded-lg shadow-xl border-2 border-slate-200 p-5 h-full">
                   <div className="flex justify-end">
                     <HiOutlineArrowNarrowRight fontSize={25} />
                   </div>

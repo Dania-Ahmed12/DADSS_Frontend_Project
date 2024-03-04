@@ -36,9 +36,9 @@ export const saveShipBreakingReport = createAsyncThunk(
         progress: undefined,
         theme: "dark",
       });
-        sessionStorage.removeItem("shipBreakingForm");
-        sessionStorage.removeItem("crewForm");
-        sessionStorage.removeItem("crewData");
+        localStorage.removeItem("shipBreakingForm");
+        localStorage.removeItem("crewForm");
+        localStorage.removeItem("crewData");
         data.navigation.push("/shipbreaking");
         return response.data;
       }

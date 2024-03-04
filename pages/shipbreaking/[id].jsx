@@ -1,12 +1,11 @@
 import React from "react";
 import Heading from "../../src/components/title/Heading";
-import AntdTable from "../../src/components/table/AntdTable";
 import axios from "axios";
 import { shipBreakColumns } from "../../src/helper/DataColumns";
 import PageHeader from "../../src/components/pageheader/pageHeader";
 import TableItemRenderer from "../../src/components/table/RenderTable";
 import dayjs from "dayjs";
-import { Col, Descriptions, Row } from "antd";
+import { Button, Col, Descriptions, InputNumber, Row, Select } from "antd";
 
 const ShippingDetailcolumns = [
   ...shipBreakColumns,
@@ -151,10 +150,21 @@ function RegisteredShipBreakDetails({ data }) {
     }),
   ];
 
+
   // Define crew table
   const CrewDetails = [
-    { title: "Crew Name", dataIndex: "sbc_name" , key:"sbc_name" },
-    { title: "Crew Nationality", dataIndex: "sbc_nationality" , key:"sbc_nationality" },
+    {
+      title: "Crew Name",
+      dataIndex: "sbc_name",
+      key: "sbc_name",
+      
+    },
+    {
+      title: "Crew Nationality",
+      dataIndex: "sbc_nationality",
+      key: "sbc_nationality",
+ 
+    },
   ];
 
   const tableItems = [
@@ -209,8 +219,15 @@ function RegisteredShipBreakDetails({ data }) {
                     <div className="descriptionLabel ">{item.label}</div>
                   </Col>
                   <Col span={14} className="flex justify-end">
-                    <div className="descriptionChildren mr-5">
-                      {item.children}
+                    <div
+                      className="descriptionChildren mr-5"
+                      style={{
+                        padding: "4px",
+                      }}
+                    >
+                      {/* {item.children}
+                       */}
+                      {item.children ? item.children : "--"}
                     </div>
                   </Col>
                 </Row>

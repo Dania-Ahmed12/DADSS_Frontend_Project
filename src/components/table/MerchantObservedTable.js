@@ -118,6 +118,7 @@ function MerchantObservedTable(props) {
 
   const merchantObservedColumns = [
     {
+      key: "longitude",
       title: "Longitude",
       ellipsis: false,
       width: 250,
@@ -138,6 +139,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "latitude",
       title: "Latitude",
       ellipsis: false,
       width: 250,
@@ -158,6 +160,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "grm_name",
       title: "Vessel Name",
       ellipsis: false,
       width: 250,
@@ -184,6 +187,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "grm_type",
       title: "Vessel Type",
       dataIndex: "grm_type",
       ellipsis: false,
@@ -211,6 +215,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "grm_movement",
       title: "Vessel Movement",
       dataIndex: "grm_movement",
       ellipsis: false,
@@ -241,6 +246,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "grm_lpoc",
       title: "LPOC",
       dataIndex: "grm_lpoc",
       ellipsis: false,
@@ -268,6 +274,7 @@ function MerchantObservedTable(props) {
       },
     },
     {
+      key: "grm_npoc",
       title: "NPOC",
       dataIndex: "grm_npoc",
       ellipsis: false,
@@ -296,6 +303,7 @@ function MerchantObservedTable(props) {
     },
     {
       title: "",
+      key: "action",
       dataIndex: "action",
       width: 250,
       render: (text, record, index) => {
@@ -388,7 +396,7 @@ function MerchantObservedTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
+          {/* {showButtons && ( */}
             <>
               <FilledButton
                 text="+ Add Merchant Observed"
@@ -403,7 +411,7 @@ function MerchantObservedTable(props) {
                 disabled={merchantObservedKey !== ""}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
 

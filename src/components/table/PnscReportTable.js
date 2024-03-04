@@ -135,6 +135,7 @@ function PnscTable(props) {
 
   const pnscReportColumn = [
     {
+      key: "ps_timestamp",
       title: "Time Stamp",
       dataIndex: "ps_timestamp",
       ellipsis: false,
@@ -175,6 +176,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "mv_imo",
       title: "IMO",
       dataIndex: "mv_imo",
       ellipsis: false,
@@ -200,6 +202,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "mv_ais_type_summary",
       title: "Type",
       dataIndex: "mv_ais_type_summary",
       ellipsis: false,
@@ -230,6 +233,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "longitude",
       title: "Longitude",
       dataIndex: ["ps_position", "dms", 0],
       ellipsis: false,
@@ -251,6 +255,7 @@ function PnscTable(props) {
     },
     {
       title: "Latitude",
+      key: "latitude",
       dataIndex: ["ps_position", "dms", 1],
       render: (text, record, index) => {
         if (
@@ -268,6 +273,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_country",
       title: "Country",
       dataIndex: "ps_country",
       ellipsis: false,
@@ -293,6 +299,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_status_symbol",
       title: "Status Symbol",
       ellipsis: false,
       width: 250,
@@ -319,6 +326,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_status_symbol_remarks",
       title: "Status Symbol Remarks",
       dataIndex: "ps_status_symbol_remarks",
       ellipsis: false,
@@ -345,6 +353,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_status_symbol_assigned_time",
       title: "Status Symbol Assigned Time",
       dataIndex: "ps_status_symbol_assigned_time",
       ellipsis: false,
@@ -385,6 +394,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_track_number",
       title: "Track Number",
       ellipsis: false,
       width: 250,
@@ -412,6 +422,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_course",
       title: "Course",
       dataIndex: "ps_course",
       ellipsis: false,
@@ -438,6 +449,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_speed",
       title: "Speed",
       dataIndex: "ps_speed",
       ellipsis: false,
@@ -463,8 +475,8 @@ function PnscTable(props) {
         );
       },
     },
-
     {
+      key: "ps_lastport",
       title: "Last Port",
       dataIndex: "ps_lastport",
       render: (text, record, index) => {
@@ -488,6 +500,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_next_port",
       title: "Next Port",
       dataIndex: "ps_next_port",
       ellipsis: false,
@@ -513,6 +526,7 @@ function PnscTable(props) {
       },
     },
     {
+      key: "ps_track_label",
       title: "Track Label",
       dataIndex: "ps_track_label",
       ellipsis: false,
@@ -539,6 +553,7 @@ function PnscTable(props) {
     },
     {
       title: "Track Type",
+      key: "ps_track_type",
       dataIndex: "ps_track_type",
       ellipsis: false,
       width: 250,
@@ -565,6 +580,7 @@ function PnscTable(props) {
 
     {
       title: "",
+      key:"action",
       dataIndex: "action",
       ellipsis: false,
       width: 250,
@@ -667,18 +683,14 @@ function PnscTable(props) {
           <FilledButton
             text="+ Add PNSC Report"
             className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                        onClick={handlePnscReportColumnShowInput}
-            disabled={
-              pnscReport.length === 0 && !showInputs.pnscReportColumn
-            }
+            onClick={handlePnscReportColumnShowInput}
+            disabled={pnscReport.length === 0 && !showInputs.pnscReportColumn}
           />
           <FilledButton
             text="+ Add "
             className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                        onClick={handlePnscReportColumnShowInput}
-            disabled={
-              pnscReport.length === 0 && !showInputs.pnscReportColumn
-            }
+            onClick={handlePnscReportColumnShowInput}
+            disabled={pnscReport.length === 0 && !showInputs.pnscReportColumn}
           />
         </Col>
       </Row>

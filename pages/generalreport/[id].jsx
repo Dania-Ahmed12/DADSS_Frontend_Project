@@ -43,6 +43,7 @@ function GeneralDetails({ data }) {
   const fishingColumns = [
     {
       title: "Latitude",
+      key: "latitude",
       width: 250,
       dataIndex: "grd_position",
       ellipsis: false,
@@ -55,6 +56,7 @@ function GeneralDetails({ data }) {
       },
     },
     {
+      key: "longitude",
       title: "Longitude",
       width: 250,
       dataIndex: "grd_position",
@@ -68,18 +70,21 @@ function GeneralDetails({ data }) {
       },
     },
     {
+      key: "grd_qty",
       title: "Number of Vessels",
       width: 250,
       ellipsis: false,
       dataIndex: "grd_qty",
     },
     {
+      key: "grd_type",
       title: "Vessel Type",
       width: 250,
       ellipsis: false,
       dataIndex: "grd_type",
     },
     {
+      key: "grd_movement",
       title: "Vessel Movement",
       width: 250,
       ellipsis: false,
@@ -89,6 +94,7 @@ function GeneralDetails({ data }) {
   const fishingObservedColumns = [
     {
       title: "Latitude",
+      key: "latitude",
       width: 250,
       ellipsis: false,
       dataIndex: "grf_position",
@@ -106,6 +112,7 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Longitude",
+      key: "longitude",
       width: 250,
       ellipsis: false,
       dataIndex: "grf_position",
@@ -123,17 +130,20 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Vessel Name",
+      key: "grf_name",
       width: 250,
       ellipsis: false,
       dataIndex: "grf_name",
     },
     {
+      key: "grf_type",
       title: "Type of Vessel",
       width: 250,
       ellipsis: false,
       dataIndex: "grf_type",
     },
     {
+      key: "grf_movement",
       title: "Vessel Movement",
       width: 250,
       ellipsis: false,
@@ -143,6 +153,7 @@ function GeneralDetails({ data }) {
   const merchantObservedColumns = [
     {
       title: "Latitude",
+      key: "latitude",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_position",
@@ -160,6 +171,7 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Longitude",
+      key: "Longitude",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_position",
@@ -177,29 +189,34 @@ function GeneralDetails({ data }) {
     },
     {
       title: "Vessel Name",
+      key: "grm_name",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_name",
     },
     {
+      key: "grm_type",
       title: "Type of Vessel",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_type",
     },
     {
+      key: "grm_movement",
       title: "Vessel Movement",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_movement",
     },
     {
+      key: "grm_lpoc",
       title: "LPOC",
       width: 250,
       ellipsis: false,
       dataIndex: "grm_lpoc",
     },
     {
+      key: "grm_npoc",
       title: "NPOC",
       width: 250,
       ellipsis: false,

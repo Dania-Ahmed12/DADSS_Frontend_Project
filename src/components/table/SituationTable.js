@@ -136,6 +136,7 @@ function SituationTable(props) {
     {
       title: "DTG",
       dataIndex: "sit_dtg",
+      key: "sit_dtg",
       ellipsis: false,
       render: (text, record, index) => {
         // If in editing mode or first row and column is visible
@@ -174,6 +175,8 @@ function SituationTable(props) {
     },
     {
       title: "MMSI",
+      key: "mv_mmsi",
+
       dataIndex: "mv_mmsi",
       ellipsis: false,
       width: 250,
@@ -206,6 +209,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "mv_imo",
       title: "IMO",
       dataIndex: "mv_imo",
       ellipsis: false,
@@ -232,6 +236,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "mv_ship_name",
       title: "Name",
       dataIndex: "mv_ship_name",
       ellipsis: false,
@@ -257,6 +262,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "mv_flag",
       title: "Flag",
       dataIndex: "mv_flag",
       ellipsis: false,
@@ -282,6 +288,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "mv_ais_type_summary",
       title: "Type",
       dataIndex: "mv_ais_type_summary",
       ellipsis: false,
@@ -312,6 +319,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "longitude",
       title: "Longitude",
       dataIndex: ["sit_position", "dms", 0],
       render: (text, record, index) => {
@@ -329,8 +337,8 @@ function SituationTable(props) {
         }
       },
     },
-
     {
+      key: "latitude",
       title: "Latitude",
       dataIndex: ["sit_position", "dms", 1],
       render: (text, record, index) => {
@@ -349,6 +357,8 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_lpoc",
+
       title: "LPOC",
       dataIndex: "sit_lpoc",
       ellipsis: false,
@@ -374,6 +384,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_last_port_country",
       title: "Last Port Country",
       dataIndex: "sit_last_port_country",
       ellipsis: false,
@@ -399,6 +410,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_npoc",
       title: "NPOC",
       dataIndex: "sit_npoc",
       ellipsis: false,
@@ -424,6 +436,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_next_port_country",
       title: "Next Port Country",
       dataIndex: "sit_next_port_country",
       ellipsis: false,
@@ -449,6 +462,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_course",
       title: "Course",
       dataIndex: "sit_course",
       ellipsis: false,
@@ -476,6 +490,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_speed",
       title: "Speed",
       dataIndex: "sit_speed",
       ellipsis: false,
@@ -502,6 +517,7 @@ function SituationTable(props) {
       },
     },
     {
+      key: "sit_source",
       title: "Source",
       dataIndex: "sit_source",
       ellipsis: false,
@@ -529,6 +545,8 @@ function SituationTable(props) {
 
     {
       title: "",
+      key: "action",
+
       dataIndex: "action",
       width: 250,
       render: (text, record, index) => {
@@ -629,23 +647,23 @@ function SituationTable(props) {
               text="Situation Report"
             />
 
-              <FilledButton
-                text="+ Add Situation Report"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                onClick={handleSituationColumnShowInput}
-                // disabled={situationReportKey !== ""}
-                disabled={
-                  situationData.length === 0 && !showInputs.situationColumns
-                }
-              />
-              <FilledButton
-                text="+ Add "
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                onClick={handleSituationColumnShowInput}
-                disabled={
-                  situationData.length === 0 && !showInputs.situationColumns
-                }
-              />
+            <FilledButton
+              text="+ Add Situation Report"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+              onClick={handleSituationColumnShowInput}
+              // disabled={situationReportKey !== ""}
+              disabled={
+                situationData.length === 0 && !showInputs.situationColumns
+              }
+            />
+            <FilledButton
+              text="+ Add "
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handleSituationColumnShowInput}
+              disabled={
+                situationData.length === 0 && !showInputs.situationColumns
+              }
+            />
           </Col>
         </Row>
         {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

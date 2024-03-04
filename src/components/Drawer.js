@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, Typography, theme, Modal, Button } from "antd";
+import { Layout, Menu, theme } from "antd";
 import styled from "styled-components";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { FiBarChart, FiMap } from "react-icons/fi";
-
 import { MdAnchor } from "react-icons/md";
-import { AiOutlineUser, AiOutlinePieChart } from "react-icons/ai";
+import { AiOutlineUser, AiOutlinePieChart ,  AiOutlineUsergroupAdd  } from "react-icons/ai";
 import { MdAppRegistration } from "react-icons/md";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { TbDeviceDesktopAnalytics } from "react-icons/tb";
+import { FaUsersGear } from "react-icons/fa";
 import {
   GiFishingBoat,
   GiCargoShip,
@@ -23,30 +23,22 @@ import { TbDatabase } from "react-icons/tb";
 import { SlGraph } from "react-icons/sl";
 import { FcHeatMap } from "react-icons/fc";
 import { withAuth } from "./withAuth";
-import FilledButton from "./button/FilledButton";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const { Content, Footer, Sider, Header } = Layout;
 
 const Drawer = (props) => {
   const handleLogout = async () => {
-    Cookies.remove("token");
-    Cookies.remove("username");
-    Cookies.remove("userId");
-    Cookies.remove("u_pf_id");
-    Cookies.remove("category");
-    Cookies.remove("is_superuser");
-    // Cookies.remove("u_view_map");
-    // Cookies.remove("u_create_user");
-    // Cookies.remove("u_access_rvdata");
-    // Cookies.remove("u_crew");
-    // Cookies.remove("u_goods");
-    // Cookies.remove("u_owner");
-    // Cookies.remove("u_access_form");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("u_pf_id");
     router.push("/");
   };
 
+  axios.defaults.headers["Authorization"] =
+    "JWT " + localStorage.getItem("accessToken");
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
@@ -66,6 +58,14 @@ const Drawer = (props) => {
   const router = useRouter();
 
   function getItem(label, key, icon, children, type) {
+    // Check if is_superuser is true in localStorage
+    // const isSuperUser = localStorage.getItem("is_superuser") === "true";
+
+    // // Check if the item should be displayed based on the user's superuser status
+    // if ((key === "2" ) && !isSuperUser) {
+    //   return undefined;
+    // }
+
     if (Cookies.get("category") === "B" && ["2", "3", "8"].includes(key)) {
       return undefined;
     }
@@ -102,6 +102,15 @@ const Drawer = (props) => {
       "2",
       <AiOutlineUser style={{ color: "white" }} size={20} />
     ),
+    getItem(
+      <Link href="/usergroups" style={{ color: "white" }}>
+        User Roles
+      </Link>,
+      "2.1",
+      // <AiOutlineUser style={{ color: "white" }} size={20} />
+      <AiOutlineUsergroupAdd style={{ color: "white" }} size={20} />
+    ),
+
     getItem(
       <Link href="/platformdata" style={{ color: "white" }}>
         Platform Data
@@ -425,39 +434,6 @@ const Drawer = (props) => {
             items={items}
             inlineCollapsed={collapsed}
           />
-
-          {/* <div
-            onClick={handleLogout}
-            mode="inline"
-            className=" flexcustom-css-logout text-white"
-            style={{
-              // color: colorPrimary,
-              background: "#012169",
-              paddingBottom: "20px",
-            }}
-          >
-              <div>Logout</div>
-              <div className="custom-logout-icon">
-                <img src="/images/arrow.png" alt="Logout Icon" />
-            </div>
-            {/* <Button onClick={handleLogout}>Logout</Button> */}
-          {/* </div> */}
-
-          {/* <Menu
-            onClick={handleLogout}
-            mode="inline"
-            className="custom-css-logout text-white"
-            style={{
-              background: "#012169",
-              paddingBottom: "20px",
-            }}
-          >
-            <div className="custom-logout-icon">
-              <img src="/images/power.png" alt="Logout Icon" />
-            </div>
-            <div className="mt-5 ml-4 media-logout ">Logout</div>
-          </Menu> */}
-
           <Menu
             onClick={handleLogout}
             mode="inline"
@@ -486,34 +462,18 @@ const Drawer = (props) => {
             )}
           </Menu>
         </Sider>
-        <Layout className="mt-12" style={{ height: "auto" }}>
-          <Header
-            style={{
-              height: "auto",
-              // display: "flex",
-              // alignItems: "center",
-              // justifyContent: "end",
-              // flexWrap: "wrap",
-              background: "#FAF9F6",
-            }}
-          ></Header>
+        <Layout className="mt-8" style={{ height: "auto" }}>
           <Content
             className="p-2"
-            style={{
-              // background: colorBgContainer,
-              background: "#FAF9F6",
-              overflow: "auto",
-            }}
+            style={
+              {
+                // overflow: "auto",
+              }
+            }
           >
             {props.children}
           </Content>
-          <Footer
-            className="h-auto flex items-end"
-            // style={{
-       
-            //   background: "#FAF9F6",
-            // }}
-          >
+          <Footer className="h-auto flex items-end">
             <div>
               Copyright <span className="font-bold">Dadss</span> ©{" "}
               {new Date().getFullYear()} All Rights Reserved

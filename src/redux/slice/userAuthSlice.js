@@ -1,18 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginApi, registerApi, getAllUsers } from "../thunks/userAuth";
-import Cookies from "js-cookie";
+import { loginApi, registerApi, getAllUsers, getUserID } from "../thunks/userAuth";
 export const loginSlice = createSlice({
   name: "loginAuth",
   initialState: {
     isLoading: false,
     data: [],
     error: "",
-    isLoggedIn: Cookies.get("token")!== null &&
-    Cookies.get("token") !== undefined &&
-    Cookies.get("token") !== "",
+    accessToken:
+      typeof window !== "undefined" &&
+      window.localStorage.getItem("accessToken")
+        ? window.localStorage.getItem("accessToken")
+        : null, // Set access token from local storage
+    refreshToken:
+      typeof window !== "undefined" &&
+      window.localStorage.getItem("refreshToken")
+        ? window.localStorage.getItem("refreshToken")
+        : null,
+    isLoggedIn:
+      typeof window !== "undefined" &&
+      window.localStorage.getItem("accessToken") !== null &&
+      window.localStorage.getItem("accessToken") !== undefined &&
+      window.localStorage.getItem("accessToken") !== "",
   },
-
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginApi.pending, (state) => {
@@ -26,6 +37,8 @@ export const loginSlice = createSlice({
           ...state,
           isLoading: false,
           data: action.payload,
+          accessToken: action.payload, // Set access token
+          refreshToken: action.payload,
           error: "",
           isLoggedIn: true,
         };
@@ -37,7 +50,7 @@ export const loginSlice = createSlice({
           error: action.payload,
           isLoggedIn: false,
         };
-      })
+      });
   },
 });
 export const registerSlice = createSlice({
@@ -72,7 +85,7 @@ export const registerSlice = createSlice({
           error: action.payload,
           isLoggedIn: false,
         };
-      })
+      });
   },
 });
 export const getAllUsersSlice = createSlice({
@@ -107,9 +120,41 @@ export const getAllUsersSlice = createSlice({
           error: action.payload,
           isLoggedIn: false,
         };
-      })
+      });
   },
 });
 
+export const getUsersIDSlice = createSlice({
+  name: "fetchUserID",
+  initialState: {
+    isLoading: false,
+    data: [],
+    error: "",
+  },
 
-
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserID.pending, (state) => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      })
+      .addCase(getUserID.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          data: action.payload,
+          error: "",
+        };
+      })
+      .addCase(getUserID.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+        };
+      });
+  },
+});

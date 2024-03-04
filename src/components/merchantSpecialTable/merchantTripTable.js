@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row,  Form, Modal } from "antd";
+import { Col, Row, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -109,6 +109,7 @@ function MerchantTripTable(props) {
     // record would be the entire data record for the current row.
     // index would be the index of the current row in the dataset.
     {
+      key: "msr2_lpoc",
       title: "LPOC",
       dataIndex: "msr2_lpoc",
       ellipsis: false,
@@ -139,6 +140,8 @@ function MerchantTripTable(props) {
       },
     },
     {
+      key: "msr2_lpocdtg",
+
       title: "LPOC Date",
       dataIndex: "msr2_lpocdtg",
       ellipsis: false,
@@ -166,6 +169,7 @@ function MerchantTripTable(props) {
       },
     },
     {
+      key: "msr2_npoc",
       title: "NPOC",
       dataIndex: "msr2_npoc",
       ellipsis: false,
@@ -192,6 +196,7 @@ function MerchantTripTable(props) {
       },
     },
     {
+      key: "msr2_npoceta",
       title: "NPOC ETA",
       dataIndex: "msr2_npoceta",
       ellipsis: false,
@@ -219,6 +224,8 @@ function MerchantTripTable(props) {
       },
     },
     {
+      key: "msr_movement",
+
       title: "Movement",
       dataIndex: "msr_movement",
       ellipsis: false,
@@ -248,12 +255,14 @@ function MerchantTripTable(props) {
       },
     },
     {
+      key: "action",
+
       title: "",
       dataIndex: "action",
       ellipsis: false,
       width: 250,
       render: (text, record, index) => {
-        if (showButtons) {
+        // if (showButtons) {
           // Check if 'showInputs.tripColumns' is true
           if (showInputs.tripColumns) {
             // Render buttons for cancel and save if 'showInputs.tripColumns' is true
@@ -331,7 +340,7 @@ function MerchantTripTable(props) {
           }
         }
       },
-    },
+    // },
   ];
 
   return (
@@ -345,28 +354,28 @@ function MerchantTripTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
-            <>
-              <FilledButton
-                text="+ Add Trip Details"
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                onClick={handleTripShowInput}
-                disabled={tripDataEntered}
-              />
-              <FilledButton
-                text="+ Add "
-                className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                onClick={handleTripShowInput}
-                disabled={tripDataEntered}
-              />
-            </>
-          )}
+          {/* {showButtons && ( */}
+          <>
+            <FilledButton
+              text="+ Add Trip Details"
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
+              onClick={handleTripShowInput}
+              disabled={tripDataEntered}
+            />
+            <FilledButton
+              text="+ Add "
+              className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
+              onClick={handleTripShowInput}
+              disabled={tripDataEntered}
+            />
+          </>
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})
         at the beginning of the list. If not, it just shows the list as it is. */}
       <AntdTable
-      scrollConfig={{x:true}}
+        scrollConfig={{ x: true }}
         columns={tripColumns}
         data={[tripData]}
         pagination={false}

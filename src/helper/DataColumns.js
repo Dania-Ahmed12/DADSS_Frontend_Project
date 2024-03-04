@@ -4,8 +4,9 @@ import { decimalToDMS } from "../../src/helper/position";
 
 export const RegVesselColumn = [
   {
-    title: "Vessel ID Number",
+    title: "Vessel ID",
     dataIndex: "rv_id",
+    key: "rv_id",
     width: 250,
     ellipsis: false,
     render: (text) => {
@@ -13,7 +14,8 @@ export const RegVesselColumn = [
     },
   },
   {
-    title: "Registration Number",
+    title: "Registration ID",
+    key: "rv_regno",
     dataIndex: "rv_regno",
     width: 250,
     ellipsis: false,
@@ -22,6 +24,7 @@ export const RegVesselColumn = [
     },
   },
   {
+    key: "rv_name",
     title: "Vessel Name",
     dataIndex: "rv_name",
     width: 250,
@@ -31,6 +34,7 @@ export const RegVesselColumn = [
     },
   },
   {
+    key: "rv_type",
     title: "Type",
     dataIndex: "rv_type",
     width: 250,
@@ -40,12 +44,14 @@ export const RegVesselColumn = [
     },
   },
   {
+    key: "rv_flag",
     title: "Flag",
     dataIndex: "rv_flag",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "rv_province",
     title: "Province",
     dataIndex: "rv_province",
     width: 250,
@@ -87,7 +93,6 @@ export const MerVesselColumn = [
     width: 250,
     ellipsis: false,
     key: "mv_ship_name",
-
     dataIndex: "mv_ship_name",
   },
   {
@@ -110,28 +115,19 @@ export const MerVesselColumn = [
     dataIndex: "mv_ais_type_summary",
     width: 250,
     ellipsis: false,
-    sorter: (a, b) =>
-      a.mv_ais_type_summary.localeCompare(b.mv_ais_type_summary),
-    sortDirections: ["descend", "ascend"],
-    filters: [
-      { text: "Cargo", value: "Cargo" },
-      { text: "Tanker", value: "Tanker" },
-      { text: "Tug", value: "Tug" },
-      { text: "Special Craft", values: "Special Craft" },
-    ],
-    filterSearch: true,
-    onFilter: (value, record) => record.mv_ais_type_summary.includes(value),
   },
 ];
 export const MerchantDetailColumns = [
   ...MerVesselColumn,
   {
+    key: "mv_ship_type",
     title: "Ship Type",
     dataIndex: "mv_ship_type",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "mv_call_sign",
     title: "Call Sign",
     dataIndex: "mv_call_sign",
     width: 250,
@@ -139,6 +135,7 @@ export const MerchantDetailColumns = [
   },
 
   {
+    key: "mv_length",
     title: "Length",
     dataIndex: "mv_length",
     width: 250,
@@ -146,6 +143,7 @@ export const MerchantDetailColumns = [
   },
 
   {
+    key: "mv_width",
     title: "Width",
     dataIndex: "mv_width",
     width: 250,
@@ -153,6 +151,7 @@ export const MerchantDetailColumns = [
   },
   {
     title: "Gross Tonnage",
+    key: "mv_grt",
     dataIndex: "mv_grt",
     width: 250,
     ellipsis: false,
@@ -160,10 +159,12 @@ export const MerchantDetailColumns = [
   {
     title: "Dead Weight",
     dataIndex: "mv_dwt",
+    key: "mv_dwt",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "mv_year_built",
     title: "Year built",
     dataIndex: "mv_year_built",
     width: 250,
@@ -175,10 +176,12 @@ export const GeneralReportColumn = [
   {
     title: "Platform ID",
     dataIndex: "gr_pf_id",
+    key: "gr_pf_id",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "latitude",
     title: "Latitude",
     dataIndex: "gr_position",
     width: 250,
@@ -192,6 +195,7 @@ export const GeneralReportColumn = [
     },
   },
   {
+    key: "longitude",
     title: "Longitude",
     dataIndex: "gr_position",
     width: 250,
@@ -205,18 +209,21 @@ export const GeneralReportColumn = [
     },
   },
   {
+    key: "gr_patroltype",
     title: "Patrol Type",
     dataIndex: "gr_patroltype",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "gr_fuelrem",
     title: "Fuel Remaining (%)",
     dataIndex: "gr_fuelrem",
     width: 250,
     ellipsis: false,
   },
   {
+    key: "gr_dtg",
     title: "Date Time",
     dataIndex: "gr_dtg",
     width: 250,

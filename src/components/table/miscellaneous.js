@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row, Table,  Form,  Modal } from "antd";
+import { Col, Row, Table, Form, Modal } from "antd";
 import Heading from "../title/Heading";
 import SimpleButton from "../button/SimpleButton";
 import styled from "styled-components";
@@ -19,7 +19,7 @@ const StyledInput = styled.div`
 `;
 
 function Miscellaneous(props) {
-  const { freshWaterData, setFreshWaterData  , showButtons} = props;
+  const { freshWaterData, setFreshWaterData, showButtons } = props;
   const [freshWaterFrom] = useForm();
   const [freshWaterKey, setFreshWaterKey] = useState("");
 
@@ -102,6 +102,7 @@ function Miscellaneous(props) {
     {
       title: "Miscellaneous",
       dataIndex: "medical_evac",
+      key: "Miscellaneous",
       render: (text, record, index) => {
         return (showInputs.freshWaterColumn && index === 0) |
           isFreshWaterEditing(index) ? (
@@ -117,6 +118,7 @@ function Miscellaneous(props) {
     {
       title: "",
       dataIndex: "action",
+      key: "action",
       render: (text, record, index) => {
         if (showInputs.freshWaterColumn && index === 0) {
           return (

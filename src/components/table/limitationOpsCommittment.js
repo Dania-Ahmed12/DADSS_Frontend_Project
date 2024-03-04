@@ -99,6 +99,7 @@ function LimitationOpsCommittment(props) {
     {
       title: "Medical Evac",
       dataIndex: "medical_evac",
+      key: "medical_evac",
       render: (text, record, index) => {
         // return isLimitOpsEditing(record) ? (
         return (showInputs.limitOpsColumns && index === 0) |
@@ -124,6 +125,7 @@ function LimitationOpsCommittment(props) {
     {
       title: "Machinery Defects",
       dataIndex: "machinery defects",
+      key: "machinery defects",
       render: (text, record, index) => {
         return (showInputs.limitOpsColumns && index === 0) |
           isLimitOpsEditing(index) ? (
@@ -151,6 +153,7 @@ function LimitationOpsCommittment(props) {
     {
       title: "Fuel",
       dataIndex: "Fuel",
+      key: "Fuel",
       render: (text, record, index) => {
         return (showInputs.limitOpsColumns && index === 0) |
           isLimitOpsEditing(index) ? (
@@ -175,6 +178,7 @@ function LimitationOpsCommittment(props) {
     {
       title: "Water",
       dataIndex: "Water",
+      key: "Water",
       render: (text, record, index) => {
         return (showInputs.limitOpsColumns && index === 0) |
           isLimitOpsEditing(index) ? (
@@ -200,6 +204,7 @@ function LimitationOpsCommittment(props) {
     {
       title: "",
       dataIndex: "action",
+      key: "action",
       render: (text, record, index) => {
         if (showInputs.limitOpsColumns && index === 0) {
           return (

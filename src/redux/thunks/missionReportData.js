@@ -12,8 +12,7 @@ export const fetchMissionReport = createAsyncThunk(
         }`
       );
       if (response.status === 200) return response.data;
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 
@@ -40,16 +39,28 @@ export const saveMissionReport = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
-     toast.error(`Error . Please try again.`, {
-       position: "top-right",
-       autoClose: 1000,
-       hideProgressBar: false,
-       closeOnClick: true,
-       pauseOnHover: false,
-       draggable: true,
-       progress: undefined,
-       theme: "dark",
-     });
+      toast.error(`Error . Please try again.`, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
+  }
+);
+
+export const fetchMissionReportID = createAsyncThunk(
+  "missionID/fetch",
+  async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/misrep/${id}`
+      );
+      if (response.status === 200) return response.data;
+    } catch (error) {}
   }
 );

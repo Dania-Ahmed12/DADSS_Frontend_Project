@@ -64,6 +64,14 @@ const StyledDiv = styled.div`
     border-radius: 10px;
     border: 3px solid #686868;
   }
+
+  .ant-checkbox + span {
+    color: white !important;
+  }
+  label.ant-checkbox-wrapper.ant-checkbox-wrapper-checked.ant-checkbox-group-item.css-dev-only-do-not-override-sk7ap8
+    span {
+    color: white !important;
+  }
 `;
 function AntdTable({
   columns,
@@ -73,116 +81,134 @@ function AntdTable({
   form,
   pagination = true,
   expandable,
+  setCurrentData,
   scrollConfig = {},
 }) {
-  // const [dragColumns, setDragColumns] = useState();
-  const [dragColumns, setDragColumns] = useState(columns);
-  const defaultCheckedList = columns.map((item) => item.key);
-  const [checkedList, setCheckedList] = useState(defaultCheckedList);
+  // const [dragColumns, setDragColumns] = useState(columns);
+  // const defaultCheckedList = columns
+  //   .filter((column) => column.key !== "action") // Exclude "action" column
+  //   .map((item) => item.key);
+  // const [checkedList, setCheckedList] = useState(defaultCheckedList);
 
-  const handleToggleColumn = (key) => {
-    const newColumns = dragColumns.map((column) => {
-      if (column.key === key) {
-        return { ...column, hidden: !column.hidden };
-      }
-      return column;
-    });
-    setDragColumns(newColumns);
-  };
+  // const handleCheckboxChange = (checkedValues) => {
+  //   setCheckedList(checkedValues);
+  //   const newColumns = dragColumns.map((column) => ({
+  //     ...column,
+  //     // hidden: !checkedValues.includes(column.key),
+  //     hidden: column.key !== "action" && !checkedValues.includes(column.key),
+  //   }));
+  //   setDragColumns(newColumns);
+  // };
 
-  const handleCheckboxChange = (checkedValues) => {
-    setCheckedList(checkedValues);
-    const newColumns = dragColumns.map((column) => ({
-      ...column,
-      hidden: !checkedValues.includes(column.key),
-    }));
-    setDragColumns(newColumns);
-  };
+  // const options = columns.map(({ key, title }) => ({
+  //   label: title,
+  //   value: key,
+  // }));
 
-  const options = columns.map(({ key, title }) => ({
-    label: title,
-    value: key,
-  }));
-  const newColumns = columns.map((item) => {
-    if (item.key === "view") {
-      // Return the "Detail" column as is without applying hidden property
-      return item;
-    }
-    return {
-      ...item,
-      hidden: !checkedList.includes(item.key),
-    };
-  });
+  // useEffect(() => {
+  //   setDragColumns(columns);
+  // }, [columns]);
 
-  useEffect(() => {
-    setDragColumns(columns);
-  }, [columns]);
-
-  const dragProps = {
-    onDragEnd(fromIndex, toIndex) {
-      const newColumns = [...dragColumns];
-      const item = newColumns.splice(fromIndex, 1)[0];
-      newColumns.splice(toIndex, 0, item);
-      setDragColumns(newColumns);
-    },
-    nodeSelector: "th",
-  };
+  // const dragProps = {
+  //   onDragEnd(fromIndex, toIndex) {
+  //     const newColumns = [...dragColumns];
+  //     const item = newColumns.splice(fromIndex, 1)[0];
+  //     newColumns.splice(toIndex, 0, item);
+  //     setDragColumns(newColumns);
+  //   },
+  //   nodeSelector: "th",
+  // };
   return (
     <React.Fragment>
-      <div className="flex  justify-start  mt-5 ml-5">
+      {/* <div className="flex  justify-start  mt-5 ml-5 mr-5">
         <Checkbox.Group
           className="flex flex-wrap"
           value={checkedList}
           options={options}
           onChange={handleCheckboxChange}
         />
-      </div>
+      </div> */}
       <StyledDiv style={{ margin: 15 }}>
         <Form onFinish={onFinish} form={form}>
-          <ReactDragListView.DragColumn {...dragProps}>
-            <Table
-              expandable={expandable}
-              rowClassName="editable-row"
-              loading={loading}
-              pagination={
-                pagination
-                  ? {
-                      showSizeChanger: true, // Enable size changer
-                      pageSizeOptions: ["5", "10", "20", "50", "100"], // Define options for page size
-                      defaultPageSize: 5, // Set default page size
-                      position: ["bottomCenter"],
-                      itemRender: (page, type, originalElement) => {
-                        switch (type) {
-                          case "prev":
-                            return (
-                              <div className="custom-pagination-item ">
-                                <BsChevronLeft />
-                              </div>
-                            );
-                          case "next":
-                            return (
-                              <div className="custom-pagination-item ">
-                                <BsChevronRight />
-                              </div>
-                            );
-                          default:
-                            return (
-                              <div className="custom-pagination-item">
-                                {originalElement}
-                              </div>
-                            );
-                        }
-                      },
-                    }
-                  : false
+          {/* <ReactDragListView.DragColumn {...dragProps}> */}
+          <Table
+            expandable={expandable}
+            rowClassName="editable-row"
+            loading={loading}
+            // onChange={(pagination, filters, sorter, extra) => {
+            //   setCurrentData(extra.currentDataSource);
+            // }}
+            onChange={(pagination, filters, sorter, extra) => {
+              if (setCurrentData) {
+                setCurrentData(extra.currentDataSource);
               }
-              columns={dragColumns.filter((column) => !column.hidden)}
-              dataSource={data}
-              scroll={{ ...scrollConfig }} // Merge with x: true for horizontal scrolling
-            />
-          </ReactDragListView.DragColumn>
+            }}
+            pagination={
+              pagination
+                ? {
+                    showSizeChanger: true, // Enable size changer
+                    pageSizeOptions: ["5", "10", "20", "50", "100"], // Define options for page size
+                    defaultPageSize: 5, // Set default page size
+                    position: ["bottomCenter"],
+                    itemRender: (page, type, originalElement) => {
+                      switch (type) {
+                        case "prev":
+                          return (
+                            <div className="custom-pagination-item ">
+                              <BsChevronLeft />
+                            </div>
+                          );
+                        case "next":
+                          return (
+                            <div className="custom-pagination-item ">
+                              <BsChevronRight />
+                            </div>
+                          );
+                        default:
+                          return (
+                            <div className="custom-pagination-item">
+                              {originalElement}
+                            </div>
+                          );
+                      }
+                    },
+                  }
+                : false
+            }
+            // columns={dragColumns.filter((column) => !column.hidden)}
+            columns={columns}
+            dataSource={data}
+            scroll={{ ...scrollConfig }} // Merge with x: true for horizontal scrolling
+          />
+          {/* </ReactDragListView.DragColumn> */}
         </Form>
       </StyledDiv>
+
+      {/* <div
+        className="fixed-checkbox flex  justify-center "
+        style={{
+          backgroundColor: "#F5F5F5",
+          padding: "20px",
+          width: "100%",
+          position: "sticky",
+          bottom: "0px",
+        }}
+      >
+        <Checkbox.Group
+          className="flex flex-wrap ant-checkbox-wrapper-checked.ant-checkbox-wrapper-disabled .label-text"
+          // style={{ color: "white !important" }}
+          value={checkedList}
+          // options={options}
+          // options={options.filter((option) => option.value !== "action")}
+          options={columns
+            .filter((column) => column.key !== "action") // Exclude "action" column
+            .map(({ key, title }) => ({
+              label: title,
+              value: key,
+            }))}
+          onChange={handleCheckboxChange}
+        />
+      </div> */}
     </React.Fragment>
   );
 }

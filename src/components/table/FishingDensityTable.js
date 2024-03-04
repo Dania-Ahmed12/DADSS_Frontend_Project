@@ -115,6 +115,7 @@ function FishingDensityTable(props) {
     {
       title: "Longitude",
       ellipsis: false,
+      key: "longitude",
       width: 250,
       dataIndex: ["grd_position", "dms", 0],
       render: (text, record, index) => {
@@ -134,6 +135,7 @@ function FishingDensityTable(props) {
     },
     {
       title: "Latitude",
+      key: "latitude",
       ellipsis: false,
       width: 250,
       dataIndex: ["grd_position", "dms", 1],
@@ -154,6 +156,7 @@ function FishingDensityTable(props) {
     },
     {
       title: "Number of Vessels",
+      key: "grd_qty",
       width: 250,
       ellipsis: false,
       dataIndex: "grd_qty",
@@ -183,6 +186,7 @@ function FishingDensityTable(props) {
     },
     {
       title: "Vessel Type",
+      key: "grd_type",
       dataIndex: "grd_type",
       width: 250,
       render: (text, record, index) => {
@@ -209,6 +213,7 @@ function FishingDensityTable(props) {
     },
     {
       title: "Vessel Movement",
+      key: "grd_movement",
       ellipsis: false,
       dataIndex: "grd_movement",
       width: 250,
@@ -241,6 +246,7 @@ function FishingDensityTable(props) {
       title: "",
       width: 250,
       dataIndex: "action",
+      key: "action",
       render: (text, record, index) => {
         if (showInputs.fishingColumns && index === 0) {
           return (
@@ -334,22 +340,22 @@ function FishingDensityTable(props) {
           />
         </Col>
         <Col span={12} className="flex justify-end">
-          {showButtons && (
-             <>
+          {/* {showButtons && ( */}
+            <>
               <FilledButton
-                    text="+ Add Fishing Density"
+                text="+ Add Fishing Density"
                 className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButton"
-                 onClick={handleFishingColumnShowInput}
-              disabled={fishingDensityKey !== ""}
+                onClick={handleFishingColumnShowInput}
+                disabled={fishingDensityKey !== ""}
               />
               <FilledButton
                 text="+ Add"
                 className="rounded-full border-midnight bg-midnight text-white mr-4 custom-css-pageheaderButtonMedia"
-                 onClick={handleFishingColumnShowInput}
-              disabled={fishingDensityKey !== ""}
+                onClick={handleFishingColumnShowInput}
+                disabled={fishingDensityKey !== ""}
               />
             </>
-          )}
+          {/* )} */}
         </Col>
       </Row>
       {/* if showInputs.goodsColumns is true. If it is, it adds an empty row ({})

@@ -16,6 +16,19 @@ export const fetchIntelReport = createAsyncThunk(
   }
 );
 
+
+export const fetchIntelReportID = createAsyncThunk(
+  "intel/fetch",
+  async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_MSA_BACKEND_API}/ireport/${id}`
+      );
+      if (response.status === 200) return response.data;
+    } catch (error) {}
+  }
+);
+
 export const saveIntelReport = createAsyncThunk("intel/post", async (data) => {
   try {
     const response = await axios.post(
