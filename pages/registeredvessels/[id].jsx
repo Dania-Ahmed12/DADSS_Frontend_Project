@@ -12,8 +12,8 @@ import { useRouter } from "next/router";
 function RegisteredVesselDetails() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { rv_key } = router.query; // Extract rv_key from query parameters
-  const { data, isLoading  , error } = useSelector(
+      const { rv_key } = router.query; // Extract rv_key from query parameters
+const { data, isLoading  , error } = useSelector(
     (state) => state.fetchRegisteredVesselIDData
   );
   // Fetch vessel details based on rv_key
@@ -179,7 +179,7 @@ function RegisteredVesselDetails() {
           scrollConfig={{ x: true }}
         />
       </div>
-      {tableItems.map((item, index) => (
+         {tableItems.map((item, index) => (
         <>
           <TableItemRenderer
             scrollConfig={{ x: true }}

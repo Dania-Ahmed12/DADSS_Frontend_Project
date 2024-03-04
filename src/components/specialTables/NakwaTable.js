@@ -194,77 +194,77 @@ function FishingNakwaTable(props) {
       dataIndex: "action",
       render: (text, record, index) => {
         // if (showButtons) {
-          if (showInputs.nakwaColumns) {
+        if (showInputs.nakwaColumns) {
+          return (
+            <Form.Item>
+              <div style={{ display: "flex" }}>
+                <SimpleButton
+                  onClick={handleNakwaCancel}
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                  text="Cancel"
+                />
+                <SimpleButton
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    backgroundColor: "#51AE3B",
+                  }}
+                  text="Save"
+                  onClick={onNakwaFinish}
+                />
+              </div>
+            </Form.Item>
+          );
+        } else {
+          if (showInputs.nakwa_editing) {
             return (
               <Form.Item>
                 <div style={{ display: "flex" }}>
                   <SimpleButton
-                    onClick={handleNakwaCancel}
+                    onClick={() =>
+                      setShowInputs({ ...showInputs, nakwa_editing: false })
+                    }
                     style={{
                       fontWeight: "bold",
                     }}
                     text="Cancel"
                   />
                   <SimpleButton
+                    onClick={() => nakwaDataEdited()}
                     style={{
                       fontWeight: "bold",
                       color: "white",
-                      backgroundColor: "#51AE3B",
+                      backgroundColor: "#ffbf00",
                     }}
-                    text="Save"
-                    onClick={onNakwaFinish}
+                    text="Edit"
                   />
                 </div>
               </Form.Item>
             );
           } else {
-            if (showInputs.nakwa_editing) {
-              return (
-                <Form.Item>
-                  <div style={{ display: "flex" }}>
-                    <SimpleButton
-                      onClick={() =>
-                        setShowInputs({ ...showInputs, nakwa_editing: false })
-                      }
-                      style={{
-                        fontWeight: "bold",
-                      }}
-                      text="Cancel"
-                    />
-                    <SimpleButton
-                      onClick={() => nakwaDataEdited()}
-                      style={{
-                        fontWeight: "bold",
-                        color: "white",
-                        backgroundColor: "#ffbf00",
-                      }}
-                      text="Edit"
-                    />
-                  </div>
-                </Form.Item>
-              );
-            } else {
-              return nakwaDataEntered ? (
-                <IconsStylingWrap>
-                  <MdModeEditOutline
-                    className="editIcon"
-                    onClick={() => {
-                      setShowInputs({ ...showInputs, nakwa_editing: true });
-                      nakwaForm.setFieldsValue(record);
-                    }}
-                  />
-                  {/* <MdDelete
+            return nakwaDataEntered ? (
+              <IconsStylingWrap>
+                <MdModeEditOutline
+                  className="editIcon"
+                  onClick={() => {
+                    setShowInputs({ ...showInputs, nakwa_editing: true });
+                    nakwaForm.setFieldsValue(record);
+                  }}
+                />
+                {/* <MdDelete
                         onClick={() => handleNakwaDataDelete(record)}
                         className="deleteIcon"
                       /> */}
-                </IconsStylingWrap>
-              ) : (
-                text
-              );
-            }
+              </IconsStylingWrap>
+            ) : (
+              text
+            );
           }
         }
       },
+    },
     // },
   ];
 

@@ -1927,7 +1927,8 @@ function PlatformId() {
               scrollConfig={{ x: true }}
               form={form}
               onFinish={onFinish}
-              columns={columns}
+              // columns={columns}
+              columns={dragColumns.filter((column) => !column.hidden)}
               setCurrentData={setCurrentData}
               data={showInputs ? [data[0], ...data] : data}
               loading={isLoading}
